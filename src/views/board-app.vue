@@ -1,8 +1,8 @@
 <template >
-   hey
+   <group-list/>
 </template>
 <script>
-import groupListCmp from '../components/board/group-list.cmp.vue'
+import groupList from '../components/board/group-list.cmp.vue'
 import appHeaderCmp from '../components/app-header/app-header.cmp.vue'
 export default {
 
@@ -12,7 +12,7 @@ export default {
         }
     },
     comments: {
-        groupListCmp,
+        groupList,
         appHeaderCmp
 
     }

@@ -1,23 +1,23 @@
 :root {
-    //Typography
+ 
     --font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
 
-    // Shadow Box
+
     --box-shadow-xs: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
     --box-shadow-small: 0px 4px 8px rgba(0, 0, 0, 0.2);
     --box-shadow-medium: 0px 6px 20px rgba(0, 0, 0, 0.2);
     --board-elevation: 0px 1px 1px rgba(0, 0, 0, 0.1);
 
-    // Spacings
-    --spacing-xs: 0.25rem; //4px
-    --spacing-small: 0.5rem; //8px
-    --spacing-medium: 1rem; //16px
-    --spacing-large: 1.5rem; //24px
-    --spacing-xl: 2rem; //32px
-    --spacing-xxl: 3rem; //48px
-    --spacing-xxxl: 4rem; //64px
 
-    // Boreders
+    --spacing-xs: 0.25rem; 
+    --spacing-small: 0.5rem; 
+    --spacing-medium: 1rem; 
+    --spacing-large: 1.5rem; 
+    --spacing-xl: 2rem; 
+    --spacing-xxl: 3rem; 
+    --spacing-xxxl: 4rem; 
+
+
     --border-style: 1px solid #d0d4e4;
     --border-width: 1px;
     --border-radius-small: 0.25rem;
@@ -25,7 +25,7 @@
     --border-radius-big: 1rem;
 
 
-    // COLORS
+
     --ui-border-color: #c3c6d4;
     --primary-color: #0073ea;
     --primary-hover-color: #0060b9;
@@ -43,7 +43,7 @@
 
 
 
-    ///added colors 
+ 
     --color-highlight_blue: #cce5ff;
     --color-basic_blue: #0073ea;
     --color-dark_blue: #0060b9;
