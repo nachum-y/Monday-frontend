@@ -3,7 +3,7 @@
     <app-header />
     <div class="first-level">
       <action-side-nav @sideExpanded="isSideExpanded" />
-      <div class="first-level-content-wrapper">
+      <div class="first-level-content-wrapper" :class="isSideExpandedVal ? '-pinned' : '-unpinned'">
         <router-view />
       </div>
     </div>
@@ -15,18 +15,20 @@ import actionSideNav from './components/app-header/action-side-nav.cmp.vue'
 export default {
   data() {
     return {
-
+      isSideExpandedVal: false
     }
   },
   components: {
     appHeader,
     actionSideNav
   },
-  computed: {
-    isSideExpanded(v) {
-      
-      console.log(v)
+  methods: {
+    isSideExpanded(val) {
+      this.isSideExpandedVal = val
     }
+  },
+  computed: {
+
   }
 }
 </script>
