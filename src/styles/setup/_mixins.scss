@@ -1,0 +1,17 @@
+//MIXINS
+@mixin fixed-col-style {
+    background-color: rgba(254, 254, 254, 0.9);
+    position: sticky;
+    left: 0px;
+}
+
+@mixin col-span-style {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+@mixin color-border($clr) {
+    border-inline-start: 6px solid $clr;
+}
