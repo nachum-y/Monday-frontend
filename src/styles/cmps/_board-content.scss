@@ -23,6 +23,9 @@
     position: relative;
     margin-left: 2.25rem;
 
+    height: calc(100vh - 185px);
+
+
     &-group {
         padding: 5px 0px 0px 0px;
         font-size: 14px;

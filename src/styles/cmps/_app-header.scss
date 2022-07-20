@@ -172,7 +172,7 @@
         display: flex;
         flex-grow: 1;
         flex-direction: column;
-        overflow-x: hidden;
+        // overflow-x: hidden;
         direction: rtl;
 
         .top-navigation-items-area {
@@ -228,7 +228,7 @@
 
 svg {
     &:not(:root) {
-        overflow: hidden;
+        // overflow: hidden;
     }
 }
 
