@@ -1,8 +1,9 @@
-@import url(./basic/_base.scss);
+@import 'basic/base';
+@import 'setup/mixins';
+@import 'cmps/board-content';
 
 
-@import url(./setup/_vars.css);
-@import url(./setup/_mixins.scss);
+@import 'setup/_vars'
+
 
 // COMPONENTS
-@import url(./cmps/_board-content.scss);

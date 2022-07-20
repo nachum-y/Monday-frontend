@@ -1,9 +1,9 @@
 <template >
-   <group-list/>
+    <group-list />
 </template>
 <script>
 import groupList from '../components/board/group-list.cmp.vue'
-import appHeaderCmp from '../components/app-header/app-header.cmp.vue'
+import appHeader from '../components/app-header/app-header.cmp.vue'
 export default {
 
     data() {
@@ -11,9 +11,9 @@ export default {
 
         }
     },
-    comments: {
+    components: {
         groupList,
-        appHeaderCmp
+        appHeader
 
     }
 }
