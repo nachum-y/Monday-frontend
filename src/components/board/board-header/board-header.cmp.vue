@@ -42,12 +42,12 @@
         <button class="add-tab header-btn"></button>
       </el-tooltip>
     </section>
-    <!-- <mainFilter/> -->
+    <mainFilter/>
 </section>
 </template>
 
 <script>
-// import mainFilter from './components/main-filter.cmp.vue'
+import mainFilter from './board-header-filter.cmp.vue'
 export default {
   name: 'mainHeader',
   data() {
@@ -81,7 +81,7 @@ export default {
 
   },
   components:{
-    // mainFilter,
+    mainFilter,
   }
 }
 </script>

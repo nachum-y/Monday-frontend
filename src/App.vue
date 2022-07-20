@@ -20,7 +20,7 @@ export default {
   },
   components: {
     appHeader,
-    actionSideNav
+    actionSideNav,
   },
   methods: {
     isSideExpanded(val) {
