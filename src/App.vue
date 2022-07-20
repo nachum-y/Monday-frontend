@@ -1,8 +1,8 @@
 <template>
   <div class="application-layers">
-    <appHeader-cmp />
+    <app-header />
     <div class="first-level">
-      <div class="first-level-control"></div>
+      <action-side-nav @sideExpanded="isSideExpanded" />
       <div class="first-level-content-wrapper">
         <router-view />
       </div>
@@ -10,7 +10,8 @@
   </div>
 </template>
 <script>
-import appHeaderCmp from './components/app-header/app-header.cmp.vue'
+import appHeader from './components/app-header/app-header.cmp.vue'
+import actionSideNav from './components/app-header/action-side-nav.cmp.vue'
 export default {
   data() {
     return {
@@ -18,7 +19,14 @@ export default {
     }
   },
   components: {
-    appHeaderCmp
+    appHeader,
+    actionSideNav
+  },
+  computed: {
+    isSideExpanded(v) {
+      
+      console.log(v)
+    }
   }
 }
 </script>
