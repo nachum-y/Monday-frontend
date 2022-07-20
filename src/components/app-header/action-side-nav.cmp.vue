@@ -1,5 +1,5 @@
 <template lang="">
-      <div  @mouseover="sideNavisExpanded=true" class="first-level-control">
+      <div  @mouseover="sideNavisExpanded=true" class="first-level-control" style="z-index:100: height:100%">
         <div @mouseout="sideNavisExpanded=false"
           class="first-level-control-component" :class="{ 'is-expanded is-pinned': sideNavisExpanded }">
           <div class="collapse-first-level-button-component-wrapper">
@@ -106,6 +106,7 @@ export default {
   },
   watch: {
     sideNavisExpanded(val) {
+      console.log(1)
       this.$emit('sideExpanded', val)
     }
   }
