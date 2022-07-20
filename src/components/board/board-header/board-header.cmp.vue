@@ -17,7 +17,7 @@
         <span>Last seen</span>
         <!-- TODO: chang to :content holds user + last seen -->
         <el-tooltip :style="`font-size:50px;`" content="shirkiabir@gmail.com" effect="dark">
-          <img class="user-avatar" src="../src/style/imgs/dapulse_default_photo.png" alt="user-avatar">
+          <img class="user-avatar" src="../../../assets/images/dapulse_default_photo.png" alt="user-avatar">
         </el-tooltip>
       </button>
       <button class="invite-btn header-btn">
