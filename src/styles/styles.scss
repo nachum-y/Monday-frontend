@@ -1,11 +1,10 @@
 @import 'basic/base';
 @import 'setup/mixins';
-@import 'cmps/board-content';
 
 @import 'setup/vars';
 
 
 // COMPONENTS
-
+@import 'cmps/board-content';
 @import 'cmps/app-header';
 @import 'cmps/side_workspace'
