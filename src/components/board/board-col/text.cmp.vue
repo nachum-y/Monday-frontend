@@ -1,18 +1,22 @@
 <template>
-    <div>
-        text
+    <div v-if="task">
+        {{ task.value }}
     </div>
 </template>
 <script>
 export default {
     name: ['textCmp'],
+    props: {
+        task: Object
+    },
+
     data() {
         return {
 
         }
     },
-    created() {
-
+    mounted() {
+        console.log(this.task)
     },
 }
 </script>

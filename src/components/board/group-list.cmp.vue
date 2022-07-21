@@ -46,11 +46,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col" v-for="col in board.colsOrder.slice(1)" :key="col.type">
-                    <pre>
-               {{ task }}
-               </pre>
-                    <component :is="col.type" :task="task[idx]">
+                <div class="col" v-for="(col, idx) in board.colsOrder.slice(1)" :key="col.type">
+                    <component :is="col.type" :task="taskForDisplay(task.cols, col.type)">
                     </component>
                 </div>
             </div>
@@ -153,6 +150,11 @@ export default {
             console.log(this.newData)
             this.newData = {}
         },
+        taskForDisplay(row, type) {
+            let col = row.filter((col) => col.type === type)[0]
+            return col
+
+        }
     },
     computed: {
         draggingInfo() {
@@ -161,7 +163,8 @@ export default {
         getHeaderOrder() {
             // console.log('board.colsOrder:', board.colsOrder)
             // const headersList = board.colsOrder.map()
-        }
+        },
+
     },
     watch: {
 
