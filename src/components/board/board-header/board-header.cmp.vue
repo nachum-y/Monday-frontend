@@ -11,8 +11,8 @@
       <el-tooltip content="Add to favorites" placement="bottom" effect="dark">
         <button class="star-btn header-btn"></button>
       </el-tooltip>
-    </div>
-    <div class="board-actions">
+    
+    <!-- <div class="board-actions"> -->
       <button class="last-seen-btn header-btn">
         <span>Last seen</span>
         <!-- TODO: chang to :content holds user + last seen -->
@@ -25,7 +25,8 @@
         <span class="invite-txt"> &nbsp; &nbsp; Invite / 1</span>
       </button>
     </div>
-  </div>
+    </div>
+  <!-- </div> -->
     <section class="sub-header-nav">
       <button class="main-tab header-btn">
         <span class="main-tab-icon"></span>
