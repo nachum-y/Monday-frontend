@@ -6,13 +6,9 @@ export const storageService = {
   remove,
 }
 
-function query(entityType, delay = 100) {
-  const entities = JSON.parse(localStorage.getItem(entityType)) || _createDefaultBoard()
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(entities)
-    }, delay)
-  })
+function query(entityType) {
+  const entities = JSON.parse(localStorage.getItem(entityType)) || _createDefaultBoard(entityType)
+  return Promise.resolve(entities)
 }
 
 function get(entityType, entityId) {
@@ -59,7 +55,7 @@ function _makeId(length = 5) {
 }
 
 function _createDefaultBoard() {
-  return [{
+  const defultBoard = [{
         _id: "b101",
         title: "Board Title",
         createdAt: 154514,
@@ -233,4 +229,7 @@ function _createDefaultBoard() {
             }
         ]
     }
-]}
+]
+_save(entityType, defultBoard)
+  return defultBoard
+}

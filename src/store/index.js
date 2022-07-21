@@ -1,4 +1,5 @@
 import { createStore } from "vuex"
+import { boardService } from "../services/board-service.js"
 
 const store = createStore({
     strict: true,
@@ -6,7 +7,6 @@ const store = createStore({
         return {
 
         }
-
     },
     getters: {
 
