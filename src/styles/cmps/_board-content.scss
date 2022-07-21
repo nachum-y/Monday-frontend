@@ -23,6 +23,9 @@
     position: relative;
     margin-left: 2.25rem;
 
+    height: calc(100vh - 185px);
+
+
     &-group {
         padding: 5px 0px 0px 0px;
         font-size: 14px;
@@ -33,6 +36,9 @@
             &:hover {
                 z-index: 10;
                 box-shadow: $--box-shadow-xs;
+                .row-menu-icon{
+                    opacity: 1;
+                }
             }
 
             .col {
@@ -57,6 +63,7 @@
                     justify-content: center;
 
                     &.fixed {
+                        justify-content: flex-start;
                         border-top-left-radius: 4px;
                         @include fixed-col-style;
                         @include color-border(blue);
@@ -106,11 +113,17 @@
 
                     &.fixed {
                         border: none;
-                        @include fixed-col-style;
+                        background-color: rgba(254, 254, 254, 1);
+                        position: sticky;
+                        left: 0px;
+                        box-shadow: 0px 2px 0px white;
+                        border-inline-end: $--border-style;
+                        // border-bottom-right-radius: 50%;
+                        
                     }
 
                     &:nth-child(2) {
-                        border-inline-start: $--border-style;
+                        // border-inline-start: $--border-style;
                         border-bottom-left-radius: 4px;
                     }
 
@@ -132,15 +145,36 @@
     height: 2.25rem;
     position: relative;
 
-    .row-menu {
+
+    .row-menu{
         position: absolute;
-        background-color: #0073ea;
-        height: 2.3rem;
-        left: 0px;
+        display: flex;
+        height: 2.25rem;
+        width: 2.25rem;
+        left: -2.5rem;
+        align-items: center;
+        justify-content: center;
+
+        &-icon{
+            position: fixed;
+            height: 21px;
+            width: 21px;
+            padding: 1px;
+            border-radius: 4px;
+            background-color: #cce5ff;
+            opacity: 0;
+            content: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 10.5C6 11.3284 5.32843 12 4.5 12C3.67157 12 3 11.3284 3 10.5C3 9.67157 3.67157 9 4.5 9C5.32843 9 6 9.67157 6 10.5Z' fill='currentColor'/%3E%3Cpath d='M11.8333 10.5C11.8333 11.3284 11.1618 12 10.3333 12C9.50492 12 8.83334 11.3284 8.83334 10.5C8.83334 9.67157 9.50492 9 10.3333 9C11.1618 9 11.8333 9.67157 11.8333 10.5Z' fill='currentColor'/%3E%3Cpath d='M17.6667 10.5C17.6667 11.3284 16.9951 12 16.1667 12C15.3383 12 14.6667 11.3284 14.6667 10.5C14.6667 9.67157 15.3383 9 16.1667 9C16.9951 9 17.6667 9.67157 17.6667 10.5Z' fill='currentColor'/%3E%3C/svg%3E%0A");  
+            transition: all .2s;
+            cursor: pointer;
+
+            &:hover{
+                opacity: 1;
+            }
+        }
     }
 
     .item-select {
-        margin-right: $--spacing-small;
+        margin-right: 30px;
         padding: $--spacing-small;
         display: flex;
         align-items: center;
@@ -174,7 +208,7 @@
     }
 
     .item-title {
-        padding: $--spacing-small;
+        padding: 8px 2px;
         flex-grow: 1;
         @include col-span-style;
     }

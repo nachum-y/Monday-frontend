@@ -8,7 +8,7 @@
     bottom: 0;
     height: 100%;
     left: 66px;
-    display: flex;
+    // display: flex;
     -webkit-transition: left 150ms cubic-bezier(0, 0, 0.35, 1);
     -o-transition: left 150ms cubic-bezier(0, 0, 0.35, 1);
     transition: left 150ms cubic-bezier(0, 0, 0.35, 1);
@@ -40,7 +40,7 @@
         height: 100%;
         width: 100%;
         opacity: 0;
-        overflow: hidden;
+        // overflow: hidden;
         transition: opacity 100ms ease;
     }
 
@@ -116,13 +116,13 @@
 .workspace-title .workspace-name-wrapper {
     flex-grow: 1;
     height: auto;
-    overflow: hidden;
+    // overflow: hidden;
     max-width: 135px;
     font-size: 16px;
     font-weight: 600;
     flex-grow: 1;
     height: auto;
-    overflow: hidden;
+    // overflow: hidden;
     max-width: 135px;
     font-size: 16px;
     font-weight: 600;
@@ -246,7 +246,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    overflow: hidden;
+    // overflow: hidden;
     position: relative;
 }
 

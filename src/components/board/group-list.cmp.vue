@@ -2,7 +2,15 @@
     <div class="board-content">
         <div class="board-content-group">
             <div class="board-content-group-row-header">
-                <div class="header-col fixed">Item
+                <div class="header-col fixed">
+                        <div class="task-item">
+                        <div class="row-menu"><div class="row-menu-icon"></div></div>
+                        <div class="item-select">
+                            <div class="checkbox"></div>
+                        </div>
+                        <div class="item-title">Items</div>
+
+                    </div>
                 </div>
                 <div class="header-col">People</div>
                 <div class="header-col">Date</div>
@@ -17,7 +25,7 @@
             <div class="board-content-group-row">
                 <div class="col fixed">
                     <div class="task-item">
-                        <!-- <div class="row-menu"></div> -->
+                        <div class="row-menu"><div class="row-menu-icon"></div></div>
                         <div class="item-select">
                             <div class="checkbox"></div>
                         </div>
@@ -40,7 +48,7 @@
             <div class="board-content-group-row">
                 <div class="col fixed">
                     <div class="task-item">
-                        <div class="row-menu">...</div>
+                        <div class="row-menu"><div class="row-menu-icon"></div></div>
                         <div class="item-select">
                             <div class="checkbox-selected"></div>
                         </div>
@@ -61,7 +69,16 @@
                 <div class="col">5</div>
             </div>
             <div class="board-content-group-row-add-item">
-                <div class="add-item-col fixed">Add New Item</div>
+                <div class="add-item-col fixed">
+                                            <div class="task-item">
+                        <div class="row-menu"><div class="row-menu-icon"></div></div>
+                        <div class="item-select">
+                            <div class="checkbox"></div>
+                        </div>
+                        
+
+                    </div>
+                </div>
                 <div class="add-item-col"></div>
                 <div class="add-item-col"></div>
                 <div class="add-item-col"></div>
@@ -73,7 +90,9 @@
                 <div class="add-item-col"></div>
             </div>
             <div class="board-content-group-row-footer">
-                <div class="footer-col fixed"></div>
+                <div class="footer-col fixed">
+                    
+                </div>
                 <div class="footer-col">2</div>
                 <div class="footer-col">3</div>
                 <div class="footer-col">4</div>
