@@ -98,14 +98,14 @@ function _createDefaultBoard(entityType) {
     ],
     colsOrder: [
       { title: "Item", type: "item" },
-      { title: "Text", type: "text" },
+      { title: "Text", type: "textCmp" },
       { title: "person", type: "person" },
       { title: "priority", type: "priority" },
       { title: "status", type: "status" },
       { title: "date", type: "date" },
       { title: "creation log", type: "creationLog" },
       { title: "location", type: "location" },
-      { title: "label", type: "label" }
+      { title: "label", type: "labelCmp" }
     ],
     groups: [
       {
@@ -141,7 +141,7 @@ function _createDefaultBoard(entityType) {
                 ]
               },
               {
-                type: "text",
+                type: "textCmp",
                 value: "Somthing Smart to say",
               },
               {
@@ -166,7 +166,7 @@ function _createDefaultBoard(entityType) {
                 value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
               },
               {
-                type: "label",
+                type: "labelCmp",
                 value: { title: "Services", color: "#f5f5f5" },
               },
             ]
@@ -194,7 +194,7 @@ function _createDefaultBoard(entityType) {
                 ]
               },
               {
-                type: "text",
+                type: "textCmp",
                 value: "Add border radius",
               },
               {
@@ -219,7 +219,7 @@ function _createDefaultBoard(entityType) {
                 value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
               },
               {
-                type: "label",
+                type: "labelCmp",
                 value: { title: "Services", color: "#f5f5f5" },
               },
             ]
@@ -260,7 +260,7 @@ function _createDefaultBoard(entityType) {
                 ]
               },
               {
-                type: "text",
+                type: "textCmp",
                 value: "Somthing Smart to say",
               },
               {
@@ -285,7 +285,7 @@ function _createDefaultBoard(entityType) {
                 value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
               },
               {
-                type: "label",
+                type: "labelCmp",
                 value: { title: "Services", color: "#f5f5f5" },
               },
             ]
@@ -313,7 +313,7 @@ function _createDefaultBoard(entityType) {
                 ]
               },
               {
-                type: "text",
+                type: "textCmp",
                 value: "Add border radius",
               },
               {
@@ -338,7 +338,7 @@ function _createDefaultBoard(entityType) {
                 value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
               },
               {
-                type: "label",
+                type: "labelCmp",
                 value: { title: "Services", color: "#f5f5f5" },
               },
             ]

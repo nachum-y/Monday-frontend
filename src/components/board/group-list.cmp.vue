@@ -1,6 +1,5 @@
 <template>
     <div v-if="board" class="board-content">
-        <!-- <priority /> -->
         <div class="board-content-group" v-for="group in board.groups" :key="group.id">
             <div class="group-title">
                 <span ref="groupTitle" contenteditable="true"
@@ -32,7 +31,7 @@
                     <span>{{ col.title }}</span>
                 </div>
             </div>
-            <div class="board-content-group-row" v-for="task in group.tasks" :key="task.id">
+            <div class="board-content-group-row" v-for="(task, idx) in group.tasks" :key="task.id">
                 <div class="col fixed">
                     <div class="task-item">
                         <div class="row-menu">
@@ -47,9 +46,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col" v-for="col in task.cols.slice(1, task.length)" :key="col.type">
-                    <text />
-                    <component :is="col.type">
+                <div class="col" v-for="col in board.colsOrder.slice(1)" :key="col.type">
+                    <pre>
+               {{ task }}
+               </pre>
+                    <component :is="col.type" :task="task[idx]">
                     </component>
                 </div>
             </div>
@@ -82,8 +83,6 @@
                     fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
             </svg>Add new group </button>
 
-
-
     </div>
 
 
@@ -100,13 +99,13 @@
 import { boardService } from '../../services/board-service.js'
 import date from './board-col/date.cmp.vue'
 import creationLog from './board-col/creationLog.cmp.vue'
-import label from './board-col/label.cmp.vue'
+import labelCmp from './board-col/label.cmp.vue'
 import lastUpdated from './board-col/last-updated.cmp.vue'
 import location from './board-col/location.cmp.vue'
 import person from './board-col/person.cmp.vue'
 import priority from './board-col/priority.cmp.vue'
 import status from './board-col/status.cmp.vue'
-import text from './board-col/text.cmp.vue'
+import textCmp from './board-col/text.cmp.vue'
 import timeline from './board-col/timeline.cmp.vue'
 
 export default {
@@ -125,13 +124,13 @@ export default {
     components: {
         creationLog,
         date,
-        label,
+        labelCmp,
         lastUpdated,
         location,
         person,
         priority,
         status,
-        text,
+        textCmp,
         timeline,
     },
     methods: {
@@ -154,9 +153,6 @@ export default {
             console.log(this.newData)
             this.newData = {}
         },
-    },
-    components: {
-        // draggable,
     },
     computed: {
         draggingInfo() {
