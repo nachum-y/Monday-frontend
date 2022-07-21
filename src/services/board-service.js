@@ -7,7 +7,8 @@ export const boardService = {
   //   get,
   saveGroup,
   getEmptyGroup,
-  removeGroup
+  removeGroup,
+  updateGroup
 }
 
 // _createBoards()
@@ -59,6 +60,18 @@ async function removeGroup(group, boardId) {
   //     return storageService.put(BOOKS_KEY, book)
   //   })
 }
+
+
+async function updateGroup(groupId, data, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId)
+  // if (board.groups.length === 1) throw new Error('Board has to have at least one group')
+  let groupToEdit = board.groups.find((g) => g.id === groupId)
+  groupToEdit[Object.keys(data)[0]] = data[Object.keys(data)[0]]
+  // board.groups.splice(idx, 1)
+  storageService.put(BOARD_KEY, board)
+  return groupToEdit
+}
+
 
 function _createBoards() {
   let books = utilService.loadFromStorage(BOOKS_KEY)

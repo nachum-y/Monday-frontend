@@ -3,7 +3,7 @@ import { boardService } from "../../services/board-service.js"
 export const boardStore = {
     state: {
         board: null,
-        groupToEdit: null,
+        prevGroup: null
     },
     mutations: {
         addGroup(state, { group }) {
@@ -17,12 +17,12 @@ export const boardStore = {
         },
         setBoard(state, { board }) {
             state.board = board[0]
+        },
+        updateGroup(state, { groupId, data }) {
+            state.prevGroup = state.board.groups.find((g) => g.id === groupId)
+            let groupToUpdate = state.board.groups.find((g) => g.id === groupId)
+            groupToUpdate[Object.keys(data)[0]] = data[Object.keys(data)[0]]
         }
-        // updateGroup(state, {group}){
-        //     const idx = state.board.groups.findIndex(g => g._id === group._id)
-        //     state.board.groups.splice(idx, 1, group)
-        //     state.groupToEdit = null
-        // }
     },
     getters: {
         board({ board }) {
@@ -42,6 +42,11 @@ export const boardStore = {
             const actionType = (group.id) ? 'updateGroup' : 'addGroup'
             const savedGroup = await boardService.saveGroup(group, state.board._id)
             commit({ type: actionType, group: savedGroup })
+        },
+        async updateGroup({ commit, state }, { groupId, data }) {
+
+            commit({ type: 'updateGroup', groupId, data })
+            const savedGroup = await boardService.updateGroup(groupId, data, state.board._id)
         },
         async removeGroup({ commit, state }, { groupId }) {
             try {
