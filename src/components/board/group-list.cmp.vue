@@ -1,5 +1,6 @@
 <template>
     <div v-if="board" class="board-content">
+        <!-- <priority /> -->
         <div class="board-content-group" v-for="group in board.groups" :key="group.id">
             <div class="group-title">
                 <span ref="groupTitle" contenteditable="true"
@@ -47,7 +48,9 @@
                     </div>
                 </div>
                 <div class="col" v-for="col in task.cols.slice(1, task.length)" :key="col.type">
-                    <span>{{ col.type }}</span>
+                    <text />
+                    <component :is="col.type">
+                    </component>
                 </div>
             </div>
             <div class="board-content-group-row-add-item">
@@ -79,6 +82,8 @@
                     fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
             </svg>Add new group </button>
 
+
+
     </div>
 
 
@@ -93,6 +98,16 @@
 </template>
 <script>
 import { boardService } from '../../services/board-service.js'
+import date from './board-col/date.cmp.vue'
+import creationLog from './board-col/creationLog.cmp.vue'
+import label from './board-col/label.cmp.vue'
+import lastUpdated from './board-col/last-updated.cmp.vue'
+import location from './board-col/location.cmp.vue'
+import person from './board-col/person.cmp.vue'
+import priority from './board-col/priority.cmp.vue'
+import status from './board-col/status.cmp.vue'
+import text from './board-col/text.cmp.vue'
+import timeline from './board-col/timeline.cmp.vue'
 
 export default {
     name: ['group-list'],
@@ -106,6 +121,18 @@ export default {
     created() {
         this.board = this.$store.getters.board
 
+    },
+    components: {
+        creationLog,
+        date,
+        label,
+        lastUpdated,
+        location,
+        person,
+        priority,
+        status,
+        text,
+        timeline,
     },
     methods: {
         addNewGroup() {

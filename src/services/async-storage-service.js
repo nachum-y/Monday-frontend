@@ -97,8 +97,8 @@ function _createDefaultBoard(entityType) {
       }
     ],
     colsOrder: [
-      { title: "Item", type: "Item" },
-      { title: "Text", type: "Text" },
+      { title: "Item", type: "item" },
+      { title: "Text", type: "text" },
       { title: "person", type: "person" },
       { title: "priority", type: "priority" },
       { title: "status", type: "status" },
