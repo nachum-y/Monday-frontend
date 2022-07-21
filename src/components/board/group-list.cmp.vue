@@ -2,7 +2,8 @@
     <div v-if="board" class="board-content">
         <div class="board-content-group" v-for="group in board.groups" :key="group.id">
             <div class="group-title">
-                <span ref="groupTitle" contenteditable="true" @blur="editGroup($event, group.id,'title')">
+                <span ref="groupTitle" contenteditable="true"
+                    @blur="editGroup($event.target.innerText, group.id, 'title')">
                     {{ group.title }}
                 </span>
                 <span class="btn" @click="removeGroup(group.id)">
@@ -12,7 +13,7 @@
                     Duplicate group
                 </span>
                 <label for="color-picker">
-                    <input @change="editGroup" type="color" id="color-picker">
+                    <input @change="editGroup($event.target.value, group.id, 'color')" type="color" id="color-picker">
                 </label>
             </div>
 
@@ -99,11 +100,12 @@ export default {
         return {
             board: null,
             groupToEdit: boardService.getEmptyGroup(),
-            newData: null
+            newData: {}
         }
     },
     created() {
         this.board = this.$store.getters.board
+
     },
     methods: {
         addNewGroup() {
@@ -119,12 +121,11 @@ export default {
             this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
             this.groupToEdit = boardService.getEmptyGroup()
         },
-        editGroup(ev, groupId) {
-            let newTitle = ev.target.innerText
-            this.newData = {}
-            this.newData.title = newTitle
+        editGroup(val, groupId, type) {
+            this.newData[type] = val
             this.$store.dispatch({ type: 'updateGroup', groupId, data: this.newData })
-            this.newData = null
+            console.log(this.newData)
+            this.newData = {}
         },
     },
     components: {
