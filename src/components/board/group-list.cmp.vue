@@ -1,5 +1,6 @@
 <template>
     <div v-if="board" class="board-content">
+        <!-- <priority /> -->
         <div class="board-content-group" v-for="group in board.groups" :key="group.id">
             <div class="group-title">
                 <span ref="groupTitle" contenteditable="true"
@@ -31,7 +32,7 @@
                     <span>{{ col.title }}</span>
                 </div>
             </div>
-            <div class="board-content-group-row" v-for="(task, idx) in group.tasks" :key="task.id">
+            <div class="board-content-group-row" v-for="task in group.tasks" :key="task.id">
                 <div class="col fixed">
                     <div class="task-item">
                         <div class="row-menu">
@@ -80,6 +81,8 @@
                     fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
             </svg>Add new group </button>
 
+
+
     </div>
 
 
@@ -96,13 +99,13 @@
 import { boardService } from '../../services/board-service.js'
 import date from './board-col/date.cmp.vue'
 import creationLog from './board-col/creationLog.cmp.vue'
-import labelCmp from './board-col/label.cmp.vue'
+import label from './board-col/label.cmp.vue'
 import lastUpdated from './board-col/last-updated.cmp.vue'
 import location from './board-col/location.cmp.vue'
 import person from './board-col/person.cmp.vue'
 import priority from './board-col/priority.cmp.vue'
 import status from './board-col/status.cmp.vue'
-import textCmp from './board-col/text.cmp.vue'
+import text from './board-col/text.cmp.vue'
 import timeline from './board-col/timeline.cmp.vue'
 
 export default {
@@ -118,16 +121,17 @@ export default {
         this.board = this.$store.getters.board
 
     },
+    
     components: {
         creationLog,
         date,
-        labelCmp,
+        label,
         lastUpdated,
         location,
         person,
         priority,
         status,
-        textCmp,
+        text,
         timeline,
     },
     methods: {
@@ -155,6 +159,9 @@ export default {
             return col
 
         }
+    },
+    components: {
+        // draggable,
     },
     computed: {
         draggingInfo() {
