@@ -7,7 +7,7 @@ export const storageService = {
 }
 
 function query(entityType, delay = 100) {
-  const entities = JSON.parse(localStorage.getItem(entityType)) || _createDefaultBugs()
+  const entities = JSON.parse(localStorage.getItem(entityType)) || _createDefaultBoard()
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(entities)
@@ -58,22 +58,179 @@ function _makeId(length = 5) {
   return str
 }
 
-function _createDefaultBugs() {
-  return [
-    {
-      _id: 'b101',
-      title: 'Button is missing',
-      severity: 1,
-    },
-    {
-      _id: 'b102',
-      title: 'Error while watching',
-      severity: 2,
-    },
-    {
-      _id: 'b103',
-      title: 'Warning appears',
-      severity: 3,
-    },
-  ]
-}
+function _createDefaultBoard() {
+  return [{
+        _id: "b101",
+        title: "Board Title",
+        createdAt: 154514,
+        byMember: {
+          id: "m101",
+          fullname: "Shiran Abir",
+          imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+        },
+        members: [
+            {
+                id: "m101",
+                name: "Shiran Abir",
+                email: "shiran@gmail.com",
+                isAdmin: false,
+                joinedAt: 1658291514565,
+                lastSeen: 1658291514565,
+                imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
+                color: "#f5f5f5"
+            },
+            {
+              id: "m102",
+              name: "Meital Twito",
+              email: "Meital@gmail.com",
+              isAdmin: true,
+              joinedAt: 1658291514565,
+              lastSeen: 1658291514565,
+              imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
+              color: "#f5f5f5"
+          },
+          {
+            id: "m103",
+            name: "Nachum Yosef",
+            email: "Nachum@gmail.com",
+            isAdmin: false,
+            joinedAt: 1658291514565,
+            lastSeen: 1658291514565,
+            imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
+            color: "#f5f5f5"
+          }
+        ],
+        colsOrder: [
+            {title: "Item",type:"Item"},
+            {title: "Text",type:"Text"},
+            {title:"person",type:"person"},
+            {title:"priority",type:"priority"},
+            {title:"status",type:"status"},
+            {title:"date",type:"date"},
+            {title:"creation log",type:"creationLog"},
+            {title:"location",type:"location"},
+            {title:"label",type:"label"}
+        ],
+        groups: [
+            {
+                id: "group_101",
+                title: "Open Tasks",
+                color: "blue",
+                tasks: [
+                    {
+                        id: "t101",
+                        cols: [
+                            {
+                                type: "item",
+                                value: "Create full crud" 
+                            },
+                            {
+                                type: "person",
+                                value: [
+                                  {
+                                  id: "m101",
+                                  fullname: "Shiran Abir",
+                                  imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                                },
+                                {
+                                  id: "m102",
+                                  fullname: "Meital Twito",
+                                  imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                                },
+                                {
+                                  id: "m103",
+                                  fullname: "Nachum Yosef",
+                                  imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                                }
+                              ] 
+                            },
+                            {
+                                type: "text",
+                                value: "Somthing Smart to say", 
+                            },
+                            {
+                              type: "status",
+                              value: "Working on it",
+                              isDone:false, 
+                            },
+                            {
+                              type: "priority",
+                              value: "Critical", 
+                            },
+                            {
+                              type: "date",
+                              value: 1658291514565, 
+                            },  
+                            {
+                              type: "creationLog",
+                              value: 1658291514565, 
+                            },
+                            {
+                              type: "location",
+                              value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8", 
+                            },
+                            {
+                              type: "label",
+                              value: {title:"Services",color:"#f5f5f5"}, 
+                            },
+                        ]
+                    },
+                    {
+                      id: "t102",
+                      cols: [
+                          {
+                              type: "item",
+                              value: "Fix Css" 
+                          },
+                          {
+                              type: "person",
+                              value: [
+                                {
+                                id: "m101",
+                                fullname: "Shiran Abir",
+                                imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                              },
+                              {
+                                id: "m102",
+                                fullname: "Meital Twito",
+                                imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                              }
+                            ] 
+                          },
+                          {
+                              type: "text",
+                              value: "Add border radius", 
+                          },
+                          {
+                            type: "status",
+                            value: "done",
+                            isDone:true, 
+                          },
+                          {
+                            type: "priority",
+                            value: "High", 
+                          },
+                          {
+                            type: "date",
+                            value: 1658291514565, 
+                          },  
+                          {
+                            type: "creationLog",
+                            value: 1658291514565, 
+                          },
+                          {
+                            type: "location",
+                            value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8", 
+                          }, 
+                          {
+                            type: "label",
+                            value: {title:"Services",color:"#f5f5f5"}, 
+                          },
+                      ]
+                  },                
+                ]
+                
+            }
+        ]
+    }
+]}
