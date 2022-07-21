@@ -36,7 +36,7 @@ $light-color:#fff;
     width: 34px;
     height: 34px;
     padding: 4px;
-    margin-left: 10px;
+    
 
     &:hover{
         border-radius: 4px;
@@ -45,18 +45,26 @@ $light-color:#fff;
 }
 
 
-.i-btn::before{
-    content: "\f344";
-    color: $icon-color;
-    font-size: 16px;
-    font-family: "dapulse";
+.i-btn{
+    margin-left: 10px;
+    
+    &::before{
+        content: "\f344";
+        color: $icon-color;
+        font-size: 16px;
+        font-family: "dapulse";
+    }
 }
 
-.star-btn::before{
-    content: "\f3dc";
-    font-size: 16px;
-    color: $icon-color;
-    font-family: "dapulse";
+.star-btn{
+    margin-left: 10px;
+
+    &::before{
+        content: "\f3dc";
+        font-size: 16px;
+        color: $icon-color;
+        font-family: "dapulse";
+    }
 }
 
 .board-activity-btn::before{
