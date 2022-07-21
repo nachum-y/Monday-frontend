@@ -8,14 +8,10 @@ import 'element-plus/dist/index.css'
 import './styles/styles.scss'
 
 const app = createApp(App)
+
+
 app.use(router)
 // app.use(store)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 5d1f56e71356416efb975c5e7411f4b5bf7053ab
 
->>>>>>> bd1061716c058c14f6716467b9676673fde5f007
 app.use(ElementPlus)
 app.mount('#app')

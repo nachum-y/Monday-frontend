@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+
 import appHeader from './components/app-header/app-header.cmp.vue'
 import actionSideNav from './components/app-header/action-side-nav.cmp.vue'
 export default {

@@ -8,7 +8,9 @@
                <div class="scrollable-navigation-items-area">
 
                   <div class="top-navigation-items-area">
-                     <work-management />
+                     <router-link to="/boards/boardId">
+                        <work-management />
+                     </router-link>
 
                      <div v-for="(tab, idx) in tabs" :class="tab + 'actionTab'">
                         <action-icon-wrapper :iconName="tab" :isActive=isActive(tab) @click="setSelectedTab(tab)">
@@ -63,7 +65,7 @@ export default {
       setSvgLink(tab) {
          return '../../src/assets/sprite.svg#' + tab
       },
-      
+
    },
 
 
