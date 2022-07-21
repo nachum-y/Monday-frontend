@@ -1,22 +1,23 @@
 import { createStore } from "vuex"
-import { boardService } from "../services/board-service.js"
+
+import { boardStore } from './modules/board.store.js'
 
 const store = createStore({
     strict: true,
-    state:{
+    state: {
 
     },
     getters: {
 
     },
     mutations: {
-        
+
     },
     actions: {
 
     },
     modules: {
-
+        boardStore
     }
 })
 
