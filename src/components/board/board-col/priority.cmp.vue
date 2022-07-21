@@ -1,7 +1,6 @@
 <template>
-    <div v-if="task">
-        <!-- {{ task.value }} -->
-        דיןרשsds
+    <div v-if="task" :class="'task-' + task.type">
+        {{ task.value }}
     </div>
 </template>
 <script>

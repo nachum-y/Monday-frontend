@@ -1,22 +1,23 @@
 <template>
-    <div>
-        heyyyyy
+    <div v-if="task" :class="'task-' + task.type">
+        {{dateToDisplay}}
     </div>
 </template>
 <script>
 export default {
     name: ['creationLog'],
     props: {
-        'text': String
+        task: Object
     },
     data() {
         return {
 
         }
     },
-    created() {
-        console.log('create')
-        console.log(this.text)
+    computed: {
+        dateToDisplay(){
+            return new Date(this.task.value).toDateString()
+        }
     },
 }
 </script>
