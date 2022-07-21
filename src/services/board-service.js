@@ -4,10 +4,10 @@ const BOARD_KEY = 'BOARD_DB'
 
 export const boardService = {
   query,
-  get,
-  addGroup,
-  getEmptyGroup,
-  removeGroup
+//   get,
+//   addGroup,
+//   getEmptyGroup,
+//   removeGroup
 }
 
 // _createBoards()

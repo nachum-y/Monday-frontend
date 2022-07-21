@@ -54,7 +54,7 @@ function _makeId(length = 5) {
   return str
 }
 
-function _createDefaultBoard() {
+function _createDefaultBoard(entityType) {
   const defultBoard = [{
         _id: "b101",
         title: "Board Title",

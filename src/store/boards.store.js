@@ -19,19 +19,18 @@ export const boardStore = {
         // }
     },
     getters: {
-        todos({todos}){
-            return todos
-        },
-        todoToEdit({todoToEdit}){
-            return todoToEdit
-        }
+        // todos({todos}){
+        //     return todos
+        // },
+        // todoToEdit({todoToEdit}){
+        //     return todoToEdit
+        // }
     },
     actions: {
-        loadTodos({commit}){
-            todosService.query()
-                .then(todos =>{
-                    commit({ type: 'setTodos', todos })
-                })
+        async loadBoard({commit}){
+            const borad = await boardService.query()
+            console.log(borad)
+                    // commit({ type: 'setTodos', todos })
         },
         saveTodo({commit},{todo}){
             const actionType = (todo._id) ? 'updateTodo' : 'addTodo'

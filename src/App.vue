@@ -29,7 +29,10 @@ export default {
   },
   computed: {
 
-  }
+  },
+  created(){
+    this.$store.dispatch({ type: 'loadBoard' })
+  },
 }
 </script>
 <style>
