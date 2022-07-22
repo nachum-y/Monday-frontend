@@ -1,4 +1,5 @@
 <template>
+
     <div v-if="board" class="board-content">
         <draggable class="dragArea list-group" v-model="boardOrderList" :clone="clone"
             :group="{ name: 'people', pull: pullFunction }" @start="start" item-key="id">
@@ -18,13 +19,19 @@
                             <input @change="editGroup($event.target.value, element.id, 'color')" type="color"
                                 id="color-picker">
                         </label>
+                        <button @click="openActionsModal($event, element)" class="btn">...</button>
+
+                        <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction"
+                            :group="showGroupAction.group" :pos="showGroupAction.posModal">
+                        </dotsClickActionsMenu>
+
                     </div>
 
 
-                    <draggable v-model="colsOrderList" tag="tr" class="board-content-group-row-header"
-                        ghost-class="ghost" :item-key="key => key">
+                    <draggable v-model="colsOrderList" tag="div" ghost-class="ghost-header-col" :animation="200"
+                        class="board-content-group-row-header" :item-key="key => key">
                         <template #item="{ element }">
-                            <div v-if="element.title === 'Item'" class="header-col fixed">
+                            <div v-if="element.title === 'Item'" @drag="false" class="header-col fixed">
                                 <div class="task-item">
                                     <div class="item-select">
                                         <div class="checkbox"></div>
@@ -40,8 +47,9 @@
 
 
                     <div class="board-content-group-row" v-for="(task, idx) in element.tasks" :key="task.id">
-                        <div class="col fixed">
-                            <div class="task-item">
+                        <div class="col" v-for="(col, colRowIdx) in board.colsOrder" :key="col.type"
+                            :class="colRowIdx === 0 ? 'fixed' : ''">
+                            <div v-if="colRowIdx === 0" class="task-item">
                                 <div class="row-menu">
                                     <div class="row-menu-icon"></div>
                                 </div>
@@ -53,11 +61,33 @@
                                     <div class="conversation-icon"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col" v-for="(col, idx) in board.colsOrder.slice(1)" :key="col.type">
-                            <component :is="col.type" :task="taskForDisplay(task.cols, col.type)">
+                            <component v-else :is="col.type" :task="taskForDisplay(task.cols, col.type)">
                             </component>
                         </div>
+                    </div>
+
+
+
+
+                    <div class="board-content-group-row-add-item">
+                        <div class="add-item-col fixed">
+                            <div class="task-item add-item">
+                                <div class="item-select header">
+                                    <div class="checkbox"></div>
+                                </div>
+                                <div class="add-item-input">
+                                    <input placeholder="+ Add Task" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="add-item-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
+                    </div>
+                    <div class="board-content-group-row-footer">
+                        <div class="footer-col fixed">
+
+                        </div>
+                        <div class="footer-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
                     </div>
 
                 </div>
@@ -81,7 +111,7 @@ let idGlobal = 8
 import draggable from 'vuedraggable'
 import nestedDraggable from "./infra/nested.vue"
 import rawDisplayer from "./infra/raw-displayer.vue"
-
+import dotsClickActionsMenu from './dots-click-actions-menu.cmp.vue'
 import { boardService } from '../../services/board-service.js'
 import date from './board-col/date.cmp.vue'
 import creationLog from './board-col/creationLog.cmp.vue'
@@ -135,7 +165,9 @@ export default {
                 { name: "Juan", id: 8 },
                 { name: "Edgard", id: 9 },
                 { name: "Johnson", id: 10 }
-            ]
+            ],
+            showGroupAction: false,
+            isModalOpen: false
         }
 
     },
@@ -157,6 +189,7 @@ export default {
         status,
         textCmp,
         timeline,
+        dotsClickActionsMenu
     },
     methods: {
         addNewGroup() {
@@ -209,7 +242,17 @@ export default {
         },
         testlog(val) {
             console.log(val)
-        }
+        },
+        openActionsModal(el, group) {
+            console.log(el)
+            this.showGroupAction = {}
+            this.showGroupAction.group = group
+            this.showGroupAction.posModal = { eltop: el.layerY, left: el.layerX }
+            return
+        },
+        closeActionsModal(ev) {
+            this.showGroupAction = null
+        },
     },
     computed: {
         draggingInfo() {
@@ -257,6 +300,12 @@ export default {
 <style>
 .btn {
     cursor: pointer;
+}
+
+.ghost-header-col {
+    opacity: 0.5;
+    background: #F7FAFC;
+    border: 1px solid #4299e1;
 }
 </style>
 

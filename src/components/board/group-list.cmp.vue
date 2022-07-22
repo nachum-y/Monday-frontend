@@ -18,6 +18,12 @@
                 <label for="color-picker">
                     <input @change="editGroup($event.target.value, group.id, 'color')" type="color" id="color-picker">
                 </label>
+                
+                <button @click="openActionsModal($event, group)" class="btn">...</button>
+
+                <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group" :pos="showGroupAction.posModal">
+                    </dotsClickActionsMenu>
+
             </div>
 
             <div class="board-content-group-row-header">
@@ -30,7 +36,6 @@
                             <div @click="toggleAll(group)" :class="selectedGroups.includes(group.id)? 'checkbox-selected' : 'checkbox'"></div>
                         </div>
                         <div class="item-title">Items</div>
-
                     </div>
                 </div>
                 <div class="header-col" v-for="col in board.colsOrder.slice(1)" :key="col.title">
@@ -59,7 +64,7 @@
                 </div>
             </div>
 
-            
+
             <div class="board-content-group-row-add-item">
                 <div class="add-item-col fixed">
                     <div class="task-item add-item">
@@ -68,7 +73,7 @@
                         </div>
                         <div class="add-item-input">
                             <form @submit.prevent="addTask(group.id, $event.target.elements.title.value)">
-                            <input name="title" placeholder="+ Add Task"/>
+                                <input name="title" placeholder="+ Add Task" />
                             </form>
                         </div>
 
@@ -83,16 +88,18 @@
                 <div class="footer-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
             </div>
         </div>
-    <button type="button" @click="addNewGroup"
-        class="btn add-group-btn">
-          
-        <div class="add-group-icon-holder">
-          <div class="add-group-icon"></div>
-        </div><div class="add-group-btn-txt">
-          Add new group
-        </div>
-         </button>
+        <button type="button" @click="addNewGroup" class="btn add-group-btn">
 
+            <div class="add-group-icon-holder">
+                <div class="add-group-icon"></div>
+            </div>
+            <div class="add-group-btn-txt">
+                Add new group
+            </div>
+        </button>
+
+
+       
     </div>
 
 
@@ -107,6 +114,8 @@
 </template>
 <script>
 import { boardService } from '../../services/board-service.js'
+import dotsClickActionsMenu from './dots-click-actions-menu.cmp.vue'
+import groupPreview from './group-preview.cmp.vue'
 import date from './board-col/date.cmp.vue'
 import creationLog from './board-col/creationLog.cmp.vue'
 import labelCmp from './board-col/label.cmp.vue'
@@ -126,8 +135,14 @@ export default {
             board: null,
             groupToEdit: boardService.getEmptyGroup(),
             newData: {},
+<<<<<<< HEAD
+            showGroupAction: false,
+            isModalOpen: false
+            // newTask:''
+=======
             selectedTasks: [],
             selectedGroups: [],
+>>>>>>> fc271390a2d968b7d39f2ed7c11241c58b1f9514
         }
     },
     created() {
@@ -145,6 +160,8 @@ export default {
         status,
         textCmp,
         timeline,
+        dotsClickActionsMenu,
+        groupPreview
     },
     methods: {
         addNewGroup() {
@@ -171,6 +188,28 @@ export default {
             return col
 
         },
+<<<<<<< HEAD
+        addTask(groupId, title) {
+            this.$store.dispatch({ type: 'addTask', groupId, title })
+        },
+        openActions() {
+            console.log('actions')
+
+        },
+        openActionsModal(el, group) {
+            console.log(el);
+            this.showGroupAction = {}
+            this.showGroupAction.group = group
+            this.showGroupAction.posModal = { eltop: el.layerY, left: el.layerX }
+            return
+        },
+        closeActionsModal(ev) {
+            this.showGroupAction = null
+        },
+        onToggleModal() {
+            this.isModalOpen = !this.isModalOpen
+        },
+=======
         addTask(groupId,title){
             this.$store.dispatch({ type: 'addTask', groupId, title})
         },
@@ -196,6 +235,7 @@ export default {
             const tasksToRemove = this.selectedTasks
             this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
         }
+>>>>>>> fc271390a2d968b7d39f2ed7c11241c58b1f9514
     },
     computed: {
         draggingInfo() {
