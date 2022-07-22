@@ -102,8 +102,8 @@ function _getEmptyTask(colOrder,title){
 async function removeTasks(idsToRemove,boardId){
   let board = await _getBoardById(boardId)
     board.groups.map(group=>{
-    let groupToUpdate = board.groups.find(g => g.id === group.id)
-    groupToUpdate.tasks = group.tasks.filter(task=>!idsToRemove.includes(task.id))
+    // let groupToUpdate = board.groups.find(g => g.id === group.id)
+    group.tasks = group.tasks.filter(task=>!idsToRemove.includes(task.id))
   })
   storageService.put(BOARD_KEY, board)
   return board.groups
