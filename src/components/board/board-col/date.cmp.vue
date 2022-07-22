@@ -16,6 +16,7 @@ export default {
     },
     computed: {
         dateToDisplay(){
+            if (!this.task.value) return ''
             return new Date(this.task.value).toDateString()
         }
     },

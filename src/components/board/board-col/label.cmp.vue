@@ -1,6 +1,6 @@
 <template>
     <div v-if="task" :class="'task-' + task.type">
-        {{ task.value.title }}
+        {{ labelToDisplay }}
     </div>
 </template>
 <script>
@@ -14,7 +14,12 @@ export default {
 
         }
     },
-
+    computed:{
+        labelToDisplay(){
+             if (!this.task.value) return ''
+             return this.task.value.title
+        }
+    },
 }
 </script>
 <style>

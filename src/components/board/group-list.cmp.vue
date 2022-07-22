@@ -62,7 +62,9 @@
                             <div class="checkbox"></div>
                         </div>
                         <div class="add-item-input">
-                            <input placeholder="+ Add Task"/>
+                            <form @submit.prevent="addTask(group.id, $event.target.elements.title.value)">
+                            <input name="title" placeholder="+ Add Task"/>
+                            </form>
                         </div>
 
                     </div>
@@ -117,7 +119,8 @@ export default {
         return {
             board: null,
             groupToEdit: boardService.getEmptyGroup(),
-            newData: {}
+            newData: {},
+            // newTask:''
         }
     },
     created() {
@@ -160,6 +163,9 @@ export default {
             let col = row.filter((col) => col.type === type)[0]
             return col
 
+        },
+        addTask(groupId,title){
+            this.$store.dispatch({ type: 'addTask', groupId, title})
         }
     },
     computed: {

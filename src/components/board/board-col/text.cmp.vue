@@ -1,6 +1,6 @@
 <template>
     <div v-if="task">
-        {{ task.value }}
+        {{ textToDiaplay }}
     </div>
 </template>
 <script>
@@ -15,7 +15,11 @@ export default {
 
         }
     },
-    mounted() {
+    computed: {
+        textToDiaplay(){
+            if (!this.task.value) return ''
+            return this.task.value
+        }
     },
 }
 </script>

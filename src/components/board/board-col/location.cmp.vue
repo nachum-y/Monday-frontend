@@ -16,6 +16,7 @@ export default {
     },
         computed: {
         locationToDisplay(){
+            if (!this.task.value) return ''
             return this.task.value
         }
     },

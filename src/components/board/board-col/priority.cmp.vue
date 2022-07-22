@@ -1,6 +1,6 @@
 <template>
     <div v-if="task" :class="'task-' + task.type">
-        {{ task.value }}
+        {{ priorityToDisplay }}
     </div>
 </template>
 <script>
@@ -14,6 +14,13 @@ export default {
 
         }
     },
+    computed:{
+        priorityToDisplay(){
+            if (!this.task.value) return ''
+            return this.task.value
+        }
+    },
+    
 }
 </script>
 <style>

@@ -8,7 +8,8 @@ export const boardService = {
   saveGroup,
   getEmptyGroup,
   removeGroup,
-  updateGroup
+  updateGroup,
+  addTask
 }
 
 // _createBoards()
@@ -72,12 +73,39 @@ async function updateGroup(groupId, data, boardId) {
   return groupToEdit
 }
 
-
-function _createBoards() {
-  let books = utilService.loadFromStorage(BOOKS_KEY)
-  if (!books || !books.length || books === 'undefined') {
-    utilService.saveToStorage(BOOKS_KEY, gBooks)
-  }
-  return books
+async function addTask(title,groupId, boardId){
+  let board = await _getBoardById(boardId)
+  let groupToEdit = board.groups.find((g) => g.id === groupId)
+  const colOrder = board.colsOrder
+  let task = _getEmptyTask(colOrder,title)
+  groupToEdit.tasks.push(task)
+  storageService.put(BOARD_KEY, board)
+  return task
 }
+
+async function _getBoardById(boardId){
+  return await storageService.get(BOARD_KEY, boardId)
+}
+
+function _getEmptyTask(colOrder,title){
+  let cols = []
+  colOrder.forEach(col=>{
+    let emptyCol = {type : col.type, value : null}
+    if (col.type === 'item') emptyCol.value = title
+    cols.push(emptyCol)
+  })
+  return {id:utilService.makeId(),cols}
+}
+
+// async function _getGroupById(boardId,groupId){
+//   const board = await _getBoardById(boardId)
+//   return board.groups.find((g) => g.id === groupId)
+// }
+
+// async function _getBoardColOrder(boardId){
+//   const board = await _getBoardById(boardId)
+//   return board.groups.find((g) => g.id === groupId)
+// }
+
+
 

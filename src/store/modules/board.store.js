@@ -10,10 +10,10 @@ export const boardStore = {
             state.board.groups.push(group)
         },
         removeGroup(state, { groupId }) {
-            console.log(groupId)
-            console.log('state.board:', state.board)
+            // console.log(groupId)
+            // console.log('state.board:', state.board)
             state.board.groups = state.board.groups.filter(group => group.id !== groupId)
-            console.log('state.board:', state.board)
+            // console.log('state.board:', state.board)
         },
         setBoard(state, { board }) {
             state.board = board[0]
@@ -58,6 +58,14 @@ export const boardStore = {
                 console.log(err)
             }
         },
+        async addTask({commit,state},{title, groupId}){
+            try{
+                await boardService.addTask(title,groupId,state.board._id)
+            }
+            catch{
+                console.log('err')
+            }
+        }
         // toggleStatus({ commit }, { groupId }) {
         //     return groupsService.toggleStatus(groupId)
         //         .then(group => {

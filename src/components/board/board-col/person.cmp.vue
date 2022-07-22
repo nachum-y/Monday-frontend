@@ -15,6 +15,7 @@ export default {
     },
     computed: {
         personToDisplay(){
+            if (!this.task.value) return ''
             let str = ''
             this.task.value.forEach(person=>{
                 str += person.fullname
