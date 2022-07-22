@@ -208,8 +208,8 @@ export default {
         onToggleModal() {
             this.isModalOpen = !this.isModalOpen
         },
-        addTask(groupId, title) {
-            this.$store.dispatch({ type: 'addTask', groupId, title })
+        addTask(groupId,title){
+            this.$store.dispatch({ type: 'addTask', groupId, title})
         },
         toggleSelection(taskId) {
             const idx = this.selectedTasks.findIndex(id => id === taskId)

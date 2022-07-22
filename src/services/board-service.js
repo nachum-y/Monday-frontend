@@ -101,12 +101,12 @@ function _getEmptyTask(colOrder,title){
 
 async function removeTasks(idsToRemove,boardId){
   let board = await _getBoardById(boardId)
-  const filteredGroups = board.groups.map(group=>group.tasks.filter(task=>!idsToRemove.includes(task.id)))
-  // board.groups = filteredGroups
-  console.log(board.groups.tasks)
-  console.log(filteredGroups)
-  // storageService.put(BOARD_KEY, board)
-  return filteredGroups
+    board.groups.map(group=>{
+    let groupToUpdate = board.groups.find(g => g.id === group.id)
+    groupToUpdate.tasks = group.tasks.filter(task=>!idsToRemove.includes(task.id))
+  })
+  storageService.put(BOARD_KEY, board)
+  return board.groups
 }
 
 // async function _getGroupById(boardId,groupId){
