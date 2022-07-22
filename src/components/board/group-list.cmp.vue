@@ -1,8 +1,8 @@
 <template>
     <div v-if="board" class="board-content">
-    <div v-if="selectedTasks.length>0">
-        <span @click="removeTasks">X</span>
-    </div>
+        <div v-if="selectedTasks.length > 0">
+            <span @click="removeTasks">X</span>
+        </div>
         <div class="board-content-group" v-for="group in board.groups" :key="group.id">
             <div class="group-title">
                 <span ref="groupTitle" contenteditable="true"
@@ -18,11 +18,12 @@
                 <label for="color-picker">
                     <input @change="editGroup($event.target.value, group.id, 'color')" type="color" id="color-picker">
                 </label>
-                
+
                 <button @click="openActionsModal($event, group)" class="btn">...</button>
 
-                <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group" :pos="showGroupAction.posModal">
-                    </dotsClickActionsMenu>
+                <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction"
+                    :group="showGroupAction.group" :pos="showGroupAction.posModal">
+                </dotsClickActionsMenu>
 
             </div>
 
@@ -33,7 +34,8 @@
                             <div class="row-menu-icon"></div>
                         </div>
                         <div class="item-select">
-                            <div @click="toggleAll(group)" :class="selectedGroups.includes(group.id)? 'checkbox-selected' : 'checkbox'"></div>
+                            <div @click="toggleAll(group)"
+                                :class="selectedGroups.includes(group.id) ? 'checkbox-selected' : 'checkbox'"></div>
                         </div>
                         <div class="item-title">Items</div>
                     </div>
@@ -49,7 +51,8 @@
                             <div class="row-menu-icon"></div>
                         </div>
                         <div class="item-select">
-                            <div @click="toggleSelection(task.id)" :class="selectedTasks.includes(task.id)? 'checkbox-selected' : 'checkbox'"></div>
+                            <div @click="toggleSelection(task.id)"
+                                :class="selectedTasks.includes(task.id) ? 'checkbox-selected' : 'checkbox'"></div>
                         </div>
                         <div class="item-title">{{ task.cols[0].value }}</div>
                         <div class="item-conversation">
@@ -99,7 +102,7 @@
         </button>
 
 
-       
+
     </div>
 
 
@@ -135,11 +138,53 @@ export default {
             board: null,
             groupToEdit: boardService.getEmptyGroup(),
             newData: {},
-            delete this.groupToEdit.id
+            showGroupAction: false,
+            isModalOpen: false,
+            // newTask:''
+            selectedTasks: [],
+            selectedGroups: [],
+        }
+    },
+    created() {
+        this.board = this.$store.getters.board
+
+    },
+    components: {
+        creationLog,
+        date,
+        labelCmp,
+        lastUpdated,
+        location,
+        person,
+        priority,
+        status,
+        textCmp,
+        timeline,
+        dotsClickActionsMenu,
+        groupPreview
+    },
+    methods: {
+        addNewGroup() {
+            this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
+            this.groupToEdit = boardService.getEmptyGroup()
         },
+        removeGroup(groupId) {
+            this.$store.dispatch({ type: 'removeGroup', groupId })
+        },
+        duplicateGroup(group) {
+            this.groupToEdit = { ...group }
+            delete this.groupToEdit.id
+            this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
+            this.groupToEdit = boardService.getEmptyGroup()
+        },
+        editGroup(val, groupId, type) {
+            this.newData[type] = val
             this.$store.dispatch({ type: 'updateGroup', groupId, data: this.newData })
+            console.log(this.newData)
+            this.newData = {}
         },
         taskForDisplay(row, type) {
+            let col = row.filter((col) => col.type === type)[0]
             return col
 
         },
@@ -151,7 +196,7 @@ export default {
 
         },
         openActionsModal(el, group) {
-            console.log(el);
+            console.log(el)
             this.showGroupAction = {}
             this.showGroupAction.group = group
             this.showGroupAction.posModal = { eltop: el.layerY, left: el.layerX }
@@ -163,27 +208,49 @@ export default {
         onToggleModal() {
             this.isModalOpen = !this.isModalOpen
         },
-=======
-        addTask(groupId,title){
-            this.$store.dispatch({ type: 'addTask', groupId, title})
+        addTask(groupId, title) {
+            this.$store.dispatch({ type: 'addTask', groupId, title })
         },
-        toggleSelection(taskId){
+        toggleSelection(taskId) {
             const idx = this.selectedTasks.findIndex(id => id === taskId)
             if (idx === -1) this.selectedTasks.push(taskId)
-            else this.selectedTasks.splice(idx,1)
+            else this.selectedTasks.splice(idx, 1)
         },
-        toggleAll(group){
+        toggleAll(group) {
             const idx = this.selectedGroups.findIndex(id => id === group.id)
             if (idx === -1) {
                 if (group.tasks.length === 0) return
                 this.selectedGroups.push(group.id)
                 group.tasks.forEach(task => this.selectedTasks.push(task.id))
             }
-            else{
-                const idsToRemove = group.tasks.map(task=>task.id)
+            else {
+                const idsToRemove = group.tasks.map(task => task.id)
                 this.selectedTasks = this.selectedTasks.filter(id => !idsToRemove.includes(id))
-                this.selectedGroups.splice(idx,1)
-            } 
+                this.selectedGroups.splice(idx, 1)
+            }
         },
-        removeTasks(){
+        removeTasks() {
             const tasksToRemove = this.selectedTasks
+            this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
+        }
+    },
+    computed: {
+        draggingInfo() {
+            // return this.dragging ? "under drag" : ""
+        },
+        getHeaderOrder() {
+            // console.log('board.colsOrder:', board.colsOrder)
+            // const headersList = board.colsOrder.map()
+        },
+    },
+    watch: {
+
+    }
+}
+
+</script>
+<style>
+.btn {
+    cursor: pointer;
+}
+</style>
