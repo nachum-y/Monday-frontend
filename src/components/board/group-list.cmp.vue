@@ -51,6 +51,8 @@
                     </component>
                 </div>
             </div>
+
+            
             <div class="board-content-group-row-add-item">
                 <div class="add-item-col fixed">
                     <div class="task-item">

@@ -22,12 +22,36 @@ export const boardStore = {
             state.prevGroup = state.board.groups.find((g) => g.id === groupId)
             let groupToUpdate = state.board.groups.find((g) => g.id === groupId)
             groupToUpdate[Object.keys(data)[0]] = data[Object.keys(data)[0]]
+        },
+        updateColsOrder(state, { value2 }) {
+
+            state.board.colsOrder = value2
+        },
+        updateRowsOrder(state, { value }) {
+            console.log(state.board.groups[0])
+            state.board.groups[0].tasks = value
+
+        },
+        updateBoardOrderList(state, { value }) {
+            console.log(value)
+            console.log(state.board);
+            state.board.groups = value
+
         }
     },
     getters: {
         board({ board }) {
             return board
         },
+        colsOrder({ board }) {
+            console.log(board.colsOrder)
+            return board.colsOrder
+
+        },
+        rowOrder({ board }) {
+            console.log(board.groups[0].tasks)
+            return board.groups
+        }
         // groupToEdit({groupToEdit}){
         //     return groupToEdit
         // }
@@ -58,6 +82,16 @@ export const boardStore = {
                 console.log(err)
             }
         },
+        updateColsOrder({ commit }, { value }) {
+            commit({ type: 'updateColsOrder', value2: value })
+
+        },
+        updateRowsOrder({ commit }, { value }) {
+            commit({ type: 'updateRowsOrder', value })
+        },
+        updateBoardOrderList({ commit }, { value }) {
+            commit({ type: 'updateBoardOrderList', value })
+        }
         // toggleStatus({ commit }, { groupId }) {
         //     return groupsService.toggleStatus(groupId)
         //         .then(group => {

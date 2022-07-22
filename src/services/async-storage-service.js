@@ -233,11 +233,11 @@ function _createDefaultBoard(entityType) {
         color: "blue",
         tasks: [
           {
-            id: "t101",
+            id: "t121",
             cols: [
               {
                 type: "item",
-                value: "Create full crud"
+                value: "Create full crud2"
               },
               {
                 type: "person",
@@ -291,11 +291,11 @@ function _createDefaultBoard(entityType) {
             ]
           },
           {
-            id: "t102",
+            id: "t122",
             cols: [
               {
                 type: "item",
-                value: "Fix Css"
+                value: "Fix Css2"
               },
               {
                 type: "person",
@@ -343,7 +343,18 @@ function _createDefaultBoard(entityType) {
               },
             ]
           },
-        ]
+        ],
+        colsOrder: [
+          { title: "Item", type: "item" },
+          { title: "Text", type: "textCmp" },
+          { title: "person", type: "person" },
+          { title: "priority", type: "priority" },
+          { title: "status", type: "status" },
+          { title: "date", type: "date" },
+          { title: "creation log", type: "creationLog" },
+          { title: "location", type: "location" },
+          { title: "label", type: "labelCmp" }
+        ],
 
       }
     ]
