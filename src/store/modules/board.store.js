@@ -42,6 +42,9 @@ export const boardStore = {
             state.board.groups = value
 
         },
+        updateGroups(state, { updatedGroups }){
+            state.board.groups = updatedGroups
+        },
     },
     getters: {
         board({ board }) {
@@ -94,7 +97,8 @@ export const boardStore = {
         },
         async removeTasks({commit,state},{tasksToRemove}){
             try {
-                await boardService.removeTasks(tasksToRemove,state.board._id)
+                const updatedGroups = await boardService.removeTasks(tasksToRemove,state.board._id)
+                commit({ type: 'updateGroups', updatedGroups })
             }
             catch(err){
                 console.log(err)
