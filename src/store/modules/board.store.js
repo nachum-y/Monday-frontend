@@ -92,6 +92,14 @@ export const boardStore = {
                 console.log(err)
             }
         },
+        async removeTasks({commit,state},{tasksToRemove}){
+            try {
+                await boardService.removeTasks(tasksToRemove,state.board._id)
+            }
+            catch(err){
+                console.log(err)
+            }
+        },
         updateColsOrder({ commit }, { value }) {
             commit({ type: 'updateColsOrder', value2: value })
 
@@ -101,7 +109,7 @@ export const boardStore = {
         },
         updateBoardOrderList({ commit }, { value }) {
             commit({ type: 'updateBoardOrderList', value })
-        }
+        },
         // toggleStatus({ commit }, { groupId }) {
         //     return groupsService.toggleStatus(groupId)
         //         .then(group => {
