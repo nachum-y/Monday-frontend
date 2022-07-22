@@ -41,7 +41,7 @@
                             <div class="row-menu-icon"></div>
                         </div>
                         <div class="item-select">
-                            <div class="checkbox"></div>
+                            <div @click="toggleSelection(task.id)" :class="selectedTasks.includes(task.id)? 'checkbox-selected' : 'checkbox'"></div>
                         </div>
                         <div class="item-title">{{ task.cols[0].value }}</div>
                         <div class="item-conversation">
@@ -114,6 +114,7 @@ import priority from './board-col/priority.cmp.vue'
 import status from './board-col/status.cmp.vue'
 import textCmp from './board-col/text.cmp.vue'
 import timeline from './board-col/timeline.cmp.vue'
+import { findIndex } from 'lodash'
 
 export default {
     name: ['group-list'],
@@ -122,7 +123,7 @@ export default {
             board: null,
             groupToEdit: boardService.getEmptyGroup(),
             newData: {},
-            // newTask:''
+            selectedTasks: [],
         }
     },
     created() {
@@ -168,7 +169,12 @@ export default {
         },
         addTask(groupId,title){
             this.$store.dispatch({ type: 'addTask', groupId, title})
-        }
+        },
+        toggleSelection(taskId){
+            const idx = this.selectedTasks.findIndex(id => id === taskId)
+            if (idx === -1) this.selectedTasks.push(taskId)
+            else this.selectedTasks.splice(idx,1)
+        },
     },
     computed: {
         draggingInfo() {
@@ -178,7 +184,6 @@ export default {
             // console.log('board.colsOrder:', board.colsOrder)
             // const headersList = board.colsOrder.map()
         },
-
     },
     watch: {
 

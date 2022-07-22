@@ -115,6 +115,7 @@ function _createDefaultBoard(entityType) {
         tasks: [
           {
             id: "t101",
+            groupId:"group_101",
             cols: [
               {
                 type: "item",
@@ -173,6 +174,7 @@ function _createDefaultBoard(entityType) {
           },
           {
             id: "t102",
+            groupId:"group_101",
             cols: [
               {
                 type: "item",
@@ -234,6 +236,7 @@ function _createDefaultBoard(entityType) {
         tasks: [
           {
             id: "t121",
+            groupId : "group_102",
             cols: [
               {
                 type: "item",
@@ -292,6 +295,7 @@ function _createDefaultBoard(entityType) {
           },
           {
             id: "t122",
+            groupId : "group_102",
             cols: [
               {
                 type: "item",
@@ -344,18 +348,6 @@ function _createDefaultBoard(entityType) {
             ]
           },
         ],
-        colsOrder: [
-          { title: "Item", type: "item" },
-          { title: "Text", type: "textCmp" },
-          { title: "person", type: "person" },
-          { title: "priority", type: "priority" },
-          { title: "status", type: "status" },
-          { title: "date", type: "date" },
-          { title: "creation log", type: "creationLog" },
-          { title: "location", type: "location" },
-          { title: "label", type: "labelCmp" }
-        ],
-
       }
     ]
   }]

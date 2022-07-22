@@ -23,6 +23,10 @@ export const boardStore = {
             let groupToUpdate = state.board.groups.find((g) => g.id === groupId)
             groupToUpdate[Object.keys(data)[0]] = data[Object.keys(data)[0]]
         },
+        addTask(state, { groupId, newTask }){
+            let groupToUpdate = state.board.groups.find(group=> group.id === groupId)
+            groupToUpdate.tasks.push(newTask)
+        },
         updateColsOrder(state, { value2 }) {
 
             state.board.colsOrder = value2
@@ -37,7 +41,7 @@ export const boardStore = {
             console.log(state.board);
             state.board.groups = value
 
-        }
+        },
     },
     getters: {
         board({ board }) {
@@ -52,9 +56,6 @@ export const boardStore = {
             console.log(board.groups[0].tasks)
             return board.groups
         }
-        // groupToEdit({groupToEdit}){
-        //     return groupToEdit
-        // }
     },
     actions: {
         async loadBoard({ commit }) {
@@ -84,10 +85,11 @@ export const boardStore = {
         },
         async addTask({commit,state},{title, groupId}){
             try{
-                await boardService.addTask(title,groupId,state.board._id)
+                const newTask = await boardService.addTask(title,groupId,state.board._id)
+                commit({ type: 'addTask', groupId , newTask })
             }
-            catch{
-                console.log('err')
+            catch(err){
+                console.log(err)
             }
         },
         updateColsOrder({ commit }, { value }) {
