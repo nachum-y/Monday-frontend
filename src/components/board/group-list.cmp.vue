@@ -75,7 +75,7 @@
                             <div class="checkbox"></div>
                         </div>
                         <div class="add-item-input">
-                            <form @submit.prevent="addTask(group.id, $event.target.elements.title.value)">
+                            <form @submit.prevent="addTask(group.id, $event)">
                                 <input name="title" placeholder="+ Add Task" />
                             </form>
                         </div>
@@ -188,9 +188,6 @@ export default {
             return col
 
         },
-        addTask(groupId, title) {
-            this.$store.dispatch({ type: 'addTask', groupId, title })
-        },
         openActions() {
             console.log('actions')
 
@@ -208,8 +205,11 @@ export default {
         onToggleModal() {
             this.isModalOpen = !this.isModalOpen
         },
-        addTask(groupId,title){
-            this.$store.dispatch({ type: 'addTask', groupId, title})
+        addTask(groupId, title) {
+
+            // .target.elements.title.value
+            this.$store.dispatch({ type: 'addTask', groupId, title: title.target.elements.title.value })
+            title.target.elements.title.value = ''
         },
         toggleSelection(taskId) {
             const idx = this.selectedTasks.findIndex(id => id === taskId)
