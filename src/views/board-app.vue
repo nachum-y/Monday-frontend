@@ -1,7 +1,7 @@
 <template >
     <board-header />
-    <group-list />
-    <!-- <group-list2 /> -->
+    <!-- <group-list /> -->
+    <group-list2 />
 </template>
 <script>
 import groupList from '../components/board/group-list.cmp.vue'
