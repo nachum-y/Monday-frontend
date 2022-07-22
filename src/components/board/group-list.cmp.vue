@@ -135,14 +135,10 @@ export default {
             board: null,
             groupToEdit: boardService.getEmptyGroup(),
             newData: {},
-<<<<<<< HEAD
             showGroupAction: false,
-            isModalOpen: false
-            // newTask:''
-=======
+            isModalOpen: false,
             selectedTasks: [],
             selectedGroups: [],
->>>>>>> fc271390a2d968b7d39f2ed7c11241c58b1f9514
         }
     },
     created() {
@@ -188,7 +184,6 @@ export default {
             return col
 
         },
-<<<<<<< HEAD
         addTask(groupId, title) {
             this.$store.dispatch({ type: 'addTask', groupId, title })
         },
@@ -209,7 +204,6 @@ export default {
         onToggleModal() {
             this.isModalOpen = !this.isModalOpen
         },
-=======
         addTask(groupId,title){
             this.$store.dispatch({ type: 'addTask', groupId, title})
         },
@@ -235,7 +229,6 @@ export default {
             const tasksToRemove = this.selectedTasks
             this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
         }
->>>>>>> fc271390a2d968b7d39f2ed7c11241c58b1f9514
     },
     computed: {
         draggingInfo() {
