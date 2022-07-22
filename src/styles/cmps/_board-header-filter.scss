@@ -412,6 +412,24 @@
         -webkit-font-smoothing:antialiased;
     }
 
+    .add-task-button-component .dropdown-button {
+        border-radius: 0 4px 4px 0;
+        border-left: 1px solid;
+        border-left-color: var(--primary-hover-color);
+        background-color: var(--primary-color);
+        height: 40px;
+        width: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-color-on-primary);
+        font-size: 15px;
+        cursor: pointer;
+        transition: background-color 100ms ease-in;
+        font-family: "dapulse";
+        font-weight: 700;
+    }
+
     // **********icons*********
     
     .icon-arrow-down:before{
@@ -433,7 +451,9 @@
         content:"\f3d4";
     }
 
-
+    .fa-angle-down:before {
+        content: "\f107";
+    }
 
 
 
