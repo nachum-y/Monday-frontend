@@ -51,7 +51,7 @@ $light-color:#fff;
     &::before{
         content: "\f344";
         color: $icon-color;
-        font-size: 16px;
+        font-size: 19px;
         font-family: "dapulse";
     }
 }
@@ -61,7 +61,7 @@ $light-color:#fff;
 
     &::before{
         content: "\f3dc";
-        font-size: 16px;
+        font-size: 19px;
         color: $icon-color;
         font-family: "dapulse";
     }
@@ -185,6 +185,7 @@ $light-color:#fff;
     width: 95vw;
     padding-top: 16px;
     padding-left: 38px;
+    padding-right: 30px;
 }
 
 .board-title-component{
@@ -221,15 +222,16 @@ $light-color:#fff;
     color: $font-color;
     font-family:$font-family-input; 
     letter-spacing: -0.5px;
-    font-size: 28px;
+    font-size: 32px;
     white-space: nowrap;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 4px;
     border: none;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: text;
+    line-height: 1.5;
 
     &:hover{
         outline: $hover-border-color 1px solid;

@@ -36,6 +36,7 @@
         <div>Main Tab...</div>
         <div class="icon-v2-ellipsis-container">
           <span class="icon-v2-ellipsis"></span>
+          <!-- <div class="row-menu-icon"></div> -->
         </div>
       </button>
       <div class="monday-board-subset-item-v2__active-strip" ></div>
