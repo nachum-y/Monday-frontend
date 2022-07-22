@@ -9,7 +9,8 @@ export const boardService = {
   getEmptyGroup,
   removeGroup,
   updateGroup,
-  addTask
+  addTask,
+  removeTasks
 }
 
 // _createBoards()
@@ -78,6 +79,7 @@ async function addTask(title,groupId, boardId){
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   const colOrder = board.colsOrder
   let task = _getEmptyTask(colOrder,title)
+  task.groupId = groupId
   groupToEdit.tasks.push(task)
   storageService.put(BOARD_KEY, board)
   return task
@@ -95,6 +97,16 @@ function _getEmptyTask(colOrder,title){
     cols.push(emptyCol)
   })
   return {id:utilService.makeId(),cols}
+}
+
+async function removeTasks(idsToRemove,boardId){
+  let board = await _getBoardById(boardId)
+  const filteredGroups = board.groups.map(group=>group.tasks.filter(task=>!idsToRemove.includes(task.id)))
+  // board.groups = filteredGroups
+  console.log(board.groups)
+  console.log(filteredGroups)
+  // storageService.put(BOARD_KEY, board)
+  return filteredGroups
 }
 
 // async function _getGroupById(boardId,groupId){
