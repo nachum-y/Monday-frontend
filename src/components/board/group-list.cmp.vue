@@ -20,6 +20,9 @@
             <div class="board-content-group-row-header">
                 <div class="header-col fixed">
                     <div class="task-item">
+                        <div class="row-menu">
+                            <div class="row-menu-icon"></div>
+                        </div>
                         <div class="item-select">
                             <div class="checkbox"></div>
                         </div>
@@ -43,6 +46,7 @@
                         <div class="item-title">{{ task.cols[0].value }}</div>
                         <div class="item-conversation">
                             <div class="conversation-icon"></div>
+                            <span class="item-conversation-count">0</span>
                         </div>
                     </div>
                 </div>
@@ -55,11 +59,13 @@
             
             <div class="board-content-group-row-add-item">
                 <div class="add-item-col fixed">
-                    <div class="task-item">
-                        <div class="item-select">
+                    <div class="task-item add-item">
+                        <div class="item-select header">
                             <div class="checkbox"></div>
                         </div>
-
+                        <div class="add-item-input">
+                            <input placeholder="+ Add Task"/>
+                        </div>
 
                     </div>
                 </div>
@@ -72,15 +78,15 @@
                 <div class="footer-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
             </div>
         </div>
-        <button type="button" @click="addNewGroup"
-            class="add-group-separator-button monday-style-button monday-style-button--size-small monday-style-button--kind-secondary monday-style-button--color-primary has-style-size"
-            data-testid="button" aria-disabled="false" style="--element-width:135.5px; --element-height:31.9844px;">
-            <svg viewBox="0 0 20 20" fill="currentColor" width="24" height="24" aria-hidden="true"
-                class="icon_component monday-style-button--left-icon icon_component--no-focus-style">
-                <path
-                    d="M10.75 3C10.75 2.58579 10.4142 2.25 10 2.25C9.58579 2.25 9.25 2.58579 9.25 3V9.25H3C2.58579 9.25 2.25 9.58579 2.25 10C2.25 10.4142 2.58579 10.75 3 10.75H9.25V17C9.25 17.4142 9.58579 17.75 10 17.75C10.4142 17.75 10.75 17.4142 10.75 17V10.75H17C17.4142 10.75 17.75 10.4142 17.75 10C17.75 9.58579 17.4142 9.25 17 9.25H10.75V3Z"
-                    fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
-            </svg>Add new group </button>
+    <button type="button" @click="addNewGroup"
+        class="btn add-group-btn">
+          
+        <div class="add-group-icon-holder">
+          <div class="add-group-icon"></div>
+        </div><div class="add-group-btn-txt">
+          Add new group
+        </div>
+         </button>
 
     </div>
 

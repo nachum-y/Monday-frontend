@@ -36,7 +36,7 @@ $light-color:#fff;
     width: 34px;
     height: 34px;
     padding: 4px;
-    margin-left: 10px;
+    
 
     &:hover{
         border-radius: 4px;
@@ -45,18 +45,26 @@ $light-color:#fff;
 }
 
 
-.i-btn::before{
-    content: "\f344";
-    color: $icon-color;
-    font-size: 16px;
-    font-family: "dapulse";
+.i-btn{
+    margin-left: 10px;
+    
+    &::before{
+        content: "\f344";
+        color: $icon-color;
+        font-size: 19px;
+        font-family: "dapulse";
+    }
 }
 
-.star-btn::before{
-    content: "\f3dc";
-    font-size: 16px;
-    color: $icon-color;
-    font-family: "dapulse";
+.star-btn{
+    margin-left: 10px;
+
+    &::before{
+        content: "\f3dc";
+        font-size: 19px;
+        color: $icon-color;
+        font-family: "dapulse";
+    }
 }
 
 .board-activity-btn::before{
@@ -177,6 +185,7 @@ $light-color:#fff;
     width: 95vw;
     padding-top: 16px;
     padding-left: 38px;
+    padding-right: 30px;
 }
 
 .board-title-component{
@@ -213,15 +222,16 @@ $light-color:#fff;
     color: $font-color;
     font-family:$font-family-input; 
     letter-spacing: -0.5px;
-    font-size: 28px;
+    font-size: 32px;
     white-space: nowrap;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 4px;
     border: none;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     cursor: text;
+    line-height: 1.5;
 
     &:hover{
         outline: $hover-border-color 1px solid;
