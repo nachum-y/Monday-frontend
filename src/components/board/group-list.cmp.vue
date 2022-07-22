@@ -20,6 +20,9 @@
             <div class="board-content-group-row-header">
                 <div class="header-col fixed">
                     <div class="task-item">
+                        <div class="row-menu">
+                            <div class="row-menu-icon"></div>
+                        </div>
                         <div class="item-select">
                             <div class="checkbox"></div>
                         </div>
@@ -54,11 +57,13 @@
             </div>
             <div class="board-content-group-row-add-item">
                 <div class="add-item-col fixed">
-                    <div class="task-item">
-                        <div class="item-select">
+                    <div class="task-item add-item">
+                        <div class="item-select header">
                             <div class="checkbox"></div>
                         </div>
-
+                        <div class="add-item-input">
+                            <input placeholder="+ Add Task"/>
+                        </div>
 
                     </div>
                 </div>
