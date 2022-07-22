@@ -2,9 +2,9 @@
 %row-style {
     display: grid;
     grid-template-rows: 2.25rem;
-    grid-template-columns: 300px repeat(auto-fill, minmax(80px, 150px));
+    grid-template-columns: 300px repeat(auto-fill, minmax(140px, 160px));
     grid-auto-flow: column;
-    grid-auto-columns: minmax(80px, 150px);
+    grid-auto-columns: minmax(140px, 160px);
     border-bottom: $--border-style;
     min-width: fit-content;
     background-color: rgba(254, 254, 254, 1);
