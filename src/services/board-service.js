@@ -103,7 +103,7 @@ async function removeTasks(idsToRemove,boardId){
   let board = await _getBoardById(boardId)
   const filteredGroups = board.groups.map(group=>group.tasks.filter(task=>!idsToRemove.includes(task.id)))
   // board.groups = filteredGroups
-  console.log(board.groups)
+  console.log(board.groups.tasks)
   console.log(filteredGroups)
   // storageService.put(BOARD_KEY, board)
   return filteredGroups
