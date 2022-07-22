@@ -135,60 +135,14 @@ export default {
             board: null,
             groupToEdit: boardService.getEmptyGroup(),
             newData: {},
-<<<<<<< HEAD
-            showGroupAction: false,
-            isModalOpen: false
-            // newTask:''
-=======
-            selectedTasks: [],
-            selectedGroups: [],
->>>>>>> fc271390a2d968b7d39f2ed7c11241c58b1f9514
-        }
-    },
-    created() {
-        this.board = this.$store.getters.board
-
-    },
-    components: {
-        creationLog,
-        date,
-        labelCmp,
-        lastUpdated,
-        location,
-        person,
-        priority,
-        status,
-        textCmp,
-        timeline,
-        dotsClickActionsMenu,
-        groupPreview
-    },
-    methods: {
-        addNewGroup() {
-            this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
-            this.groupToEdit = boardService.getEmptyGroup()
-        },
-        removeGroup(groupId) {
-            this.$store.dispatch({ type: 'removeGroup', groupId })
-        },
-        duplicateGroup(group) {
-            this.groupToEdit = { ...group }
             delete this.groupToEdit.id
-            this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
-            this.groupToEdit = boardService.getEmptyGroup()
         },
-        editGroup(val, groupId, type) {
-            this.newData[type] = val
             this.$store.dispatch({ type: 'updateGroup', groupId, data: this.newData })
-            console.log(this.newData)
-            this.newData = {}
         },
         taskForDisplay(row, type) {
-            let col = row.filter((col) => col.type === type)[0]
             return col
 
         },
-<<<<<<< HEAD
         addTask(groupId, title) {
             this.$store.dispatch({ type: 'addTask', groupId, title })
         },
@@ -233,27 +187,3 @@ export default {
         },
         removeTasks(){
             const tasksToRemove = this.selectedTasks
-            this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
-        }
->>>>>>> fc271390a2d968b7d39f2ed7c11241c58b1f9514
-    },
-    computed: {
-        draggingInfo() {
-            // return this.dragging ? "under drag" : ""
-        },
-        getHeaderOrder() {
-            // console.log('board.colsOrder:', board.colsOrder)
-            // const headersList = board.colsOrder.map()
-        },
-    },
-    watch: {
-
-    }
-}
-
-</script>
-<style>
-.btn {
-    cursor: pointer;
-}
-</style>
