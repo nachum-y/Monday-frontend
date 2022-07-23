@@ -7,7 +7,7 @@
 export default {
     name: ['labelCmp'],
     props: {
-        task: Object
+        task: Object,
     },
     data() {
         return {
