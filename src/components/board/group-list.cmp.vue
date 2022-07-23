@@ -20,6 +20,7 @@
                     <div class="board-content-group-row-add-item">
                         <div class="add-item-col fixed">
                             <div class="task-item add-item">
+                                <div class="border add-item"></div>
                                 <div class="item-select header">
                                     <div class="checkbox"></div>
                                 </div>

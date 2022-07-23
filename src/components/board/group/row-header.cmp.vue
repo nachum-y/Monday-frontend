@@ -10,6 +10,7 @@
                         <div class="row-menu">
                             <div class="row-menu-icon"></div>
                         </div>
+                        <div :style="groupColor" class="border header"></div>
                         <div class="item-select">
                             <div @click="toggleAll(group)"
                                 :class="selectedGroups.includes(group.id) ? 'checkbox-selected' : 'checkbox'">
@@ -56,6 +57,9 @@ export default {
                 this.$store.dispatch('updateColsOrder', { value })
             }
         },
+        groupColor(){
+            return  {backgroundColor: this.group.color}
+        }
     },
 
 }

@@ -28,7 +28,7 @@ function get(boardId) {
 function getEmptyGroup() {
   return ({
     title: "new group",
-    color: "blue",
+    color: _getColor(),
     tasks: []
   })
 }
@@ -119,5 +119,27 @@ async function removeTasks(idsToRemove,boardId){
 //   return board.groups.find((g) => g.id === groupId)
 // }
 
+function _getColor() {
+  const colors = [
+      '#227f4c',
+      '#3ac874',
+      '#9cd325',
+      '#c9b641',
+      '#ffcb00',
+      '#784bd1',
+      '#a25ddc',
+      '#0486c0',
+      '#65cbff',
+      '#bb3354',
+      '#f8168a',
+      '#f85ac4',
+      '#fb642e',
+      '#fdab3d',
+      '#7e5347',
+      '#c4c4c4',
+      '#808080'
+  ]
 
+  return colors[utilService.getRandomInt(0, colors.length)]
+}
 
