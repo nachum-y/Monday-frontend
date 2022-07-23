@@ -1,0 +1,31 @@
+.task-creationLog{
+    cursor: pointer;
+    display: flex;
+    
+    .person-bullet{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #b63546;
+        border: 2px solid #f5f6f8;
+        margin: auto;
+        position: relative;
+        display: flex;
+        margin: 0 -8px;
+        left: 10%;
+        top: 2px;
+       
+        
+        span{
+            text-align: center;
+            color: #fff;
+            font-family: Roboto,Rubik,Noto Kufi Arabic,Noto Sans JP,sans-serif;
+            margin-left: 5px;
+            line-height: 1.8rem;
+        }
+    }
+
+    p{
+        margin: auto;
+    }
+}

@@ -133,10 +133,32 @@ $light-color:#fff;
 
     div{
         display: inline;
+        position: absolute;
+        bottom: 7px;
+        left: 35px;
     }
 
     svg{
         padding-right: 5px;
+        width: 21px;
+        display: inline;
+        position: absolute;
+        bottom: 7px;
+        left: 13px;
+    }
+
+    &:hover .icon-v2-ellipsis::before{
+        content: '\f311';
+        color: $icon-color;
+        font-family: "dapulse";
+        position: absolute;
+        bottom: 4px;
+        left: 110px;
+        font-size: 14px;
+
+        &:hover{
+            background-color: #fff;
+        }
     }
 }
 
@@ -164,12 +186,7 @@ $light-color:#fff;
     width: 16px;
 }
 
-.icon-v2-ellipsis::before{
-    content: '\f311';
-    color: $icon-color;
-    font-family: "dapulse";
-    margin-left: 10px;
-}
+
 
 .monday-board-subset-item-v2__active-strip {
     height: 2px;
