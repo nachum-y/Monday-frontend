@@ -10,10 +10,7 @@ export const boardStore = {
             state.board.groups.push(group)
         },
         removeGroup(state, { groupId }) {
-            // console.log(groupId)
-            // console.log('state.board:', state.board)
             state.board.groups = state.board.groups.filter(group => group.id !== groupId)
-            // console.log('state.board:', state.board)
         },
         setBoard(state, { board }) {
             state.board = board[0]
@@ -31,15 +28,11 @@ export const boardStore = {
 
             state.board.colsOrder = value2
         },
-        updateRowsOrder(state, { value }) {
-            console.log(value)
-            console.log(state.board.groups)
-            state.board.groups[0].tasks = value
+        updateRowsOrder(state, { value, idx }) {
+            state.board.groups[idx].tasks = value
 
         },
         updateBoardOrderList(state, { value }) {
-            console.log(value)
-            console.log(state.board)
             state.board.groups = value
 
         },
@@ -108,24 +101,13 @@ export const boardStore = {
             commit({ type: 'updateColsOrder', value2: value })
 
         },
-        updateRowsOrder({ commit }, { value }) {
-            commit({ type: 'updateRowsOrder', value })
+        updateRowsOrder({ commit }, { value, idx }) {
+            commit({ type: 'updateRowsOrder', value, idx })
         },
-        updateBoardOrderList({ commit }, { value }) {
+        updateBoardOrderList({ commit, state }, { value }) {
+            boardService.saveGroups(value, state.board._id)
             commit({ type: 'updateBoardOrderList', value })
         },
-        // toggleStatus({ commit }, { groupId }) {
-        //     return groupsService.toggleStatus(groupId)
-        //         .then(group => {
-        //             commit({ type: 'updateGroup', group })
-        //         })
-        // },
-        // editGroup({ commit }, { groupId }) {
-        //     return groupsService.getById(groupId)
-        //         .then(group => {
-        //             commit({ type: 'setEditGroup', group })
-        //         })
-        // }
 
     }
 }

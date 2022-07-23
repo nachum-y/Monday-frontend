@@ -1,9 +1,9 @@
 <template>
     <div>
-        <draggable v-model="rowsOrderList" dataIdAttrtag="div" group="tasks" :dragClass="'drag-row'" :ghostClass="'ghost-row'"
-            :animation="200" :item-key="key => key" @start="start" @end="end">
+        <draggable v-model="rowsOrderList" dataIdAttrtag="div" group="tasks" :dragClass="'drag-row'"
+            :ghostClass="'ghost-row'" :animation="200" :item-key="key => key" @start="start" @end="end">
             <template #item="{ element }">
-                <div class="board-content-group-row" :group-id="group.id">
+                <div class="board-content-group-row" >
                     <div class="col" v-for="(col, colsIdx) in colsOrder" :class="colsIdx === 0 ? 'fixed' : ''"
                         :key="col.type">
                         <div v-if="colsIdx === 0" class="task-item">
@@ -88,9 +88,16 @@ export default {
 
         },
         start(evt) {
-            console.log(evt.from.querySelector['div'])
-            console.log(evt.oldDraggableIndex);
-            // this.from = 
+            // console.log(evt.from.querySelector['div'])
+            // console.log(evt.oldDraggableIndex)
+
+            // console.log('evt.from:', evt.from)  // previous list
+            // console.log('evt.oldIndex :', evt.oldIndex) // element's old index within old parent
+            // console.log('evt.newIndex :', evt.newIndex) // element's new index within new parent
+            // console.log('evt.oldDraggableIndex:', evt.oldDraggableIndex) // element's old index within old parent, only counting draggable elements
+            // console.log('evt.newDraggableIndex:', evt.newDraggableIndex) // element's new index within new parent, only counting draggable elements
+            // console.log(' evt.clone:', evt.clone) // the clone element
+            // console.log('evt.pullMode:', evt.pullMode)
 
         },
         end(evt) {
@@ -107,13 +114,15 @@ export default {
                 return this.$store.getters.rowOrder[idx].tasks
             },
             set(value) {
-                console.log(value)
-                this.$store.dispatch('updateRowsOrder', { value })
+                let groups = this.$store.getters.rowOrder
+                let idx = groups.findIndex((g) => g.id === this.group.id)
+                console.log(idx)
+                this.$store.dispatch('updateRowsOrder', { value, idx })
             }
 
         },
-        groupColor(){
-            return  {backgroundColor: this.group.color}
+        groupColor() {
+            return { backgroundColor: this.group.color }
         }
     }
 

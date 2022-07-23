@@ -17,31 +17,11 @@
                         :board="board" @toggleSelection="toggleSelection" />
 
 
-                    <div class="board-content-group-row-add-item">
-                        <div class="add-item-col fixed">
-                            <div class="task-item add-item">
-                                <div class="border add-item"></div>
-                                <div class="item-select header">
-                                    <div class="checkbox"></div>
-                                </div>
-                                <div class="add-item-input">
-                                    <form @submit.prevent="addTask(element.id, $event)">
-                                        <input name="title" placeholder="+ Add Task" />
-                                    </form>
-                                </div>
 
-                            </div>
-                        </div>
-                        <div class="add-item-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
-                    </div>
+                    <groupAddTask :group="element" :colsOrder="board.colsOrder" @addTask="addTask" />
 
-                    <div class="board-content-group-row-footer">
-                        <div class="footer-col fixed">
-
-                        </div>
-                        <div class="footer-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
-                    </div>
-
+                    <groupFooter :colsOrder="board.colsOrder" />
+                   
 
 
 
@@ -94,6 +74,8 @@ import { findIndex } from 'lodash'
 import rowHeader from './group/row-header.cmp.vue'
 import groupHeader from './group/group-header.cmp.vue'
 import groupRow from './group/group-row.cmp.vue'
+import groupAddTask from './group/group-add-task.cmp.vue'
+import groupFooter from './group/group-footer.cmp.vue'
 
 export default {
     name: ['group-list'],
@@ -132,7 +114,9 @@ export default {
         groupPreview,
         rowHeader,
         groupHeader,
-        groupRow
+        groupRow,
+        groupAddTask,
+        groupFooter
     },
     methods: {
         addNewGroup() {
@@ -174,11 +158,8 @@ export default {
         onToggleModal() {
             this.isModalOpen = !this.isModalOpen
         },
-        addTask(groupId, title) {
-
-            // .target.elements.title.value
-            this.$store.dispatch({ type: 'addTask', groupId, title: title.target.elements.title.value })
-            title.target.elements.title.value = ''
+        addTask(titleVal) {
+            this.$store.dispatch({ type: 'addTask', groupId: titleVal.groupId, title: titleVal.title })
         },
         toggleSelection(taskId) {
             const idx = this.selectedTasks.findIndex(id => id === taskId)
@@ -293,7 +274,7 @@ export default {
  .drag-row {
      background: #eee !important;
      opacity: 1 !important;
-     transform: rotate(.9deg) !important;
+     /* transform: rotate(.9deg) !important; */
  }
  
  .ghost-row {
