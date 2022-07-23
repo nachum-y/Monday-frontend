@@ -1,9 +1,9 @@
 <template>
     <div>
-        <draggable v-model="rowsOrderList" tag="div" group="tasks" :dragClass="'drag-row'" :ghostClass="'ghost-row'"
-            :animation="200" :item-key="key => key">
+        <draggable v-model="rowsOrderList" dataIdAttrtag="div" group="tasks" :dragClass="'drag-row'" :ghostClass="'ghost-row'"
+            :animation="200" :item-key="key => key" @start="start" @end="end">
             <template #item="{ element }">
-                <div class="board-content-group-row">
+                <div class="board-content-group-row" :group-id="group.id">
                     <div class="col" v-for="(col, colsIdx) in colsOrder" :class="colsIdx === 0 ? 'fixed' : ''"
                         :key="col.type">
                         <div v-if="colsIdx === 0" class="task-item">
@@ -86,6 +86,15 @@ export default {
 
 
         },
+        start(evt) {
+            console.log(evt.from.querySelector['div'])
+            console.log(evt.oldDraggableIndex);
+            // this.from = 
+
+        },
+        end(evt) {
+            console.log(' evt.to:', evt.to)
+        }
 
     },
     computed: {
@@ -97,6 +106,7 @@ export default {
                 return this.$store.getters.rowOrder[idx].tasks
             },
             set(value) {
+                console.log(value)
                 this.$store.dispatch('updateRowsOrder', { value })
             }
 

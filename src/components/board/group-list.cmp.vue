@@ -49,6 +49,7 @@
             </template>
         </draggable>
 
+
         <button type="button" @click="addNewGroup" class="btn add-group-btn">
 
             <div class="add-group-icon-holder">
