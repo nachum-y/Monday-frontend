@@ -1,0 +1,42 @@
+
+.task-person{
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    
+    .person-bullet{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: #b63546;
+        border: 2px solid #f5f6f8;
+        margin: auto;
+        position: relative;
+        display: flex;
+        margin: 0 -8px;
+        left: 35%;
+       
+        
+        span{
+            text-align: center;
+            color: #fff;
+            font-family: Roboto,Rubik,Noto Kufi Arabic,Noto Sans JP,sans-serif;
+            margin-left: 5px;
+            line-height: 1.8rem;
+        }
+    }
+}
+
+.icon-dapulse-addbtn:before {
+    position: absolute;
+    content: "\f128";
+    top: 25%;
+    font-size: 14px;
+    color: #0073ea;
+    font-family: "dapulse";
+    margin-left: 0.5rem;
+    width: 12px;
+    height: 12px;
+    box-sizing: border-box;
+}
