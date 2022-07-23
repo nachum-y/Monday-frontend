@@ -232,6 +232,7 @@ export default {
         removeTasks() {
             const tasksToRemove = this.selectedTasks
             this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
+            this.selectedGroups = []
         }
     },
     computed: {

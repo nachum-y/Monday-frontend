@@ -1,0 +1,28 @@
+
+.text-cell{
+    width: inherit;
+    display: flex;
+    height: 100%;
+    align-items: center;
+
+    &-input{
+        width: 100%;
+        max-height: 1rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+
+        // &:hover{
+        //     // border: 1px solid transparent;
+        // }
+        
+    }
+
+    // &-icon{
+    //     content: ;
+
+    // }
+    
+}
+
