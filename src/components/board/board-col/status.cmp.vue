@@ -1,9 +1,7 @@
 <template>
     <div v-if="task" class="task-status" :class="setBgColor">
         {{ statusToDisplay }}
-        <div class="add-status-note">
-            <i class="fa-plus" style="color: rgb(0, 200, 117);"></i>
-        </div>
+        <div class="add-status-note"></div>
     </div>
     
 </template>

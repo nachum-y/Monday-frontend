@@ -1,12 +1,11 @@
 
-
-
 .task-status{
     height: 100%;
     color: #fff;
     text-align: center;
     line-height: 35px;
     position: relative;
+    cursor: pointer;
 
     .add-status-note{
         transition: border-width .3s ease;

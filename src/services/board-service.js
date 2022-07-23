@@ -79,7 +79,7 @@ async function addTask(title,groupId, boardId){
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   const colOrder = board.colsOrder
   let task = _getEmptyTask(colOrder,title)
-  task.groupId = groupId
+  Id = groupId
   groupToEdit.tasks.push(task)
   storageService.put(BOARD_KEY, board)
   return task
