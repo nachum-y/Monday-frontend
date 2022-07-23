@@ -1,12 +1,7 @@
 <template>
     <div v-if="task" :class="'task-' + task.type">
-        <el-date-picker class="col-hover" @change="" :prefix-icon="progressBarCmp" v-model="taskTime" type="date" format="YYYY/MM/DD"
-            value-format="x" />
-    </div>
-    {{taskId}}
-
-    <div class="clear-icon">
-
+        <el-date-picker class="col-hover" @change="" :prefix-icon="progressBarCmp" v-model="taskTime" type="date"
+            format="YYYY/MM/DD" value-format="x" />
     </div>
 
 </template>
@@ -25,7 +20,7 @@ export default {
         return {
             taskTime: '',
             test: 'testtt',
-            progressBarCmp: shallowRef(h(progressBar, { date: this.task.value}))
+            progressBarCmp: shallowRef(h(progressBar, { date: this.task.value }))
 
         }
     },
