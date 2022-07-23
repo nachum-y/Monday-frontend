@@ -2,6 +2,8 @@
 .task-person{
     cursor: pointer;
     display: flex;
+    height: 100%;
+    align-items: center;
     
     .person-bullet{
         width: 32px;
