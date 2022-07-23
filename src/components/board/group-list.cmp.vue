@@ -3,94 +3,52 @@
         <div v-if="selectedTasks.length > 0">
             <span @click="removeTasks">X</span>
         </div>
-        <div class="board-content-group" v-for="group in board.groups" :key="group.id">
-            <div class="group-title">
-                <span ref="groupTitle" contenteditable="true"
-                    @blur="editGroup($event.target.innerText, group.id, 'title')">
-                    {{ group.title }}
-                </span>
-                <span class="btn" @click="removeGroup(group.id)">
-                    X
-                </span>
-                <span class="btn" @click="duplicateGroup(group)">
-                    Duplicate group
-                </span>
-                <label for="color-picker">
-                    <input @change="editGroup($event.target.value, group.id, 'color')" type="color" id="color-picker">
-                </label>
 
-                <button @click="openActionsModal($event, group)" class="btn">...</button>
+        <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
+            :item-key="key => key" :dragClass="'drag-group'" :ghostClass="'ghost-group'">
+            <template #item="{ element }">
+                <div class="board-content-group">
+                    <groupHeader :group="element" @editGroup="editGroup" @removeGroup="removeGroup"
+                        @duplicateGroup="duplicateGroup" />
 
-                <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction"
-                    :group="showGroupAction.group" :pos="showGroupAction.posModal">
-                </dotsClickActionsMenu>
+                    <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
-            </div>
+                    <group-row :group="element" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
+                        :board="board" @toggleSelection="toggleSelection" />
 
-            <div class="board-content-group-row-header">
-                <div class="header-col fixed">
-                    <div class="task-item">
-                        <div class="row-menu">
-                            <div class="row-menu-icon"></div>
+
+                    <div class="board-content-group-row-add-item">
+                        <div class="add-item-col fixed">
+                            <div class="task-item add-item">
+                                <div class="item-select header">
+                                    <div class="checkbox"></div>
+                                </div>
+                                <div class="add-item-input">
+                                    <form @submit.prevent="addTask(element.id, $event)">
+                                        <input name="title" placeholder="+ Add Task" />
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="item-select">
-                            <div @click="toggleAll(group)"
-                                :class="selectedGroups.includes(group.id) ? 'checkbox-selected' : 'checkbox'"></div>
-                        </div>
-                        <div class="item-title">Items</div>
+                        <div class="add-item-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
                     </div>
-                </div>
-                <div class="header-col" v-for="col in board.colsOrder.slice(1)" :key="col.title">
-                    <span>{{ col.title }}</span>
-                </div>
-            </div>
-            <div class="board-content-group-row" v-for="(task, idx) in group.tasks" :key="task.id">
-                <div class="col fixed">
-                    <div class="task-item">
-                        <div class="row-menu">
-                            <div class="row-menu-icon"></div>
+
+                    <div class="board-content-group-row-footer">
+                        <div class="footer-col fixed">
+
                         </div>
-                        <div class="item-select">
-                            <div @click="toggleSelection(task.id)"
-                                :class="selectedTasks.includes(task.id) ? 'checkbox-selected' : 'checkbox'"></div>
-                        </div>
-                        <div class="item-title">{{ task.cols[0].value }}</div>
-                        <div class="item-conversation">
-                            <div class="conversation-icon"></div>
-                            <span class="item-conversation-count">0</span>
-                        </div>
+                        <div class="footer-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
                     </div>
-                </div>
-                <div class="col" v-for="(col, idx) in board.colsOrder.slice(1)" :key="col.type">
-                    <component :is="col.type" :task="taskForDisplay(task.cols, col.type)">
-                    </component>
-                </div>
-            </div>
 
 
-            <div class="board-content-group-row-add-item">
-                <div class="add-item-col fixed">
-                    <div class="task-item add-item">
-                        <div class="item-select header">
-                            <div class="checkbox"></div>
-                        </div>
-                        <div class="add-item-input">
-                            <form @submit.prevent="addTask(group.id, $event)">
-                                <input name="title" placeholder="+ Add Task" />
-                            </form>
-                        </div>
 
-                    </div>
-                </div>
-                <div class="add-item-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
-            </div>
-            <div class="board-content-group-row-footer">
-                <div class="footer-col fixed">
+
 
                 </div>
-                <div class="footer-col" v-for="col in board.colsOrder.slice(1)" :key="col.type"></div>
-            </div>
-        </div>
+            </template>
+        </draggable>
+
         <button type="button" @click="addNewGroup" class="btn add-group-btn">
 
             <div class="add-group-icon-holder">
@@ -100,9 +58,6 @@
                 Add new group
             </div>
         </button>
-
-
-
     </div>
 
 
@@ -116,6 +71,10 @@
 
 </template>
 <script>
+let idGlobal = 8
+
+import draggable from 'vuedraggable'
+
 import { boardService } from '../../services/board-service.js'
 import dotsClickActionsMenu from './dots-click-actions-menu.cmp.vue'
 import groupPreview from './group-preview.cmp.vue'
@@ -130,6 +89,9 @@ import status from './board-col/status.cmp.vue'
 import textCmp from './board-col/text.cmp.vue'
 import timeline from './board-col/timeline.cmp.vue'
 import { findIndex } from 'lodash'
+import rowHeader from './group/row-header.cmp.vue'
+import groupHeader from './group/group-header.cmp.vue'
+import groupRow from './group/group-row.cmp.vue'
 
 export default {
     name: ['group-list'],
@@ -143,6 +105,9 @@ export default {
             // newTask:''
             selectedTasks: [],
             selectedGroups: [],
+            controlOnStart: true,
+            idx: 0
+
         }
     },
     created() {
@@ -150,6 +115,7 @@ export default {
 
     },
     components: {
+        draggable,
         creationLog,
         date,
         labelCmp,
@@ -161,7 +127,10 @@ export default {
         textCmp,
         timeline,
         dotsClickActionsMenu,
-        groupPreview
+        groupPreview,
+        rowHeader,
+        groupHeader,
+        groupRow
     },
     methods: {
         addNewGroup() {
@@ -177,10 +146,10 @@ export default {
             this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
             this.groupToEdit = boardService.getEmptyGroup()
         },
-        editGroup(val, groupId, type) {
-            this.newData[type] = val
-            this.$store.dispatch({ type: 'updateGroup', groupId, data: this.newData })
-            console.log(this.newData)
+        editGroup(EditVal) {
+            console.log(EditVal)
+            this.newData[EditVal.type] = EditVal.val
+            this.$store.dispatch({ type: 'updateGroup', groupId: EditVal.groupId, data: this.newData })
             this.newData = {}
         },
         taskForDisplay(row, type) {
@@ -189,11 +158,9 @@ export default {
 
         },
         openActions() {
-            console.log('actions')
 
         },
         openActionsModal(el, group) {
-            console.log(el)
             this.showGroupAction = {}
             this.showGroupAction.group = group
             this.showGroupAction.posModal = { eltop: el.layerY, left: el.layerX }
@@ -232,7 +199,31 @@ export default {
         removeTasks() {
             const tasksToRemove = this.selectedTasks
             this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
-            this.selectedGroups = []
+        },
+        pullFunction() {
+            return this.controlOnStart ? "clone" : true
+        },
+        clone({ name }) {
+            return { name, id: idGlobal++ }
+        },
+        start({ originalEvent }) {
+            this.controlOnStart = originalEvent.ctrlKey
+        },
+        changeIdx(ev, id) {
+            console.log(ev)
+
+            let idx = this.board.groups.findIndex((g) => g.id === ev.id)
+            if (idx !== -1) return idx
+            // if (this.idx !== newIdx) {
+            //     this.idx = newIdx
+            //     return
+            // }
+
+
+            // const isLargeNumber = ((ev) => ev.id === this.board.groups.id)
+            // console.log(isLargeNumber)
+            // console.log(ev)
+            // console.log(id)
         }
     },
     computed: {
@@ -243,15 +234,118 @@ export default {
             // console.log('board.colsOrder:', board.colsOrder)
             // const headersList = board.colsOrder.map()
         },
-    },
-    watch: {
+        boardOrderList: {
+            get() {
+                return this.$store.getters.board.groups
+            },
+            set(value) {
+                this.$store.dispatch('updateBoardOrderList', { value })
+            }
+        },
+        colsOrderList: {
+            get() {
+                return this.$store.getters.colsOrder
+            },
+            set(value) {
 
-    }
+                this.$store.dispatch('updateColsOrder', { value })
+            }
+        },
+        rowsOrderList: {
+            get(ev) {
+                return this.$store.getters.rowOrder
+                // [this.idx].tasks
+            },
+            set(value) {
+                console.log(value)
+                this.$store.dispatch('updateRowsOrder', { value })
+            }
+
+        },
+    },
+
 }
 
 </script>
-<style>
-.btn {
-    cursor: pointer;
-}
-</style>
+ <style>
+ .btn {
+     cursor: pointer;
+ }
+ 
+ .flip-list-move {
+     transition: transform 0.5s;
+ }
+ 
+ .no-move {
+     transition: transform 0s;
+ }
+ 
+ .ghost-header-col {
+     /* opacity: 0.5; */
+     background: #c8ebfb;
+     color: transparent !important;
+     border: 1px black dashed !important;
+     background-color: #c7e6fa !important;
+ }
+ 
+ .drag-row {
+     background: #eee !important;
+     opacity: 1 !important;
+     transform: rotate(.9deg) !important;
+ }
+ 
+ .ghost-row {
+     background: #fff !important;
+     border: none !important;
+     color: transparent !important;
+     outline: 1px rgb(156, 156, 156) dashed !important;
+     margin-inline-start: 10px !important;
+     z-index: 100 !important;
+ }
+ 
+ .ghost-row>* {
+     border: none !important;
+     display: none;
+ }
+ 
+ .list-group {
+     min-height: 20px;
+ }
+ 
+ .list-group-item {
+     cursor: move;
+ }
+ 
+ .drag-header-col {
+     background-color: #fff;
+     opacity: 0.5;
+     height: 150px;
+ }
+ 
+ .list-group-item i {
+     cursor: pointer;
+ }
+ 
+ .drag-group {
+     background-color: #fff !important;
+ }
+ 
+ .drag-group>* {
+     display: none;
+ }
+ 
+ .ghost-group {
+ 
+     background: #fff !important;
+     border: none !important;
+     color: transparent !important;
+     outline: 1px rgb(156, 156, 156) dashed !important;
+     margin-inline-start: 10px !important;
+     z-index: 100 !important;
+     height: 100px;
+ }
+ 
+ .ghost-group>* {
+     display: none !important;
+ }
+ </style>
