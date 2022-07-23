@@ -347,6 +347,65 @@ function _createDefaultBoard(entityType) {
               },
             ]
           },
+          {
+            id: "t123",
+            groupId:"group_101",
+            cols: [
+              {
+                type: "item",
+                value: "Create full crud"
+              },
+              {
+                type: "person",
+                value: [
+                  {
+                    id: "m101",
+                    fullname: "Shiran Abir",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  },
+                  {
+                    id: "m102",
+                    fullname: "Meital Twito",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  },
+                  {
+                    id: "m103",
+                    fullname: "Nachum Yosef",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  }
+                ]
+              },
+              {
+                type: "textCmp",
+                value: "Somthing Smart to say",
+              },
+              {
+                type: "status",
+                value: "working on it",
+                isDone: false,
+              },
+              {
+                type: "priority",
+                value: "critical",
+              },
+              {
+                type: "date",
+                value: 1658291514565,
+              },
+              {
+                type: "creationLog",
+                value: 1658291514565,
+              },
+              {
+                type: "location",
+                value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
+              },
+              {
+                type: "labelCmp",
+                value: { title: "Services", color: "rgb(154, 173, 189)" },
+              },
+            ]
+          },
         ],
       }
     ]
