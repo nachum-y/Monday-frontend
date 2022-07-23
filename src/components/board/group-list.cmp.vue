@@ -1,7 +1,30 @@
 <template>
     <div v-if="board" class="board-content">
-        <div v-if="selectedTasks.length > 0">
-            <span @click="removeTasks">X</span>
+        <div class="board-actions-menu" v-if="selectedTasks.length > 0">
+ 
+                <div class="board-actions-menu-selected-items">
+                    <div class="board-actions-menu-selected-items-counter"><span>{{selectedTasks.length}}</span></div>
+                    <div class="board-actions-menu-selected-items-title">
+                        <div class="selected-items-title">Items Selected</div>
+                        <div class="dots"><div v-for="( task, index) in selectedTasks" :key="index" class="dot"></div></div>
+                        
+                        </div>
+                </div>
+
+                <div class="board-actions-menu-btns">
+                    <span @click="removeTasks">X</span>
+                </div>
+
+                <div class="board-actions-menu-close">
+                    <div class="board-actions-menu-close-icon">
+                        
+                    </div>
+                </div>
+                    
+
+                
+
+            
         </div>
 
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
