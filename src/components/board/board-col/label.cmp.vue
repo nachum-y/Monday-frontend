@@ -7,8 +7,7 @@
 export default {
     name: ['labelCmp'],
     props: {
-        task: Object,
-        color: ''
+        task: Object
     },
     data() {
         return {
