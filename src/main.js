@@ -5,7 +5,7 @@ import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import { clickOutsideDirective, close } from './directives'
-
+import LottieVuePlayer from "@lottiefiles/vue-lottie-player"
 import './styles/styles.scss'
 
 const app = createApp(App)
@@ -34,7 +34,7 @@ app.directive('click-outside', {
         document.removeEventListener('click', el.clickOutside)
     },
 })
-
+app.use(LottieVuePlayer)
 app.use(router)
 app.use(store)
 app.use(ElementPlus)

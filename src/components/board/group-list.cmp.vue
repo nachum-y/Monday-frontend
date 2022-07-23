@@ -37,7 +37,7 @@
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
                     <group-row :group="element" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
-                        :board="board" @toggleSelection="toggleSelection" />
+                        :board="board" @toggleSelection="toggleSelection" /> 
 
 
 

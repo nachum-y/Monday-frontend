@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@lottiefiles/lottie-interactivity": "^1.6.1",
+    "@lottiefiles/lottie-player": "^1.5.7",
+    "@lottiefiles/vue-lottie-player": "^1.0.9",
     "element-plus": "^2.2.9",
     "sass": "^1.53.0",
     "vue": "^3.2.37",
