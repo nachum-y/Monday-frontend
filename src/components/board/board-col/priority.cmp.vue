@@ -1,5 +1,6 @@
 <template>
-    <div v-if="task" :class="'task-' + task.type">
+    <div v-if="task" class="task-priority" :class="this.task.value ? this.task.value : 'defult' ">
+    <div v-if="task.value === 'critical'" class="critical-icon"></div>
         {{ priorityToDisplay }}
     </div>
 </template>
@@ -17,8 +18,9 @@ export default {
     computed:{
         priorityToDisplay(){
             if (!this.task.value) return ''
-            return this.task.value
-        }
+            let val = this.task.value.slice( 0 , 1 ).toUpperCase() + this.task.value.slice(1)
+            return val
+        },
     },
     
 }

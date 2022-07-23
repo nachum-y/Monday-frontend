@@ -152,7 +152,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "priority",
-                value: "Critical",
+                value: "critical",
               },
               {
                 type: "date",
@@ -168,7 +168,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "#f5f5f5" },
+                value: { title: "Services", color: "rgb(154, 173, 189)" },
               },
             ]
           },
@@ -206,7 +206,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "priority",
-                value: "High",
+                value: "high",
               },
               {
                 type: "date",
@@ -222,7 +222,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "#f5f5f5" },
+                value: { title: "Services", color: "rgb(0, 134, 192)" },
               },
             ]
           },
@@ -273,7 +273,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "priority",
-                value: "Critical",
+                value: "critical",
               },
               {
                 type: "date",
@@ -289,7 +289,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "#f5f5f5" },
+                value: { title: "Services", color: "rgb(157, 153, 185)" },
               },
             ]
           },
@@ -327,7 +327,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "priority",
-                value: "High",
+                value: "high",
               },
               {
                 type: "date",
@@ -343,7 +343,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "#f5f5f5" },
+                value: { title: "Services", color: "rgb(157, 153, 185)" },
               },
             ]
           },

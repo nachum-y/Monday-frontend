@@ -19,7 +19,7 @@ export default {
     computed:{
         statusToDisplay(){
            if (!this.task.value) return ''
-           return this.task.value
+           return this.task.value.slice( 0 , 1 ).toUpperCase() + this.task.value.slice(1)
         },
         setBgColor(){
             if (this.task.value === 'working on it') return 'working-on-it'
@@ -28,7 +28,7 @@ export default {
             else return 'defult'
         }
     },    
-}
+} 
 </script>
 <style>
 </style>

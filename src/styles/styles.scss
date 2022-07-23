@@ -4,7 +4,6 @@
 @import 'setup/typography';
 @import './cmps/board-header';
 
-
 // COMPONENTS
 @import 'cmps/board-content';
 @import 'cmps/app-header';
@@ -14,3 +13,5 @@
 // DYNAMIC COMPONENTS
 @import 'cmps/dynamic-cmps/text-cmp';
 @import 'cmps/dynamic-cmps/status-cmp';
+@import 'cmps/dynamic-cmps/priority-cmp';
+@import 'cmps/dynamic-cmps/label-cmp';
