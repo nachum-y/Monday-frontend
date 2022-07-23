@@ -3,6 +3,7 @@
         <el-date-picker class="col-hover" @change="" :prefix-icon="progressBarCmp" v-model="taskTime" type="date" format="YYYY/MM/DD"
             value-format="x" />
     </div>
+    {{taskId}}
 
     <div class="clear-icon">
 
@@ -17,7 +18,8 @@ import progressBar from '../../progress-bar.cmp.vue'
 export default {
     name: ['date'],
     props: {
-        task: Object
+        task: Object,
+        taskId: String
     },
     data() {
         return {

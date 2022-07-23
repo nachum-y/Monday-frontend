@@ -24,7 +24,8 @@
                                 </span>
                             </div>
                         </div>
-                        <component v-else :is="col.type" :task="taskForDisplay(element.cols, col.type)">
+                        <component v-else :is="col.type" :task="taskForDisplay(element.cols, col.type)"
+                            :taskId="element.id">
                         </component>
                     </div>
                 </div>
