@@ -1,5 +1,5 @@
 <template>
-    <div v-if="task" class="task-priority" :class="this.task.value ? this.task.value : 'defult' ">
+    <div v-if="task" class="task-priority" :class="this.task.value ? this.task.value : 'defult-priority-color' ">
         <div v-if="task.value === 'critical'" class="critical-icon"></div>
         {{ priorityToDisplay }}
     </div>
