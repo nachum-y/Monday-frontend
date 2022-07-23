@@ -272,7 +272,7 @@ export default {
             }
         },
         rowsOrderList: {
-            get(val) {
+            get() {
                 console.log(this.$store.getters.rowOrder[0].tasks)
                 return this.$store.getters.rowOrder[0].tasks
             },

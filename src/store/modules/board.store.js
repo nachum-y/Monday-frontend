@@ -32,6 +32,7 @@ export const boardStore = {
             state.board.colsOrder = value2
         },
         updateRowsOrder(state, { value }) {
+            
             console.log(state.board.groups[0])
             state.board.groups[0].tasks = value
 
@@ -56,7 +57,6 @@ export const boardStore = {
 
         },
         rowOrder({ board }) {
-            console.log(board.groups[0].tasks)
             return board.groups
         }
     },
