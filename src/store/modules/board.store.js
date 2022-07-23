@@ -45,11 +45,12 @@ export const boardStore = {
             return board
         },
         colsOrder({ board }) {
-            console.log(board.colsOrder)
+            if (!board.colsOrder) return
             return board.colsOrder
 
         },
         rowOrder({ board }) {
+            if (!board.groups) return
             return board.groups
         }
     },
