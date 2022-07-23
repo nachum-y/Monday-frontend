@@ -39,7 +39,7 @@
 
             &:hover {
                 z-index: 10;
-                background-color: #f4f4f7;
+                background-color: #f6f6f8;
                 box-shadow: $--box-shadow-xs;
 
                 .row-menu-icon {
@@ -48,7 +48,7 @@
             }
 
             &.selected-row {
-                background-color: #cce4fd;
+                background-color: #cbe5ff;
             }
 
             .col {
