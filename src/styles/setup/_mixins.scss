@@ -17,3 +17,37 @@
 @mixin color-border($clr) {
     border-inline-start: 6px solid $clr;
 }
+
+
+%selection-menu-btn{
+    width: fit-content;
+    height: 100%;
+    margin-inline-end: 20px;
+    cursor: pointer;
+}
+
+%selection-menu-btn-icon-holder{
+    height: 35px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+%selection-menu-btn--title{
+    height: 19px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+@mixin selection-menu-btn-style{
+    @extend %selection-menu-btn;
+    &-icon-holder{
+        @extend %selection-menu-btn-icon-holder; 
+    }
+    &-icon{
+        height: 27px;
+    }
+    &-title{
+       @extend %selection-menu-btn--title;
+    }
+}
