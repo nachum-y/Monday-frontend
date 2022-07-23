@@ -29,6 +29,7 @@
 
 
     &-group {
+        margin-right:15px ;
         padding: 5px 0px 0px 0px;
         font-size: 14px;
 
@@ -158,6 +159,23 @@
         // background-color: #67697a;
         flex-grow: 2;
     }
+
+    .border{
+        width: 6px;
+        height: 2.4rem;
+        position: absolute;
+        top: -1px;
+        left: -6px;
+        background-color: violet;
+
+        &.header{
+            border-top-left-radius: 4px;
+        }
+        &.add-item{
+            border-bottom-left-radius: 4px;
+        }
+    }
+
 
     .row-menu {
         position: absolute;

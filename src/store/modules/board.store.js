@@ -23,8 +23,8 @@ export const boardStore = {
             let groupToUpdate = state.board.groups.find((g) => g.id === groupId)
             groupToUpdate[Object.keys(data)[0]] = data[Object.keys(data)[0]]
         },
-        addTask(state, { groupId, newTask }){
-            let groupToUpdate = state.board.groups.find(group=> group.id === groupId)
+        addTask(state, { groupId, newTask }) {
+            let groupToUpdate = state.board.groups.find(group => group.id === groupId)
             groupToUpdate.tasks.push(newTask)
         },
         updateColsOrder(state, { value2 }) {
@@ -32,18 +32,18 @@ export const boardStore = {
             state.board.colsOrder = value2
         },
         updateRowsOrder(state, { value }) {
-            
-            console.log(state.board.groups[0])
+            console.log(value)
+            console.log(state.board.groups)
             state.board.groups[0].tasks = value
 
         },
         updateBoardOrderList(state, { value }) {
             console.log(value)
-            console.log(state.board);
+            console.log(state.board)
             state.board.groups = value
 
         },
-        updateGroups(state, { updatedGroups }){
+        updateGroups(state, { updatedGroups }) {
             state.board.groups = updatedGroups
         },
     },
@@ -86,21 +86,21 @@ export const boardStore = {
                 console.log(err)
             }
         },
-        async addTask({commit,state},{title, groupId}){
-            try{
-                const newTask = await boardService.addTask(title,groupId,state.board._id)
-                commit({ type: 'addTask', groupId , newTask })
+        async addTask({ commit, state }, { title, groupId }) {
+            try {
+                const newTask = await boardService.addTask(title, groupId, state.board._id)
+                commit({ type: 'addTask', groupId, newTask })
             }
-            catch(err){
+            catch (err) {
                 console.log(err)
             }
         },
-        async removeTasks({commit,state},{tasksToRemove}){
+        async removeTasks({ commit, state }, { tasksToRemove }) {
             try {
-                const updatedGroups = await boardService.removeTasks(tasksToRemove,state.board._id)
+                const updatedGroups = await boardService.removeTasks(tasksToRemove, state.board._id)
                 commit({ type: 'updateGroups', updatedGroups })
             }
-            catch(err){
+            catch (err) {
                 console.log(err)
             }
         },
