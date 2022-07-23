@@ -119,7 +119,7 @@ function _createDefaultBoard(entityType) {
             cols: [
               {
                 type: "item",
-                value: "Create full crud"
+                value: "Create repository"
               },
               {
                 type: "person",
@@ -134,21 +134,16 @@ function _createDefaultBoard(entityType) {
                     fullname: "Meital Twito",
                     imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
                   },
-                  {
-                    id: "m103",
-                    fullname: "Nachum Yosef",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
-                  }
                 ]
               },
               {
                 type: "textCmp",
-                value: "Somthing Smart to say",
+                value: "Open new repo in GitHub",
               },
               {
                 type: "status",
-                value: "working on it",
-                isDone: false,
+                value: "done",
+                isDone: true,
               },
               {
                 type: "priority",
@@ -168,7 +163,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "rgb(154, 173, 189)" },
+                value: { title: "Must Do!", color: "rgb(154, 173, 189)" },
               },
             ]
           },
@@ -178,7 +173,7 @@ function _createDefaultBoard(entityType) {
             cols: [
               {
                 type: "item",
-                value: "Fix Css"
+                value: "Fix the Css"
               },
               {
                 type: "person",
@@ -240,16 +235,11 @@ function _createDefaultBoard(entityType) {
             cols: [
               {
                 type: "item",
-                value: "Create full crud2"
+                value: "Create new board"
               },
               {
                 type: "person",
                 value: [
-                  {
-                    id: "m101",
-                    fullname: "Shiran Abir",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
-                  },
                   {
                     id: "m102",
                     fullname: "Meital Twito",
@@ -264,16 +254,16 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "textCmp",
-                value: "Somthing Smart to say",
+                value: "Support new board",
               },
               {
                 type: "status",
-                value: "working on it",
+                value: "stuck",
                 isDone: false,
               },
               {
                 type: "priority",
-                value: "critical",
+                value: "low",
               },
               {
                 type: "date",
@@ -289,7 +279,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "rgb(157, 153, 185)" },
+                value: { title: "Services", color: "rgb(0, 134, 192)" },
               },
             ]
           },
@@ -299,7 +289,7 @@ function _createDefaultBoard(entityType) {
             cols: [
               {
                 type: "item",
-                value: "Fix Css2"
+                value: "Suppore chat"
               },
               {
                 type: "person",
@@ -322,12 +312,12 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "done",
-                isDone: true,
+                value: "stuck",
+                isDone: false,
               },
               {
                 type: "priority",
-                value: "high",
+                value: "low",
               },
               {
                 type: "date",
@@ -343,7 +333,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "rgb(157, 153, 185)" },
+                value: { title: "Services", color: "rgb(0, 134, 192)" },
               },
             ]
           },
@@ -402,11 +392,393 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "rgb(154, 173, 189)" },
+                value: { title: "Services", color: "rgb(0, 134, 192)" },
               },
             ]
           },
         ],
+      },
+      {
+        id: "group_103",
+        title: "Improve UI",
+        color: "#a25ddc",
+        tasks: [
+          {
+            id: "t104",
+            groupId:"group_103",
+            cols: [
+              {
+                type: "item",
+                value: "Get icons"
+              },
+              {
+                type: "person",
+                value: [
+                  {
+                    id: "m101",
+                    fullname: "Shiran Abir",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  },
+                  {
+                    id: "m102",
+                    fullname: "Meital Twito",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  },
+                  {
+                    id: "m103",
+                    fullname: "Nachum Yosef",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  }
+                ]
+              },
+              {
+                type: "textCmp",
+                value: "Find the icons",
+              },
+              {
+                type: "status",
+                value: "done",
+                isDone: false,
+              },
+              {
+                type: "priority",
+                value: "high",
+              },
+              {
+                type: "date",
+                value: 1658291514565,
+              },
+              {
+                type: "creationLog",
+                value: 1658291514565,
+              },
+              {
+                type: "location",
+                value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
+              },
+              {
+                type: "labelCmp",
+                value: { title: "UI", color: "rgb(157, 153, 185)" },
+              },
+            ]
+          },
+          {
+            id: "t105",
+            groupId:"group_103",
+            cols: [
+              {
+                type: "item",
+                value: "Fix Scss"
+              },
+              {
+                type: "person",
+                value: [
+                  {
+                    id: "m102",
+                    fullname: "Meital Twito",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  }
+                ]
+              },
+              {
+                type: "textCmp",
+                value: "Add colors",
+              },
+              {
+                type: "status",
+                value: "stuck",
+                isDone: false,
+              },
+              {
+                type: "priority",
+                value: "medium",
+              },
+              {
+                type: "date",
+                value: 1658291514565,
+              },
+              {
+                type: "creationLog",
+                value: 1658291514565,
+              },
+              {
+                type: "location",
+                value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
+              },
+              {
+                type: "labelCmp",
+                value: { title: "UI", color: "rgb(154, 173, 189)" },
+              },
+            ]
+          },
+        ]
+
+      },
+      {
+        id: "group_104",
+        title: "Work on CRUD",
+        color: "#a25ddc",
+        tasks: [
+          {
+            id: "t106",
+            groupId:"group_104",
+            cols: [
+              {
+                type: "item",
+                value: "Support remove one task"
+              },
+              {
+                type: "person",
+                value: [
+                  {
+                    id: "m101",
+                    fullname: "Shiran Abir",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  },
+                  {
+                    id: "m103",
+                    fullname: "Nachum Yosef",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  }
+                ]
+              },
+              {
+                type: "textCmp",
+                value: "Use store",
+              },
+              {
+                type: "status",
+                value: "done",
+                isDone: true,
+              },
+              {
+                type: "priority",
+                value: "critical",
+              },
+              {
+                type: "date",
+                value: 1658291514565,
+              },
+              {
+                type: "creationLog",
+                value: 1658291514565,
+              },
+              {
+                type: "location",
+                value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
+              },
+              {
+                type: "labelCmp",
+                value: { title: "JS", color: "rgb(0, 134, 192)" },
+              },
+            ]
+          },
+          {
+            id: "t107",
+            groupId:"group_104",
+            cols: [
+              {
+                type: "item",
+                value: "Connect backend"
+              },
+              {
+                type: "person",
+                value: [
+                  {
+                    id: "m102",
+                    fullname: "Meital Twito",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  }
+                ]
+              },
+              {
+                type: "textCmp",
+                value: "Connect the front to the back",
+              },
+              {
+                type: "status",
+                value: "working on it",
+                isDone: false,
+              },
+              {
+                type: "priority",
+                value: "high",
+              },
+              {
+                type: "date",
+                value: 1658291514565,
+              },
+              {
+                type: "creationLog",
+                value: 1658291514565,
+              },
+              {
+                type: "location",
+                value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
+              },
+              {
+                type: "labelCmp",
+                value: { title: "Backend", color: "rgb(157, 153, 185)" },
+              },
+            ]
+          },
+          {
+            id: "t108",
+            groupId:"group_104",
+            cols: [
+              {
+                type: "item",
+                value: "Create sockets"
+              },
+              {
+                type: "person",
+                value: [
+                  {
+                    id: "m102",
+                    fullname: "Meital Twito",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  },
+                  {
+                    id: "m103",
+                    fullname: "Nachum Yosef",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  }
+                ]
+              },
+              {
+                type: "textCmp",
+                value: "Connect the sockets to backend",
+              },
+              {
+                type: "status",
+                value: "working on it",
+                isDone: false,
+              },
+              {
+                type: "priority",
+                value: "medium",
+              },
+              {
+                type: "date",
+                value: 1658291514565,
+              },
+              {
+                type: "creationLog",
+                value: 1658291514565,
+              },
+              {
+                type: "location",
+                value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
+              },
+              {
+                type: "labelCmp",
+                value: { title: "Backend", color: "rgb(157, 153, 185)" },
+              },
+              
+            ]
+          },
+          {
+            id: "t109",
+            groupId:"group_104",
+            cols: [
+              {
+                type: "item",
+                value: "Make drag and drop work!"
+              },
+              {
+                type: "person",
+                value: [
+                  {
+                    id: "m103",
+                    fullname: "Nachum Yosef",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  }
+                ]
+              },
+              {
+                type: "textCmp",
+                value: "Improve drag and drop functionality",
+              },
+              {
+                type: "status",
+                value: "done",
+                isDone: true,
+              },
+              {
+                type: "priority",
+                value: "critical",
+              },
+              {
+                type: "date",
+                value: 1658291514565,
+              },
+              {
+                type: "creationLog",
+                value: 1658291514565,
+              },
+              {
+                type: "location",
+                value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
+              },
+              {
+                type: "labelCmp",
+                value: { title: "frontend", color: "rgb(154, 173, 189)" },
+              },
+              
+            ]
+          },
+          {
+            id: "t110",
+            groupId:"group_104",
+            cols: [
+              {
+                type: "item",
+                value: "Connect last components"
+              },
+              {
+                type: "person",
+                value: [
+                  {
+                    id: "m101",
+                    fullname: "Shiran Abir",
+                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                  }
+                ]
+              },
+              {
+                type: "textCmp",
+                value: "Make the components render the data",
+              },
+              {
+                type: "status",
+                value: "working on it",
+                isDone: false,
+              },
+              {
+                type: "priority",
+                value: "critical",
+              },
+              {
+                type: "date",
+                value: 1658291514565,
+              },
+              {
+                type: "creationLog",
+                value: 1658291514565,
+              },
+              {
+                type: "location",
+                value: "https://goo.gl/maps/J6Fj9Wq9MQvSuAQF8",
+              },
+              {
+                type: "labelCmp",
+                value: { title: "frontend", color: "rgb(154, 173, 189)" },
+              },
+              
+            ]
+          }
+        ]
+
       }
     ]
   }]
