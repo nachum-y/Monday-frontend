@@ -147,7 +147,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "Working on it",
+                value: "working on it",
                 isDone: false,
               },
               {
@@ -268,7 +268,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "Working on it",
+                value: "working on it",
                 isDone: false,
               },
               {

@@ -1,7 +1,11 @@
 <template>
-    <div v-if="task" :class="'task-' + task.type">
+    <div v-if="task" class="task-status" :class="setBgColor">
         {{ statusToDisplay }}
+        <div class="add-status-note">
+            <i class="fa-plus" style="color: rgb(0, 200, 117);"></i>
+        </div>
     </div>
+    
 </template>
 <script>
 export default {
@@ -19,6 +23,12 @@ export default {
            if (!this.task.value) return ''
            return this.task.value
         },
+        setBgColor(){
+            if (this.task.value === 'working on it') return 'working-on-it'
+            else if (this.task.value === 'done') return 'done'
+            else if (this.task.value === 'stuck') return 'stuck'
+            else return 'defult'
+        }
     },    
 }
 </script>
