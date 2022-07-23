@@ -10,7 +10,8 @@ export const boardService = {
   removeGroup,
   updateGroup,
   addTask,
-  removeTasks
+  removeTasks,
+  saveGroups
 }
 
 // _createBoards()
@@ -74,39 +75,46 @@ async function updateGroup(groupId, data, boardId) {
   return groupToEdit
 }
 
-async function addTask(title,groupId, boardId){
+async function addTask(title, groupId, boardId) {
   let board = await _getBoardById(boardId)
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   const colOrder = board.colsOrder
-  let task = _getEmptyTask(colOrder,title)
+  let task = _getEmptyTask(colOrder, title)
   task.groupId = groupId
   groupToEdit.tasks.push(task)
   storageService.put(BOARD_KEY, board)
   return task
 }
 
-async function _getBoardById(boardId){
+async function _getBoardById(boardId) {
   return await storageService.get(BOARD_KEY, boardId)
 }
 
-function _getEmptyTask(colOrder,title){
+function _getEmptyTask(colOrder, title) {
   let cols = []
-  colOrder.forEach(col=>{
-    let emptyCol = {type : col.type, value : null}
+  colOrder.forEach(col => {
+    let emptyCol = { type: col.type, value: null }
     if (col.type === 'item') emptyCol.value = title
     cols.push(emptyCol)
   })
-  return {id:utilService.makeId(),cols}
+  return { id: utilService.makeId(), cols }
 }
 
-async function removeTasks(idsToRemove,boardId){
+async function removeTasks(idsToRemove, boardId) {
   let board = await _getBoardById(boardId)
-    board.groups.map(group=>{
+  board.groups.map(group => {
     // let groupToUpdate = board.groups.find(g => g.id === group.id)
-    group.tasks = group.tasks.filter(task=>!idsToRemove.includes(task.id))
+    group.tasks = group.tasks.filter(task => !idsToRemove.includes(task.id))
   })
   storageService.put(BOARD_KEY, board)
   return board.groups
+}
+
+async function saveGroups(groups, boardId) {
+  let board = await _getBoardById(boardId)
+  board.groups = groups
+  storageService.put(BOARD_KEY, board)
+  return
 }
 
 // async function _getGroupById(boardId,groupId){
@@ -121,23 +129,23 @@ async function removeTasks(idsToRemove,boardId){
 
 function _getColor() {
   const colors = [
-      '#227f4c',
-      '#3ac874',
-      '#9cd325',
-      '#c9b641',
-      '#ffcb00',
-      '#784bd1',
-      '#a25ddc',
-      '#0486c0',
-      '#65cbff',
-      '#bb3354',
-      '#f8168a',
-      '#f85ac4',
-      '#fb642e',
-      '#fdab3d',
-      '#7e5347',
-      '#c4c4c4',
-      '#808080'
+    '#227f4c',
+    '#3ac874',
+    '#9cd325',
+    '#c9b641',
+    '#ffcb00',
+    '#784bd1',
+    '#a25ddc',
+    '#0486c0',
+    '#65cbff',
+    '#bb3354',
+    '#f8168a',
+    '#f85ac4',
+    '#fb642e',
+    '#fdab3d',
+    '#7e5347',
+    '#c4c4c4',
+    '#808080'
   ]
 
   return colors[utilService.getRandomInt(0, colors.length)]
