@@ -191,3 +191,7 @@
 .fa-angle-right:before {
     content: ">";
 }
+
+.collapse-first-leve-button-component:not(.is-pinned) {
+    left: calc(100% - 14px);
+}

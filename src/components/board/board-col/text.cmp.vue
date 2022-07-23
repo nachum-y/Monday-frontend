@@ -1,6 +1,7 @@
 <template>
-    <div v-if="task">
-        {{ textToDiaplay }}
+    <div class="text-cell" v-if="task">
+    <input :value="textToDiaplay" class="text-cell-input"/>
+    <div class="text-cell-icon"></div>
     </div>
 </template>
 <script>
@@ -23,5 +24,3 @@ export default {
     },
 }
 </script>
-<style>
-</style>
