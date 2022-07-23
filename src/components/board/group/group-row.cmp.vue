@@ -3,7 +3,7 @@
         <draggable v-model="rowsOrderList" dataIdAttrtag="div" group="tasks" :dragClass="'drag-row'"
             :ghostClass="'ghost-row'" :animation="200" :item-key="key => key" @start="start" @end="end">
             <template #item="{ element }">
-                <div class="board-content-group-row" >
+                <div class="board-content-group-row" :class="selectedTasks.includes(element.id) ? 'selected-row' : ''">
                     <div class="col" v-for="(col, colsIdx) in colsOrder" :class="colsIdx === 0 ? 'fixed' : ''"
                         :key="col.type">
                         <div v-if="colsIdx === 0" class="task-item">

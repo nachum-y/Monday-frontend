@@ -1,8 +1,10 @@
 //MIXINS
 @mixin fixed-col-style {
-    background-color: rgba(254, 254, 254, 0.9);
+    background-color:inherit;
+    opacity: 0.96;
     position: sticky;
     left: 0px;
+    z-index: 15;
 }
 
 @mixin col-span-style {
