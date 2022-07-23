@@ -10,6 +10,7 @@
                             <div class="row-menu">
                                 <div class="row-menu-icon"></div>
                             </div>
+                            <div :style="groupColor" class="border"></div>
                             <div class="item-select">
                                 <div @click="toggleSelection(element.id)"
                                     :class="selectedTasks.includes(element.id) ? 'checkbox-selected' : 'checkbox'">
@@ -111,6 +112,9 @@ export default {
             }
 
         },
+        groupColor(){
+            return  {backgroundColor: this.group.color}
+        }
     }
 
 }
