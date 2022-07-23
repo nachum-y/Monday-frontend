@@ -195,6 +195,7 @@ export default {
                 if (group.tasks.length === 0) return
                 this.selectedGroups.push(group.id)
                 group.tasks.forEach(task => this.selectedTasks.push(task.id))
+                this.selectedTasks = [...new Set(this.selectedTasks)]
             }
             else {
                 const idsToRemove = group.tasks.map(task => task.id)
