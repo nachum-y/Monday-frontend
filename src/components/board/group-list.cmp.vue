@@ -12,12 +12,27 @@
                 </div>
 
                 <div class="board-actions-menu-btns">
-                    <span @click="removeTasks">X</span>
+                    <div class="remove-tasks" @click="removeTasks">
+                        <div class="remove-tasks-icon-holder">
+                            <div class="remove-tasks-icon">
+                                
+                            </div>
+                        </div>
+                        <div class="remove-tasks-title">Delete</div>
+                    </div>
+
+                    <div class="duplicate-tasks">
+                        <div class="duplicate-tasks-icon-holder">
+                            <div class="duplicate-tasks-icon">
+                                
+                            </div>
+                        </div>
+                        <div class="duplicate-tasks-title">Duplicate</div>
+                    </div>
                 </div>
 
                 <div class="board-actions-menu-close">
                     <div class="board-actions-menu-close-icon">
-                        
                     </div>
                 </div>
                     
@@ -37,7 +52,7 @@
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
                     <group-row :group="element" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
-                        :board="board" @toggleSelection="toggleSelection" />
+                        :board="board" @toggleSelection="toggleSelection" /> 
 
 
 
@@ -206,6 +221,7 @@ export default {
         removeTasks() {
             const tasksToRemove = this.selectedTasks
             this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
+            this.selectedTasks = []
         },
         pullFunction() {
             return this.controlOnStart ? "clone" : true
