@@ -16,18 +16,17 @@
 
 }
 
-
 .board-content-group {
     margin-bottom: 4rem;
 }
 
 // BOARD
 .board-content {
-    overflow-x: scroll;
+    overflow-x: auto;
     position: relative;
     margin-left: 2.25rem;
 
-    height: calc(100vh - 185px);
+    height: calc(100vh - 166px);
 
 
     &-group {
