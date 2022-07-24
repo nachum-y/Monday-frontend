@@ -96,6 +96,7 @@ function _getEmptyTask(colOrder, title) {
   colOrder.forEach(col => {
     let emptyCol = { type: col.type, value: null }
     if (col.type === 'item') emptyCol.value = title
+    if (col.type === 'creationLog') emptyCol.value = Date()
     cols.push(emptyCol)
   })
   return { id: utilService.makeId(), cols }

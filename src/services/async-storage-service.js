@@ -111,7 +111,7 @@ function _createDefaultBoard(entityType) {
       {
         id: "group_101",
         title: "Open Tasks",
-        color: "#a25ddc",
+        color: "#fb642e",
         tasks: [
           {
             id: "t101",
@@ -227,7 +227,7 @@ function _createDefaultBoard(entityType) {
       {
         id: "group_102",
         title: "Open Tasks",
-        color: "#0486c0",
+        color: "#a25ddc",
         tasks: [
           {
             id: "t121",
@@ -401,7 +401,7 @@ function _createDefaultBoard(entityType) {
       {
         id: "group_103",
         title: "Improve UI",
-        color: "#a25ddc",
+        color: "#3ac874",
         tasks: [
           {
             id: "t104",
@@ -507,7 +507,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "UI", color: "rgb(154, 173, 189)" },
+                value: { title: "UI", color: "rgb(157, 153, 185)" },
               },
             ]
           },
@@ -517,7 +517,7 @@ function _createDefaultBoard(entityType) {
       {
         id: "group_104",
         title: "Work on CRUD",
-        color: "#a25ddc",
+        color: "#f85ac4",
         tasks: [
           {
             id: "t106",
