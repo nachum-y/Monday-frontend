@@ -339,7 +339,7 @@ function _createDefaultBoard(entityType) {
           },
           {
             id: "t123",
-            groupId:"group_101",
+            groupId:"group_102",
             cols: [
               {
                 type: "item",

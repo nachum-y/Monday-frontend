@@ -88,9 +88,9 @@ export default {
 </script>
 <style>
 .group-title-action {
-    width: 500px;
+    width: 200px;
     position: sticky;
-    left: 0;
+    left:0rem;
 }
 
 .group-header-title {

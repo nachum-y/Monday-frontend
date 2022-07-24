@@ -43,9 +43,10 @@
 
 
         </div>
-
+         <div style="position:sticky; left: 0;">RENDER GROUP HEADER HERE OR OUTSIDE OF board-content-group</div>
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
             :item-key="key => key" :dragClass="'drag-group'" :ghostClass="'ghost-group'">
+           
             <template #item="{ element }">
                 <div class="board-content-group" :class="collapseGroups.includes(element.id) ? 'collapseGroup' : ''">
                     <groupHeader :group="element" @editGroup="editGroup" @removeGroup="removeGroup"
@@ -54,7 +55,7 @@
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
                     <group-row :group="element" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
-                        @toggleSelection="toggleSelection" />
+                        @toggleSelection="toggleSelection" @duplicateTask="duplicateTask" />
 
 
 
@@ -131,7 +132,7 @@ export default {
             controlOnStart: true,
             idx: 0,
             isCollapse: false,
-            collapseGroups: []
+            collapseGroups: [],
 
         }
     },
@@ -226,12 +227,12 @@ export default {
             this.selectedTasks = []
             this.selectedGroups = []
         },
-        // duplicateTask(task) {
-        //     this.groupToEdit = { ...group }
-        //     delete this.groupToEdit.id
-        //     this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
-        //     this.groupToEdit = boardService.getEmptyGroup()
-        // },
+        duplicateTask(task) {
+            let duplicatedTask = { ...task }
+            delete duplicatedTask.id
+            this.$store.dispatch({ type: 'saveTask', task: duplicatedTask })
+            // this.groupToEdit = boardService.getEmptyGroup()
+        },
         pullFunction() {
             return this.controlOnStart ? "clone" : true
         },

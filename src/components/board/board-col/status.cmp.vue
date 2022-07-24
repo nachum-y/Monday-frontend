@@ -1,9 +1,14 @@
 <template>
-    <div v-if="task" class="task-status" :class="setBgColor">
-        {{ statusToDisplay }}
-        <div class="add-status-note"></div>
+    <div>
+        <div v-if="task" class="task-status" :class="setBgColor" @click="toggelModal">
+            <el-select style='border: none' class="status-label" :placeholder="statusToDisplay">
+                <el-option class="stuck" style='border: none' value="Working on it"/>
+                <el-option class="working-on-it" style='border: none' value="Stuck"/>
+                <el-option class="done" style='border: none' value="Done"/>
+                <el-option class="defult" style='border: none' value=""/>
+            </el-select>
+        </div>
     </div>
-    
 </template>
 <script>
 export default {
@@ -13,7 +18,6 @@ export default {
     },
     data() {
         return {
-
         }
     },
     computed:{
@@ -28,6 +32,8 @@ export default {
             else return 'defult'
         }
     },    
+    methods:{
+    },
 } 
 </script>
 <style>

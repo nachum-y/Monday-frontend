@@ -115,6 +115,17 @@ export const boardStore = {
                 console.log(err)
             }
         },
+        async saveTask({ commit, state }, { task }){
+            try{
+                const newTask = await boardService.saveTask(task, state.board._id)
+                const groupId = newTask.groupId
+                console.log(groupId)
+                commit({ type: 'addTask', groupId, newTask })
+            }
+            catch (err) {
+                console.log(err)
+            }
+        },
         async removeTasks({ commit, state }, { tasksToRemove }) {
             try {
                 const updatedGroups = await boardService.removeTasks(tasksToRemove, state.board._id)

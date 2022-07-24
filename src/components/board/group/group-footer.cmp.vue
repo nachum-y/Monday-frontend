@@ -1,7 +1,10 @@
 <template>
     <div class=" board-content-group-row-footer">
         <div class="footer-col fixed">
-
+            <div class="task-item"> <div class="row-menu">
+                           
+                </div></div>
+                                       
         </div>
         <div class="footer-col" v-for="col in colsOrder.slice(1)" :key="col.type"></div>
     </div>
