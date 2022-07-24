@@ -110,7 +110,7 @@ function _createDefaultBoard(entityType) {
     groups: [
       {
         id: "group_101",
-        title: "Open Tasks",
+        title: "Service tasks",
         color: "#fb642e",
         tasks: [
           {
@@ -226,7 +226,7 @@ function _createDefaultBoard(entityType) {
       },
       {
         id: "group_102",
-        title: "Open Tasks",
+        title: "UI tasks",
         color: "#a25ddc",
         tasks: [
           {
