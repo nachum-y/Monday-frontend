@@ -377,7 +377,7 @@ export default {
      background-color: #fff !important;
  }
  
- .drag-group>* {
+ .drag-group>*:not(:first-child) {
      display: none;
  }
  
@@ -418,6 +418,7 @@ export default {
      grid-template-columns: 0 repeat(auto-fill, minmax(140px, 160px));
      grid-auto-flow: column;
      grid-auto-columns: minmax(140px, 160px);
-     grid-template-rows: auto
+     grid-template-rows: auto;
+     border-bottom: 0;
  }
  </style>
