@@ -1,4 +1,6 @@
 .group-header {
+    position: sticky;
+    left: 2.25rem;
     &-menu {
         position: absolute;
         display: flex;
@@ -9,7 +11,7 @@
         justify-content: center;
 
         &-icon {
-            position: fixed;
+            position: absolute;
             height: 24px;
             width: 24px;
             padding: 1px;

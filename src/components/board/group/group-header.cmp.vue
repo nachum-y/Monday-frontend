@@ -105,7 +105,7 @@ export default {
 .group-title-action {
     width: 500px;
     position: sticky;
-    left: 0;
+    left:0;
 }
 
 .group-header-title {
