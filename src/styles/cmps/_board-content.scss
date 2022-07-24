@@ -208,17 +208,18 @@
 
     .row-menu {
         position: absolute;
-        background-color: white;
+        background-color: rgba($color: white, $alpha: 1.0) ;
         display: flex;
         border: solid white 1px 0px;
         height: 2.5rem;
-        width: 2.25rem;
-        left: -2.6rem;
+        width: 2.35rem;
+        left: -2.7rem;
         top: -1px;
         align-items: center;
         justify-content: center;
         &:last-child{
-            width: 2.55rem;
+            width: 3rem;
+            height: 2.6rem;
         }
 
         &-icon {
