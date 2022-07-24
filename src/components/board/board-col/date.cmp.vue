@@ -19,7 +19,6 @@ export default {
     data() {
         return {
             taskTime: '',
-            test: 'testtt',
             progressBarCmp: shallowRef(h(progressBar, { date: this.task.value }))
 
         }

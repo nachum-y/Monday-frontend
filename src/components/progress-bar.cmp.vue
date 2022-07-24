@@ -1,6 +1,6 @@
 <template >
     <div v-if="date">
-        <el-progress type="circle" :width="20" :stroke-width="10" :percentage="percentageCalc" status="success">
+        <el-progress type="circle" :width="30" :stroke-width="10" :percentage="percentageCalc" status="success">
         </el-progress>
     </div>
 </template>
@@ -35,17 +35,31 @@ export default {
 }
 </script>
 <style>
-.el-progress--circle .el-progress__text i,
+/* .el-progress--circle .el-progress__text i,
 .el-progress--dashboard .el-progress__text i {
     vertical-align: middle;
     /* display: inline-block; */
-    display: flex !important;
-    justify-content: flex-start;
+/* display: flex !important; */
+/* justify-content: flex-start; */
 
+/* } */
+
+.el-progress.is-success .el-progress__text {
+    color: var(--el-color-success);
+    display: none;
 }
 
+.el-progress {
+    position: relative;
+    line-height: 0;
+}
 
+.el-input .el-input__icon {
+    height: inherit;
+    line-height: 4 !important;
+}
 
+/* 
 .el-progress.el-progress--circle.is-success>* {
     display: flex;
     align-items: center;
@@ -58,8 +72,8 @@ export default {
     font-size: 12px !important;
     align-items: flex-start;
 
-}
-
+}  */
+/* 
 .el-progress__text svg {
     color: #fff;
 }
@@ -86,6 +100,5 @@ export default {
 .el-progress-circle {
     height: 34px !important;
     width: 20px !important;
-}
-
+} */
 </style>
