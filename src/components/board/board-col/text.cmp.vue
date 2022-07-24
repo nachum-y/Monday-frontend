@@ -1,7 +1,9 @@
 <template>
-    <div class="text-cell" v-if="task">
-    <input :value="textToDiaplay" class="text-cell-input"/>
-    <div class="text-cell-icon"></div>
+    <div v-if="task" class="task-text">
+        <div class="icon-dapulse-addbtn"></div>
+        <div class="input-container">
+         <input class="location-input" type="text">    
+        </div>
     </div>
 </template>
 <script>

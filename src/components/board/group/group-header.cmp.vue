@@ -3,7 +3,7 @@
         <div class="group-header-menu" @click="openActionsModal($event, group)">
             <div class="group-header-menu-icon"></div>
         </div>
-
+        <div class="group-header-border-color" :style="groupBgColor"></div>
 
         <el-tooltip class="box-item" effect="dark" content="Collapse group" placement="top">
             <font-awesome-icon @click="collapseGroup" :style="groupColor" class="collapsable-icon-button"
@@ -31,11 +31,11 @@
 
         <!-- <button @click="openActionsModal($event, group)" class="btn">...</button> -->
 
-        <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
-            :pos="showGroupAction.posModal">
-        </dotsClickActionsMenu>
 
     </div>
+    <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
+        :pos="showGroupAction.posModal">
+    </dotsClickActionsMenu>
 
 </template>
 <script>
@@ -89,6 +89,9 @@ export default {
     computed: {
         groupColor() {
             return { color: this.group.color }
+        },
+        groupBgColor() {
+            return { backgroundColor: this.group.color }
         }
     }
 
