@@ -2,12 +2,10 @@
 
 
 .task-status{
-    height: 100%;
-    color: #fff;
-    text-align: center;
-    line-height: 37px;
+
+    line-height: 36px;
     position: relative;
-    cursor: pointer;
+
 
 
     .el-input__wrapper{
@@ -17,22 +15,11 @@
         box-shadow: none;
 
         &:hover{
-            outline: none;
-            border: none;
-            box-shadow: none;
+            outline: none !important;
+            border: none !important;
+            box-shadow: none !important;
         }
     }
-
-    .add-status-note{
-        transition: border-width .3s ease;
-        border-width: 0 18px 18px 0;
-        position: absolute;
-        top: 0;
-        right: 1px;
-        border-style: solid;
-        display: none;
-    }
-
 }
 
 .el-select__caret {
@@ -54,33 +41,72 @@
     line-height: 34px;
     box-sizing: border-box;
     cursor: pointer;
+    margin-bottom: 7px;
 
+}
+
+.el-select {
+    --el-select-input-focus-border-color: none !important;
 }
 
 .el-input__inner{
     text-align: center;
+    border: none;
+    outline: none;
+
+    &::placeholder {
+        color: rgb(255, 255, 255);
+      }
     
+    &:active{
+        border: none !important;
+        outline: none !important;
+    }
 }
 
 .el-select-dropdown__wrap{
-    padding: 10px;
+    padding: 16px 24px;
     margin-top: 10px;
 }
 
 .stuck{
     background-color: rgb(226, 68, 92) !important;
+
+    &:hover{
+        
+        background-color:lighten(rgb(226, 68, 92), 5%)!important;
+
+    }
 }
 
 .working-on-it{
+
     background-color: rgb(253, 171, 61) !important;
+
+    &:hover{
+
+    background-color:lighten(rgb(253, 171, 61), 5%)!important;
+    }
 }
 
 .done{
+
     background-color: rgb(0, 200, 117) !important;
+
+    &:hover{
+
+    background-color:lighten(rgb(0, 200, 117), 5%)!important;
+    }
 }
 
 .defult{
+
     background-color:rgb(196, 196, 196) !important;
+
+    &:hover{
+
+    background-color:lighten(rgb(196, 196, 196), 5%)!important;
+    }
 }
 
 

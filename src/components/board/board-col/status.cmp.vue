@@ -22,7 +22,7 @@ export default {
     },
     computed:{
         statusToDisplay(){
-           if (!this.task.value) return ''
+           if (!this.task.value) return ' '
            return this.task.value.slice( 0 , 1 ).toUpperCase() + this.task.value.slice(1)
         },
         setBgColor(){
