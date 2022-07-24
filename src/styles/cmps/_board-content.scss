@@ -32,6 +32,9 @@
             }
 
         }
+        .row-menu{
+            display: none;
+        }
 
         .group-header-border-color{
             display: block;
@@ -43,8 +46,8 @@
 .board-content {
     overflow-x: auto;
     position: relative;
-    margin-left: 2.25rem;
-
+    // margin-left: 2.25rem;
+    padding-left: 2.25rem;
     height: calc(100vh - 166px);
 
 
@@ -205,15 +208,23 @@
 
     .row-menu {
         position: absolute;
+        background-color: white;
         display: flex;
-        height: 2.25rem;
+        border: solid white 1px 0px;
+        height: 2.5rem;
         width: 2.25rem;
-        left: -2.5rem;
+        left: -2.6rem;
+        top: -1px;
         align-items: center;
         justify-content: center;
+        &:last-child{
+            width: 2.55rem;
+        }
 
         &-icon {
-            position: fixed;
+            position: relative;
+            
+
             height: 21px;
             width: 21px;
             padding: 1px;
