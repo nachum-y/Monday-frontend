@@ -329,7 +329,7 @@
     box-shadow: $--box-shadow-large;
      min-width: 400px;
     height: 63px;
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translate(-50%, 0);
     bottom: 56px;
