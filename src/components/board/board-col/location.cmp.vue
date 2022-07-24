@@ -1,6 +1,8 @@
 <template>
     <div v-if="task" class="task-location">
-       <input type="text">
+       <div class="input-container">
+         <input class="location-input" type="text">
+       </div>
     </div>
 
 </template>
