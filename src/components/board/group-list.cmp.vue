@@ -43,14 +43,14 @@
 
 
         </div>
-         <div style="position:sticky; left: 0;">RENDER GROUP HEADER HERE OR OUTSIDE OF board-content-group</div>
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
-            :item-key="key => key" :dragClass="'drag-group'" :ghostClass="'ghost-group'">
-           
+            :item-key="key => key" v-bind:style="{ width: groupRowFooterWidth }" :dragClass="'drag-group'"
+            :ghostClass="'ghost-group'">
+
             <template #item="{ element }">
                 <div class="board-content-group" :class="collapseGroups.includes(element.id) ? 'collapseGroup' : ''">
                     <groupHeader :group="element" @editGroup="editGroup" @removeGroup="removeGroup"
-                        @duplicateGroup="duplicateGroup" @collapseGroup="collapseGroup"  />
+                        @duplicateGroup="duplicateGroup" @collapseGroup="collapseGroup" />
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
@@ -61,30 +61,25 @@
 
                     <groupAddTask :group="element" :colsOrder="board.colsOrder" @addTask="addTask" />
 
-                    <groupFooter :colsOrder="board.colsOrder" />
-
-
-
-
+                    <groupFooter :colsOrder="board.colsOrder" @groupRowFooter="groupRowFooter" />
 
                 </div>
             </template>
         </draggable>
+    </div>
 
+    <button type="button" @click="addNewGroup" class="btn add-group-btn">
 
-        <button type="button" @click="addNewGroup" class="btn add-group-btn">
-
-            <div class="add-group-icon-holder">
-                <div class="add-group-icon"></div>
-            </div>
-            <div class="add-group-btn-txt">
-                Add new group
-            </div>
-        </button>
-        <!-- <router-view>
+        <div class="add-group-icon-holder">
+            <div class="add-group-icon"></div>
+        </div>
+        <div class="add-group-btn-txt">
+            Add new group
+        </div>
+    </button>
+    <!-- <router-view>
 
         </router-view> -->
-    </div>
 
 
 
@@ -133,6 +128,7 @@ export default {
             idx: 0,
             isCollapse: false,
             collapseGroups: [],
+            groupRowFooterWidth: 0
 
         }
     },
@@ -247,16 +243,7 @@ export default {
 
             let idx = this.board.groups.findIndex((g) => g.id === ev.id)
             if (idx !== -1) return idx
-            // if (this.idx !== newIdx) {
-            //     this.idx = newIdx
-            //     return
-            // }
 
-
-            // const isLargeNumber = ((ev) => ev.id === this.board.groups.id)
-            // console.log(isLargeNumber)
-            // console.log(ev)
-            // console.log(id)
         },
         collapseGroup(groupId) {
             console.log(groupId)
@@ -264,11 +251,19 @@ export default {
             if (idx === -1) this.collapseGroups.push(groupId)
             else this.collapseGroups.splice(idx, 1)
             console.log(this.collapseGroups)
+        },
+        groupRowFooter(elWidth) {
+            // this.groupRowFooterWidth = elWidth
+            let width = (elWidth + 'px')
+            this.groupRowFooterWidth = width
+
         }
     },
     computed: {
-        draggingInfo() {
-            // return this.dragging ? "under drag" : ""
+        groupRowFooterWidthCalc() {
+            // groupRowFooter
+            return 'width"123px'
+            console.log()
         },
         getHeaderOrder() {
             // console.log('board.colsOrder:', board.colsOrder)
@@ -308,11 +303,12 @@ export default {
 
 </script>
  <style>
-
-
- 
  .btn {
      cursor: pointer;
+ }
+ 
+ .dragArea {
+     width: calc(100% + 133px);
  }
  
  .flip-list-move {
@@ -379,7 +375,7 @@ export default {
  }
  
  .drag-group {
-     background-color: #fff !important;
+     /* background-color: #fff !important; */
  }
  
  .drag-group>*:not(:first-child) {

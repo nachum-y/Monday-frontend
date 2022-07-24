@@ -8,7 +8,12 @@ export const boardStore = {
         filtersTasks: {
             all: (board) => board,
             txt: (board, input = '') => {
-               
+                let result = { ...board }
+
+                console.log(result)
+                console.log(board)
+
+
             }
         },
         activeFilter: 'all',
@@ -61,11 +66,12 @@ export const boardStore = {
     },
     getters: {
         board({ filtersTasks, activeFilter, board, activeFilterVal }) {
-            console.log(activeFilterVal)
-            console.log('activeFilterVal[activeFilter]:', activeFilterVal[activeFilter])
+            // console.log(activeFilterVal)
+            // console.log('activeFilterVal[activeFilter]:', activeFilterVal[activeFilter])
             // return filtersTasks[activeFilter](board)
             console.log(filtersTasks[activeFilter](board, activeFilterVal[activeFilter]))
-            console.log(activeFilter)
+            // return filtersTasks[activeFilter](board, activeFilterVal[activeFilter])
+            // return newBoard
             return board
 
         },
@@ -115,8 +121,8 @@ export const boardStore = {
                 console.log(err)
             }
         },
-        async saveTask({ commit, state }, { task }){
-            try{
+        async saveTask({ commit, state }, { task }) {
+            try {
                 const newTask = await boardService.saveTask(task, state.board._id)
                 const groupId = newTask.groupId
                 console.log(groupId)
