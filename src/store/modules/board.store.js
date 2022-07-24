@@ -72,7 +72,7 @@ export const boardStore = {
         },
         async removeGroup({ commit, state }, { groupId }) {
             try {
-
+                console.log(groupId)
                 await boardService.removeGroup(groupId, state.board._id)
                 commit({ type: 'removeGroup', groupId })
             }

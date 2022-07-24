@@ -1,8 +1,6 @@
 <template>
     <div class="group-title-action handle" :class="{ 'isColapse': isColapse }">
-        <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
-            :pos="showGroupAction.posModal" @deleteGroup="removeGroup(group.id)">
-        </dotsClickActionsMenu>
+
         <div class="group-header-menu" @click="openActionsModal($event, group)">
             <div class="group-header-menu-icon"></div>
 
@@ -18,25 +16,28 @@
             {{ group.title }}
         </h4>
 
-        <span class="btn" @click="removeGroup(group.id)">
+        <!-- <span class="btn" @click="removeGroup(group.id)"> -->
             <!-- X -->
-        </span>
-        <div class="handle">
+        <!-- </span> -->
+        <!-- <div class="handle"> -->
             <!-- DRAG -->
-        </div>
+        <!-- </div> -->
 
 
-        <span class="btn" @click="duplicateGroup(group)">
+        <!-- <span class="btn" @click="duplicateGroup(group)"> -->
             <!-- Duplicate group -->
-        </span>
+        <!-- </span> -->
         <!-- <label for="color-picker">
             <input @change="editGroup($event.target.value, group.id, 'color')" type="color" id="color-picker">
         </label> -->
 
         <!-- <button @click="openActionsModal($event, group)" class="btn">...</button> -->
-
+        <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
+            :pos="showGroupAction.posModal" @deleteGroup="removeGroup(group.id)" @duplicateGroup="duplicateGroup(group)">
+        </dotsClickActionsMenu>
 
     </div>
+
 
 </template>
 <script>
@@ -72,6 +73,7 @@ export default {
 
         },
         duplicateGroup(group) {
+            console.log(group);
             this.$emit('duplicateGroup', group)
         },
         removeGroup(groupId) {

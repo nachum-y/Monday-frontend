@@ -5,6 +5,10 @@
 
             </i>
         </div>
+        <div class="action-menu" @click="duplicateGroup">
+            Duplicate
+
+        </div>
 
 
 
@@ -12,7 +16,7 @@
 </template>
 <script>
 export default {
-    emits:['deleteGroup'],
+    emits: ['deleteGroup','duplicateGroup'],
     props: {
         group: Object,
         pos: Object
@@ -33,6 +37,9 @@ export default {
         },
         deleteGroup() {
             this.$emit('deleteGroup')
+        },
+        duplicateGroup() {
+            this.$emit('duplicateGroup')
         }
     },
     computed: {
