@@ -83,6 +83,9 @@ export default {
 
 </script>
 <style>
+
+
+
 .right-click-actions-menu {
     width: 18rem;
     font-size: 0.875rem;

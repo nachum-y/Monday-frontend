@@ -3,7 +3,18 @@ import { boardService } from "../../services/board-service.js"
 export const boardStore = {
     state: {
         board: null,
-        prevGroup: null
+        prevGroup: null,
+        filterdTask: [],
+        filtersTasks: {
+            all: (board) => board,
+            txt: (board, input = '') => {
+               
+            }
+        },
+        activeFilter: 'all',
+        activeFilterVal: {
+            txt: ''
+        },
     },
     mutations: {
         addGroup(state, { group }) {
@@ -39,10 +50,24 @@ export const boardStore = {
         updateGroups(state, { updatedGroups }) {
             state.board.groups = updatedGroups
         },
+        searchInput(state, { inputTxt }) {
+            const regex = new RegExp(inputTxt, 'i')
+            state.activeFilterVal.txt = regex
+            state.activeFilter = 'txt'
+            if (!inputTxt) state.activeFilter = 'all'
+            console.log(state.activeFilter)
+        },
+
     },
     getters: {
-        board({ board }) {
+        board({ filtersTasks, activeFilter, board, activeFilterVal }) {
+            console.log(activeFilterVal)
+            console.log('activeFilterVal[activeFilter]:', activeFilterVal[activeFilter])
+            // return filtersTasks[activeFilter](board)
+            console.log(filtersTasks[activeFilter](board, activeFilterVal[activeFilter]))
+            console.log(activeFilter)
             return board
+
         },
         colsOrder({ board }) {
             if (!board.colsOrder) return
@@ -52,7 +77,8 @@ export const boardStore = {
         rowOrder({ board }) {
             if (!board.groups) return
             return board.groups
-        }
+        },
+
     },
     actions: {
         async loadBoard({ commit }) {
@@ -120,6 +146,10 @@ export const boardStore = {
             boardService.saveGroups(value, state.board._id)
             commit({ type: 'updateBoardOrderList', value })
         },
+
+        searchInput({ commit, state }, { inputTxt }) {
+            commit({ type: 'searchInput', inputTxt })
+        }
 
     }
 }
