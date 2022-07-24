@@ -8,7 +8,7 @@
                <div class="scrollable-navigation-items-area">
 
                   <div class="top-navigation-items-area">
-                     <router-link to="/boards/boardId">
+                     <router-link to="/boards/b101">
                         <work-management />
                      </router-link>
 

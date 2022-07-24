@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home.vue'
 import boardApp from '../views/board-app.vue'
+import openTask from '../components/board/open-task.cmp.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +15,14 @@ const router = createRouter({
     {
       path: '/boards/:boardId',
       name: 'boards',
-      component: boardApp
+      component: boardApp,
+      children: [
+        {
+          name: 'openTask',
+          path: 'task/:taskId',
+          component: openTask,
+        }
+      ]
     },
     {
       path: '/my_inbox',

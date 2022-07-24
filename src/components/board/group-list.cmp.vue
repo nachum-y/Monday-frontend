@@ -1,65 +1,67 @@
 <template>
     <div v-if="board" class="board-content">
         <div class="board-actions-menu" v-if="selectedTasks.length > 0">
- 
-                <div class="board-actions-menu-selected-items">
-                    <div class="board-actions-menu-selected-items-counter"><span>{{selectedTasks.length}}</span></div>
-                    <div class="board-actions-menu-selected-items-title">
-                        <div class="selected-items-title">Items Selected</div>
-                        <div class="dots"><div v-for="( task, index) in selectedTasks" :key="index" class="dot"></div></div>
-                        
-                        </div>
-                </div>
 
-                <div class="board-actions-menu-btns">
-                    <div class="remove-tasks" @click="removeTasks">
-                        <div class="remove-tasks-icon-holder">
-                            <div class="remove-tasks-icon">
-                                
-                            </div>
-                        </div>
-                        <div class="remove-tasks-title">Delete</div>
+            <div class="board-actions-menu-selected-items">
+                <div class="board-actions-menu-selected-items-counter"><span>{{ selectedTasks.length }}</span></div>
+                <div class="board-actions-menu-selected-items-title">
+                    <div class="selected-items-title">Items Selected</div>
+                    <div class="dots">
+                        <div v-for="( task, index) in selectedTasks" :key="index" class="dot"></div>
                     </div>
 
-                    <div class="duplicate-tasks">
-                        <div class="duplicate-tasks-icon-holder">
-                            <div class="duplicate-tasks-icon">
-                                
-                            </div>
+                </div>
+            </div>
+
+            <div class="board-actions-menu-btns">
+                <div class="remove-tasks" @click="removeTasks">
+                    <div class="remove-tasks-icon-holder">
+                        <div class="remove-tasks-icon">
+
                         </div>
-                        <div class="duplicate-tasks-title">Duplicate</div>
                     </div>
+                    <div class="remove-tasks-title">Delete</div>
                 </div>
 
-                <div class="board-actions-menu-close">
-                    <div class="board-actions-menu-close-icon">
+                <div class="duplicate-tasks">
+                    <div class="duplicate-tasks-icon-holder">
+                        <div class="duplicate-tasks-icon">
+
+                        </div>
                     </div>
+                    <div class="duplicate-tasks-title">Duplicate</div>
                 </div>
-                    
+            </div>
 
-                
+            <div class="board-actions-menu-close">
+                <div class="board-actions-menu-close-icon">
+                </div>
+            </div>
 
-            
+
+
+
+
         </div>
 
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
             :item-key="key => key" :dragClass="'drag-group'" :ghostClass="'ghost-group'">
             <template #item="{ element }">
-                <div class="board-content-group">
+                <div class="board-content-group" :class="{ 'isCollapse': isCollapse }">
                     <groupHeader :group="element" @editGroup="editGroup" @removeGroup="removeGroup"
-                        @duplicateGroup="duplicateGroup" />
+                        @duplicateGroup="duplicateGroup" @collapseGroup="collapseGroup" />
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
                     <group-row :group="element" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
-                         @toggleSelection="toggleSelection" /> 
+                        @toggleSelection="toggleSelection" />
 
 
 
                     <groupAddTask :group="element" :colsOrder="board.colsOrder" @addTask="addTask" />
 
                     <groupFooter :colsOrder="board.colsOrder" />
-                   
+
 
 
 
@@ -78,11 +80,10 @@
                 Add new group
             </div>
         </button>
+        <router-view>
+
+        </router-view>
     </div>
-
-
-
-
 
 
 
@@ -128,7 +129,8 @@ export default {
             selectedTasks: [],
             selectedGroups: [],
             controlOnStart: true,
-            idx: 0
+            idx: 0,
+            isCollapse: false
 
         }
     },
@@ -253,6 +255,11 @@ export default {
             // console.log(isLargeNumber)
             // console.log(ev)
             // console.log(id)
+        },
+        collapseGroup() {
+            this.isCollapse = !this.isCollapse
+            console.log(this.isCollapse)
+            return this.isCollapse
         }
     },
     computed: {
@@ -337,6 +344,14 @@ export default {
      display: none;
  }
  
+ .handle {
+     cursor: move;
+     /* fallback if grab cursor is unsupported */
+     cursor: grab;
+     cursor: -moz-grab;
+     cursor: -webkit-grab;
+ }
+ 
  .list-group {
      min-height: 20px;
  }
@@ -375,6 +390,10 @@ export default {
  }
  
  .ghost-group>* {
+     display: none !important;
+ }
+ 
+ .board-content-group.isCollapse>*:has(.isColapse) {
      display: none !important;
  }
  </style>

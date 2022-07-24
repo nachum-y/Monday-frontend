@@ -11,7 +11,8 @@ export const boardService = {
   updateGroup,
   addTask,
   removeTasks,
-  saveGroups
+  saveGroups,
+  getTaskById
 }
 
 // _createBoards()
@@ -116,6 +117,21 @@ async function saveGroups(groups, boardId) {
   board.groups = groups
   storageService.put(BOARD_KEY, board)
   return
+}
+
+async function getTaskById(boardId, taskId) {
+  let board = await _getBoardById(boardId)
+  // console.log(board.groups)
+  // let task
+  // let res
+  // res = board.groups.forEach((g) => {
+  //   task = (g.tasks.find((t) => t.id === taskId))
+
+  //   if (task) return task
+
+  // })
+  // console.log(res)
+
 }
 
 // async function _getGroupById(boardId,groupId){
