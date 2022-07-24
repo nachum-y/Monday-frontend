@@ -1,10 +1,12 @@
 <template>
     <div :class="'task-' + task.type">
         <div class="icon-dapulse-addbtn"></div>
-        <div v-for="(person, idx) in task.value" :key="person.id" class="person-bullet">
-            <span>
-                {{personToDisplay(idx)}}
-            </span>
+        <div class="bullets-container">
+            <div v-for="(person, idx) in task.value" :key="person.id" class="person-bullet">
+                <span>
+                    {{personToDisplay(idx)}}
+                </span>
+            </div>
         </div>
     </div>
 </template>
