@@ -1,7 +1,11 @@
 <template>
     <div class="group-title-action handle" :class="{ 'isColapse': isColapse }">
+        <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
+            :pos="showGroupAction.posModal">
+        </dotsClickActionsMenu>
         <div class="group-header-menu" @click="openActionsModal($event, group)">
             <div class="group-header-menu-icon"></div>
+
         </div>
         <div class="group-header-border-color" :style="groupBgColor"></div>
 
@@ -33,9 +37,6 @@
 
 
     </div>
-    <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
-        :pos="showGroupAction.posModal">
-    </dotsClickActionsMenu>
 
 </template>
 <script>

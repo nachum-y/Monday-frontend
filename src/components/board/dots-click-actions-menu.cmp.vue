@@ -36,7 +36,7 @@ export default {
             const top = this.pos.eltop
             const left = this.pos.left
             if (this.pos.left + 300 > x) return `top:${top}px; left:${this.pos.left - 300}px;`
-            return `top:${top}px; left:${this.pos.left}px;`
+            return `top:${top+10}px; left:${this.pos.left-10}px;`
         }
     },
     created() {
