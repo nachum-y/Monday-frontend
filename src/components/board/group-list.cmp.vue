@@ -307,6 +307,9 @@ export default {
 
 </script>
  <style>
+
+
+ 
  .btn {
      cursor: pointer;
  }

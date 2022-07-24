@@ -1,5 +1,5 @@
 <template >
-    <board-header />
+    <board-header  />
     <group-list />
 </template>
 <script>
@@ -17,7 +17,12 @@ export default {
         groupList,
         appHeader,
         boardHeader,
-    }
+    },
+    methods: {
+        searchInput(val) {
+            console.log(val)
+        }
+    },
 }
 </script>
 <style >
