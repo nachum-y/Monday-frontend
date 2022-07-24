@@ -8,7 +8,7 @@
                         :key="col.type">
                         <div v-if="colsIdx === 0" class="task-item">
                             <div class="row-menu">
-                                <div class="row-menu-icon"></div>
+                                <div class="row-menu-icon" @click="duplicateTask(element)"></div>
                             </div>
                             <div :style="groupColor" class="border"></div>
                             <div class="item-select">
@@ -87,6 +87,9 @@ export default {
             this.$emit('toggleSelection', taskId)
 
 
+        },
+        duplicateTask(task){
+            this.$emit('duplicateTask', task)
         },
         start(evt) {
             // console.log(evt.from.querySelector['div'])
