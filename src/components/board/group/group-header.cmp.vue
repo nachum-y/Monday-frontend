@@ -73,7 +73,7 @@ export default {
         collapseGroup() {
 
             this.isColapse = !this.isColapse
-            this.$emit('collapseGroup')
+            this.$emit('collapseGroup', this.group.id)
         }
 
     },
@@ -130,11 +130,9 @@ export default {
     transform: rotate(90deg);
 }
 
-.board-content-group.isColapse>*:not(:first-child):not(:last-child) {
-    display: none !important;
-}
 
-.board-content-group>*:not(:first-child):not(:last-child) .group-title-action.isColapse {
-    background-color: yellow;
-}
+
+
+
+
 </style>
