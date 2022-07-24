@@ -151,7 +151,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "date",
-                value: 1658291514565,
+                value: 1658993111000,
               },
               {
                 type: "creationLog",
