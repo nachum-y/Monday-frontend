@@ -2,6 +2,7 @@
     <div v-if="task" class="task-location">
        <div class="input-container">
          <input class="location-input" type="text">
+         <div class="icon-v2-line-location"></div>
        </div>
     </div>
 

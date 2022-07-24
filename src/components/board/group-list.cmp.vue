@@ -47,7 +47,7 @@
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
             :item-key="key => key" :dragClass="'drag-group'" :ghostClass="'ghost-group'">
             <template #item="{ element }">
-                <div class="board-content-group" :class="{ 'isCollapse': isCollapse }">
+                <div class="board-content-group" :class="collapseGroups.includes(element.id) ? 'collapseGroup' : ''">
                     <groupHeader :group="element" @editGroup="editGroup" @removeGroup="removeGroup"
                         @duplicateGroup="duplicateGroup" @collapseGroup="collapseGroup" />
 
@@ -130,7 +130,8 @@ export default {
             selectedGroups: [],
             controlOnStart: true,
             idx: 0,
-            isCollapse: false
+            isCollapse: false,
+            collapseGroups: []
 
         }
     },
@@ -256,10 +257,12 @@ export default {
             // console.log(ev)
             // console.log(id)
         },
-        collapseGroup() {
-            this.isCollapse = !this.isCollapse
-            console.log(this.isCollapse)
-            return this.isCollapse
+        collapseGroup(groupId) {
+            console.log(groupId)
+            const idx = this.collapseGroups.findIndex(id => id === groupId)
+            if (idx === -1) this.collapseGroups.push(groupId)
+            else this.collapseGroups.splice(idx, 1)
+            console.log(this.collapseGroups)
         }
     },
     computed: {
@@ -393,7 +396,28 @@ export default {
      display: none !important;
  }
  
- .board-content-group.isCollapse>*:has(.isColapse) {
+ .board-content-group.collapseGroup>*:not(:first-child):not(:last-child) {
      display: none !important;
+ }
+ 
+ .board-content-group.collapseGroup {
+     margin: 0;
+     padding: 0;
+     display: grid;
+     grid-template-columns: 300px 1fr;
+     align-self: flex-start;
+     height: 100%;
+     width: 100%;
+     margin-left: 0;
+     border: 1px solid #d0d4e4;
+ 
+ }
+ 
+ .board-content-group.collapseGroup .board-content-group-row-footer {
+     display: grid;
+     grid-template-columns: 0 repeat(auto-fill, minmax(140px, 160px));
+     grid-auto-flow: column;
+     grid-auto-columns: minmax(140px, 160px);
+     grid-template-rows: auto
  }
  </style>
