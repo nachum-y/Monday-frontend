@@ -7,9 +7,15 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/vue-fontawesome": "^3.0.1",
     "@lottiefiles/lottie-interactivity": "^1.6.1",
     "@lottiefiles/lottie-player": "^1.5.7",
     "@lottiefiles/vue-lottie-player": "^1.0.9",
+    "@vueup/vue-quill": "^1.0.0-beta.9",
     "element-plus": "^2.2.9",
     "sass": "^1.53.0",
     "vue": "^3.2.37",
