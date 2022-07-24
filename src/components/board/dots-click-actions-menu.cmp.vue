@@ -1,6 +1,25 @@
 <template >
-    <section class="right-click-actions-menu" :style="postionModal" v-if="group">
-        <div class="action-menu" @click="deleteGroup">Delete
+    <section class="group-header-actions-menu" :style="postionModal" v-if="group">
+        <div class="group-header-actions-menu--group-actions">
+            <div class="collapse-group">
+                <div class="collapse-group-icon"></div>
+                <div class="collapse-group-title">Collapse this group</div>
+            </div>
+            <div class="collapse-groups">
+                <div class="collapse-groups-icon"></div>
+                <div class="collapse-groups-title">Collapse all group</div>
+            </div>
+            <div class="select-all-items">
+                <div class="select-all-items-icon"></div>
+                <div class="select-all-items-title">Select all items</div>
+            </div>
+           
+
+
+        </div>
+
+        
+        <div @click="deleteGroup">Delete
             <i class="icon-v2-delete-line">
 
             </i>
