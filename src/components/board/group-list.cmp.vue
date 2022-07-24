@@ -43,9 +43,10 @@
 
 
         </div>
-
+         <div style="position:sticky; left: 0;">RENDER GROUP HEADER HERE OR OUTSIDE OF board-content-group</div>
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
             :item-key="key => key" :dragClass="'drag-group'" :ghostClass="'ghost-group'">
+           
             <template #item="{ element }">
                 <div class="board-content-group" :class="collapseGroups.includes(element.id) ? 'collapseGroup' : ''">
                     <groupHeader :group="element" @editGroup="editGroup" @removeGroup="removeGroup"
