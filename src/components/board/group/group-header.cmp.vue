@@ -87,6 +87,11 @@ export default {
 }
 </script>
 <style>
+.group-title-action{
+    width:500px;
+    position: sticky;
+    left: 14px;
+}
 .group-header-title {
     display: flex;
     text-overflow: ellipsis;
@@ -94,7 +99,8 @@ export default {
     max-width: 25rem;
     font-size: 1.125rem;
     cursor: pointer;
-    cursor: text
+    cursor: text;
+
 }
 
 .group-header-title:hover:not(:focus) {

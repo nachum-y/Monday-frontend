@@ -80,9 +80,9 @@
                 Add new group
             </div>
         </button>
-        <router-view>
+        <!-- <router-view>
 
-        </router-view>
+        </router-view> -->
     </div>
 
 

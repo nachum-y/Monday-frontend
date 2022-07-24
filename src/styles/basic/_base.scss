@@ -6,3 +6,24 @@
 body {
     font-family: $--font-family;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:#777777; 
+    width: 10px;
+    // border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background:#777777; 
+  }
