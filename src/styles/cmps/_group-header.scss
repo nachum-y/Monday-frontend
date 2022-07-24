@@ -1,8 +1,15 @@
 .group-header-menu{
+    position: absolute;
+    display: flex;
+    height: 40px;
+    width: 34px;
+    left: -2.25rem;
+    align-items: center;
+    justify-content: center;
     &-icon {
         position: fixed;
-        height: 21px;
-        width: 21px;
+        height: 24px;
+        width: 24px;
         padding: 1px;
         border-radius: 4px;
 
@@ -16,4 +23,4 @@
             background-color: #dcdfec;
         }
 }
-
+}

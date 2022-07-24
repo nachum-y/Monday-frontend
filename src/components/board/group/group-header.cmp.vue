@@ -1,5 +1,8 @@
 <template>
     <div class="group-title-action handle" :class="{ 'isColapse': isColapse }">
+        <div class="group-header-menu"><div class="group-header-menu-icon"></div></div>
+                                
+                            
         <el-tooltip class="box-item" effect="dark" content="Collapse group" placement="top">
             <font-awesome-icon @click="collapseGroup" :style="groupColor" class="collapsable-icon-button"
                 :icon="myIcon" />
@@ -90,7 +93,7 @@ export default {
 .group-title-action{
     width:500px;
     position: sticky;
-    left: 14px;
+    left: 0;
 }
 .group-header-title {
     display: flex;
@@ -100,6 +103,7 @@ export default {
     font-size: 1.125rem;
     cursor: pointer;
     cursor: text;
+
 
 }
 
@@ -116,8 +120,9 @@ export default {
 
 .group-title-action {
     display: flex;
-    margin-inline-start: 0.875rem;
+    /* margin-inline-start: 0.875rem; */
     padding: 0.625rem 0;
+    padding-inline-start: 0.875rem;
     align-items: center;
 }
 

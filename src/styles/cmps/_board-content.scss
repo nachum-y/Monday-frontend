@@ -18,6 +18,16 @@
 
 .board-content-group {
     margin-bottom: 4rem;
+
+    &.collapseGroup{
+        .board-content-group-row-footer{
+            .footer-col{
+                box-shadow: none;
+                border-bottom: none;
+            }
+
+        }
+    }
 }
 
 // BOARD
