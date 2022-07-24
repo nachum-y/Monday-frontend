@@ -1,7 +1,8 @@
 <template>
-    <div v-if="task" :class="'task-' + task.type">
-        {{locationToDisplay}}
+    <div v-if="task" class="task-location">
+       <input type="text">
     </div>
+
 </template>
 <script>
 export default {
@@ -23,4 +24,5 @@ export default {
 }
 </script>
 <style>
+
 </style>
