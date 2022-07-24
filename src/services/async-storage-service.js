@@ -507,7 +507,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "UI", color: "rgb(154, 173, 189)" },
+                value: { title: "UI", color: "rgb(157, 153, 185)" },
               },
             ]
           },
