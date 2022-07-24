@@ -20,7 +20,10 @@
     margin-bottom: 4rem;
 
     &.collapseGroup{
+        margin-bottom: 1rem;
+        box-shadow:$--box-shadow-xs;
         .board-content-group-row-footer{
+                
             .footer-col{
                 box-shadow: none;
                 border-bottom: none;
