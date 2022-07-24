@@ -223,6 +223,12 @@ export default {
             this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
             this.selectedTasks = []
         },
+        // duplicateTask(task) {
+        //     this.groupToEdit = { ...group }
+        //     delete this.groupToEdit.id
+        //     this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
+        //     this.groupToEdit = boardService.getEmptyGroup()
+        // },
         pullFunction() {
             return this.controlOnStart ? "clone" : true
         },
