@@ -1,7 +1,7 @@
 <template>
     <div class="group-title-action handle" :class="{ 'isColapse': isColapse }">
         <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
-            :pos="showGroupAction.posModal">
+            :pos="showGroupAction.posModal" @deleteGroup="removeGroup(group.id)">
         </dotsClickActionsMenu>
         <div class="group-header-menu" @click="openActionsModal($event, group)">
             <div class="group-header-menu-icon"></div>

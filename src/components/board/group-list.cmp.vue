@@ -353,6 +353,7 @@ export default {
      cursor: grab;
      cursor: -moz-grab;
      cursor: -webkit-grab;
+     z-index: 200;
  }
  
  .list-group {

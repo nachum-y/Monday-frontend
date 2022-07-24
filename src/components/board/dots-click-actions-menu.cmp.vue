@@ -1,40 +1,18 @@
 <template >
     <section class="right-click-actions-menu" :style="postionModal" v-if="group">
-        <div class="action-menu">Delete
+        <div class="action-menu" @click="deleteGroup">Delete
             <i class="icon-v2-delete-line">
 
             </i>
         </div>
-        <div class="action-menu">Delete
-            <i class="icon-v2-delete-line">
 
-            </i>
-        </div>
-        <div class="action-menu">Delete
-            <i class="icon-v2-delete-line">
 
-            </i>
-        </div>
-        <div class="action-menu">Delete
-            <i class="icon-v2-delete-line">
-
-            </i>
-        </div>
-        <div class="action-menu">Delete
-            <i class="icon-v2-delete-line">
-
-            </i>
-        </div>
-        <div class="action-menu">Delete
-            <i class="icon-v2-delete-line">
-
-            </i>
-        </div>
 
     </section>
 </template>
 <script>
 export default {
+    emits:['deleteGroup'],
     props: {
         group: Object,
         pos: Object
@@ -53,6 +31,9 @@ export default {
             this.cordsX = evt.pageX
             this.cordsY = evt.pageY
         },
+        deleteGroup() {
+            this.$emit('deleteGroup')
+        }
     },
     computed: {
         postionModal() {
