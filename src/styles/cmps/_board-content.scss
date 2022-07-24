@@ -22,6 +22,8 @@
     &.collapseGroup{
         margin-bottom: 1rem;
         box-shadow:$--box-shadow-xs;
+        border-radius: 4px;
+        height: 59px;
         .board-content-group-row-footer{
                 
             .footer-col{
