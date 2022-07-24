@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="task" class="task-status" :class="setBgColor" @click="toggelModal">
+        <div v-if="task" class="task-status" :class="setBgColor">
             <el-select style='border: none' class="status-label" :placeholder="statusToDisplay">
                 <el-option class="stuck" style='border: none' value="Working on it"/>
                 <el-option class="working-on-it" style='border: none' value="Stuck"/>
