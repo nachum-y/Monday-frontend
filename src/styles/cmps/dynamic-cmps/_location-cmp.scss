@@ -4,18 +4,31 @@
     align-self: center;
     align-items: center;
     height: 100%;
+    background-color: inherit;
 
-    input{
-        height: 100%;
-        width: 100%;
-        margin: 4px;
-        
-
-        &:hover {
-            box-shadow: 0 0 0 1px var(--el-input-hover-border-color) inset !important;
-        
+    .input-container{
+        height: 80%;
+        width: 95%;
+        position: relative;
+        &:hover{
+            border: 1px solid #c3c6d4;
         }
-        
+
+        .location-input{
+            border: none;
+            outline: none;
+            width: 70%;
+            position: absolute;
+            right: 0;
+    
+            &:hover {
+                box-shadow: 0 0 0 1px var(--el-input-hover-border-color) inset !important;
+            
+            }
+            
+        }
     }
+
+
 }
 
