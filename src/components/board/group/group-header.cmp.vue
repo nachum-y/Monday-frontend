@@ -87,7 +87,7 @@ export default {
 }
 </script>
 <style>
-/* .group-header-title {
+.group-header-title {
     display: flex;
     text-overflow: ellipsis;
     white-space: nowrap;
