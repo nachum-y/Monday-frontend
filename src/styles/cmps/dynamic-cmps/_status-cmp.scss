@@ -1,4 +1,6 @@
 
+
+
 .task-status{
     height: 100%;
     color: #fff;
@@ -7,8 +9,18 @@
     position: relative;
     cursor: pointer;
 
+
     .el-input__wrapper{
         background-color: rgba(255, 255, 255, 0);
+        outline: none;
+        border: none;
+        box-shadow: none;
+
+        &:hover{
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
     }
 
     .add-status-note{
@@ -29,20 +41,46 @@
     display: none;
 }
 
+.el-select-dropdown__item {
+    font-size: var(--el-font-size-base);
+    padding: 0 32px 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+    text-align: center;
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+}
+
+.el-input__inner{
+    text-align: center;
+    
+}
+
+.el-select-dropdown__wrap{
+    padding: 10px;
+    margin-top: 10px;
+}
+
 .stuck{
-    background-color: rgb(226, 68, 92);
+    background-color: rgb(226, 68, 92) !important;
 }
 
 .working-on-it{
-    background-color: rgb(253, 171, 61);
+    background-color: rgb(253, 171, 61) !important;
 }
 
 .done{
-    background-color: rgb(0, 200, 117);
+    background-color: rgb(0, 200, 117) !important;
 }
 
 .defult{
-    background-color:rgb(196, 196, 196);
+    background-color:rgb(196, 196, 196) !important;
 }
 
 

@@ -1,10 +1,11 @@
 <template>
     <div>
         <div v-if="task" class="task-status" :class="setBgColor" @click="toggelModal">
-            <el-select class="m-2 status-label" :placeholder="statusToDisplay">
-                <el-option value="Working on it"/>
-                <el-option value="Stuck"/>
-                <el-option value="Done"/>
+            <el-select style='border: none' class="status-label" :placeholder="statusToDisplay">
+                <el-option class="stuck" style='border: none' value="Working on it"/>
+                <el-option class="working-on-it" style='border: none' value="Stuck"/>
+                <el-option class="done" style='border: none' value="Done"/>
+                <el-option class="defult" style='border: none' value=""/>
             </el-select>
         </div>
     </div>
