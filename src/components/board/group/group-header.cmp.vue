@@ -1,8 +1,10 @@
 <template>
     <div class="group-title-action handle" :class="{ 'isColapse': isColapse }">
-        <div class="group-header-menu"><div class="group-header-menu-icon"></div></div>
-                                
-                            
+        <div class="group-header-menu" @click="openActionsModal($event, group)">
+            <div class="group-header-menu-icon"></div>
+        </div>
+
+
         <el-tooltip class="box-item" effect="dark" content="Collapse group" placement="top">
             <font-awesome-icon @click="collapseGroup" :style="groupColor" class="collapsable-icon-button"
                 :icon="myIcon" />
@@ -29,9 +31,9 @@
 
         <!-- <button @click="openActionsModal($event, group)" class="btn">...</button> -->
 
-        <!-- <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
+        <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
             :pos="showGroupAction.posModal">
-        </dotsClickActionsMenu> -->
+        </dotsClickActionsMenu>
 
     </div>
 
@@ -50,7 +52,8 @@ export default {
     data() {
         return {
             myIcon: faChevronUp,
-            isColapse: false
+            isColapse: false,
+            showGroupAction: null
         }
     },
     components: {
@@ -59,9 +62,12 @@ export default {
     },
     methods: {
         closeActionsModal() {
-
+            this.showGroupAction = null
         },
-        openActionsModal() {
+        openActionsModal(el, group) {
+            this.showGroupAction = {}
+            this.showGroupAction.group = group
+            this.showGroupAction.posModal = { eltop: el.layerY, left: el.layerX }
 
         },
         duplicateGroup(group) {
@@ -90,11 +96,12 @@ export default {
 }
 </script>
 <style>
-.group-title-action{
-    width:500px;
+.group-title-action {
+    width: 500px;
     position: sticky;
     left: 0;
 }
+
 .group-header-title {
     display: flex;
     text-overflow: ellipsis;
@@ -140,10 +147,4 @@ export default {
 .isColapse .collapsable-icon-button {
     transform: rotate(90deg);
 }
-
-
-
-
-
-
 </style>

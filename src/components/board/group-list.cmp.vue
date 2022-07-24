@@ -49,7 +49,7 @@
             <template #item="{ element }">
                 <div class="board-content-group" :class="collapseGroups.includes(element.id) ? 'collapseGroup' : ''">
                     <groupHeader :group="element" @editGroup="editGroup" @removeGroup="removeGroup"
-                        @duplicateGroup="duplicateGroup" @collapseGroup="collapseGroup" />
+                        @duplicateGroup="duplicateGroup" @collapseGroup="collapseGroup"  />
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
@@ -187,11 +187,10 @@ export default {
         openActions() {
 
         },
-        openActionsModal(el, group) {
+        openActionsModal(evt) {
             this.showGroupAction = {}
-            this.showGroupAction.group = group
-            this.showGroupAction.posModal = { eltop: el.layerY, left: el.layerX }
-            return
+            this.showGroupAction.group = evt.group
+            this.showGroupAction.posModal = { eltop: evt.el.layerY, left: evt.el.layerX }
         },
         closeActionsModal(ev) {
             this.showGroupAction = null

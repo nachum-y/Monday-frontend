@@ -1,23 +1,11 @@
 <template >
     <section class="right-click-actions-menu" :style="postionModal" v-if="group">
-        hey{{group.id}}
-        <!-- <div class="delet-action-right-click" @click="$emit('RemoveGroup', group)"><span>
-                <svg-icons name="draft" />
-            </span><span>Delete</span></div>
-        <div v-if="group.isRead" class="delet-action-right-click" @click="$emit('makeAsUnReadGroup', group)"><span>
-                <svg-icons name="unread" />
-            </span><span> Mark as unread</span></div>
-        <div v-if="!group.isRead" class="delet-action-right-click" @click="$emit('makeAsReadGroup', group)"><span>
-                <svg-icons name="unread" />
-            </span><span> Mark as read</span></div>
-        <div v-if="group.categories !== 'social'" class="delet-action-right-click"
-            @click="$emit('moveToCet', 'social', group)"><span>
-                <svg-icons name="moveTo" />
-            </span><span> Move To: Social</span></div>
-        <div v-if="group.categories !== 'promotions'" class="delet-action-right-click"
-            @click="$emit('moveToCet', 'promotions', group)"><span>
-                <svg-icons name="moveTo" />
-            </span><span> Move To: Promotions</span></div> -->
+        <div class="action-menu">Delete
+            <i class="icon-v2-delete-line">
+
+            </i>
+        </div>
+
     </section>
 </template>
 <script>
@@ -44,8 +32,7 @@ export default {
     computed: {
         postionModal() {
             let y = window.innerHeight
-            let x = window.clientWidth 
-            console.log(this.pos)
+            let x = window.clientWidth
             const top = this.pos.eltop
             const left = this.pos.left
             if (this.pos.left + 300 > x) return `top:${top}px; left:${this.pos.left - 300}px;`
@@ -53,7 +40,7 @@ export default {
         }
     },
     created() {
-        console.log('create');
+        console.log('create')
     },
     unmounted() {
 
@@ -68,7 +55,7 @@ export default {
     width: 18rem;
     font-size: 0.875rem;
     position: absolute;
-    z-index: 100;
+    z-index: 10000000000;
     background-color: #fff;
     box-shadow: 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%), 0px 5px 5px -3px rgb(0 0 0 / 20%);
 }
@@ -85,5 +72,17 @@ export default {
 
 .right-click-actions-menu div>:not(:last-child) {
     margin-inline-end: 0.875rem;
+}
+
+.icon-v2-delete-line:before {
+    content: "\f2ff";
+    font-family: "dapulse";
+    font-size: 16px;
+}
+
+.action-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 </style>
