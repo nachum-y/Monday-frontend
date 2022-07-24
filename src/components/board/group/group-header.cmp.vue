@@ -1,7 +1,8 @@
 <template>
     <div class="group-title-action handle" :class="{ 'isColapse': isColapse }">
+
         <div class="group-header-menu"><div class="group-header-menu-icon"></div></div>
-                                
+        <div class="group-header-border-color" :style="groupBgColor"></div>
                             
         <el-tooltip class="box-item" effect="dark" content="Collapse group" placement="top">
             <font-awesome-icon @click="collapseGroup" :style="groupColor" class="collapsable-icon-button"
@@ -83,6 +84,9 @@ export default {
     computed: {
         groupColor() {
             return { color: this.group.color }
+        },
+        groupBgColor() {
+            return { backgroundColor: this.group.color }
         }
     }
 
