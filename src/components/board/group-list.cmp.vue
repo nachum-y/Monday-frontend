@@ -225,6 +225,7 @@ export default {
             const tasksToRemove = this.selectedTasks
             this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
             this.selectedTasks = []
+            this.selectedGroups = []
         },
         // duplicateTask(task) {
         //     this.groupToEdit = { ...group }
