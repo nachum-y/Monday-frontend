@@ -1,6 +1,6 @@
 <template >
     <div v-if="date">
-        <el-progress type="circle" :width="30" :stroke-width="10" :percentage="percentageCalc" status="success">
+        <el-progress type="circle" :width="30" :stroke-width="5" :percentage="percentageCalc" status="success">
         </el-progress>
     </div>
 </template>
@@ -54,9 +54,16 @@ export default {
     line-height: 0;
 }
 
-.el-input .el-input__icon {
-    height: inherit;
-    line-height: 4 !important;
+
+.el-progress {
+    position: relative;
+    /* line-height: 0 !important; */
+}
+
+.el-progress-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 
