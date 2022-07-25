@@ -65,7 +65,6 @@ export default {
     },
     mounted() {
         var rect = this.$refs.statusCmpRef.getBoundingClientRect()
-        // console.log(rect.top, rect.right, rect.bottom, rect.left)
         this.showStatusMenuOptionLeft = rect.left
     },
 } 

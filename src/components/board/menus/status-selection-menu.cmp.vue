@@ -35,11 +35,10 @@ export default {
     computed: {
         postionModal() {
             let elWidth = this.pos.rect.width
-            let maxWidth = this.pos.left
+            let maxWidth = this.pos.rect.right
             let elRight = this.pos.rect.x
             console.log(elRight)
             console.log(elWidth)
-            console.log(maxWidth)
             const top = this.pos.rect.height
             console.log(top)
             const left = this.pos.rect.width / 4
