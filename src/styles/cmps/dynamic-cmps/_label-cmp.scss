@@ -1,13 +1,20 @@
 
 .task-label{
     height: 100%;
-    text-align: center;
-    display: flex;
-    color:#fff ;
-    justify-content: center;
-    align-items: center;
+    &-display{
+        height: 100%;
+        display: flex;
+        color:#fff ;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+            opacity: 0.5;
+        }
+    }
 
     &:active{
         border: 1px solid blue;
     }
+
+
 }
