@@ -1,12 +1,15 @@
 <template>
     <!-- v-bind:style="{ 'min-width': groupRowFooterWidth }" -->
-    <section v-if="labels" class="group-labels-actions-menu">
-        <div v-for="label in labels" :key="label.id" @click="selectLabel(label.id)">{{ label.title }}</div>
-    </section>
+    <div class="status-picker-view" v-if="labels" :style="postionModal">
+        <div class="status-picker-view-title" :style="{ 'background-color': label.color }" v-for="label in labels"
+            :key="label.id" @click="selectLabel(label.id)">
+            <span class="task-label-display">{{ label.title }}</span>
+        </div>
+    </div>
 </template>
 <script>
 export default {
-    emits: ['changeLabel'],
+    emits: ['changeLabel', 'closeActionsModal'],
     props: {
         labels: Array,
         pos: Object
@@ -26,16 +29,27 @@ export default {
         },
         selectLabel(labelId) {
             this.$emit('changeLabel', labelId)
+            this.$emit('closeActionsModal')
         },
     },
     computed: {
         postionModal() {
-            let y = window.innerHeight
-            let x = window.clientWidth
-            const top = this.pos.eltop
-            const left = this.pos.left
-            if (this.pos.left + 300 > x) return `top:${top}px; left:${this.pos.left - 300}px;`
-            return `top:${top + 10}px; left:${this.pos.left - 10}px;`
+            let elWidth = this.pos.rect.width
+            let maxWidth = this.pos.left
+            let elRight = this.pos.rect.x
+            console.log(elRight)
+            console.log(elWidth)
+            const top = this.pos.rect.height
+            console.log(top)
+            const left = this.pos.rect.width / 4
+            console.log(this.pos)
+            console.log(this.pos.rect)
+            // return `top:${top}px; left:0px;`
+            if (elRight + 100 > maxWidth) {
+                console.log('heyyy');
+                return `top:${top}px; left:${(-elWidth / 2) + 16}px;`
+            }
+            return `top:${top}px; left:${(-elWidth/8)}px;`
         }
     },
     created() {
@@ -49,62 +63,66 @@ export default {
 
 </script>
 <style>
-.group-labels-actions-menu {
+.status-picker-view-title.task-label-display {
+    color: #fff;
+}
+
+.status-picker-view {
     position: absolute;
-    left: 0;
-    top: 30px;
+    top: 0;
     z-index: 100;
     background-color: #fff;
-    opacity: 1 !important;
     color: #000;
+    opacity: 1;
+    padding: 1rem 1.5rem 0.5rem;
+}
+
+.status-picker-view-title {
+    width: 9.5rem;
+    height: 2rem;
+    padding: 0 0.375rem;
+    margin-bottom: 0.5rem;
 }
 
 .group-labels-actions-menu:hover {
     z-index: 100;
     background-color: #fff;
-    opacity: 1 !important;
 }
 
-.right-click-actions-menu {
-    width: 18rem;
-    font-size: 0.875rem;
+
+.status-picker-view {
+    display: block;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    -o-transition: left 150ms cubic-bezier(0, 0, 0.35, 1);
+    transition: left 150ms cubic-bezier(0, 0, 0.35, 1);
+    box-shadow: 0 4px 17px 6px rgb(0 0 0 / 10%);
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
+    font-size: 14px;
+    transition: width .1s;
+    pointer-events: all;
+
+}
+
+.status-picker-view:before,
+.status-picker-view:after {
+    content: '';
+    display: block;
     position: absolute;
-    z-index: 1000 !important;
-    background-color: #fff;
-    box-shadow: 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%), 0px 5px 5px -3px rgb(0 0 0 / 20%);
+    bottom: 100%;
+    width: 0;
+    height: 0;
 }
 
-.right-click-actions-menu>* {
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
+.status-picker-view:before {
+    left: 92px;
+    border: 0.5rem solid transparent;
+    border-bottom-color: #ddd;
 }
 
-.right-click-actions-menu div:hover {
-    background-color: #eee;
-}
-
-.right-click-actions-menu div>:not(:last-child) {
-    margin-inline-end: 0.875rem;
-}
-
-.icon-v2-delete-line:before {
-    content: "\f2ff";
-    font-family: "dapulse";
-    font-size: 16px;
-}
-
-.action-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.group-labels-actions-menu {
-    position: absolute;
-    left: 0;
-    background-color: #fff;
-    opacity: 1;
+.status-picker-view:after {
+    left: 93px;
+    border: 0.5rem solid transparent;
+    border-bottom-color: #fff;
 }
 </style>

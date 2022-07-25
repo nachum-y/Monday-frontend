@@ -209,7 +209,6 @@ export const boardStore = {
 
             const savedTasks = await boardService.saveGroupsRows(group.id, state.board._id, value)
             commit({ type: 'updateRowsOrder', savedTasks, idx })
-            console.log(savedTasks)
 
         },
         updateBoardOrderList({ commit, state }, { value }) {

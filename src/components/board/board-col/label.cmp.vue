@@ -1,10 +1,9 @@
 <template>
-    <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label" 
-        >
-        <div class="task-label-display" :style="setLabelStyle" @click="showLabelsMenu($event, labels)">{{ labelToDisplay }}</div>
+    <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label">
+        <div class="task-label-display" :style="setLabelStyle" @click="showLabelsMenu($event, labels)">{{ labelToDisplay
+        }}</div>
         <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
-            :labels="showLabelMenuOption.labels" :pos="showLabelMenuOption.posModal"
-            @changeLabel="changeLabel">
+            :labels="showLabelMenuOption.labels" :pos="showLabelMenuOption.posModal" @changeLabel="changeLabel" @closeActionsModal="closeActionsModal">
         </label-selection-menu>
     </div>
 
@@ -12,7 +11,7 @@
 <script>
 import labelSelectionMenu from '../menus/label-selection-menu.cmp.vue'
 export default {
-    emits:['updateTask'],
+    emits: ['updateTask'],
     name: ['labelCmp'],
     props: {
         task: Object,
@@ -43,16 +42,18 @@ export default {
             this.showLabelMenuOption = {}
             this.showLabelMenuOption.labels = labels
             // console.log(showLabelMenuOptionLeft)
-            this.showLabelMenuOption.posModal = { eltop: el.layerY, left: this.showLabelMenuOptionLeft }
+            var rect = this.$refs.labelCmpRef.getBoundingClientRect()
+            
+            this.showLabelMenuOption.posModal = { eltop: el.layerY, left: this.showLabelMenuOptionLeft ,rect}
         },
         closeActionsModal() {
             this.showLabelMenuOption = null
         },
-        changeLabel(labelId){
-            let newCol = {type:this.task.type,value:labelId}
-            let newData = {newCol,taskId:this.row.id,groupId:this.row.groupId}
-           
-            this.$emit('updateTask',newData)
+        changeLabel(labelId) {
+            let newCol = { type: this.task.type, value: labelId }
+            let newData = { newCol, taskId: this.row.id, groupId: this.row.groupId }
+
+            this.$emit('updateTask', newData)
         },
     },
     mounted() {
