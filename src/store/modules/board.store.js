@@ -89,6 +89,10 @@ export const boardStore = {
                 state.activeFilterParam[filter].pop(param)
             }
         },
+        updateTask(state, { newCol, idxs }){
+            const {groupIdx,taskIdx,colIdx } = idxs
+            state.board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
+        },
 
     },
     getters: {
@@ -166,6 +170,17 @@ export const boardStore = {
             catch (err) {
                 console.log(err)
             }
+        },
+        async updateTask({ commit, state }, { data }){
+         try {
+             const idxs = await boardService.updateTask(data, state.board._id)
+             commit({ type: 'updateTask', newCol: data.newCol, idxs })  
+            
+         } catch (error) {
+         
+            // disppatch({type:error})
+            // userMsg
+         }
         },
         async removeTasks({ commit, state }, { tasksToRemove }) {
             try {

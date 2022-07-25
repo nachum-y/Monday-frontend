@@ -67,9 +67,8 @@
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
-                    <group-row :group="element" :labels="board.labels" :colsOrder="board.colsOrder"
-                        :selectedTasks="selectedTasks" @toggleSelection="toggleSelection"
-                        @duplicateTask="duplicateTask" />
+                    <group-row :group="element" :labels="board.labels" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
+                        @toggleSelection="toggleSelection" @duplicateTask="duplicateTask" @updateTask="updateTask" />
 
 
 
@@ -242,6 +241,9 @@ export default {
             delete duplicatedTask.id
             this.$store.dispatch({ type: 'saveTask', task: duplicatedTask })
             // this.groupToEdit = boardService.getEmptyGroup()
+        },
+        updateTask(data){
+            this.$store.dispatch({ type: 'updateTask', data })
         },
         pullFunction() {
             return this.controlOnStart ? "clone" : true

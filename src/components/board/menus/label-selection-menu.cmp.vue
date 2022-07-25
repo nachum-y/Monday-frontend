@@ -21,12 +21,10 @@ export default {
     },
     methods: {
         escapekeylistener(evt) {
-            console.log(evt)
             this.cordsX = evt.pageX
             this.cordsY = evt.pageY
         },
         selectLabel(labelId) {
-            console.log(labelId)
             this.$emit('changeLabel', labelId)
         },
     },
@@ -41,8 +39,6 @@ export default {
         }
     },
     created() {
-        console.log('create')
-        console.log(this.labels)
     },
     unmounted() {
 
