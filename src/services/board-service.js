@@ -120,10 +120,10 @@ async function saveGroups(groups, boardId) {
   return
 }
 
-async function saveTask(task,boardId){
+async function saveTask(task, boardId) {
   let board = await _getBoardById(boardId)
   task.id = utilService.makeId()
-  const idx = board.groups.findIndex(group=>group.id === task.groupId)
+  const idx = board.groups.findIndex(group => group.id === task.groupId)
   board.groups[idx].tasks.push(task)
   storageService.put(BOARD_KEY, board)
   return task
@@ -144,7 +144,7 @@ async function getTaskById(boardId, taskId) {
 
 }
 
-async function _getGroupById(boardId,groupId){
+async function _getGroupById(boardId, groupId) {
   const board = await _getBoardById(boardId)
   return board.groups.find((g) => g.id === groupId)
 }

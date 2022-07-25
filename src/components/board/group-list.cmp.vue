@@ -66,17 +66,18 @@
                 </div>
             </template>
         </draggable>
+        <button type="button" @click="addNewGroup" class="btn add-group-btn">
+
+            <div class="add-group-icon-holder">
+                <div class="add-group-icon"></div>
+            </div>
+            <div class="add-group-btn-txt">
+                Add new group
+            </div>
+        </button>
     </div>
 
-    <button type="button" @click="addNewGroup" class="btn add-group-btn">
 
-        <div class="add-group-icon-holder">
-            <div class="add-group-icon"></div>
-        </div>
-        <div class="add-group-btn-txt">
-            Add new group
-        </div>
-    </button>
     <!-- <router-view>
 
         </router-view> -->
@@ -134,7 +135,7 @@ export default {
     },
     created() {
         this.board = this.$store.getters.board
-
+        console.log(this.board)
     },
     components: {
         draggable,

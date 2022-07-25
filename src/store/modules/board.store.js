@@ -32,7 +32,7 @@ export const boardStore = {
                     // resb[0][index].tasks = resu[index]
                     console.log(resb[index].tasks)
                 }
-               
+
             }
         },
         activeFilter: 'all',
@@ -85,10 +85,30 @@ export const boardStore = {
     },
     getters: {
         board({ filtersTasks, activeFilter, board, activeFilterVal }) {
-            console.log(filtersTasks[activeFilter](board, activeFilterVal[activeFilter]))
-            // return filtersTasks[activeFilter](board, activeFilterVal[activeFilter])
-            return board
 
+            // let bordToDisplay = { ...board }
+
+ 
+            // console.log(bordToDisplay.groups[0].tasks.filter((t) => regex.test(t.cols[0].value)))
+            // console.log(bordToDisplay.groups[0].tasks)
+            // console.log(bordToDisplay.groups[0].tasks.filter((t) => regex.test(t.cols[0].value)))
+            // console.log(bordToDisplay.groups[0].tasks.filter((t) => regex.test(t.cols[0].value)))
+            // let { groups, byMember, colsOrder, createdAt, members, title, _id } = board
+            // let boardToDisplay = { ...board }
+            // let { groups } = board
+            // groups = groups.map((g) => {
+            //     let { tasks, color, title, id } = g
+            //     tasks = tasks.filter((t) => regex.test(t.cols[0].value))
+            //     return ({ tasks, color, title, id })
+            // })
+            // console.log(boardToDisplay)
+            // boardToDisplay.groups = groups
+            // console.log(bordToDisplay)
+            // board.gr
+            // console.log(filtersTasks[activeFilter](board, activeFilterVal[activeFilter]))
+            // return filtersTasks[activeFilter](board, activeFilterVal[activeFilter])
+            // console.log(boardToDisplay)
+            return board
         },
         colsOrder({ board }) {
             if (!board.colsOrder) return
@@ -97,6 +117,15 @@ export const boardStore = {
         },
         rowOrder({ board }) {
             if (!board.groups) return
+            // let regex = new RegExp('css', 'i')
+            // let { groups } = board
+            // groups = groups.map((g) => {
+            //     let { tasks, color, title, id } = g
+            //     tasks = tasks.filter((t) => regex.test(t.cols[0].value))
+            //     return ({ tasks, color, title, id })
+            // })
+            // console.log(groups);
+            // return groups
             return board.groups
         },
 
