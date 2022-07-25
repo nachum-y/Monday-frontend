@@ -24,8 +24,8 @@
                                 </span>
                             </div>
                         </div>
-                        <component @updateTask="updateTask" v-else :is="col.type" :task="taskForDisplay(element.cols, col.type)"
-                            :taskId="element.id" :labels="labels">
+                        <component @updateTask="this.$emit('updateTask',$event)" v-else :is="col.type" :task="taskForDisplay(element.cols, col.type)"
+                            :row="element" :labels="labels">
                         </component>
                     </div>
                 </div>
@@ -91,10 +91,6 @@ export default {
         },
         duplicateTask(task){
             this.$emit('duplicateTask', task)
-        },
-        updateTask(data){
-            console.log(data)
-            
         },
         start(evt) {
             // console.log(evt.from.querySelector['div'])

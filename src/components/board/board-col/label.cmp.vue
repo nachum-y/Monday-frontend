@@ -1,11 +1,10 @@
 <template>
-    <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label">
-        <div class="task-label-display" :style="setLabelStyle" @click="showLabelsMenu($event, labels)">{{
-                labelToDisplay
-        }}</div>
+    <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label" 
+        >
+        <div class="task-label-display" :style="setLabelStyle" @click="showLabelsMenu($event, labels)">{{ labelToDisplay }}</div>
         <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
             :labels="showLabelMenuOption.labels" :pos="showLabelMenuOption.posModal"
-            @deleteGroup="removeGroup(group.id)" @duplicateGroup="duplicateGroup(group)">
+            @changeLabel="changeLabel">
         </label-selection-menu>
     </div>
 
@@ -13,17 +12,18 @@
 <script>
 import labelSelectionMenu from '../menus/label-selection-menu.cmp.vue'
 export default {
+    emits:['updateTask'],
     name: ['labelCmp'],
     props: {
         task: Object,
         labels: Array,
+        row: Object
     },
     data() {
         return {
             isEdited: false,
             showLabelMenuOption: null,
-            showLabelMenuOptionLeft: 0,
-            hover: false
+            showLabelMenuOptionLeft: 0
         }
     },
     computed: {
@@ -35,34 +35,8 @@ export default {
         setLabelStyle() {
             let labelId = this.task.value
             let label = this.labels.filter(label => label.id === labelId)[0]
-            console.log(label.color)
             return { backgroundColor: label.color }
-        },
-        // setLabelStyleHover() {
-
-        //     let labelId = this.task.value
-        //     let label = this.labels.filter(label => label.id === labelId)[0]
-        //     let colorHex = label.color
-        //     let opacity = this.hover ? 0.6 : 1
-        //     // const convertHexToRGBA = (hexCode, opacity = 1) => 
-        //     let hex = colorHex.replace('#', '')
-        //     console.log(hex)
-        //     if (hex.length === 3) {
-        //         hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
-        //     }
-
-        //     const r = parseInt(hex.substring(0, 2), 16)
-        //     const g = parseInt(hex.substring(2, 4), 16)
-        //     const b = parseInt(hex.substring(4, 6), 16)
-
-        //     /* Backward compatibility for whole number based opacity values. */
-        //     if (opacity > 1 && opacity <= 100) {
-        //         opacity = opacity / 100
-        //     }
-
-        //     return `rgba(${r},${g},${b},${opacity})`
-
-        // },
+        }
     },
     methods: {
         showLabelsMenu(el, labels) {
@@ -75,13 +49,19 @@ export default {
         closeActionsModal() {
             this.showLabelMenuOption = null
         },
+        changeLabel(labelId){
+            let newCol = {type:this.task.type,value:labelId}
+            let newData = {newCol,taskId:this.row.id,groupId:this.row.groupId}
+           
+            this.$emit('updateTask',newData)
+        },
     },
     mounted() {
         // this.showLabelMenuOption.width = this.$refs.labelCmpRef.clientWidth
         var rect = this.$refs.labelCmpRef.getBoundingClientRect()
-        console.log(rect.top, rect.right, rect.bottom, rect.left)
+        // console.log(rect.top, rect.right, rect.bottom, rect.left)
         this.showLabelMenuOptionLeft = rect.left
-        console.log(this.showLabelMenuOptionLeft)
+        // console.log(this.showLabelMenuOptionLeft)
 
         // let elWidth = this.$refs.groupRowFooter.clientWidth
         // this.$emit('groupRowFooter', elWidth)
