@@ -1,16 +1,14 @@
 <template>
-    <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label task-lighten"
-        @click="showLabelsMenu($event, labels)">
-        {{ labelToDisplay }}
+    <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label">
+        <div class="task-label-display" :style="setLabelStyle" @click="showLabelsMenu($event, labels)">{{
+                labelToDisplay
+        }}</div>
         <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
             :labels="showLabelMenuOption.labels" :pos="showLabelMenuOption.posModal"
             @deleteGroup="removeGroup(group.id)" @duplicateGroup="duplicateGroup(group)">
         </label-selection-menu>
     </div>
-    <!-- <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
-            :labels="showLabelMenuOption.labels" :pos="showLabelMenuOption.posModal"
-            @deleteGroup="removeGroup(group.id)" @duplicateGroup="duplicateGroup(group)">
-        </label-selection-menu> -->
+
 </template>
 <script>
 import labelSelectionMenu from '../menus/label-selection-menu.cmp.vue'

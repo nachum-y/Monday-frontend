@@ -104,10 +104,6 @@ export default {
     align-items: center;
 }
 
-.group-header-actions-menu {
-    background-color: black;
-    z-index: 10000000;
-}
 
 .group-labels-actions-menu {
     position: absolute;
