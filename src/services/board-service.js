@@ -13,7 +13,8 @@ export const boardService = {
   removeTasks,
   saveGroups,
   getTaskById,
-  saveTask
+  saveTask,
+  updateTask
 }
 
 // _createBoards()
@@ -86,6 +87,24 @@ async function addTask(title, groupId, boardId) {
   groupToEdit.tasks.push(task)
   storageService.put(BOARD_KEY, board)
   return task
+}
+
+async function updateTask(data, boardId){
+
+  try{
+
+  const { groupId , taskId , newCol } = data
+  let board = await _getBoardById(boardId)
+  const groupIdx = board.groups.findIndex((group) => group.id === groupId)
+  const taskIdx = board.groups[groupIdx].tasks.findIndex(task=>task.id === taskId)
+  const colIdx = board.groups[groupIdx].tasks[taskIdx].cols.findIndex(col=>col.type === newCol.type)
+  board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
+  return {groupIdx,taskIdx,colIdx}
+  
+  }
+    catch (error) {
+    throw new Error('Cannot update')
+  }
 }
 
 async function _getBoardById(boardId) {
