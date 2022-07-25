@@ -1,35 +1,46 @@
 <template>
-    <div v-if="task" class="task-label" :class="setColor">
-            <el-select style='border: none' :class="setColor" class="priority-label" :placeholder="labelToDisplay">
-                <el-option class="label1" style='border: none' value="label1"/>
-                <el-option class="label2" style='border: none' value="label2"/>
-                <el-option class="label3" style='border: none' value="label3"/>
-                <el-option class="defult-label-color" style='border: none' value=""/>
-            </el-select>
+    <div class="task-label task-lighten" :style="setLabelStyle">
+        {{labelToDisplay}}
+        <label-selection-menu v-if="showLabelMenu"/>
     </div>
 </template>
 <script>
+import labelSelectionMenu from '../menus/label-selection-menu.cmp.vue'
 export default {
     name: ['labelCmp'],
     props: {
         task: Object,
+        labels: Array,
     },
     data() {
         return {
+            isEdited: false,
+            showLabelMenu: false,
         }
     },
     computed:{
         labelToDisplay(){
-             if (!this.task.value) return ' '
-             return this.task.value.title.slice( 0 , 1 ).toUpperCase() + this.task.value.title.slice(1)
+            let labelId = this.task.value
+            let label = this.labels.filter(label=>label.id === labelId)[0]
+            return label.title  
         },
-        setColor(){
-            if (!this.task.value) return 'defult-label-color'
-            if (this.task.value.color === 'rgb(154, 173, 189)') return 'label1'
-            else if (this.task.value.color === 'rgb(0, 134, 192)') return 'label2'
-            else if (this.task.value.color === 'rgb(157, 153, 185)') return 'label3'
-        },
+        setLabelStyle(){
+            let labelId = this.task.value
+            let label = this.labels.filter(label=>label.id === labelId)[0]
+            return {backgroundColor : label.color}
+        }
     },
+    components:{
+        labelSelectionMenu
+    },
+    // methodes:{
+    //      openActionsModal(el, group) {
+    //         this.showGroupAction = {}
+    //         this.showGroupAction.group = group
+    //         this.showGroupAction.posModal = { eltop: el.layerY, left: el.layerX }
+
+    //     },
+    // },
 }
 </script>
 <style>
