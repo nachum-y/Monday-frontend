@@ -6,39 +6,34 @@ export const boardStore = {
         prevGroup: null,
         filterdTask: [],
         filtersTasks: {
-            all: (board) => board,
-            txt: (board, input = '') => {
-                // board.groups.map((g) => console.log(g))
-                let fillter = {}
-                // fillter.push(board)
-
-                // filter((t) => input.test(t.cols[0].value)))
-                // input.test(g.tasks.cols[0].value)
-
-
-                for (let key in board) {
-                    // fillter[key]
-                    fillter[key] = (board[key])
-
-                }
-
-                let res = fillter.groups.map((g) => g)
-                let resb = new Array(res)
-                console.log(resb)
-                let resu = res.map((t) => t.tasks.filter((ts) => input.test(ts.cols[0].value)))
-                for (let index = 0; index < resu.length; index++) {
-                    console.log(resu[index])
-                    console.log(resb[0][index])
-                    // resb[0][index].tasks = resu[index]
-                    console.log(resb[index].tasks)
-                }
-
+            all: (board) => board.groups,
+            txt: (board, input) => {
+                let { groups } = board
+                groups = groups.map((g) => {
+                    let { tasks, color, title, id } = g
+                    tasks = tasks.filter((t) => input.test(t.cols[0].value))
+                    return ({ tasks, color, title, id })
+                })
+                return groups
             }
         },
         activeFilter: 'all',
         activeFilterVal: {
             txt: ''
         },
+        activeFilterParam: {
+            label: [],
+            txt: '',
+            person: [],
+            status: []
+        },
+        sortBy: {
+            activeSort: 'date',
+            sortDir: 1,
+            date: 'createdAt',
+            name: 'name',
+        },
+
     },
     mutations: {
         addGroup(state, { group }) {
@@ -76,38 +71,28 @@ export const boardStore = {
         },
         searchInput(state, { inputTxt }) {
             const regex = new RegExp(inputTxt, 'i')
-            state.activeFilterVal.txt = regex
             state.activeFilter = 'txt'
-            if (!inputTxt) state.activeFilter = 'all'
-            console.log(state.activeFilter)
+            state.activeFilterParam.txt = regex
+            state.activeFilterVal.txt = regex
+            // if (!inputTxt) state.activeFilter = 'all'
+        },
+        setActiveFilter(state, { filter, param = null }) {
+
+            // state.activeFilter = filter
+            if (filter === 'txt') {
+                state.activeFilterParam[filter] = new RegExp(param, 'i')
+                return
+            }
+            if (!state.activeFilterParam[filter].includes(param)) {
+                state.activeFilterParam[filter].push(param)
+            } else {
+                state.activeFilterParam[filter].pop(param)
+            }
         },
 
     },
     getters: {
-        board({ filtersTasks, activeFilter, board, activeFilterVal }) {
-
-            // let bordToDisplay = { ...board }
-
- 
-            // console.log(bordToDisplay.groups[0].tasks.filter((t) => regex.test(t.cols[0].value)))
-            // console.log(bordToDisplay.groups[0].tasks)
-            // console.log(bordToDisplay.groups[0].tasks.filter((t) => regex.test(t.cols[0].value)))
-            // console.log(bordToDisplay.groups[0].tasks.filter((t) => regex.test(t.cols[0].value)))
-            // let { groups, byMember, colsOrder, createdAt, members, title, _id } = board
-            // let boardToDisplay = { ...board }
-            // let { groups } = board
-            // groups = groups.map((g) => {
-            //     let { tasks, color, title, id } = g
-            //     tasks = tasks.filter((t) => regex.test(t.cols[0].value))
-            //     return ({ tasks, color, title, id })
-            // })
-            // console.log(boardToDisplay)
-            // boardToDisplay.groups = groups
-            // console.log(bordToDisplay)
-            // board.gr
-            // console.log(filtersTasks[activeFilter](board, activeFilterVal[activeFilter]))
-            // return filtersTasks[activeFilter](board, activeFilterVal[activeFilter])
-            // console.log(boardToDisplay)
+        board({ board }) {
             return board
         },
         colsOrder({ board }) {
@@ -115,18 +100,24 @@ export const boardStore = {
             return board.colsOrder
 
         },
-        rowOrder({ board }) {
-            if (!board.groups) return
-            // let regex = new RegExp('css', 'i')
-            // let { groups } = board
-            // groups = groups.map((g) => {
-            //     let { tasks, color, title, id } = g
-            //     tasks = tasks.filter((t) => regex.test(t.cols[0].value))
-            //     return ({ tasks, color, title, id })
+        rowOrder({ filtersTasks, activeFilter, board, activeFilterVal, activeFilterParam }) {
+            let filterGroups = filtersTasks[activeFilter](board, activeFilterVal[activeFilter])
+            // let filterdGroup = filterGroups.filter((tasks) => {
+            //     return (activeFilterParam.txt.length === 0 || activeFilterParam.txt.test(tasks.name)) 
             // })
-            // console.log(groups);
-            // return groups
-            return board.groups
+            // console.log(activeFilterParam)
+            let { groups } = board
+            groups = groups.map((g) => {
+                let { tasks, color, title, id } = g
+                tasks = tasks.filter((t) => {
+                    return (!activeFilterParam.txt || activeFilterParam.txt.test(t.cols[0].value)) &&
+                        (activeFilterParam.status.length === 0 || activeFilterParam.status.includes(t.cols[t.cols.findIndex((typ) => typ.type === 'status')].value))
+                })
+                return ({ tasks, color, title, id })
+            })
+
+            if (!board.groups) return
+            return groups
         },
 
     },
@@ -199,6 +190,12 @@ export const boardStore = {
 
         searchInput({ commit, state }, { inputTxt }) {
             commit({ type: 'searchInput', inputTxt })
+        },
+        sortBy({ commit }, { filter, param }) {
+            console.log(filter)
+            console.log(param)
+            commit({ type: 'setActiveFilter', filter, param })
+
         }
 
     }

@@ -43,6 +43,19 @@
 
 
         </div>
+
+
+        <div>
+            <span @click="sortBy('status', 'working on it')">
+                sort by status Working on it
+            </span>
+            <span @click="sortBy('status', 'stuck')">
+                sort by status Stuck
+            </span>
+            <span @click="sortBy('status', 'done')">
+                sort by status Done
+            </span>
+        </div>
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
             :item-key="key => key" v-bind:style="{ 'min-width': groupRowFooterWidth }" :dragClass="'drag-group'"
             :ghostClass="'ghost-group'">
@@ -54,8 +67,9 @@
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
-                    <group-row :group="element" :labels="board.labels" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
-                        @toggleSelection="toggleSelection" @duplicateTask="duplicateTask" />
+                    <group-row :group="element" :labels="board.labels" :colsOrder="board.colsOrder"
+                        :selectedTasks="selectedTasks" @toggleSelection="toggleSelection"
+                        @duplicateTask="duplicateTask" />
 
 
 
@@ -257,6 +271,10 @@ export default {
             let width = (elWidth + 'px')
             this.groupRowFooterWidth = width
 
+        },
+        sortBy(filter, param = null) {
+
+            this.$store.dispatch({ type: 'sortBy', filter, param })
         }
     },
     computed: {

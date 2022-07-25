@@ -35,7 +35,6 @@ export default {
         setLabelStyle() {
             let labelId = this.task.value
             let label = this.labels.filter(label => label.id === labelId)[0]
-            console.log(label.color)
             return { backgroundColor: label.color }
         },
         // setLabelStyleHover() {
@@ -67,7 +66,6 @@ export default {
     methods: {
         showLabelsMenu(el, labels) {
             this.showLabelMenuOption = {}
-            console.log(el)
             this.showLabelMenuOption.labels = labels
             // console.log(showLabelMenuOptionLeft)
             this.showLabelMenuOption.posModal = { eltop: el.layerY, left: this.showLabelMenuOptionLeft }
@@ -79,9 +77,7 @@ export default {
     mounted() {
         // this.showLabelMenuOption.width = this.$refs.labelCmpRef.clientWidth
         var rect = this.$refs.labelCmpRef.getBoundingClientRect()
-        console.log(rect.top, rect.right, rect.bottom, rect.left)
         this.showLabelMenuOptionLeft = rect.left
-        console.log(this.showLabelMenuOptionLeft)
 
         // let elWidth = this.$refs.groupRowFooter.clientWidth
         // this.$emit('groupRowFooter', elWidth)

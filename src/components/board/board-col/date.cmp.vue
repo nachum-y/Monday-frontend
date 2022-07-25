@@ -1,7 +1,7 @@
 <template>
     <div v-if="task" :class="'task-' + task.type">
-        <el-date-picker class="col-hover" @change="" :prefix-icon="progressBarCmp" v-model="taskTime" type="date"
-            format="YYYY/MM/DD" value-format="x" />
+        <el-date-picker class="col-hover" @change="updateTask" :prefix-icon="progressBarCmp" v-model="taskTime"
+            type="date" format="YYYY/MM/DD" value-format="x" />
     </div>
 
 </template>
@@ -11,7 +11,7 @@ import { shallowRef } from 'vue'
 import progressBar from '../../progress-bar.cmp.vue'
 
 export default {
-    emits:['updateTask'],
+    emits: ['updateTask'],
     name: ['date'],
     props: {
         task: Object,
@@ -34,6 +34,11 @@ export default {
         dateToDisplay() {
             if (!this.task.value) return ''
             return new Date(this.task.value)
+        }
+    },
+    methods: {
+        updateTask() {
+
         }
     },
 
