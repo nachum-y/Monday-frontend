@@ -237,10 +237,7 @@ export default {
             this.selectedGroups = []
         },
         duplicateTask(task) {
-            let duplicatedTask = { ...task }
-            delete duplicatedTask.id
-            this.$store.dispatch({ type: 'saveTask', task: duplicatedTask })
-            // this.groupToEdit = boardService.getEmptyGroup()
+            this.$store.dispatch({ type: 'saveTask', task })
         },
         updateTask(data){
             this.$store.dispatch({ type: 'updateTask', data })
