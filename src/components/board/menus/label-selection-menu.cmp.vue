@@ -1,5 +1,4 @@
 <template>
-    <!-- v-bind:style="{ 'min-width': groupRowFooterWidth }" -->
     <section v-if="labels" class="group-labels-actions-menu">
         <div>
 
