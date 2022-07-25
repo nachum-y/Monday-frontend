@@ -1,7 +1,8 @@
 <template>
     <div>
         <draggable v-model="rowsOrderList" dataIdAttrtag="div" group="tasks" :dragClass="'drag-row'"
-            :ghostClass="'ghost-row'" :animation="200" :item-key="key => key" @start="start" @end="end">
+            :ghostClass="'ghost-row'" :animation="200" :item-key="key => key" @start="start" @end="end"
+            @remove="remove">
             <template #item="{ element }">
                 <div class="board-content-group-row" :class="selectedTasks.includes(element.id) ? 'selected-row' : ''">
                     <div class="col" v-for="(col, colsIdx) in colsOrder" :class="colsIdx === 0 ? 'fixed' : ''"
@@ -92,24 +93,22 @@ export default {
 
 
         },
-        duplicateTask(task){
+        duplicateTask(task) {
             this.$emit('duplicateTask', task)
         },
         start(evt) {
-            // console.log(evt.from.querySelector['div'])
-            // console.log(evt.oldDraggableIndex)
-
-            // console.log('evt.from:', evt.from)  // previous list
-            // console.log('evt.oldIndex :', evt.oldIndex) // element's old index within old parent
-            // console.log('evt.newIndex :', evt.newIndex) // element's new index within new parent
-            // console.log('evt.oldDraggableIndex:', evt.oldDraggableIndex) // element's old index within old parent, only counting draggable elements
-            // console.log('evt.newDraggableIndex:', evt.newDraggableIndex) // element's new index within new parent, only counting draggable elements
-            // console.log(' evt.clone:', evt.clone) // the clone element
-            // console.log('evt.pullMode:', evt.pullMode)
-
+            console.log(evt.from)
+            let groupId = this.group.id
+            console.log(groupId)
         },
         end(evt) {
             console.log(' evt.to:', evt.to)
+             let groupId = this.group.id
+            console.log(groupId)
+        },
+        remove(ev) {
+            console.log(ev)
+
         }
 
     },
@@ -118,13 +117,13 @@ export default {
             get() {
                 let groups = this.$store.getters.rowOrder
                 let idx = groups.findIndex((g) => g.id === this.group.id)
-
                 return this.$store.getters.rowOrder[idx].tasks
             },
             set(value) {
                 let groups = this.$store.getters.rowOrder
                 let idx = groups.findIndex((g) => g.id === this.group.id)
                 console.log(idx)
+
                 this.$store.dispatch('updateRowsOrder', { value, idx })
             }
 

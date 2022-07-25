@@ -14,7 +14,8 @@ export const boardService = {
   saveGroups,
   getTaskById,
   saveTask,
-  updateTask
+  updateTask,
+  saveGroupsRows
 }
 
 // _createBoards()
@@ -89,21 +90,21 @@ async function addTask(title, groupId, boardId) {
   return task
 }
 
+async function updateTask(data, boardId) {
 
-async function updateTask(data, boardId){
-  try{
+  try {
 
-  const { groupId , taskId , newCol } = data
-  let board = await _getBoardById(boardId)
-  const groupIdx = board.groups.findIndex((group) => group.id === groupId)
-  const taskIdx = board.groups[groupIdx].tasks.findIndex(task=>task.id === taskId)
-  const colIdx = board.groups[groupIdx].tasks[taskIdx].cols.findIndex(col=>col.type === newCol.type)
-  board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
-  storageService.put(BOARD_KEY, board)
-  return {groupIdx,taskIdx,colIdx}
-  
+    const { groupId, taskId, newCol } = data
+    let board = await _getBoardById(boardId)
+    const groupIdx = board.groups.findIndex((group) => group.id === groupId)
+    const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+    const colIdx = board.groups[groupIdx].tasks[taskIdx].cols.findIndex(col => col.type === newCol.type)
+    board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
+    storageService.put(BOARD_KEY, board)
+    return { groupIdx, taskIdx, colIdx }
+
   }
-    catch (error) {
+  catch (error) {
     throw new Error('Cannot update')
   }
 }
@@ -164,6 +165,16 @@ async function getTaskById(boardId, taskId) {
 
   // })
   // console.log(res)
+
+}
+
+
+async function saveGroupsRows(savedGroup, boardId) {
+  const board = await storageService.get(BOARD_KEY, boardId)
+  let groupToEdit = board.groups.find((g) => g.id === savedGroup.id)
+  console.log(groupToEdit)
+  storageService.put(BOARD_KEY, board)
+  return groupToEdit
 
 }
 

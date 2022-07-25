@@ -55,16 +55,14 @@ export const boardStore = {
             groupToUpdate.tasks.push(newTask)
         },
         updateColsOrder(state, { value2 }) {
-
             state.board.colsOrder = value2
         },
         updateRowsOrder(state, { value, idx }) {
             state.board.groups[idx].tasks = value
-
         },
         updateBoardOrderList(state, { value }) {
+            console.log(value)
             state.board.groups = value
-
         },
         updateGroups(state, { updatedGroups }) {
             state.board.groups = updatedGroups
@@ -89,8 +87,8 @@ export const boardStore = {
                 state.activeFilterParam[filter].pop(param)
             }
         },
-        updateTask(state, { newCol, idxs }){
-            const {groupIdx,taskIdx,colIdx } = idxs
+        updateTask(state, { newCol, idxs }) {
+            const { groupIdx, taskIdx, colIdx } = idxs
             state.board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
         },
 
@@ -137,7 +135,7 @@ export const boardStore = {
             commit({ type: actionType, group: savedGroup })
         },
         async updateGroup({ commit, state }, { groupId, data }) {
-
+            console.log(data)
             commit({ type: 'updateGroup', groupId, data })
             const savedGroup = await boardService.updateGroup(groupId, data, state.board._id)
         },
@@ -171,16 +169,16 @@ export const boardStore = {
                 console.log(err)
             }
         },
-        async updateTask({ commit, state }, { data }){
-         try {
-             const idxs = await boardService.updateTask(data, state.board._id)
-             commit({ type: 'updateTask', newCol: data.newCol, idxs })  
-            
-         } catch (error) {
-         
-            // disppatch({type:error})
-            // userMsg
-         }
+        async updateTask({ commit, state }, { data }) {
+            try {
+                const idxs = await boardService.updateTask(data, state.board._id)
+                commit({ type: 'updateTask', newCol: data.newCol, idxs })
+
+            } catch (error) {
+
+                // disppatch({type:error})
+                // userMsg
+            }
         },
         async removeTasks({ commit, state }, { tasksToRemove }) {
             try {
@@ -192,13 +190,22 @@ export const boardStore = {
             }
         },
         updateColsOrder({ commit }, { value }) {
+            console.log(value, 'updateColsOrder')
             commit({ type: 'updateColsOrder', value2: value })
 
         },
-        updateRowsOrder({ commit }, { value, idx }) {
+        async updateRowsOrder({ commit, state }, { value, idx }) {
+            let group = state.board.groups[idx]
+            // console.log(value)
+            // let data = {}
+            // data.tasks = value
+
             commit({ type: 'updateRowsOrder', value, idx })
+            await boardService.saveGroupsRows(group, state.board._id, value)
+
         },
         updateBoardOrderList({ commit, state }, { value }) {
+            console.log(value, 'updateBoardOrderList')
             boardService.saveGroups(value, state.board._id)
             commit({ type: 'updateBoardOrderList', value })
         },
