@@ -175,12 +175,12 @@ async function getTaskById(boardId, taskId) {
 }
 
 
-async function saveGroupsRows(savedGroup, boardId) {
+async function saveGroupsRows(idx, boardId, value) {
   const board = await storageService.get(BOARD_KEY, boardId)
-  let groupToEdit = board.groups.find((g) => g.id === savedGroup.id)
-  console.log(groupToEdit)
-  storageService.put(BOARD_KEY, board)
-  return groupToEdit
+  console.log(idx)
+  board.groups[idx].tasks = value
+  await storageService.put(BOARD_KEY, board)
+  return value
 
 }
 

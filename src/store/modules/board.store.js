@@ -57,8 +57,8 @@ export const boardStore = {
         updateColsOrder(state, { value2 }) {
             state.board.colsOrder = value2
         },
-        updateRowsOrder(state, { value, idx }) {
-            state.board.groups[idx].tasks = value
+        updateRowsOrder(state, { savedTasks, idx }) {
+            state.board.groups[idx].tasks = savedTasks
         },
         updateBoardOrderList(state, { value }) {
             console.log(value)
@@ -196,12 +196,11 @@ export const boardStore = {
         },
         async updateRowsOrder({ commit, state }, { value, idx }) {
             let group = state.board.groups[idx]
-            // console.log(value)
-            // let data = {}
-            // data.tasks = value
+            console.log(group)
 
-            commit({ type: 'updateRowsOrder', value, idx })
-            await boardService.saveGroupsRows(group, state.board._id, value)
+            const savedTasks = await boardService.saveGroupsRows(idx, state.board._id, value)
+            commit({ type: 'updateRowsOrder', savedTasks, idx })
+            console.log(savedTasks)
 
         },
         updateBoardOrderList({ commit, state }, { value }) {
