@@ -28,6 +28,10 @@ export default {
     methods: {
 
     },
+    destroyed() {
+        let elWidth = this.$refs.groupRowFooter.clientWidth
+        this.$emit('groupRowFooter', elWidth)
+    },
     watch() {
         // this.$ref.groupRowFooter(val){
         //     console.log(val)

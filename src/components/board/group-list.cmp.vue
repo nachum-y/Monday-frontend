@@ -44,7 +44,7 @@
 
         </div>
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
-            :item-key="key => key" v-bind:style="{ width: groupRowFooterWidth }" :dragClass="'drag-group'"
+            :item-key="key => key" v-bind:style="{ 'min-width': groupRowFooterWidth }" :dragClass="'drag-group'"
             :ghostClass="'ghost-group'">
 
             <template #item="{ element }">

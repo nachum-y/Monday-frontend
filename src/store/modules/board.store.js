@@ -8,12 +8,31 @@ export const boardStore = {
         filtersTasks: {
             all: (board) => board,
             txt: (board, input = '') => {
-                let result = { ...board }
+                // board.groups.map((g) => console.log(g))
+                let fillter = {}
+                // fillter.push(board)
 
-                console.log(result)
-                console.log(board)
+                // filter((t) => input.test(t.cols[0].value)))
+                // input.test(g.tasks.cols[0].value)
 
 
+                for (let key in board) {
+                    // fillter[key]
+                    fillter[key] = (board[key])
+
+                }
+
+                let res = fillter.groups.map((g) => g)
+                let resb = new Array(res)
+                console.log(resb)
+                let resu = res.map((t) => t.tasks.filter((ts) => input.test(ts.cols[0].value)))
+                for (let index = 0; index < resu.length; index++) {
+                    console.log(resu[index])
+                    console.log(resb[0][index])
+                    // resb[0][index].tasks = resu[index]
+                    console.log(resb[index].tasks)
+                }
+               
             }
         },
         activeFilter: 'all',
@@ -66,12 +85,8 @@ export const boardStore = {
     },
     getters: {
         board({ filtersTasks, activeFilter, board, activeFilterVal }) {
-            // console.log(activeFilterVal)
-            // console.log('activeFilterVal[activeFilter]:', activeFilterVal[activeFilter])
-            // return filtersTasks[activeFilter](board)
             console.log(filtersTasks[activeFilter](board, activeFilterVal[activeFilter]))
             // return filtersTasks[activeFilter](board, activeFilterVal[activeFilter])
-            // return newBoard
             return board
 
         },
