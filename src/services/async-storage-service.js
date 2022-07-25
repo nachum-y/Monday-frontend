@@ -64,7 +64,7 @@ function _createDefaultBoard(entityType) {
       fullname: "Shiran Abir",
       imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
     },
-    labels:[{title:'label 1', color: '#9aadbb',id:'l101'},{title:'label 2', color: '#0086c0',id:'l102'},{title:'label 3', color: '#9d99b9',id:'l103'},{title:'defult', color: '#d1d1d1',id:'lDefault'}],
+    labels:[{title:'label 1', color: '#9aadbb',id:'l101'},{title:'label 2', color: '#0086c0',id:'l102'},{title:'label 3', color: '#9d99b9',id:'l103'},{title:'', color: '#d1d1d1',id:'lDefault'}],
     members: [
       {
         id: "m101",

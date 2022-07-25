@@ -99,6 +99,7 @@ async function updateTask(data, boardId){
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task=>task.id === taskId)
   const colIdx = board.groups[groupIdx].tasks[taskIdx].cols.findIndex(col=>col.type === newCol.type)
   board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
+  storageService.put(BOARD_KEY, board)
   return {groupIdx,taskIdx,colIdx}
   
   }
@@ -116,6 +117,7 @@ function _getEmptyTask(colOrder, title) {
   colOrder.forEach(col => {
     let emptyCol = { type: col.type, value: null }
     if (col.type === 'item') emptyCol.value = title
+    if (col.type === 'labelCmp') emptyCol.value = 'lDefault'
     if (col.type === 'creationLog') emptyCol.value = Date()
     cols.push(emptyCol)
   })
