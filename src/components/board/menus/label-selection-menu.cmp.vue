@@ -1,7 +1,7 @@
 <template>
     <!-- v-bind:style="{ 'min-width': groupRowFooterWidth }" -->
-    <section v-if="labels" class="group-header-actions-menu" :style="postionModal">
-        <div v-for="label in labels" :key="label.id" @click="selectLabel(label.id)" >{{label.title}}</div>
+    <section v-if="labels" class="group-labels-actions-menu">
+        <div v-for="label in labels" :key="label.id" @click="selectLabel(label.id)">{{ label.title }}</div>
     </section>
 </template>
 <script>
@@ -25,9 +25,9 @@ export default {
             this.cordsX = evt.pageX
             this.cordsY = evt.pageY
         },
-        selectLabel(labelId){
+        selectLabel(labelId) {
             console.log(labelId)
-            this.$emit('changeLabel',labelId)
+            this.$emit('changeLabel', labelId)
         },
     },
     computed: {
@@ -57,11 +57,16 @@ export default {
     position: absolute;
     left: 0;
     top: 30px;
-    opacity: 1 !important;
     z-index: 100;
     background-color: #fff;
-    opacity: 1;
+    opacity: 1 !important;
     color: #000;
+}
+
+.group-labels-actions-menu:hover {
+    z-index: 100;
+    background-color: #fff;
+    opacity: 1 !important;
 }
 
 .right-click-actions-menu {
