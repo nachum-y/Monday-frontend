@@ -1,10 +1,10 @@
 <template>
-    <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label task-lighten" :style="setLabelStyle"
+    <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label task-lighten"
         @click="showLabelsMenu($event, labels)">
         {{ labelToDisplay }}
         <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
             :labels="showLabelMenuOption.labels" :pos="showLabelMenuOption.posModal"
-            @changeLabel="changeLabel">
+            @deleteGroup="removeGroup(group.id)" @duplicateGroup="duplicateGroup(group)">
         </label-selection-menu>
     </div>
     <!-- <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
@@ -15,18 +15,17 @@
 <script>
 import labelSelectionMenu from '../menus/label-selection-menu.cmp.vue'
 export default {
-    emits:['updateTask'],
     name: ['labelCmp'],
     props: {
         task: Object,
         labels: Array,
-        taskId: String
     },
     data() {
         return {
             isEdited: false,
             showLabelMenuOption: null,
-            showLabelMenuOptionLeft: 0
+            showLabelMenuOptionLeft: 0,
+            hover: false
         }
     },
     computed: {
@@ -38,8 +37,34 @@ export default {
         setLabelStyle() {
             let labelId = this.task.value
             let label = this.labels.filter(label => label.id === labelId)[0]
+            console.log(label.color)
             return { backgroundColor: label.color }
-        }
+        },
+        // setLabelStyleHover() {
+
+        //     let labelId = this.task.value
+        //     let label = this.labels.filter(label => label.id === labelId)[0]
+        //     let colorHex = label.color
+        //     let opacity = this.hover ? 0.6 : 1
+        //     // const convertHexToRGBA = (hexCode, opacity = 1) => 
+        //     let hex = colorHex.replace('#', '')
+        //     console.log(hex)
+        //     if (hex.length === 3) {
+        //         hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
+        //     }
+
+        //     const r = parseInt(hex.substring(0, 2), 16)
+        //     const g = parseInt(hex.substring(2, 4), 16)
+        //     const b = parseInt(hex.substring(4, 6), 16)
+
+        //     /* Backward compatibility for whole number based opacity values. */
+        //     if (opacity > 1 && opacity <= 100) {
+        //         opacity = opacity / 100
+        //     }
+
+        //     return `rgba(${r},${g},${b},${opacity})`
+
+        // },
     },
     methods: {
         showLabelsMenu(el, labels) {
@@ -51,12 +76,6 @@ export default {
         },
         closeActionsModal() {
             this.showLabelMenuOption = null
-        },
-        changeLabel(labelId){
-            console.log(labelId)
-            let newData = {action:'label',labelId,taskId:this.taskId}
-            console.log(newData)
-            this.$emit('updateTask',newData)
         },
     },
     mounted() {
