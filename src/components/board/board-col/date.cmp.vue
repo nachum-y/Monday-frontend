@@ -39,13 +39,22 @@ export default {
     },
     methods: {
         updateTask() {
-            console.log(this.taskTime)
-            let newCol = {type:this.task.type,value:this.taskTime}
-            let newData = {newCol,taskId:this.row.id,groupId:this.row.groupId}
-           
-            this.$emit('updateTask',newData)
+            let newCol = { type: this.task.type, value: this.taskTime }
+            let newData = { newCol, taskId: this.row.id, groupId: this.row.groupId }
+
+            this.$emit('updateTask', newData)
         }
     },
+    watch: {
+        task: {
+            handler: function (val) {
+                this.taskTime = val.value
+                console.log(this.taskTime)
+            },
+            deep: true,
+            immediate: true
+        }
+    }
 
 }
 </script>
