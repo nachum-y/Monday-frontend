@@ -99,6 +99,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    text-transform: capitalize;
 
                     &.fixed {
                         justify-content: flex-start;
@@ -212,7 +213,7 @@
         display: flex;
         border: solid white 1px 0px;
         height: 2.5rem;
-        width: 2.35rem;
+        width: 2.33rem;
         left: -2.7rem;
         top: -1px;
         align-items: center;
