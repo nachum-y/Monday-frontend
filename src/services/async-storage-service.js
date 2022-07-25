@@ -62,8 +62,9 @@ function _createDefaultBoard(entityType) {
     byMember: {
       id: "m101",
       fullname: "Shiran Abir",
-      imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+      imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
     },
+    labels:[{title:'label 1', color: '#9aadbb',id:'l101'},{title:'label 2', color: '#0086c0',id:'l102'},{title:'label 3', color: '#9d99b9',id:'l103'},{title:'defult', color: '#d1d1d1',id:'lDefault'}],
     members: [
       {
         id: "m101",
@@ -163,7 +164,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Must Do!", color: "rgb(154, 173, 189)" },
+                value: 'l101',
               },
             ]
           },
@@ -217,7 +218,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "rgb(0, 134, 192)" },
+                value: 'l101',
               },
             ]
           },
@@ -279,7 +280,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "rgb(0, 134, 192)" },
+                value: 'l102',
               },
             ]
           },
@@ -333,7 +334,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "rgb(0, 134, 192)" },
+                value: 'l103',
               },
             ]
           },
@@ -392,7 +393,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Services", color: "rgb(0, 134, 192)" },
+                value: 'l102',
               },
             ]
           },
@@ -458,7 +459,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "UI", color: "rgb(157, 153, 185)" },
+                value: 'l103',
               },
             ]
           },
@@ -507,7 +508,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "UI", color: "rgb(157, 153, 185)" },
+                value: 'l101',
               },
             ]
           },
@@ -569,7 +570,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "JS", color: "rgb(0, 134, 192)" },
+                value: 'l102',
               },
             ]
           },
@@ -618,7 +619,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Backend", color: "rgb(157, 153, 185)" },
+                value: 'l103',
               },
             ]
           },
@@ -672,7 +673,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "Backend", color: "rgb(157, 153, 185)" },
+                value: 'l102',
               },
               
             ]
@@ -722,7 +723,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "frontend", color: "rgb(154, 173, 189)" },
+                value: 'l101',
               },
               
             ]
@@ -772,7 +773,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: { title: "frontend", color: "rgb(154, 173, 189)" },
+                value: 'l103',
               },
               
             ]

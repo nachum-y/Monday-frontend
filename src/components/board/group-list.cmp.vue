@@ -54,7 +54,7 @@
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
-                    <group-row :group="element" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
+                    <group-row :group="element" :labels="board.labels" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
                         @toggleSelection="toggleSelection" @duplicateTask="duplicateTask" />
 
 
@@ -122,20 +122,18 @@ export default {
             newData: {},
             showGroupAction: false,
             isModalOpen: false,
-            // newTask:''
             selectedTasks: [],
             selectedGroups: [],
             controlOnStart: true,
             idx: 0,
             isCollapse: false,
             collapseGroups: [],
-            groupRowFooterWidth: 0
+            groupRowFooterWidth: 0,
 
         }
     },
     created() {
         this.board = this.$store.getters.board
-        console.log(this.board)
     },
     components: {
         draggable,

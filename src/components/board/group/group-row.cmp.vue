@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <component v-else :is="col.type" :task="taskForDisplay(element.cols, col.type)"
-                            :taskId="element.id">
+                            :taskId="element.id" :labels="labels">
                         </component>
                     </div>
                 </div>
@@ -54,6 +54,7 @@ export default {
         group: Object,
         colsOrder: Array,
         selectedTasks: Array,
+        labels:Array,
 
     },
     data() {
