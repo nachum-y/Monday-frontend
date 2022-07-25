@@ -11,6 +11,7 @@ import { shallowRef } from 'vue'
 import progressBar from '../../progress-bar.cmp.vue'
 
 export default {
+    emits:['updateTask'],
     name: ['date'],
     props: {
         task: Object,

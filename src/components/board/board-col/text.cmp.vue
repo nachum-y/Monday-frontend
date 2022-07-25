@@ -8,6 +8,7 @@
 </template>
 <script>
 export default {
+    emits:['updateTask'],
     name: ['textCmp'],
     props: {
         task: Object

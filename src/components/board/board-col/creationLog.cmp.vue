@@ -12,6 +12,7 @@
 </template>
 <script>
 export default {
+    emits:['updateTask'],
     name: ['creationLog'],
     props: {
         task: Object

@@ -9,6 +9,7 @@
 </template>
 <script>
 export default {
+    emits:['updateTask'],
     name: ['location'],
     props:{
         task:Object

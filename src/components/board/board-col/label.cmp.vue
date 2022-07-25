@@ -4,7 +4,7 @@
         {{ labelToDisplay }}
         <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
             :labels="showLabelMenuOption.labels" :pos="showLabelMenuOption.posModal"
-            @deleteGroup="removeGroup(group.id)" @duplicateGroup="duplicateGroup(group)">
+            @changeLabel="changeLabel">
         </label-selection-menu>
     </div>
     <!-- <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
@@ -15,10 +15,12 @@
 <script>
 import labelSelectionMenu from '../menus/label-selection-menu.cmp.vue'
 export default {
+    emits:['updateTask'],
     name: ['labelCmp'],
     props: {
         task: Object,
         labels: Array,
+        taskId: String
     },
     data() {
         return {
@@ -49,6 +51,12 @@ export default {
         },
         closeActionsModal() {
             this.showLabelMenuOption = null
+        },
+        changeLabel(labelId){
+            console.log(labelId)
+            let newData = {action:'label',labelId,taskId:this.taskId}
+            console.log(newData)
+            this.$emit('updateTask',newData)
         },
     },
     mounted() {
