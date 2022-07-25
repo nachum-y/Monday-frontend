@@ -58,7 +58,6 @@ export default {
   },
   methods: {
     updateBoardTitle(ev) {
-      console.log('update' + this.board.title)
       this.board.title = ev.target.value
       if (!ev.target.value) this.board.title = 'New Board'
     },

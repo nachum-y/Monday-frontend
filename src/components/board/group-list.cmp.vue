@@ -67,7 +67,7 @@
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
-                    <group-row :group="element" :labels="board.labels" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
+                    <group-row :group="element" :priority="board.priority" :status="board.status" :labels="board.labels" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
                         @toggleSelection="toggleSelection" @duplicateTask="duplicateTask" @updateTask="updateTask" />
 
 

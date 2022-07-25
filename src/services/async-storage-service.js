@@ -65,6 +65,8 @@ function _createDefaultBoard(entityType) {
       imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
     },
     labels:[{title:'label 1', color: '#9aadbb',id:'l101'},{title:'label 2', color: '#0086c0',id:'l102'},{title:'label 3', color: '#9d99b9',id:'l103'},{title:'', color: '#d1d1d1',id:'lDefault'}],
+    status:[{title:'Done', color: '#00c876',id:'s101'},{title:'Working on it', color: '#fdab3d',id:'s102'},{title:'Stuck', color: '#e2445c',id:'s103'},{title:'', color: '#d1d1d1',id:'sDefault'}],
+    priority:[{title:'Critical', color: '#333333',id:'p101'},{title:'High', color: '#401694',id:'p102'},{title:'Medium', color: '#5559df',id:'p103'},{title:'Low', color: '#579bfc',id:'p104'},{title:'', color: '#d1d1d1',id:'pDefault'}],
     members: [
       {
         id: "m101",
@@ -117,6 +119,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t101",
             groupId:"group_101",
+            isDone: true,
             cols: [
               {
                 type: "item",
@@ -143,12 +146,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "done",
-                isDone: true,
+                value: "s101",
               },
               {
                 type: "priority",
-                value: "critical",
+                value: "p101",
               },
               {
                 type: "date",
@@ -171,6 +173,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t102",
             groupId:"group_101",
+            isDone:true,
             cols: [
               {
                 type: "item",
@@ -197,12 +200,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "done",
-                isDone: true,
+                value: "s101",
               },
               {
                 type: "priority",
-                value: "high",
+                value: "p102",
               },
               {
                 type: "date",
@@ -233,6 +235,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t121",
             groupId : "group_102",
+            isDone:false,
             cols: [
               {
                 type: "item",
@@ -259,12 +262,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "stuck",
-                isDone: false,
+                value: "s103",
               },
               {
                 type: "priority",
-                value: "low",
+                value: "p104",
               },
               {
                 type: "date",
@@ -287,6 +289,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t122",
             groupId : "group_102",
+            isDone:false,
             cols: [
               {
                 type: "item",
@@ -313,12 +316,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "stuck",
-                isDone: false,
+                value: "s103",
               },
               {
                 type: "priority",
-                value: "low",
+                value: "p104",
               },
               {
                 type: "date",
@@ -341,6 +343,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t123",
             groupId:"group_102",
+            isDone:false,
             cols: [
               {
                 type: "item",
@@ -372,12 +375,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "working on it",
-                isDone: false,
+                value: "s102",
               },
               {
                 type: "priority",
-                value: "critical",
+                value: "p101",
               },
               {
                 type: "date",
@@ -407,6 +409,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t104",
             groupId:"group_103",
+            isDone:true,
             cols: [
               {
                 type: "item",
@@ -438,12 +441,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "done",
-                isDone: false,
+                value: "s101",
               },
               {
                 type: "priority",
-                value: "high",
+                value: "p102",
               },
               {
                 type: "date",
@@ -466,6 +468,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t105",
             groupId:"group_103",
+            isDone:false,
             cols: [
               {
                 type: "item",
@@ -487,12 +490,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "stuck",
-                isDone: false,
+                value: "s103",
               },
               {
                 type: "priority",
-                value: "medium",
+                value: "p103",
               },
               {
                 type: "date",
@@ -523,6 +525,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t106",
             groupId:"group_104",
+            isDone:true,
             cols: [
               {
                 type: "item",
@@ -549,12 +552,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "done",
-                isDone: true,
+                value: "s101",
               },
               {
                 type: "priority",
-                value: "critical",
+                value: "p101",
               },
               {
                 type: "date",
@@ -570,13 +572,14 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l102',
+                value: "l102",
               },
             ]
           },
           {
             id: "t107",
             groupId:"group_104",
+            isDone:false,
             cols: [
               {
                 type: "item",
@@ -598,12 +601,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "working on it",
-                isDone: false,
+                value: "s102",
               },
               {
                 type: "priority",
-                value: "high",
+                value: "p102",
               },
               {
                 type: "date",
@@ -625,7 +627,8 @@ function _createDefaultBoard(entityType) {
           },
           {
             id: "t108",
-            groupId:"group_104",
+            groupId:"group_104", 
+            isDone:false,
             cols: [
               {
                 type: "item",
@@ -652,12 +655,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "working on it",
-                isDone: false,
+                value: "s102",
               },
               {
                 type: "priority",
-                value: "medium",
+                value: "p103",
               },
               {
                 type: "date",
@@ -681,6 +683,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t109",
             groupId:"group_104",
+            isDone:true,
             cols: [
               {
                 type: "item",
@@ -702,12 +705,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "done",
-                isDone: true,
+                value: "s101",
               },
               {
                 type: "priority",
-                value: "critical",
+                value: "p101",
               },
               {
                 type: "date",
@@ -731,6 +733,7 @@ function _createDefaultBoard(entityType) {
           {
             id: "t110",
             groupId:"group_104",
+            isDone:false,
             cols: [
               {
                 type: "item",
@@ -752,12 +755,11 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "status",
-                value: "working on it",
-                isDone: false,
+                value: "s102",
               },
               {
                 type: "priority",
-                value: "critical",
+                value: "p101",
               },
               {
                 type: "date",

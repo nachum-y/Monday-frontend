@@ -100,16 +100,8 @@ async function updateTask(data, boardId) {
     const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
     const colIdx = board.groups[groupIdx].tasks[taskIdx].cols.findIndex(col => col.type === newCol.type)
     board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
+    storageService.put(BOARD_KEY, board)
     return { groupIdx, taskIdx, colIdx }
-
-    // const { groupId, taskId, newCol } = data
-    // let board = await _getBoardById(boardId)
-    // const groupIdx = board.groups.findIndex((group) => group.id === groupId)
-    // const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
-    // const colIdx = board.groups[groupIdx].tasks[taskIdx].cols.findIndex(col => col.type === newCol.type)
-    // board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
-    // storageService.put(BOARD_KEY, board)
-    // return { groupIdx, taskIdx, colIdx }
 
   }
   catch (error) {
@@ -126,6 +118,8 @@ function _getEmptyTask(colOrder, title) {
   colOrder.forEach(col => {
     let emptyCol = { type: col.type, value: null }
     if (col.type === 'item') emptyCol.value = title
+    if (col.type === 'priority') emptyCol.value = 'pDefault'
+    if (col.type === 'status') emptyCol.value = 'sDefault'
     if (col.type === 'labelCmp') emptyCol.value = 'lDefault'
     if (col.type === 'creationLog') emptyCol.value = Date()
     cols.push(emptyCol)

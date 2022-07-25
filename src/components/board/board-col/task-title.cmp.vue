@@ -1,11 +1,8 @@
 <template>
-    <div v-if="task" class="task-text">
-        <div class="icon-dapulse-addbtn"></div>
-        <div class="input-container">
+    <div v-if="task" class="item-title">
         <form @submit.prevent="updateTask">
-         <input v-model="text" class="location-input" type="text" :placeholder="textToDiaplay">    
-         </form>
-        </div>
+        <input v-model="title" class="location-input" type="text" :placeholder="titleToDiaplay">    
+        </form>
     </div>
 </template>
 <script>
@@ -19,21 +16,21 @@ export default {
 
     data() {
         return {
-            text: '',
+            title: '',
         }
     },
     computed: {
-        textToDiaplay(){
+        titleToDiaplay(){
             if (!this.task.value) return ''
             return this.task.value
         }
     },
     methods:{
         updateTask() {
-            let newCol = {type:this.task.type,value:this.text}
+            let newCol = {type:this.task.type,value:this.title}
             let newData = {newCol,taskId:this.row.id,groupId:this.row.groupId}
             this.$emit('updateTask',newData)
-            this.text = ''
+            this.title = ''
         }
     }
 }
