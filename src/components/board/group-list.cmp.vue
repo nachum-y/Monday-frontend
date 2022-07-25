@@ -253,12 +253,7 @@ export default {
             this.selectedGroups = []
         },
         duplicateTask(task) {
-            console.log(task)
-            let duplicatedTask = {}
-            duplicatedTask = { ...task }
-            delete duplicatedTask.id
-            console.log(duplicatedTask)
-            this.$store.dispatch({ type: 'saveTask', task: duplicatedTask })
+            this.$store.dispatch({ type: 'saveTask', task })
         },
         updateTask(data) {
             this.$store.dispatch({ type: 'updateTask', data })
