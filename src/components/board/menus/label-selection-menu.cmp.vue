@@ -1,97 +1,12 @@
 <template>
     <!-- v-bind:style="{ 'min-width': groupRowFooterWidth }" -->
     <section v-if="labels" class="group-header-actions-menu" :style="postionModal">
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-        <div>
-
-            h123hio123h21kl31kl23lk
-        </div>
-
-
+        <div v-for="label in labels" :key="label.id" @click="selectLabel(label.id)" >{{label.title}}</div>
     </section>
 </template>
 <script>
 export default {
-    emits: [],
+    emits: ['changeLabel'],
     props: {
         labels: Array,
         pos: Object
@@ -109,6 +24,10 @@ export default {
             console.log(evt)
             this.cordsX = evt.pageX
             this.cordsY = evt.pageY
+        },
+        selectLabel(labelId){
+            console.log(labelId)
+            this.$emit('changeLabel',labelId)
         },
     },
     computed: {

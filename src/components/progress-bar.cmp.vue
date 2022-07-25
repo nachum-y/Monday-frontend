@@ -19,7 +19,6 @@ export default {
         }
     },
     created() {
-        console.log(this.date)
 
     },
     computed: {

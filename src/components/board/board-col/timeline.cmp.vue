@@ -5,6 +5,7 @@
 </template>
 <script>
 export default {
+    emits:['updateTask'],
     name: ['timeline'],
     data() {
         return {

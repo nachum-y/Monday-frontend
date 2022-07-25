@@ -13,6 +13,7 @@
 </template>
 <script>
 export default {
+    emits:['updateTask'],
     name: ['priority'],
         props: {
         task: Object

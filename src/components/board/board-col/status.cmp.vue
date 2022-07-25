@@ -12,6 +12,7 @@
 </template>
 <script>
 export default {
+    emits:['updateTask'],
     name: ['status'],
     props: {
         task: Object
