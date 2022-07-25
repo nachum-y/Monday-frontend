@@ -1,7 +1,14 @@
 <template>
-    <div class="task-label task-lighten" :style="setLabelStyle">
-        {{labelToDisplay}}
-        <label-selection-menu v-if="showLabelMenu"/>
+    <div ref="labelCmpRef">
+        <div v-if="labels.length > 0" class="task-label task-lighten" :style="setLabelStyle"
+            @click="showLabelsMenu($event, labels)">
+            {{ labelToDisplay }}
+
+        </div>
+        <label-selection-menu v-click-outside="closeActionsModal" v-if="showLabelMenuOption"
+            :labels="showLabelMenuOption.labels" :pos="showLabelMenuOption.posModal"
+            @deleteGroup="removeGroup(group.id)" @duplicateGroup="duplicateGroup(group)">
+        </label-selection-menu>
     </div>
 </template>
 <script>
@@ -15,22 +22,45 @@ export default {
     data() {
         return {
             isEdited: false,
-            showLabelMenu: false,
+            showLabelMenuOption: null
         }
     },
-    computed:{
-        labelToDisplay(){
+    computed: {
+        labelToDisplay() {
             let labelId = this.task.value
-            let label = this.labels.filter(label=>label.id === labelId)[0]
-            return label.title  
+            let label = this.labels.filter(label => label.id === labelId)[0]
+            return label.title
         },
-        setLabelStyle(){
+        setLabelStyle() {
             let labelId = this.task.value
-            let label = this.labels.filter(label=>label.id === labelId)[0]
-            return {backgroundColor : label.color}
+            let label = this.labels.filter(label => label.id === labelId)[0]
+            return { backgroundColor: label.color }
         }
     },
-    components:{
+    methods: {
+        showLabelsMenu(el, labels) {
+            this.showLabelMenuOption = {}
+            console.log(el)
+            this.showLabelMenuOption.labels = labels
+            this.showLabelMenuOption.posModal = { eltop: el.layerY, left: el.clientX }
+        },
+        closeActionsModal() {
+            this.showLabelMenuOption = null
+        },
+    },
+    mounted() {
+        // this.showLabelMenuOption.width = this.$refs.labelCmpRef.clientWidth
+        console.log(this.$refs.labelCmpRef.clientWidth);
+        // let elWidth = this.$refs.groupRowFooter.clientWidth
+        // this.$emit('groupRowFooter', elWidth)
+    },
+    // methodes: {
+
+    //     closeActionsModal() {
+    //         this.showLabelMenuOption = null
+    //     },
+    // },
+    components: {
         labelSelectionMenu
     },
     // methodes:{

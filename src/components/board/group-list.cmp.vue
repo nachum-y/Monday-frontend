@@ -134,6 +134,7 @@ export default {
     },
     created() {
         this.board = this.$store.getters.board
+
     },
     components: {
         draggable,
