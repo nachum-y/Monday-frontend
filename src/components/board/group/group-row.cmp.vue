@@ -16,8 +16,7 @@
                                     :class="selectedTasks.includes(element.id) ? 'checkbox-selected' : 'checkbox'">
                                 </div>
                             </div>
-                            <div class="item-title">{{ element.cols[0].value }}
-                            </div>
+                            <task-title @updateTask="this.$emit('updateTask',$event)" :task="element.cols[0]" :row="element" />
                             <div class="item-conversation">
                                 <div class="conversation-icon"></div>
                                 <span class="item-conversation-count">0
@@ -25,7 +24,7 @@
                             </div>
                         </div>
                         <component @updateTask="this.$emit('updateTask',$event)" v-else :is="col.type" :task="taskForDisplay(element.cols, col.type)"
-                            :row="element" :labels="labels">
+                            :row="element" :labels="labels" :status="status" :priority="priority">
                         </component>
                     </div>
                 </div>
@@ -36,7 +35,7 @@
 </template>
 <script>
 import draggable from 'vuedraggable'
-
+import taskTitle from '../board-col/task-title.cmp.vue'
 import date from './../board-col/date.cmp.vue'
 import creationLog from './../board-col/creationLog.cmp.vue'
 import labelCmp from './../board-col/label.cmp.vue'
@@ -55,6 +54,8 @@ export default {
         colsOrder: Array,
         selectedTasks: Array,
         labels:Array,
+        status:Array,
+        priority: Array,
 
     },
     data() {
@@ -74,6 +75,8 @@ export default {
         status,
         textCmp,
         timeline,
+        taskTitle,
+        
     },
     methods: {
         changeIdx() {

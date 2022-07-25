@@ -15,7 +15,8 @@ export default {
     name: ['date'],
     props: {
         task: Object,
-        taskId: String
+        taskId: String,
+        row: Object,
     },
     data() {
         return {
@@ -38,7 +39,11 @@ export default {
     },
     methods: {
         updateTask() {
-
+            console.log(this.taskTime)
+            let newCol = {type:this.task.type,value:this.taskTime}
+            let newData = {newCol,taskId:this.row.id,groupId:this.row.groupId}
+           
+            this.$emit('updateTask',newData)
         }
     },
 

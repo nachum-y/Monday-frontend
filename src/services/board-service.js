@@ -89,8 +89,8 @@ async function addTask(title, groupId, boardId) {
   return task
 }
 
-async function updateTask(data, boardId){
 
+async function updateTask(data, boardId){
   try{
 
   const { groupId , taskId , newCol } = data
@@ -117,6 +117,8 @@ function _getEmptyTask(colOrder, title) {
   colOrder.forEach(col => {
     let emptyCol = { type: col.type, value: null }
     if (col.type === 'item') emptyCol.value = title
+    if (col.type === 'priority') emptyCol.value = 'pDefault'
+    if (col.type === 'status') emptyCol.value = 'sDefault'
     if (col.type === 'labelCmp') emptyCol.value = 'lDefault'
     if (col.type === 'creationLog') emptyCol.value = Date()
     cols.push(emptyCol)
