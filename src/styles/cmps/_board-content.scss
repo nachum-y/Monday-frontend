@@ -99,6 +99,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    text-transform: capitalize;
 
                     &.fixed {
                         justify-content: flex-start;
