@@ -1,6 +1,6 @@
 <template>
     <!-- v-bind:style="{ 'min-width': groupRowFooterWidth }" -->
-    <section v-if="labels" class="group-header-actions-menu" :style="postionModal">
+    <section v-if="labels" class="group-labels-actions-menu">
         <div>
 
             h123hio123h21kl31kl23lk
@@ -134,6 +134,17 @@ export default {
 
 </script>
 <style>
+.group-labels-actions-menu {
+    position: absolute;
+    left: 0;
+    top: 30px;
+    opacity: 1 !important;
+    z-index: 100;
+    background-color: #fff;
+    opacity: 1;
+    color: #000;
+}
+
 .right-click-actions-menu {
     width: 18rem;
     font-size: 0.875rem;
@@ -172,5 +183,12 @@ export default {
 .group-header-actions-menu {
     background-color: black;
     z-index: 10000000;
+}
+
+.group-labels-actions-menu {
+    position: absolute;
+    left: 0;
+    background-color: #fff;
+    opacity: 1;
 }
 </style>
