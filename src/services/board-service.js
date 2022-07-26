@@ -1,5 +1,8 @@
 import { storageService } from './async-storage-service.js'
 import { utilService } from './util.service.js'
+import { httpService } from './http.service'
+import axios from 'axios'
+
 const BOARD_KEY = 'BOARD_DB'
 
 export const boardService = {
@@ -22,9 +25,20 @@ export const boardService = {
 // _createBoards()
 query()
 
-function query() {
-  // storageService.query().then(console.log)
-  return storageService.query(BOARD_KEY)
+// async function query() {
+//   const res = await httpService.get('board')
+//   return res
+//   // return storageService.query(BOARD_KEY)
+
+// }
+
+
+async function query(boardId = '62dfda488f676e0cf3f29259') {
+  const res = await httpService.get('boards')
+  // const res = await httpService.get('board', boardId)
+  return res
+  // return storageService.query(BOARD_KEY)
+
 }
 
 function get(boardId) {
@@ -39,8 +53,9 @@ function getEmptyGroup() {
   })
 }
 
-async function saveGroup(group, boardId) {
-  const board = await storageService.get(BOARD_KEY, boardId)
+async function saveGroup(group, boardId = '62dfda488f676e0cf3f29259') {
+  // const board = await storageService.get(BOARD_KEY, boardId)
+  const board = await httpService.get(`boards/${boardId}`)
   if (group.id) {
     const idx = board.groups.findIndex((g) => g.id === group.id)
     board.groups.splice(idx, 1, group)
@@ -49,17 +64,17 @@ async function saveGroup(group, boardId) {
     group.id = utilService.makeId()
     board.groups.push(group)
   }
-  storageService.put(BOARD_KEY, board)
+  httpService.put(`boards/${boardId}`, board)
   return group
 }
 
 
 async function removeGroup(groupId, boardId) {
-  const board = await storageService.get(BOARD_KEY, boardId)
+  const board = await httpService.get(`boards/${boardId}`)
   if (board.groups.length === 1) throw new Error('Board has to have at least one group')
   const idx = board.groups.findIndex((g) => g.id === groupId)
   board.groups.splice(idx, 1)
-  storageService.put(BOARD_KEY, board)
+  await httpService.put(`boards/${boardId}`, board)
   return groupId
   // return get(bookId)
   //   .then(book => {
@@ -71,23 +86,24 @@ async function removeGroup(groupId, boardId) {
 
 
 async function updateGroup(groupId, data, boardId) {
-  const board = await storageService.get(BOARD_KEY, boardId)
+  let board = await _getBoardById(boardId)
   // if (board.groups.length === 1) throw new Error('Board has to have at least one group')
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   groupToEdit[Object.keys(data)[0]] = data[Object.keys(data)[0]]
   // board.groups.splice(idx, 1)
-  storageService.put(BOARD_KEY, board)
+  await httpService.put(`boards/${boardId}`, board)
   return groupToEdit
 }
 
 async function addTask(title, groupId, boardId) {
   let board = await _getBoardById(boardId)
+  console.log(board)
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   const colOrder = board.colsOrder
   let task = _getEmptyTask(colOrder, title)
   task.groupId = groupId
   groupToEdit.tasks.push(task)
-  storageService.put(BOARD_KEY, board)
+  await httpService.put(`boards/${boardId}`, board)
   return task
 }
 
@@ -101,7 +117,7 @@ async function updateTask(data, boardId) {
     const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
     const colIdx = board.groups[groupIdx].tasks[taskIdx].cols.findIndex(col => col.type === newCol.type)
     board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
-    storageService.put(BOARD_KEY, board)
+    await httpService.put(`boards/${boardId}`, board)
     return { groupIdx, taskIdx, colIdx }
 
   }
@@ -111,7 +127,9 @@ async function updateTask(data, boardId) {
 }
 
 async function _getBoardById(boardId) {
-  return await storageService.get(BOARD_KEY, boardId)
+  const board = await httpService.get(`boards/${boardId}`)
+  console.log(board)
+  return board
 }
 
 function _getEmptyTask(colOrder, title) {
@@ -134,27 +152,27 @@ async function removeTasks(idsToRemove, boardId) {
     // let groupToUpdate = board.groups.find(g => g.id === group.id)
     group.tasks = group.tasks.filter(task => !idsToRemove.includes(task.id))
   })
-  storageService.put(BOARD_KEY, board)
+  await httpService.put(`boards/${boardId}`, board)
   return board.groups
 }
 async function duplicateTasks(idsToDup, boardId) {
   let board = await _getBoardById(boardId)
   board.groups.forEach(group => {
     group.tasks.forEach((task) => {
-        if(idsToDup.includes(task.id)){
-          let newTask = JSON.parse(JSON.stringify(task))
-          newTask.cols[board.colsOrder.findIndex(col=>col.type === 'creationLog')].value = Date()
-          
-          newTask.id = utilService.makeId()
-          const idx = board.groups.findIndex(group => group.id === task.groupId)
-          board.groups[idx].tasks.push(newTask)
-          
-        }
-       
-    }) 
-     
+      if (idsToDup.includes(task.id)) {
+        let newTask = JSON.parse(JSON.stringify(task))
+        newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
+
+        newTask.id = utilService.makeId()
+        const idx = board.groups.findIndex(group => group.id === task.groupId)
+        board.groups[idx].tasks.push(newTask)
+
+      }
+
+    })
+
   })
-  storageService.put(BOARD_KEY, board)
+  await httpService.put(`boards/${boardId}`, board)
   return board.groups
 
 
@@ -162,7 +180,7 @@ async function duplicateTasks(idsToDup, boardId) {
 async function saveGroups(groups, boardId) {
   let board = await _getBoardById(boardId)
   board.groups = groups
-  storageService.put(BOARD_KEY, board)
+  await httpService.put(`boards/${boardId}`, board)
   return
 }
 
@@ -170,10 +188,10 @@ async function saveTask(task, boardId) {
   let newTask = JSON.parse(JSON.stringify(task))
   let board = await _getBoardById(boardId)
   newTask.id = utilService.makeId()
-  newTask.cols[board.colsOrder.findIndex(col=>col.type === 'creationLog')].value = Date()
+  newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
   const idx = board.groups.findIndex(group => group.id === task.groupId)
   board.groups[idx].tasks.push(newTask)
-  storageService.put(BOARD_KEY, board)
+  await httpService.put(`boards/${boardId}`, board)
   return newTask
 }
 
@@ -202,7 +220,7 @@ async function saveGroupsRows(groupId, boardId, value) {
   const board = await storageService.get(BOARD_KEY, boardId)
   const idx = board.groups.findIndex(group => group.id === groupId)
   board.groups[idx].tasks = newVal
-  storageService.put(BOARD_KEY, board)
+  await httpService.put(`boards/${boardId}`, board)
   return newVal
 
 }

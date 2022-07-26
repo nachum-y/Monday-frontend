@@ -1,5 +1,5 @@
 <template>
-  <div class="application-layers">
+  <div v-if="data" class="application-layers">
     <app-header />
     <div class="first-level">
       <action-side-nav @sideExpanded="isSideExpanded" />
@@ -16,7 +16,8 @@ import actionSideNav from './components/app-header/action-side-nav.cmp.vue'
 export default {
   data() {
     return {
-      isSideExpandedVal: false
+      isSideExpandedVal: false,
+      data: null,
     }
   },
   components: {
@@ -31,8 +32,10 @@ export default {
   computed: {
 
   },
-  created(){
-    this.$store.dispatch({ type: 'loadBoard' })
+  async created() {
+    const data = await this.$store.dispatch({ type: 'loadBoard' })
+    this.data = data
+
   },
 }
 </script>

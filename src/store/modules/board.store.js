@@ -62,7 +62,6 @@ export const boardStore = {
             state.board.groups[idx].tasks = savedTasks
         },
         updateBoardOrderList(state, { value }) {
-            // console.log(value)
             state.board.groups = value
         },
         updateGroups(state, { updatedGroups }) {
@@ -96,6 +95,7 @@ export const boardStore = {
     },
     getters: {
         board({ board }) {
+            if (!board) return
             return board
         },
         colsOrder({ board }) {
@@ -104,6 +104,7 @@ export const boardStore = {
 
         },
         rowOrder({ board, activeFilterParam }) {
+            if (!board) return
             let { groups } = board
             groups = groups.map((g) => {
                 let { tasks, color, title, id } = g
@@ -137,6 +138,7 @@ export const boardStore = {
         async loadBoard({ commit }) {
             const board = await boardService.query()
             commit({ type: 'setBoard', board })
+            return board
         },
 
         async saveGroup({ commit, state }, { group }) {
@@ -150,7 +152,6 @@ export const boardStore = {
         },
         async removeGroup({ commit, state }, { groupId }) {
             try {
-                console.log(groupId)
                 await boardService.removeGroup(groupId, state.board._id)
                 commit({ type: 'removeGroup', groupId })
             }
@@ -207,20 +208,17 @@ export const boardStore = {
             }
         },
         updateColsOrder({ commit }, { value }) {
-            // console.log(value, 'updateColsOrder')
             commit({ type: 'updateColsOrder', value2: value })
 
         },
         async updateRowsOrder({ commit, state }, { value, idx }) {
             let group = state.board.groups[idx]
-            // console.log(group)
 
             const savedTasks = await boardService.saveGroupsRows(group.id, state.board._id, value)
             commit({ type: 'updateRowsOrder', savedTasks, idx })
 
         },
         updateBoardOrderList({ commit, state }, { value }) {
-            // console.log(value, 'updateBoardOrderList')
             boardService.saveGroups(value, state.board._id)
             commit({ type: 'updateBoardOrderList', value })
         },
@@ -229,8 +227,6 @@ export const boardStore = {
             commit({ type: 'searchInput', inputTxt })
         },
         sortBy({ commit }, { filter, param }) {
-            // console.log(filter)
-            // console.log(param)
             commit({ type: 'setActiveFilter', filter, param })
 
         }
