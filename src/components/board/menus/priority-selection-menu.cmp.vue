@@ -1,7 +1,12 @@
 <template>
-    <section v-if="priority" class="group-labels-actions-menu">
-        <div v-for="p in priority" :key="p.id" @click="selectPriority(p.id)">{{ p.title }}</div>
-    </section>
+
+    <div class="status-picker-view" v-if="priority" :style="postionModal">
+        <div class="status-picker-view-title" :style="{ 'background-color': p.color }" v-for="p in priority" :key="p.id"
+            @click="selectPriority(p.id)">
+            <span class="task-label-display">{{ p.title }}</span>
+        </div>
+    </div>
+
 </template>
 <script>
 export default {
@@ -25,16 +30,27 @@ export default {
         },
         selectPriority(priorityId) {
             this.$emit('changePriority', priorityId)
+            // this.$emit('closeActionsModal')
         },
     },
     computed: {
         postionModal() {
-            let y = window.innerHeight
-            let x = window.clientWidth
-            const top = this.pos.eltop
-            const left = this.pos.left
-            if (this.pos.left + 300 > x) return `top:${top}px; left:${this.pos.left - 300}px;`
-            return `top:${top + 10}px; left:${this.pos.left - 10}px;`
+            let elWidth = this.pos.rect.width
+            let maxWidth = this.pos.left
+            let elRight = this.pos.rect.x
+            console.log(elRight)
+            console.log(elWidth)
+            const top = this.pos.rect.height
+            console.log(top)
+            const left = this.pos.rect.width / 4
+            console.log(this.pos)
+            console.log(this.pos.rect)
+            // return `top:${top}px; left:0px;`
+            if (elRight + 100 > maxWidth) {
+                console.log('heyyy')
+                return `top:${top}px; left:${(-elWidth / 2) + 16}px;`
+            }
+            return `top:${top}px; left:${(-elWidth / 8)}px;`
         }
     },
     created() {

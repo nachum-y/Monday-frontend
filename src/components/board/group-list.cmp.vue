@@ -45,16 +45,31 @@
         </div>
 
 
-        <div>
-            <span @click="sortBy('status', 'working on it')">
-                sort by status Working on it
-            </span>
-            <span @click="sortBy('status', 'stuck')">
-                sort by status Stuck
-            </span>
-            <span @click="sortBy('status', 'done')">
-                sort by status Done
-            </span>
+        <div class="filterRow">
+            <div v-for=" label in getLabels">
+                <span @click="sortBy('label', label.id)" class="btnFilter" v-bind:style="{ 'background-color': label.color }">
+                    {{ label.title }}
+                    {{ label.id }}
+                    {{ label.color }}
+                </span>
+
+            </div>
+            <div v-for=" status in getStatus">
+                <span @click="sortBy('status', status.id)" class="btnFilter"
+                    v-bind:style="{ 'background-color': status.color }">
+                    {{ status.title }}
+                    {{ status.id }}
+                    {{ status.color }}
+                </span>
+            </div>
+            <div v-for=" priority in getPriority">
+                <span @click="sortBy('priority', priority.id)" class="btnFilter" v-bind:style="{ 'background-color': priority.color }">
+                    {{ priority.title }}
+                    {{ priority.id }}
+                    {{ priority.color }}
+                </span>
+            </div>
+
         </div>
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
             :item-key="key => key" v-bind:style="{ 'min-width': groupRowFooterWidth }" :dragClass="'drag-group'"
@@ -67,8 +82,9 @@
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
-                    <group-row :group="element" :priority="board.priority" :status="board.status" :labels="board.labels" :colsOrder="board.colsOrder" :selectedTasks="selectedTasks"
-                        @toggleSelection="toggleSelection" @duplicateTask="duplicateTask" @updateTask="updateTask" />
+                    <group-row :group="element" :priority="board.priority" :status="board.status" :labels="board.labels"
+                        :colsOrder="board.colsOrder" :selectedTasks="selectedTasks" @toggleSelection="toggleSelection"
+                        @duplicateTask="duplicateTask" @updateTask="updateTask" />
 
 
 
@@ -246,7 +262,7 @@ export default {
         duplicateTask(task) {
             this.$store.dispatch({ type: 'saveTask', task })
         },
-        updateTask(data){
+        updateTask(data) {
             this.$store.dispatch({ type: 'updateTask', data })
         },
         pullFunction() {
@@ -321,12 +337,38 @@ export default {
             }
 
         },
+        getLabels() {
+            return this.$store.getters.getLabels
+        },
+        getStatus() {
+            return this.$store.getters.getStatus
+        },
+        getPriority() {
+            return this.$store.getters.getPriority
+        },
+        getMembers() {
+            return this.$store.getters.getMembers
+        },
     },
 
 }
 
 </script>
  <style>
+ .filterRow {
+     display: flex;
+     justify-content: space-evenly;
+     flex-direction: column;
+ }
+ 
+ 
+ .btnFilter {
+     color: #fff;
+     font-weight: 700;
+     cursor: pointer;
+     margin: 0.5rem;
+ }
+ 
  .btn {
      cursor: pointer;
  }

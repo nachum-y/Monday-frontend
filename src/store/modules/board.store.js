@@ -25,7 +25,8 @@ export const boardStore = {
             label: [],
             txt: '',
             person: [],
-            status: []
+            status: [],
+            priority: []
         },
         sortBy: {
             activeSort: 'date',
@@ -102,18 +103,15 @@ export const boardStore = {
             return board.colsOrder
 
         },
-        rowOrder({ filtersTasks, activeFilter, board, activeFilterVal, activeFilterParam }) {
-            let filterGroups = filtersTasks[activeFilter](board, activeFilterVal[activeFilter])
-            // let filterdGroup = filterGroups.filter((tasks) => {
-            //     return (activeFilterParam.txt.length === 0 || activeFilterParam.txt.test(tasks.name)) 
-            // })
-            // console.log(activeFilterParam)
+        rowOrder({ board, activeFilterParam }) {
             let { groups } = board
             groups = groups.map((g) => {
                 let { tasks, color, title, id } = g
                 tasks = tasks.filter((t) => {
                     return (!activeFilterParam.txt || activeFilterParam.txt.test(t.cols[0].value)) &&
                         (activeFilterParam.status.length === 0 || activeFilterParam.status.includes(t.cols[t.cols.findIndex((typ) => typ.type === 'status')].value))
+                        && (activeFilterParam.label.length === 0 || activeFilterParam.label.includes(t.cols[t.cols.findIndex((typ) => typ.type === 'labelCmp')].value))
+                        && (activeFilterParam.priority.length === 0 || activeFilterParam.priority.includes(t.cols[t.cols.findIndex((typ) => typ.type === 'priority')].value))
                 })
                 return ({ tasks, color, title, id })
             })
@@ -121,7 +119,19 @@ export const boardStore = {
             if (!board.groups) return
             return groups
         },
-
+        getLabels({ board }) {
+            if (!board.labels) return
+            return board.labels
+        },
+        getStatus({ board }) {
+            return board.status
+        },
+        getPriority({ board }) {
+            return board.priority
+        },
+        getMembers({ board }) {
+            return board.members
+        },
     },
     actions: {
         async loadBoard({ commit }) {
@@ -162,7 +172,6 @@ export const boardStore = {
             try {
                 const newTask = await boardService.saveTask(task, state.board._id)
                 const groupId = newTask.groupId
-                console.log(groupId)
                 commit({ type: 'addTask', groupId, newTask })
             }
             catch (err) {
@@ -208,9 +217,8 @@ export const boardStore = {
             let group = state.board.groups[idx]
             console.log(group)
 
-            const savedTasks = await boardService.saveGroupsRows(idx, state.board._id, value)
+            const savedTasks = await boardService.saveGroupsRows(group.id, state.board._id, value)
             commit({ type: 'updateRowsOrder', savedTasks, idx })
-            console.log(savedTasks)
 
         },
         updateBoardOrderList({ commit, state }, { value }) {
