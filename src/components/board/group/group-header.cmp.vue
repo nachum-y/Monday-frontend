@@ -2,7 +2,10 @@
     <div class="group-title-action handle" :class="{ 'isColapse': isColapse }">
 
         <div class="group-header-menu">
-            <div class="group-header-menu-icon" @click="openActionsModal($event, group)"></div>
+            <div class="group-header-menu-icon"  @click="openActionsModal($event, group)"></div>
+
+        </div>
+        <div class="background-hider">
 
         </div>
         <div class="group-header-border-color" :style="groupBgColor"></div>
@@ -17,7 +20,7 @@
         </h4>
 
         <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
-            :pos="showGroupAction.posModal" @deleteGroup="removeGroup(group.id)"
+            :pos="showGroupAction.posModal" @deleteGroup="removeGroup(group.id)" @collapseGroup="collapseGroup(group.id)"
             @duplicateGroup="duplicateGroup(group)">
         </dotsClickActionsMenu>
 
@@ -68,9 +71,9 @@ export default {
             this.$emit('editGroup', { val, groupId, type })
         },
         collapseGroup() {
-
             this.isColapse = !this.isColapse
             this.$emit('collapseGroup', this.group.id)
+            this.showGroupAction = null
         }
 
     },
@@ -88,9 +91,11 @@ export default {
 </script>
 <style>
 .group-title-action {
-    width: 200px;
+    width: 400px;
+    background-color: white;
     position: sticky;
     left:0rem;
+     
 }
 
 .group-header-title {
@@ -101,6 +106,8 @@ export default {
     font-size: 1.125rem;
     cursor: pointer;
     cursor: text;
+    height: 26px;
+    padding: 0px 4px;
 
 
 }
@@ -108,12 +115,24 @@ export default {
 .group-header-title:hover:not(:focus) {
     outline-offset: 2px;
     outline: 1px solid #d0d4e4;
-
+    border-radius: 4px;
+   
 }
 
+.background-hider{
+    width: 2.25rem;
+    height: 4.2rem;
+    box-shadow: none;
+    left: -2.3rem;
+    top: -2px;
+    position: absolute;
+    background-color: white;
+    display: none;
+}
 
 .group-header-title:focus {
     flex-grow: 1;
+    margin-right: 1rem;
 }
 
 .group-title-action {
