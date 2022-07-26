@@ -58,9 +58,10 @@ async function removeGroup(groupId, boardId) {
   const board = await storageService.get(BOARD_KEY, boardId)
   if (board.groups.length === 1) throw new Error('Board has to have at least one group')
   const idx = board.groups.findIndex((g) => g.id === groupId)
+  const groupName = board.groups[idx].title
   board.groups.splice(idx, 1)
   storageService.put(BOARD_KEY, board)
-  return groupId
+  return groupName
   // return get(bookId)
   //   .then(book => {
   //     const idx = book.reviews.findIndex(review => review.id === reviewId)
