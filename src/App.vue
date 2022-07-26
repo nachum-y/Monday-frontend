@@ -2,6 +2,7 @@
   <div class="application-layers">
     <app-header />
     <div class="first-level">
+      <user-msg/>
       <action-side-nav @sideExpanded="isSideExpanded" />
       <div class="first-level-content-wrapper" :class="isSideExpandedVal ? '-pinned' : '-unpinned'">
         <router-view />
@@ -13,6 +14,7 @@
 
 import appHeader from './components/app-header/app-header.cmp.vue'
 import actionSideNav from './components/app-header/action-side-nav.cmp.vue'
+import userMsg from './components/board/board-col/user-msg.cmp.vue'
 export default {
   data() {
     return {
@@ -22,6 +24,7 @@ export default {
   components: {
     appHeader,
     actionSideNav,
+    userMsg,
   },
   methods: {
     isSideExpanded(val) {
