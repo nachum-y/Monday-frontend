@@ -189,6 +189,16 @@ export const boardStore = {
                 console.log(err)
             }
         },
+        async duplicateTasks({ commit, state }, { tasksToDup }) {
+            try {
+                const updatedGroups = await boardService.duplicateTasks(tasksToDup, state.board._id)
+                console.log(updatedGroups);
+                commit({ type: 'updateGroups', updatedGroups })
+            }
+            catch (err) {
+                console.log(err)
+            }
+        },
         updateColsOrder({ commit }, { value }) {
             console.log(value, 'updateColsOrder')
             commit({ type: 'updateColsOrder', value2: value })
