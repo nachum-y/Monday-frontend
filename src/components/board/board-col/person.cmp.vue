@@ -4,10 +4,11 @@
             <div class="icon-dapulse-addbtn"></div>
             <div class="bullets-container">
                 <div v-for="(person, idx) in task.value" :key="person.id" class="person-bullet">
-                    <span>
-                        {{ personToDisplay(idx) }}
-                    </span>
+                    <img :src="userAvatar(idx)"/>
                 </div>
+            </div>
+            <div v-if="!task.value" class="person-bullet-container">   
+                <img src="https://cdn.monday.com/icons/dapulse-person-column.svg" class="person-bullet-default">
             </div>
             
         </div>
@@ -39,6 +40,9 @@ export default {
             let names = this.task.value[idx].fullname.split(" ")
             let personShort = names[0].slice(0, 1) + names[1].slice(0, 1)
             return personShort
+        },
+        userAvatar(idx){
+            return this.task.value[idx].imgUrl
         },
         showPersonMenu(el, person) {
             this.showPersonMenuOption = {}

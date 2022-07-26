@@ -5,6 +5,19 @@
     height: 100%;
     align-items: center;
 
+    .person-bullet-container{
+        width: 100%;
+        text-align: center;
+        line-height: 0.5rem;
+
+        .person-bullet-default{
+            width: 28px;
+            height: 28px;
+          
+        }
+    }
+    
+
     .icon-dapulse-addbtn:before {
         position: absolute;
         content: "\f128";
@@ -29,24 +42,17 @@
         display: flex;
 
         .person-bullet{
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #b63546;
-            border: 2px solid #f5f6f8;
-            margin: auto;
+            width: 26px;
+            height: 26px;
             position: relative;
             display: flex;
             margin: 0 -8px;
            
-            
-            span{
-                text-align: center;
-                color: #fff;
-                font-family: Roboto,Rubik,Noto Kufi Arabic,Noto Sans JP,sans-serif;
-                margin-left: 5px;
-                line-height: 1.8rem;
+            img{
+                border-radius: 50%;
+                border: #d0d4e4 2px solid;
             }
+        
         }
     }
 }

@@ -76,7 +76,7 @@ function _createDefaultBoard(entityType) {
         isAdmin: false,
         joinedAt: 1658291514565,
         lastSeen: 1658291514565,
-        imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
+        imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512",
         color: "#f5f5f5"
       },
       {
@@ -86,7 +86,7 @@ function _createDefaultBoard(entityType) {
         isAdmin: true,
         joinedAt: 1658291514565,
         lastSeen: 1658291514565,
-        imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
+        imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512",
         color: "#f5f5f5"
       },
       {
@@ -96,7 +96,7 @@ function _createDefaultBoard(entityType) {
         isAdmin: false,
         joinedAt: 1658291514565,
         lastSeen: 1658291514565,
-        imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png",
+        imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512",
         color: "#f5f5f5"
       }
     ],
@@ -132,12 +132,12 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m101",
                     fullname: "Shiran Abir",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512"
                   },
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   },
                 ]
               },
@@ -186,12 +186,12 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m101",
                     fullname: "Shiran Abir",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512"
                   },
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   }
                 ]
               },
@@ -248,12 +248,12 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   },
                   {
                     id: "m103",
                     fullname: "Nachum Yosef",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
                   }
                 ]
               },
@@ -302,12 +302,12 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m101",
                     fullname: "Shiran Abir",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512"
                   },
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   }
                 ]
               },
@@ -356,17 +356,17 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m101",
                     fullname: "Shiran Abir",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512"
                   },
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   },
                   {
                     id: "m103",
                     fullname: "Nachum Yosef",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
                   }
                 ]
               },
@@ -422,17 +422,17 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m101",
                     fullname: "Shiran Abir",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512"
                   },
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   },
                   {
                     id: "m103",
                     fullname: "Nachum Yosef",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
                   }
                 ]
               },
@@ -481,7 +481,7 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   }
                 ]
               },
@@ -538,12 +538,12 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m101",
                     fullname: "Shiran Abir",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512"
                   },
                   {
                     id: "m103",
                     fullname: "Nachum Yosef",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
                   }
                 ]
               },
@@ -592,7 +592,7 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   }
                 ]
               },
@@ -641,12 +641,12 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m102",
                     fullname: "Meital Twito",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
                   },
                   {
                     id: "m103",
                     fullname: "Nachum Yosef",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
                   }
                 ]
               },
@@ -696,7 +696,7 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m103",
                     fullname: "Nachum Yosef",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
                   }
                 ]
               },
@@ -746,7 +746,7 @@ function _createDefaultBoard(entityType) {
                   {
                     id: "m101",
                     fullname: "Shiran Abir",
-                    imgUrl: "https://cdn1.monday.com/dapulse_default_photo.png"
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512"
                   }
                 ]
               },

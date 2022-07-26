@@ -123,6 +123,7 @@ function _getEmptyTask(colOrder, title) {
     if (col.type === 'status') emptyCol.value = 'sDefault'
     if (col.type === 'labelCmp') emptyCol.value = 'lDefault'
     if (col.type === 'creationLog') emptyCol.value = Date()
+    console.log(emptyCol)
     cols.push(emptyCol)
   })
   return { id: utilService.makeId(), cols }
