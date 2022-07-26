@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <component @updateTask="this.$emit('updateTask',$event)" v-else :is="col.type" :task="taskForDisplay(element.cols, col.type)"
-                            :row="element" :labels="labels" :status="status" :priority="priority">
+                            :row="element" :labels="labels" :status="status" :priority="priority" :boardMembers="boardMembers">
                         </component>
                     </div>
                 </div>
@@ -57,6 +57,7 @@ export default {
         labels:Array,
         status:Array,
         priority: Array,
+        boardMembers: Array,
 
     },
     data() {
