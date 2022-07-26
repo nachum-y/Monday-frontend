@@ -142,7 +142,9 @@ async function duplicateTasks(idsToDup, boardId) {
   board.groups.forEach(group => {
     group.tasks.forEach((task) => {
         if(idsToDup.includes(task.id)){
-          let newTask = JSON.parse(JSON.stringify(task));
+          let newTask = JSON.parse(JSON.stringify(task))
+          newTask.cols[board.colsOrder.findIndex(col=>col.type === 'creationLog')].value = Date()
+          
           newTask.id = utilService.makeId()
           const idx = board.groups.findIndex(group => group.id === task.groupId)
           board.groups[idx].tasks.push(newTask)
@@ -168,6 +170,7 @@ async function saveTask(task, boardId) {
   let newTask = JSON.parse(JSON.stringify(task))
   let board = await _getBoardById(boardId)
   newTask.id = utilService.makeId()
+  newTask.cols[board.colsOrder.findIndex(col=>col.type === 'creationLog')].value = Date()
   const idx = board.groups.findIndex(group => group.id === task.groupId)
   board.groups[idx].tasks.push(newTask)
   storageService.put(BOARD_KEY, board)
