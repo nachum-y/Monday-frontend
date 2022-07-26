@@ -1,11 +1,11 @@
 <template>
 
-    <div class="status-picker-view" v-if="boardMembers" :style="postionModal">
+    <div class="status-picker-view" >
         <!-- <div class="status-picker-view-title" v-for="m in boardMembers" :key="m.id"
             @click="selectPerson(m.id)">
             <span class="task-label-display">{{ m.name }}</span>
         </div> -->
-        hii
+        heyyy
     </div>
 
 </template>
@@ -13,8 +13,8 @@
 export default {
     emits: ['changeMembers'],
     props: {
-        boardMembers: Array,
-        taskMembers: Array,
+        // boardMembers: Array,
+        // taskMembers: Array,
         pos: Object
     },
     data() {

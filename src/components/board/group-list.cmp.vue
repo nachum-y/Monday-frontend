@@ -470,7 +470,7 @@ export default {
      margin: 0;
      padding: 0;
      display: grid;
-     grid-template-columns: 300px 1fr;
+     grid-template-columns: 400px 1fr;
      align-self: flex-start;
      height: 100%;
      width: 100%;
