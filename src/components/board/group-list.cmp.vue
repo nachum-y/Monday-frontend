@@ -23,7 +23,7 @@
                     <div class="remove-tasks-title">Delete</div>
                 </div>
 
-                <div class="duplicate-tasks">
+                <div class="duplicate-tasks" @click="duplicateTasks">
                     <div class="duplicate-tasks-icon-holder">
                         <div class="duplicate-tasks-icon">
 
@@ -236,6 +236,13 @@ export default {
             this.selectedTasks = []
             this.selectedGroups = []
         },
+        duplicateTasks() {
+            const tasksToDup = this.selectedTasks
+            this.$store.dispatch({ type: 'duplicateTasks', tasksToDup })
+            this.selectedTasks = []
+            this.selectedGroups = []
+        },
+
         duplicateTask(task) {
             this.$store.dispatch({ type: 'saveTask', task })
         },
