@@ -2,6 +2,7 @@
   <div v-if="data" class="application-layers">
     <app-header />
     <div class="first-level">
+     
       <action-side-nav @sideExpanded="isSideExpanded" />
       <div class="first-level-content-wrapper" :class="isSideExpandedVal ? '-pinned' : '-unpinned'">
         <router-view />
@@ -13,6 +14,7 @@
 
 import appHeader from './components/app-header/app-header.cmp.vue'
 import actionSideNav from './components/app-header/action-side-nav.cmp.vue'
+
 export default {
   data() {
     return {
@@ -23,6 +25,7 @@ export default {
   components: {
     appHeader,
     actionSideNav,
+    
   },
   methods: {
     isSideExpanded(val) {

@@ -73,6 +73,7 @@ async function removeGroup(groupId, boardId) {
   const board = await httpService.get(`boards/${boardId}`)
   if (board.groups.length === 1) throw new Error('Board has to have at least one group')
   const idx = board.groups.findIndex((g) => g.id === groupId)
+  const groupName = board.groups[idx].title
   board.groups.splice(idx, 1)
   await httpService.put(`boards/${boardId}`, board)
   return groupId
@@ -141,6 +142,7 @@ function _getEmptyTask(colOrder, title) {
     if (col.type === 'status') emptyCol.value = 'sDefault'
     if (col.type === 'labelCmp') emptyCol.value = 'lDefault'
     if (col.type === 'creationLog') emptyCol.value = Date()
+    console.log(emptyCol)
     cols.push(emptyCol)
   })
   return { id: utilService.makeId(), cols }

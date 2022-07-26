@@ -1,19 +1,21 @@
 <template>
-    <div ref="personCmpRef" :class="'task-' + task.type" class="task-label">
-        <div @click="showPersonMenu($event)" class="task-label-display">
-            <div class="icon-dapulse-1addbtn"></div>
-            <div class="bu1ets-container">
-                <div v-for="(person, idx) in task.value" :key="person.id" class="person-1bullet">
-                    <span>
-                        {{ personToDisplay(idx) }}
-                    </span>
+    <div ref="personCmpRef" :class="'task-' + task.type" class="person-cell">
+        <div @click="showPersonMenu($event)" style="width: 100%;" class="task-person">
+            <div class="icon-dapulse-addbtn"></div>
+            <div class="bullets-container">
+                <div v-for="(person, idx) in task.value" :key="person.id" class="person-bullet">
+                    <img :src="userAvatar(idx)"/>
                 </div>
             </div>
-            <person-selection-menu v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
+            <div v-if="!task.value" class="person-bullet-container">   
+                <img src="https://cdn.monday.com/icons/dapulse-person-column.svg" class="person-bullet-default">
+            </div>
+            
+        </div>
+        <person-selection-menu v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
                 :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal" @changePerson="togglePerson"
                 :boardMembers="boardMembers">
-            </person-selection-menu>
-        </div>
+        </person-selection-menu>
     </div>
 </template>
 <script>
@@ -38,6 +40,9 @@ export default {
             let names = this.task.value[idx].fullname.split(" ")
             let personShort = names[0].slice(0, 1) + names[1].slice(0, 1)
             return personShort
+        },
+        userAvatar(idx){
+            return this.task.value[idx].imgUrl
         },
         showPersonMenu(el, person) {
             this.showPersonMenuOption = {}
@@ -65,4 +70,7 @@ export default {
 }
 </script>
 <style>
+    .person-cell{
+        position: relative;
+    }
 </style>
