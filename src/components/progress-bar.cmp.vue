@@ -33,7 +33,7 @@ export default {
     },
     watch: {
         date(val) {
-            console.log(val)
+            // console.log(val)
         }
     }
 }

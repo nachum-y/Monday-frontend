@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         searchInput(val) {
-            console.log(val)
+            // console.log(val)
         }
     },
 }

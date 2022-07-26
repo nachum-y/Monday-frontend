@@ -103,7 +103,7 @@ import { ref } from 'vue'
 
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
-  console.log(key, keyPath)
+  // console.log(key, keyPath)
 }
 </script>
 <script>

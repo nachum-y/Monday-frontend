@@ -21,9 +21,9 @@ app.directive('click-outside', {
                     clientY < top + height)
             ) {
                 cb()
-                console.log('outside')
+                // console.log('outside')
             } else {
-                console.log('inside')
+                // console.log('inside')
             }
         }
         setTimeout(() => {
@@ -56,4 +56,4 @@ app.use(router)
 app.use(store)
 app.use(ElementPlus)
 app.mount('#app')
-console.log(app)
+// console.log(app)

@@ -37,16 +37,16 @@ export default {
             let elWidth = this.pos.rect.width
             let maxWidth = this.pos.left
             let elRight = this.pos.rect.x
-            console.log(elRight)
-            console.log(elWidth)
+            // console.log(elRight)
+            // console.log(elWidth)
             const top = this.pos.rect.height
-            console.log(top)
+            // console.log(top)
             const left = this.pos.rect.width / 4
-            console.log(this.pos)
-            console.log(this.pos.rect)
+            // console.log(this.pos)
+            // console.log(this.pos.rect)
             // return `top:${top}px; left:0px;`
             if (elRight + 100 > maxWidth) {
-                console.log('heyyy');
+                // console.log('heyyy');
                 return `top:${top}px; left:${(-elWidth / 2) + 16}px;`
             }
             return `top:${top}px; left:${(-elWidth/8)}px;`

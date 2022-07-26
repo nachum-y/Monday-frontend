@@ -10,9 +10,9 @@ export const clickOutsideDirective = {
                     clientY < top + height)
             ) {
                 cb()
-                console.log('outside')
+                // console.log('outside')
             } else {
-                console.log('inside')
+                // console.log('inside')
             }
         }
         setTimeout(() => {
@@ -26,7 +26,7 @@ export const clickOutsideDirective = {
 
 export const close = {
     mounted(el, { value }, x) {
-        console.log(x)
+        // console.log(x)
         el.onkeyup = () => {
             const color = _getRandomColor()
             el.style.backgroundColor = color

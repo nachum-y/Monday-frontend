@@ -62,7 +62,7 @@ export const boardStore = {
             state.board.groups[idx].tasks = savedTasks
         },
         updateBoardOrderList(state, { value }) {
-            console.log(value)
+            // console.log(value)
             state.board.groups = value
         },
         updateGroups(state, { updatedGroups }) {
@@ -145,7 +145,6 @@ export const boardStore = {
             commit({ type: actionType, group: savedGroup })
         },
         async updateGroup({ commit, state }, { groupId, data }) {
-            console.log(data)
             commit({ type: 'updateGroup', groupId, data })
             const savedGroup = await boardService.updateGroup(groupId, data, state.board._id)
         },
@@ -201,7 +200,6 @@ export const boardStore = {
         async duplicateTasks({ commit, state }, { tasksToDup }) {
             try {
                 const updatedGroups = await boardService.duplicateTasks(tasksToDup, state.board._id)
-                console.log(updatedGroups);
                 commit({ type: 'updateGroups', updatedGroups })
             }
             catch (err) {
@@ -209,20 +207,20 @@ export const boardStore = {
             }
         },
         updateColsOrder({ commit }, { value }) {
-            console.log(value, 'updateColsOrder')
+            // console.log(value, 'updateColsOrder')
             commit({ type: 'updateColsOrder', value2: value })
 
         },
         async updateRowsOrder({ commit, state }, { value, idx }) {
             let group = state.board.groups[idx]
-            console.log(group)
+            // console.log(group)
 
             const savedTasks = await boardService.saveGroupsRows(group.id, state.board._id, value)
             commit({ type: 'updateRowsOrder', savedTasks, idx })
 
         },
         updateBoardOrderList({ commit, state }, { value }) {
-            console.log(value, 'updateBoardOrderList')
+            // console.log(value, 'updateBoardOrderList')
             boardService.saveGroups(value, state.board._id)
             commit({ type: 'updateBoardOrderList', value })
         },
@@ -231,8 +229,8 @@ export const boardStore = {
             commit({ type: 'searchInput', inputTxt })
         },
         sortBy({ commit }, { filter, param }) {
-            console.log(filter)
-            console.log(param)
+            // console.log(filter)
+            // console.log(param)
             commit({ type: 'setActiveFilter', filter, param })
 
         }

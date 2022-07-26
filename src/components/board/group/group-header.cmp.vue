@@ -58,7 +58,7 @@ export default {
 
         },
         duplicateGroup(group) {
-            console.log(group)
+            // console.log(group)
             this.$emit('duplicateGroup', group)
         },
         removeGroup(groupId) {

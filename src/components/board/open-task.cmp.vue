@@ -62,8 +62,8 @@ export default {
     created() {
         const boardId = this.$route.params.boardId
         const taskId = this.$route.params.taskId
-        console.log(boardId)
-        console.log(taskId)
+        // console.log(boardId)
+        // console.log(taskId)
         // boardService.getTaskById(boardId, taskId)
 
     }

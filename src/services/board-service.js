@@ -130,7 +130,6 @@ function _getEmptyTask(colOrder, title) {
 
 async function removeTasks(idsToRemove, boardId) {
   let board = await _getBoardById(boardId)
-  console.log(board.groups);
   board.groups.map(group => {
     // let groupToUpdate = board.groups.find(g => g.id === group.id)
     group.tasks = group.tasks.filter(task => !idsToRemove.includes(task.id))
@@ -140,13 +139,11 @@ async function removeTasks(idsToRemove, boardId) {
 }
 async function duplicateTasks(idsToDup, boardId) {
   let board = await _getBoardById(boardId)
-  console.log(board.groups)
   board.groups.forEach(group => {
     group.tasks.forEach((task) => {
         if(idsToDup.includes(task.id)){
           let newTask = JSON.parse(JSON.stringify(task));
           newTask.id = utilService.makeId()
-          
           const idx = board.groups.findIndex(group => group.id === task.groupId)
           board.groups[idx].tasks.push(newTask)
           

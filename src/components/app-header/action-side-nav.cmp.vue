@@ -106,7 +106,7 @@ export default {
   },
   watch: {
     sideNavisExpanded(val) {
-      console.log(1)
+      // console.log(1)
       this.$emit('sideExpanded', val)
     }
   }

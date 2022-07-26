@@ -200,7 +200,7 @@ export default {
             this.groupToEdit = boardService.getEmptyGroup()
         },
         editGroup(EditVal) {
-            console.log(EditVal)
+            // console.log(EditVal)
             this.newData[EditVal.type] = EditVal.val
             this.$store.dispatch({ type: 'updateGroup', groupId: EditVal.groupId, data: this.newData })
             this.newData = {}
@@ -275,18 +275,18 @@ export default {
             this.controlOnStart = originalEvent.ctrlKey
         },
         changeIdx(ev, id) {
-            console.log(ev)
+            // console.log(ev)
 
             let idx = this.board.groups.findIndex((g) => g.id === ev.id)
             if (idx !== -1) return idx
 
         },
         collapseGroup(groupId) {
-            console.log(groupId)
+            // console.log(groupId)
             const idx = this.collapseGroups.findIndex(id => id === groupId)
             if (idx === -1) this.collapseGroups.push(groupId)
             else this.collapseGroups.splice(idx, 1)
-            console.log(this.collapseGroups)
+            // console.log(this.collapseGroups)
         },
         groupRowFooter(elWidth) {
             // this.groupRowFooterWidth = elWidth
@@ -303,7 +303,6 @@ export default {
         groupRowFooterWidthCalc() {
             // groupRowFooter
             return 'width"123px'
-            console.log()
         },
         getHeaderOrder() {
             // console.log('board.colsOrder:', board.colsOrder)
@@ -332,7 +331,7 @@ export default {
                 // [this.idx].tasks
             },
             set(value) {
-                console.log(value)
+                // console.log(value)
                 this.$store.dispatch('updateRowsOrder', { value })
             }
 

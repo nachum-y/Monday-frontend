@@ -42,7 +42,7 @@ export default {
             let hex = this.group.color.substring(1).match(/.{1,2}/g) 
             let rgb = [parseInt(hex[0], 16), parseInt(hex[1], 16), parseInt(hex[2], 16)]
             let rgba = `rgba(${rgb[0]},${rgb[1]},${rgb[2]}, 0.3)`
-            console.log(rgba);
+            // console.log(rgba);
             return  {backgroundColor: rgba}
         }
     }

@@ -97,17 +97,17 @@ export default {
             this.$emit('duplicateTask', task)
         },
         start(evt) {
-            console.log(evt.from)
+            // console.log(evt.from)
             let groupId = this.group.id
-            console.log(groupId)
+            // console.log(groupId)
         },
         end(evt) {
-            console.log(' evt.to:', evt.to)
+            // console.log(' evt.to:', evt.to)
              let groupId = this.group.id
-            console.log(groupId)
+            // console.log(groupId)
         },
         remove(ev) {
-            console.log(ev)
+            // console.log(ev)
 
         }
 
@@ -122,7 +122,7 @@ export default {
             set(value) {
                 let groups = this.$store.getters.rowOrder
                 let idx = groups.findIndex((g) => g.id === this.group.id)
-                console.log(idx)
+                // console.log(idx)
 
                 this.$store.dispatch('updateRowsOrder', { value, idx })
             }
