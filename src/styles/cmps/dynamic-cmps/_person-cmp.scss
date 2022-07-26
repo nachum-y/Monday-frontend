@@ -16,6 +16,12 @@
         width: 12px;
         height: 12px;
         box-sizing: border-box;
+        opacity: 0;
+    }
+    &:hover{
+        .icon-dapulse-addbtn:before{
+            opacity: 1;
+        }
     }
 
     .bullets-container{

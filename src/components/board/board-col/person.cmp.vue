@@ -1,19 +1,20 @@
 <template>
-    <div ref="personCmpRef" :class="'task-' + task.type" class="task-label">
-        <div @click="showPersonMenu($event)" class="task-label-display">
-            <div class="icon-dapulse-1addbtn"></div>
-            <div class="bu1ets-container">
-                <div v-for="(person, idx) in task.value" :key="person.id" class="person-1bullet">
+    <div ref="personCmpRef" :class="'task-' + task.type" class="person-cell">
+        <div @click="showPersonMenu($event)" style="width: 100%;" class="task-person">
+            <div class="icon-dapulse-addbtn"></div>
+            <div class="bullets-container">
+                <div v-for="(person, idx) in task.value" :key="person.id" class="person-bullet">
                     <span>
                         {{ personToDisplay(idx) }}
                     </span>
                 </div>
             </div>
-            <person-selection-menu v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
+            
+        </div>
+        <person-selection-menu v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
                 :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal" @changePerson="togglePerson"
                 :boardMembers="boardMembers">
-            </person-selection-menu>
-        </div>
+        </person-selection-menu>
     </div>
 </template>
 <script>
@@ -65,4 +66,7 @@ export default {
 }
 </script>
 <style>
+    .person-cell{
+        position: relative;
+    }
 </style>
