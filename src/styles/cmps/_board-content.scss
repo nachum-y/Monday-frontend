@@ -33,13 +33,26 @@
             }
 
         }
-
+        .group-header-menu{
+            display: none;
+        }
         .row-menu {
             display: none;
         }
 
         .group-header-border-color {
             display: block;
+        }
+        .background-hider{
+            display: block;
+        }
+        .group-title-action{
+            border-inline-end:1px solid #d0d4e4;
+        }
+        .footer-col{
+            &:nth-of-type(1){
+                border: none;
+            }
         }
     }
 }

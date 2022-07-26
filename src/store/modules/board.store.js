@@ -166,11 +166,10 @@ export const boardStore = {
                 const groupName = await boardService.removeGroup(groupId, state.board._id)
                 commit({ type: 'removeGroup', groupId })
                 let msg = `${groupName} group was successfully deleted.`
-                let msgType = 'success'
-                commit({type:'showUsrMsg', msgType, msg})
+                commit({type:'showUsrMsg', msgType:'success', msg})
             }
             catch (err) {
-                console.log(err)
+                commit({type:'showUsrMsg', msgType:'error', msg:err})
             }
         },
         async addTask({ commit, state }, { title, groupId }) {
@@ -208,18 +207,24 @@ export const boardStore = {
             try {
                 const updatedGroups = await boardService.removeTasks(tasksToRemove, state.board._id)
                 commit({ type: 'updateGroups', updatedGroups })
+                let msg = ` We successfully deleted ${tasksToRemove.length} items`
+                commit({type:'showUsrMsg', msgType:'success', msg})
             }
             catch (err) {
-                console.log(err)
+                let msg = ` Cannot delete ${tasksToRemove.length} items`
+                commit({type:'showUsrMsg', msgType:'error', msg})
             }
         },
         async duplicateTasks({ commit, state }, { tasksToDup }) {
             try {
                 const updatedGroups = await boardService.duplicateTasks(tasksToDup, state.board._id)
                 commit({ type: 'updateGroups', updatedGroups })
+                let msg = ` We successfully duplicated ${tasksToDup.length} items`
+                commit({type:'showUsrMsg', msgType:'success', msg})
             }
             catch (err) {
-                console.log(err)
+                let msg = ` Cannot duplicate ${tasksToDup.length} items`
+                commit({type:'showUsrMsg', msgType:'error', msg})
             }
         },
         updateColsOrder({ commit }, { value }) {

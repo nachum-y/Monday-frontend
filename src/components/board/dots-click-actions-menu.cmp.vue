@@ -1,11 +1,11 @@
 <template >
     <section class="group-header-actions-menu" :style="postionModal" v-if="group">
         <div class="group-header-actions-menu--group-actions">
-            <div class="collapse-group">
-                <div class="collapse-group-icon"></div>
+            <div class="collapse-group" @click="collapseGroup">
+                <div class="collapse-group-icon" ></div>
                 <div class="collapse-group-title">Collapse this group</div>
             </div>
-            <div class="collapse-groups">
+            <div class="collapse-groups" @click="deleteGroup">
                 <div class="collapse-groups-icon"></div>
                 <div class="collapse-groups-title">Collapse all group</div>
             </div>
@@ -35,7 +35,7 @@
 </template>
 <script>
 export default {
-    emits: ['deleteGroup','duplicateGroup'],
+    emits: ['deleteGroup','duplicateGroup','collapseGroup'],
     props: {
         group: Object,
         pos: Object
@@ -59,6 +59,10 @@ export default {
         },
         duplicateGroup() {
             this.$emit('duplicateGroup')
+        },
+        collapseGroup(){
+            console.log('hello');
+            this.$emit('collapseGroup')
         }
     },
     computed: {
