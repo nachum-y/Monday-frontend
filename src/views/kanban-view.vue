@@ -1,4 +1,7 @@
 <template>
+
+<div class="kanbn-view">
+<div class="kanbn-view-border"></div>
 <div class="kanban-view-content">
             <div class="kanban-list-component"  v-for="(s, idx) in tasksByStatus" :key="idx">
                 <div :style="{backgroundColor: s.color}" class="kanban-list-component-header"> <span class="kanban-list-component-header-title">{{statusTitle(s.title)}}</span></div>
@@ -28,7 +31,15 @@
                   </div>
                 </div>
             </div>
-         </div>
+</div>
+<div class="kanbn-view-menu">
+  <div class="kanbn-view-menu-settings">
+    <div class="kanbn-view-menu-settings-title">Customize View</div>
+    
+  </div>
+
+</div>
+</div>
 </template>
 <script>
 import person from '../components/board/board-col/person.cmp.vue'
@@ -38,13 +49,13 @@ import labelCmp from '../components/board/board-col/label.cmp.vue'
 import creationLog from '../components/board/board-col/creationLog.cmp.vue'
 import textCmp from '../components/board/board-col/text.cmp.vue'
 import location from '../components/board/board-col/location.cmp.vue'
-
+import { ref } from 'vue'
 export default {
 
     data() {
         return {
             tasksByStatus: null,
-            colsToDisplay: ['person','priority','labelCmp','creationLog'],
+            colsToDisplay: ['person','priority','labelCmp','creationLog','date', 'textCmp', 'location'],
             labels: null,
             status: null, 
             priority: null, 
