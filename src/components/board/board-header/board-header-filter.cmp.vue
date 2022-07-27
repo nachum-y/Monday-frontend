@@ -42,7 +42,7 @@
           </div>
         </el-tooltip>
         <el-tooltip placement="top" content="Filter by anything" effect="dark">
-          <div class="board-filter-item-component rule-based-filer-component" @click="MenuOpen = !MenuOpen">
+          <div ref="filterMenuBtn" class="board-filter-item-component rule-based-filer-component">
             <div class="board-filter-item-content-wrapper">
               <span>
                 <div
