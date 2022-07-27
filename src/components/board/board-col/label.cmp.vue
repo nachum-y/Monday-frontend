@@ -31,8 +31,15 @@ export default {
     name: ['labelCmp'],
     props: {
         task: Object,
-        labels: Array,
-        row: Object
+        labels: {
+            type: Array,
+            required: true
+        },
+        row: Object,
+        status: Array,
+        priority: Array,
+        boardMembers: Array
+
     },
     data() {
         return {
@@ -105,6 +112,7 @@ export default {
 .task-label {
     position: relative;
 }
+
 /* 
 .animated-status.balloon-sprite-animation {
     width: 100%;

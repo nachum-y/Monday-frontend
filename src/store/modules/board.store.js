@@ -91,13 +91,13 @@ export const boardStore = {
             const { groupIdx, taskIdx, colIdx } = idxs
             state.board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
         },
-        showUsrMsg(state, {msgType, msg}){
-                 ElMessage({
+        showUsrMsg(state, { msgType, msg }) {
+            ElMessage({
                 showClose: true,
                 message: msg,
                 type: msgType,
                 grouping: true,
-              })
+            })
         }
 
     },
@@ -151,13 +151,13 @@ export const boardStore = {
 
         async saveGroup({ commit, state }, { group }) {
             const actionType = (group.id) ? 'updateGroup' : 'addGroup'
-            try{
+            try {
                 const savedGroup = await boardService.saveGroup(group, state.board._id)
                 commit({ type: actionType, group: savedGroup })
-            } catch (err){
-                console.log(err);
+            } catch (err) {
+                console.log(err)
             }
- 
+
         },
         async updateGroup({ commit, state }, { groupId, data }) {
             commit({ type: 'updateGroup', groupId, data })
@@ -168,17 +168,17 @@ export const boardStore = {
                 const groupName = await boardService.removeGroup(groupId, state.board._id)
                 commit({ type: 'removeGroup', groupId })
                 let msg = `${groupName} group was successfully deleted.`
-                commit({type:'showUsrMsg', msgType:'success', msg})
+                commit({ type: 'showUsrMsg', msgType: 'success', msg })
             }
             catch (err) {
-                commit({type:'showUsrMsg', msgType:'error', msg:err})
+                commit({ type: 'showUsrMsg', msgType: 'error', msg: err })
             }
         },
         async addTask({ commit, state }, { title, groupId }) {
             try {
                 const newTask = await boardService.addTask(title, groupId, state.board._id)
                 commit({ type: 'addTask', groupId, newTask })
-                
+
             }
             catch (err) {
                 console.log(err)
@@ -210,11 +210,11 @@ export const boardStore = {
                 const updatedGroups = await boardService.removeTasks(tasksToRemove, state.board._id)
                 commit({ type: 'updateGroups', updatedGroups })
                 let msg = ` We successfully deleted ${tasksToRemove.length} items`
-                commit({type:'showUsrMsg', msgType:'success', msg})
+                commit({ type: 'showUsrMsg', msgType: 'success', msg })
             }
             catch (err) {
                 let msg = ` Cannot delete ${tasksToRemove.length} items`
-                commit({type:'showUsrMsg', msgType:'error', msg})
+                commit({ type: 'showUsrMsg', msgType: 'error', msg })
             }
         },
         async duplicateTasks({ commit, state }, { tasksToDup }) {
@@ -222,11 +222,11 @@ export const boardStore = {
                 const updatedGroups = await boardService.duplicateTasks(tasksToDup, state.board._id)
                 commit({ type: 'updateGroups', updatedGroups })
                 let msg = ` We successfully duplicated ${tasksToDup.length} items`
-                commit({type:'showUsrMsg', msgType:'success', msg})
+                commit({ type: 'showUsrMsg', msgType: 'success', msg })
             }
             catch (err) {
                 let msg = ` Cannot duplicate ${tasksToDup.length} items`
-                commit({type:'showUsrMsg', msgType:'error', msg})
+                commit({ type: 'showUsrMsg', msgType: 'error', msg })
             }
         },
         updateColsOrder({ commit }, { value }) {
@@ -235,9 +235,15 @@ export const boardStore = {
         },
         async updateRowsOrder({ commit, state }, { value, idx }) {
             let group = state.board.groups[idx]
-
-            const savedTasks = await boardService.saveGroupsRows(group.id, state.board._id, value)
-            commit({ type: 'updateRowsOrder', savedTasks, idx })
+            console.log(value)
+            console.log('group:', group)
+            console.log('groupId:', group.id)
+            commit({ type: 'updateRowsOrder', savedTasks: value, idx })
+            try {
+                const savedTasks = await boardService.saveGroupsRows(group.id, state.board._id, value)
+            } catch (error) {
+                console.log(error)
+            }
 
         },
         updateBoardOrderList({ commit, state }, { value }) {

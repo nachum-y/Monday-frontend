@@ -33,7 +33,7 @@ query()
 // }
 
 
-async function query(boardId = '62dfda488f676e0cf3f29259') {
+async function query() {
   const res = await httpService.get('boards')
   // const res = await httpService.get('board', boardId)
   return res
@@ -53,7 +53,7 @@ function getEmptyGroup() {
   })
 }
 
-async function saveGroup(group, boardId = '62dfda488f676e0cf3f29259') {
+async function saveGroup(group, boardId) {
   // const board = await storageService.get(BOARD_KEY, boardId)
   const board = await httpService.get(`boards/${boardId}`)
   if (group.id) {
@@ -219,7 +219,7 @@ async function saveGroupsRows(groupId, boardId, value) {
     task.groupId = groupId
     return task
   })
-  const board = await storageService.get(BOARD_KEY, boardId)
+  const board = await _getBoardById(boardId)
   const idx = board.groups.findIndex(group => group.id === groupId)
   board.groups[idx].tasks = newVal
   await httpService.put(`boards/${boardId}`, board)
