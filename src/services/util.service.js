@@ -8,6 +8,14 @@ function makeId(length = 5) {
     return txt
 }
 
+// export const playerIcons = {
+//     play: `
+//     <svg>
+//     <rect fill="currentColor"/>
+//     </svg>
+//     `
+// }
+
 // The maximum is inclusive and the minimum is inclusive 
 function getRandomInt(min, max) {
     min = Math.ceil(min)

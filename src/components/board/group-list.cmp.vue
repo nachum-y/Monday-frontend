@@ -47,7 +47,8 @@
 
         <div class="filterRow">
             <div v-for=" label in getLabels">
-                <span @click="sortBy('label', label.id)" class="btnFilter" v-bind:style="{ 'background-color': label.color }">
+                <span @click="sortBy('label', label.id)" class="btnFilter"
+                    v-bind:style="{ 'background-color': label.color }">
                     {{ label.title }}
                     {{ label.id }}
                     {{ label.color }}
@@ -63,7 +64,8 @@
                 </span>
             </div>
             <div v-for=" priority in getPriority">
-                <span @click="sortBy('priority', priority.id)" class="btnFilter" v-bind:style="{ 'background-color': priority.color }">
+                <span @click="sortBy('priority', priority.id)" class="btnFilter"
+                    v-bind:style="{ 'background-color': priority.color }">
                     {{ priority.title }}
                     {{ priority.id }}
                     {{ priority.color }}
@@ -82,9 +84,10 @@
 
                     <row-header :group="element" @toggleAll="toggleAll" :selectedGroups="selectedGroups" />
 
-                    <group-row :boardMembers="board.members" :group="element" :priority="board.priority" :status="board.status" :labels="board.labels"
-                        :colsOrder="board.colsOrder" :selectedTasks="selectedTasks" @toggleSelection="toggleSelection"
-                        @duplicateTask="duplicateTask" @updateTask="updateTask" />
+                    <group-row :boardMembers="board.members" :group="element" :priority="board.priority"
+                        :status="board.status" :labels="board.labels" :colsOrder="board.colsOrder"
+                        :selectedTasks="selectedTasks" @toggleSelection="toggleSelection" @duplicateTask="duplicateTask"
+                        @updateTask="updateTask" />
 
 
 
@@ -107,7 +110,13 @@
     </div>
 
 
+<<<<<<< HEAD
     <router-view></router-view>
+=======
+    <router-view>
+
+    </router-view>
+>>>>>>> e2e2d0b596ad0ffdd2bbbb7cc6873c3d08d5f5d3
 
 
 
@@ -295,7 +304,8 @@ export default {
         sortBy(filter, param = null) {
 
             this.$store.dispatch({ type: 'sortBy', filter, param })
-        }
+        },
+
     },
     computed: {
         groupRowFooterWidthCalc() {
