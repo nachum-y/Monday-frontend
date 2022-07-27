@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div v-if="task">
         <el-drawer v-model="drawer" title="I am the title" :lock-scroll="false" :size="'700px'"
-            :custom-class="'task-container'" :show-close="true" :with-header="false">
+            :custom-class="'task-container'" @closed="close" :show-close="true" :with-header="false">
             <div>
                 <div class="task-open-title">
                     <h2 contenteditable="true" class="task-open-task-name">
-                        task name
+                        {{ task.cols[0].value }}
                     </h2>
                     <button type="button"
                         class="menu-button--wrapper board-filters-overflow-menu-item menu-button--wrapper--size-32"><svg
@@ -20,13 +20,29 @@
 
                 <nav class="monday-board-subsets-tabs monday-board-subsets-tabs">
                     <span>Update</span>
-                    <span>Update</span>
-                    <span>Update</span>
-                </nav>
+                    <span>Files</span>
+                    <span>Activity log</span>
 
+                </nav>
                 <div class="open-update-form" contenteditable="true">
                     <span class="write-update-msg">write an update...</span>
                     <QuillEditor class="update-form" theme="snow" />
+                </div>
+                <div class="action_wrapper">
+                    <div class="actions">
+                        <span class="icon-action_wrapper"></span>
+                        Add files
+                        <span class="icon-action_wrapper"></span>
+                        Add files
+                        <span class="icon-action_wrapper"></span>
+                        Add files
+                        <span class="icon-action_wrapper"></span>
+                        Add files
+                        <span>Mention</span>
+                    </div>
+                    <button class="update-action">Update
+
+                    </button>
                 </div>
 
 
@@ -46,24 +62,35 @@
     </div>
 </template>
 <script>
-// import { boardService } from '../../services/board-service'
+import { boardService } from '../../services/board-service'
 import { QuillEditor } from '@vueup/vue-quill'
 // import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 export default {
     props: {
-        // task: Object
+        taskId: String
     },
     data() {
         return {
             drawer: true,
+            boarId: null,
             task: null
         }
     },
     components: {
         QuillEditor
     },
-    created() {
+    methods: {
+        close() {
+            let boarId = this.$route.params.boardId
+            // this.$router.go(-1)
+            this.$router.replace({ path: `/boards/${boarId}` })
+        }
+    },
+    async created() {
+        this.boarId = this.$route.params.boardId
+        this.task = await boardService.getTaskById(this.boarId, this.taskId)
+        // boardService.getTaskById()
         // const boardId = this.$route.params.boardId
         // const taskId = this.$route.params.taskId
         // console.log(boardId)
@@ -109,7 +136,7 @@ export default {
     content: "|";
     height: 16px;
     border-right: 1px solid;
-    border-color: var(--primary-background-color);
+    border-color: #0073ea;
     position: absolute;
     top: 8px;
 }
@@ -119,6 +146,27 @@ export default {
     max-width: 180px;
     padding: 8px 24px 8px 12px !important;
 
+}
+
+.action_wrapper {
+    color: #0073ea;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex-grow: 1;
+    padding: 0.5rem;
+}
+
+.action_wrapper .actions>* {
+    margin: 0.125rem 0.25rem;
+}
+
+.action_wrapper .actions {
+    flex-grow: 1;
+}
+
+.update-action {
+    margin: 0.125rem 0.25rem;
 }
 
 .task-open-task-name:focus {
@@ -147,19 +195,25 @@ export default {
     display: none;
 }
 
-
+.update-form.ql-container.ql-snow {
+    border: 1px solid #d1d5db;
+    height: 9rem;
+}
 
 .open-update-form:not(:focus) {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     font-size: 1rem;
-    outline: 1px solid;
-    padding: 0.5rem;
-
+    outline: 1px solid #0073ea;
+    /* outline-color: #0073ea; */
+    padding: 0.625rem 1.25`rem;
+    border-radius: 0.5rem;
 }
 
 .open-update-form {
     margin: 1rem;
+    color: #323338;
+
 
 }
 
@@ -182,15 +236,12 @@ export default {
 
 .pulse_container .posts_list .post_empty_state_image_wrapper img,
 .new_pulse .posts_list .post_empty_state_image_wrapper img {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
     width: 290px;
 }
 
 .post_empty_state_image_wrapper img {
-    width: 450px;
+    width: 290px;
     margin: auto;
     text-align: center;
     display: flex;
