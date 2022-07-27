@@ -7,7 +7,6 @@ const BOARD_KEY = 'BOARD_DB'
 
 export const boardService = {
   query,
-  //   get,
   saveGroup,
   getEmptyGroup,
   removeGroup,
@@ -22,16 +21,8 @@ export const boardService = {
   duplicateTasks
 }
 
-// _createBoards()
+
 query()
-
-// async function query() {
-//   const res = await httpService.get('board')
-//   return res
-//   // return storageService.query(BOARD_KEY)
-
-// }
-
 
 async function query() {
   const res = await httpService.get('boards')
@@ -40,11 +31,6 @@ async function query() {
   // return storageService.query(BOARD_KEY)
 
 }
-
-function get(boardId) {
-  return storageService.get(BOARD_KEY, boardId)
-}
-
 function getEmptyGroup() {
   return ({
     title: "new group",
@@ -54,7 +40,6 @@ function getEmptyGroup() {
 }
 
 async function saveGroup(group, boardId) {
-  // const board = await storageService.get(BOARD_KEY, boardId)
   const board = await httpService.get(`boards/${boardId}`)
   if (group.id) {
     const idx = board.groups.findIndex((g) => g.id === group.id)
@@ -77,21 +62,13 @@ async function removeGroup(groupId, boardId) {
   board.groups.splice(idx, 1)
   await httpService.put(`boards/${boardId}`, board)
   return groupId
-  // return get(bookId)
-  //   .then(book => {
-  //     const idx = book.reviews.findIndex(review => review.id === reviewId)
-  //     book.reviews.splice(idx, 1)
-  //     return storageService.put(BOOKS_KEY, book)
-  //   })
 }
 
 
 async function updateGroup(groupId, data, boardId) {
   let board = await _getBoardById(boardId)
-  // if (board.groups.length === 1) throw new Error('Board has to have at least one group')
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   groupToEdit[Object.keys(data)[0]] = data[Object.keys(data)[0]]
-  // board.groups.splice(idx, 1)
   await httpService.put(`boards/${boardId}`, board)
   return groupToEdit
 }
@@ -125,11 +102,11 @@ async function updateTask(data, boardId) {
   catch (error) {
     throw new Error('Cannot update')
   }
+
 }
 
 async function _getBoardById(boardId) {
   const board = await httpService.get(`boards/${boardId}`)
-  console.log(board)
   return board
 }
 
@@ -142,7 +119,6 @@ function _getEmptyTask(colOrder, title) {
     if (col.type === 'status') emptyCol.value = 'sDefault'
     if (col.type === 'labelCmp') emptyCol.value = 'lDefault'
     if (col.type === 'creationLog') emptyCol.value = Date()
-    console.log(emptyCol)
     cols.push(emptyCol)
   })
   return { id: utilService.makeId(), cols }

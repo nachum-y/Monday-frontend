@@ -201,8 +201,8 @@ export const boardStore = {
 
             } catch (error) {
 
-                // disppatch({type:error})
-                // userMsg
+                commit({ type: 'showUsrMsg', msgType: 'error', msg: 'Sorry cannot update task' })
+                
             }
         },
         async removeTasks({ commit, state }, { tasksToRemove }) {
