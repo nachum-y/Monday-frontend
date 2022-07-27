@@ -47,7 +47,7 @@ export default {
         return {
             cordsX: null,
             cordsY: null,
-            showInvite: true,
+            showInvite: false,
         }
     },
     components: {
