@@ -41,13 +41,8 @@
             </div>
           </div>
         </el-tooltip>
-<<<<<<< HEAD
-        <el-tooltip  placement="top" content="Filter by anything" effect="dark">
-          <div class="board-filter-item-component rule-based-filer-component">
-=======
         <el-tooltip content="Filter by anything" effect="dark">
           <div class="board-filter-item-component rule-based-filer-component" @click="MenuOpen = !MenuOpen">
->>>>>>> 971e58c02414f05a04e8d8ea53def7c70a9e0956
             <div class="board-filter-item-content-wrapper">
               <span>
                 <div
