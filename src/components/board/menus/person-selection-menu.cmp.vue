@@ -7,7 +7,7 @@
                 </div>
                 <div class="suggested-members">
                     <h3>Suggested people</h3>
-                    <div class="member-holder" v-for="(member, id) in boardMembers" :key="member.id">    
+                    <div @click="selectPerson(member)" class="member-holder" v-for="(member, id) in boardMembers" :key="member.id">    
                         <div class="person-bullet-menu">
                             <img :src="setUserImg(member)" alt="">
                         </div>
@@ -66,6 +66,9 @@ export default {
         },
         showInvitation(){
             this.showInvite = !this.showInvite
+        },
+        selectPerson(member){
+            this.$emit('selectPerson', member)
         },
     },
     computed: {
