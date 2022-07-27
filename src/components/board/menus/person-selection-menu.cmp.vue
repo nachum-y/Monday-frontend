@@ -1,11 +1,7 @@
 <template>
 
     <div class="status-picker-view" >
-        <!-- <div class="status-picker-view-title" v-for="m in boardMembers" :key="m.id"
-            @click="selectPerson(m.id)">
-            <span class="task-label-display">{{ m.name }}</span>
-        </div> -->
-        heyyy
+        
     </div>
 
 </template>
