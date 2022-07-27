@@ -76,16 +76,7 @@
             </div>
         </button>
     </div>
-
-
     <router-view></router-view>
-  
-
-
-
-
-
-
 </template>
 <script>
 let idGlobal = 8

@@ -1,9 +1,32 @@
-import { storageService } from './async-storage-service.js'
+// import { storageService } from './async-storage-service.js'
+import store from '../store/index'
 import { utilService } from './util.service.js'
 import { httpService } from './http.service'
+import { socketService, SOCKET_EVENT_GROP_CHANGE, SOCKET_EVENT_BOARD_CHANGE } from './socket.service'
+
 import axios from 'axios'
 
 const BOARD_KEY = 'BOARD_DB'
+const boardChannel = new BroadcastChannel('boardChannel')
+
+
+  ; (() => {
+    // boardChannel.addEventListener('message', (ev) => {
+    //   console.log('msg event', ev)
+    //   store.commit(ev.data)
+    // })
+    setTimeout(() => {
+      socketService.on(SOCKET_EVENT_GROP_CHANGE, (board) => {
+        console.log('GOT from socket', board)
+        // store.commit({ type: 'updateGroup', board })
+      })
+      socketService.on(SOCKET_EVENT_BOARD_CHANGE, (board) => {
+        console.log('GOT from socket', board)
+
+      })
+    }, 0)
+
+  })()
 
 export const boardService = {
   query,
@@ -70,6 +93,10 @@ async function updateGroup(groupId, data, boardId) {
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   groupToEdit[Object.keys(data)[0]] = data[Object.keys(data)[0]]
   await httpService.put(`boards/${boardId}`, board)
+  // boardChannel.postMessage({ type: 'updateGroup', groupId: groupToEdit.id, data })
+
+
+  ///
   return groupToEdit
 }
 
@@ -155,6 +182,9 @@ async function saveGroups(groups, boardId) {
   let board = await _getBoardById(boardId)
   board.groups = groups
   await httpService.put(`boards/${boardId}`, board)
+  // socketService.on(SOCKET_EVENT_GROP_CHANGE)
+  boardChannel.postMessage({ type: 'board-change', groups })
+
   return
 }
 

@@ -3,6 +3,7 @@ import HomeView from '../views/home.vue'
 import boardApp from '../views/board-app.vue'
 import openTask from '../components/board/open-task.cmp.vue'
 import kanbanView from '../views/kanban-view.vue'
+import groupList from '../components/board/group-list.cmp.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -18,9 +19,17 @@ const router = createRouter({
       component: boardApp,
       children: [
         {
-          name: 'openTask',
-          path: 'task/:taskId',
-          component: openTask,
+          name: 'mainTable',
+          path: '',
+          component: groupList,
+          children: [
+            {
+              name: 'openTask',
+              path: 'task/:taskId',
+              component: openTask,
+              props: true,
+            },
+          ]
         },
         {
           name: 'kanban',

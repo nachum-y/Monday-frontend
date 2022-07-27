@@ -1,7 +1,8 @@
 <template >
     <board-header  />
-    <group-list />
-    <kanban-view />
+    <!-- <group-list /> -->
+    <!-- <kanban-view /> -->
+    <router-view></router-view>
 </template>
 <script>
 import groupList from '../components/board/group-list.cmp.vue'

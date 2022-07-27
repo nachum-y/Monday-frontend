@@ -42,7 +42,7 @@
     </el-drawer>
 </template>
 <script>
-import { boardService } from '../../services/board-service'
+// import { boardService } from '../../services/board-service'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
