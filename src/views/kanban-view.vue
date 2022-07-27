@@ -50,6 +50,7 @@ export default {
             priority: null, 
             boardMembers: null,
             isShown: '',
+            board: null,
 
         }
     },
@@ -60,6 +61,7 @@ created(){
     this.labels = this.$store.getters.getLabels
     this.status = this.$store.getters.getStatus
     this.priority = this.$store.getters.getPriority
+    this.board = this.$store.getters.board
 },
 methods:{
     statusTitle(title){
