@@ -25,10 +25,10 @@
             </div>
           </div>
         </div>
-        <el-tooltip  placement="top" content="Filter by person" effect="dark">
+        <el-tooltip placement="top" content="Filter by person" effect="dark">
           <div class="board-filter-item-component person-filter-component">
             <div class="board-filter-item-content-wrapper">
-              
+
               <span class="">
                 <div
                   class="monday-style-clickable board-filter-item-content person-filter-component show-title-when-closed show-title-when-open monday-style-clickable--disable-text-selection"
@@ -42,72 +42,31 @@
           </div>
         </el-tooltip>
         <el-tooltip content="Filter by anything" effect="dark">
-          <div class="board-filter-item-component rule-based-filer-component" @click="MenuOpen = !MenuOpen">
+          <div ref="filterMenuBtn" class="board-filter-item-component rule-based-filer-component">
             <div class="board-filter-item-content-wrapper">
               <span>
                 <div
                   class="monday-style-clickable board-filter-item-content rule-based-filer-component with-caret show-title-when-closed show-title-when-open monday-style-clickable--disable-text-selection"
-                  role="button">
-                  
+                  role="button" @click="showFilterMenuOption">
+
                   <i class="item-icon icon icon-v2-funnel"></i>
                   <span class="item-title"> Filter </span>
                   <div class="caret-icon-container">
                     <i class="icon caret-icon icon-arrow-down"></i>
                   </div>
-                  
                 </div>
-                
+
               </span>
             </div>
-            <div class="filter-menu" v-if="MenuOpen">
-              <div class="filter-menu-header">
-                  <div class="filter-menu-header-title">
-                    Quick filters
-                  </div>
-                  <div class="filter-menu-header-clear-btn">
-                    Clear all
-                  </div>
-                  <div class="filter-menu-header-save-btn">
-                    Save as new view
-                  </div>
-              </div>
-              <div class="filter-menu-main-container">
-                  <div class="filter-menu-filters">
-                      <div class="filter-menu-filters-title">Status</div>
-                      <div class="filter-menu-filters-holder">
-                        <div class="filter-menu-filters-filter-item" v-for="(status, index) in board.status" :key="index">
-                              <div :style="{backgroundColor: status.color, borderColor: status.color}" class="filter-menu-filters-filter-item-color"></div>
-                              <span>{{status.title}}</span>
-                        </div>
-                      </div>
-                  </div>
 
-                  <div class="filter-menu-filters">
-                      <div class="filter-menu-filters-title">Labels</div>
-                      <div class="filter-menu-filters-holder">
-                        <div class="filter-menu-filters-filter-item" v-for="(label, index) in board.labels" :key="index">
-                              <div :style="{backgroundColor: label.color, borderColor: label.color}" class="filter-menu-filters-filter-item-color"></div>
-                              <span>{{label.title}}</span>
-                        </div>
-                      </div>
-                  </div>
+            <filter-menu v-click-outside="closeActionsModal" v-if="filterMenuOption"
+              :filterMenuOption="filterMenuOption" :pos="filterMenuOptionPos" @closeActionsModal="closeActionsModal">
+            </filter-menu>
 
-                  <div class="filter-menu-filters">
-                      <div class="filter-menu-filters-title">Priority</div>
-                      <div class="filter-menu-filters-holder">
-                        <div class="filter-menu-filters-filter-item" v-for="(priority, index) in board.priority" :key="index">
-                              <div :style="{backgroundColor: priority.color, borderColor: priority.color}" class="filter-menu-filters-filter-item-color"></div>
-                              <span>{{priority.title}}</span>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-              
-            
-            </div>
+
           </div>
         </el-tooltip>
-        <el-tooltip  placement="top" content="Sort by any column" effect="dark">
+        <el-tooltip placement="top" content="Sort by any column" effect="dark">
           <div class="board-filter-item-component sort-settings-component">
             <div class="board-filter-item-content-wrapper">
               <span class="">
@@ -120,7 +79,7 @@
             </div>
           </div>
         </el-tooltip>
-        <el-tooltip  placement="top" content="Hidden colunms" effect="dark">
+        <el-tooltip placement="top" content="Hidden colunms" effect="dark">
           <div class="board-filter-item-component columns-filter-component">
             <div class="board-filter-item-content-wrapper item-state-exit-done">
               <span class="">
@@ -150,7 +109,7 @@
 
 <script setup>
 import { ref } from 'vue'
-
+import filterMenu from '../menus/filter-menu.cmp.vue'
 const activeIndex = ref('1')
 const handleSelect = (key, keyPath) => {
   // console.log(key, keyPath)
@@ -165,10 +124,30 @@ export default {
     return {
       inputTxt: '',
       MenuOpen: false,
+      filterMenuOption: null,
+      filterMenuOptionPos: {}
     }
+  },
+  mounted() {
+    // let rect = this.$refs.filterMenuBtn.getBoundingClientRect()
+    this.filterMenuOptionPos = this.$refs.filterMenuBtn.getBoundingClientRect()
+  },
+  components: {
+    filterMenu
   },
   methods: {
 
+    showFilterMenuOption(el) {
+      this.filterMenuOption = {}
+      this.filterMenuOption = this.board
+      // console.log(filterMenuOptionLeft)
+      // var rect = this.$refs.labelCmpRef.getBoundingClientRect()
+
+      // this.filterMenuOption.posModal = { eltop: el.layerY, left: this.showLabelMenuOptionLeft, rect }
+    },
+    closeActionsModal() {
+      this.filterMenuOption = null
+    },
   },
 
 
@@ -176,8 +155,11 @@ export default {
 </script>
 
 <style>
-.board-filter-item-component.rule-based-filer-component{
+.board-filter-item-component.rule-based-filer-component {
   position: relative;
 }
 
+.monday-style-clickable {
+  position: relative;
+}
 </style>

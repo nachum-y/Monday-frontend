@@ -59,6 +59,10 @@ export const boardStore = {
             state.board.colsOrder = value2
         },
         updateRowsOrder(state, { savedTasks, idx }) {
+            state.board.groups[idx].tasks = savedTasks.map((task) => {
+                task.groupId = state.board.groups[idx].id
+                return task
+            })
             state.board.groups[idx].tasks = savedTasks
         },
         updateBoardOrderList(state, { value }) {
@@ -202,7 +206,7 @@ export const boardStore = {
             } catch (error) {
 
                 commit({ type: 'showUsrMsg', msgType: 'error', msg: 'Sorry cannot update task' })
-                
+
             }
         },
         async removeTasks({ commit, state }, { tasksToRemove }) {
@@ -234,13 +238,9 @@ export const boardStore = {
 
         },
         async updateRowsOrder({ commit, state }, { value, idx }) {
-            let group = state.board.groups[idx]
-            console.log(value)
-            console.log('group:', group)
-            console.log('groupId:', group.id)
             commit({ type: 'updateRowsOrder', savedTasks: value, idx })
             try {
-                const savedTasks = await boardService.saveGroupsRows(group.id, state.board._id, value)
+                const savedTasks = await boardService.saveGroupsRows(state.board)
             } catch (error) {
                 console.log(error)
             }
