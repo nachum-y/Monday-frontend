@@ -41,35 +41,6 @@
 
         </div>
 
-
-        <div class="filterRow">
-            <div v-for=" label in getLabels">
-                <span @click="sortBy('label', label.id)" class="btnFilter"
-                    v-bind:style="{ 'background-color': label.color }">
-                    {{ label.title }}
-                    {{ label.id }}
-                    {{ label.color }}
-                </span>
-
-            </div>
-            <div v-for=" status in getStatus">
-                <span @click="sortBy('status', status.id)" class="btnFilter"
-                    v-bind:style="{ 'background-color': status.color }">
-                    {{ status.title }}
-                    {{ status.id }}
-                    {{ status.color }}
-                </span>
-            </div>
-            <div v-for=" priority in getPriority">
-                <span @click="sortBy('priority', priority.id)" class="btnFilter"
-                    v-bind:style="{ 'background-color': priority.color }">
-                    {{ priority.title }}
-                    {{ priority.id }}
-                    {{ priority.color }}
-                </span>
-            </div>
-
-        </div>
         <draggable class="dragArea" v-model="boardOrderList" :handle="'.handle'" tag="div" @start="start"
             :item-key="key => key" v-bind:style="{ 'min-width': groupRowFooterWidth }" :dragClass="'drag-group'"
             :ghostClass="'ghost-group'">
