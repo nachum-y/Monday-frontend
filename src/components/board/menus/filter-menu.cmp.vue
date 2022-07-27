@@ -17,7 +17,7 @@
                 <div class="filter-menu-filters-holder">
                     <div class="filter-menu-filters-filter-item" v-for="(status, index) in filterMenuOption.status"
                         :key="index">
-                        <div :style="{ backgroundColor: status.color, borderColor: status.color }"
+                        <div @click="sortBy('label', label.id)" :style="{ backgroundColor: status.color, borderColor: status.color }"
                             class="filter-menu-filters-filter-item-color"></div>
                         <span>{{ status.title }}</span>
                     </div>
@@ -74,6 +74,5 @@ export default {
 <style>
 .filter-menu {
     position: absolute;
-    bottom: 0;
 }
 </style>
