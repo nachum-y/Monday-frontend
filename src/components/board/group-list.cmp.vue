@@ -82,6 +82,7 @@
 let idGlobal = 8
 
 import draggable from 'vuedraggable'
+import { socketService, SOCKET_EVENT_BOARD_CHANGE, SOCKET_EMIT_SET_BOARD } from '../../services/socket.service'
 
 import { boardService } from '../../services/board-service.js'
 import dotsClickActionsMenu from './dots-click-actions-menu.cmp.vue'
@@ -124,6 +125,14 @@ export default {
     },
     created() {
         this.board = this.$store.getters.board
+        // socketService.emit(SOCKET_EMIT_SET_BOARD, this.board._id)
+        socketService.on(SOCKET_EVENT_BOARD_CHANGE, () => {
+            this.loadMsg()
+        })
+        // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
+        // socketService.on(SOCKET_EVENT_BOARD_CHANGE, this.board)
+        // SOCKET_EMIT_SET_BOARD
 
     },
     components: {
@@ -147,31 +156,36 @@ export default {
         groupFooter
     },
     methods: {
+        loadMsg() {
+            this.$store.dispatch({ type: 'loadBoard' })
+        },
         addNewGroup() {
             this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
             this.groupToEdit = boardService.getEmptyGroup()
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
         },
         removeGroup(groupId) {
             this.$store.dispatch({ type: 'removeGroup', groupId })
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         duplicateGroup(group) {
             this.groupToEdit = { ...group }
             delete this.groupToEdit.id
             this.$store.dispatch({ type: 'saveGroup', group: this.groupToEdit })
             this.groupToEdit = boardService.getEmptyGroup()
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         editGroup(EditVal) {
             // console.log(EditVal)
             this.newData[EditVal.type] = EditVal.val
             this.$store.dispatch({ type: 'updateGroup', groupId: EditVal.groupId, data: this.newData })
             this.newData = {}
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         taskForDisplay(row, type) {
             let col = row.filter((col) => col.type === type)[0]
             return col
-
-        },
-        openActions() {
 
         },
         openActionsModal(evt) {
@@ -187,6 +201,7 @@ export default {
         },
         addTask(titleVal) {
             this.$store.dispatch({ type: 'addTask', groupId: titleVal.groupId, title: titleVal.title })
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         toggleSelection(taskId) {
             const idx = this.selectedTasks.findIndex(id => id === taskId)
@@ -212,19 +227,23 @@ export default {
             this.$store.dispatch({ type: 'removeTasks', tasksToRemove })
             this.selectedTasks = []
             this.selectedGroups = []
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         duplicateTasks() {
             const tasksToDup = this.selectedTasks
             this.$store.dispatch({ type: 'duplicateTasks', tasksToDup })
             this.selectedTasks = []
             this.selectedGroups = []
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
 
         duplicateTask(task) {
             this.$store.dispatch({ type: 'saveTask', task })
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         updateTask(data) {
             this.$store.dispatch({ type: 'updateTask', data })
+            // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         pullFunction() {
             return this.controlOnStart ? "clone" : true
@@ -276,6 +295,7 @@ export default {
             },
             set(value) {
                 this.$store.dispatch('updateBoardOrderList', { value })
+                // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
             }
         },
         colsOrderList: {
@@ -285,6 +305,7 @@ export default {
             set(value) {
 
                 this.$store.dispatch('updateColsOrder', { value })
+                // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
             }
         },
         rowsOrderList: {
@@ -310,6 +331,9 @@ export default {
         getMembers() {
             return this.$store.getters.getMembers
         },
+    },
+    destroyed() {
+        socketService.off(SOCKET_EVENT_BOARD_CHANGE, this.board)
     },
 
 }

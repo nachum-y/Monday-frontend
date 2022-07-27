@@ -1,5 +1,6 @@
 import { boardService } from "../../services/board-service.js"
 import { ElMessage } from 'element-plus'
+import { socketService, SOCKET_EVENT_BOARD_CHANGE, SOCKET_EMIT_SET_BOARD } from '../../services/socket.service'
 export const boardStore = {
     state: {
         board: null,
@@ -46,14 +47,23 @@ export const boardStore = {
         setBoard(state, { board }) {
             state.board = board[0]
         },
+        updateBoard(state, { board }) {
+            console.log(board)
+            console.log('GOT from socket', board)
+            state.board = board
+            console.log(state.board)
+            // state.board = board
+        },
         updateGroup(state, { groupId, data }) {
             state.prevGroup = state.board.groups.find((g) => g.id === groupId)
             let groupToUpdate = state.board.groups.find((g) => g.id === groupId)
             groupToUpdate[Object.keys(data)[0]] = data[Object.keys(data)[0]]
+
         },
         addTask(state, { groupId, newTask }) {
             let groupToUpdate = state.board.groups.find(group => group.id === groupId)
             groupToUpdate.tasks.push(newTask)
+
         },
         updateColsOrder(state, { value2 }) {
             state.board.colsOrder = value2
@@ -170,15 +180,18 @@ export const boardStore = {
             try {
                 const savedGroup = await boardService.saveGroup(group, state.board._id)
                 commit({ type: actionType, group: savedGroup })
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
             } catch (err) {
                 console.log(err)
             }
 
         },
         async updateGroup({ commit, state }, { groupId, data }) {
-            console.log('here');
+            console.log('here')
             commit({ type: 'updateGroup', groupId, data })
             const savedGroup = await boardService.updateGroup(groupId, data, state.board._id)
+            socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         async removeGroup({ commit, state }, { groupId }) {
             try {
@@ -186,6 +199,8 @@ export const boardStore = {
                 commit({ type: 'removeGroup', groupId })
                 let msg = `${groupName} group was successfully deleted.`
                 commit({ type: 'showUsrMsg', msgType: 'success', msg })
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
             }
             catch (err) {
                 commit({ type: 'showUsrMsg', msgType: 'error', msg: err })
@@ -196,6 +211,8 @@ export const boardStore = {
             try {
                 const newTask = await boardService.addTask(title, groupId, state.board._id)
                 commit({ type: 'addTask', groupId, newTask })
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
 
             }
             catch (err) {
@@ -207,6 +224,8 @@ export const boardStore = {
                 const newTask = await boardService.saveTask(task, state.board._id)
                 const groupId = newTask.groupId
                 commit({ type: 'addTask', groupId, newTask })
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
             }
             catch (err) {
                 console.log(err)
@@ -216,6 +235,8 @@ export const boardStore = {
             try {
                 const idxs = await boardService.updateTask(data, state.board._id)
                 commit({ type: 'updateTask', newCol: data.newCol, idxs })
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
             } catch (error) {
                 commit({ type: 'showUsrMsg', msgType: 'error', msg: 'Sorry cannot update task' })
             }
@@ -226,6 +247,7 @@ export const boardStore = {
                 commit({ type: 'updateGroups', updatedGroups })
                 let msg = ` We successfully deleted ${tasksToRemove.length} items`
                 commit({ type: 'showUsrMsg', msgType: 'success', msg })
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
             }
             catch (err) {
                 let msg = ` Cannot delete ${tasksToRemove.length} items`
@@ -238,6 +260,7 @@ export const boardStore = {
                 commit({ type: 'updateGroups', updatedGroups })
                 let msg = ` We successfully duplicated ${tasksToDup.length} items`
                 commit({ type: 'showUsrMsg', msgType: 'success', msg })
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
             }
             catch (err) {
                 let msg = ` Cannot duplicate ${tasksToDup.length} items`
@@ -246,12 +269,16 @@ export const boardStore = {
         },
         updateColsOrder({ commit }, { value }) {
             commit({ type: 'updateColsOrder', value2: value })
+            socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
 
         },
         async updateRowsOrder({ commit, state }, { value, idx }) {
             commit({ type: 'updateRowsOrder', savedTasks: value, idx })
             try {
                 const savedTasks = await boardService.saveGroupsRows(state.board)
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
+
             } catch (error) {
                 console.log(error)
             }
@@ -260,6 +287,7 @@ export const boardStore = {
         updateBoardOrderList({ commit, state }, { value }) {
             boardService.saveGroups(value, state.board._id)
             commit({ type: 'updateBoardOrderList', value })
+            socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
 
         searchInput({ commit, state }, { inputTxt }) {
