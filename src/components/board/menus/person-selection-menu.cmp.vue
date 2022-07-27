@@ -1,7 +1,25 @@
 <template>
 
     <div class="status-picker-view" >
-        
+        <div class="search-person-input-holder">
+            <input class="searchPerson-input" type="text" placeholder="Search names">
+            <div class="search-icon-holder"></div>
+        </div>
+        <div class="suggested-members">
+            <h3>Suggested people</h3>
+            <div class="member-holder">    
+                <div class="person-bullet">
+                    <img src="https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512" alt="">
+                </div>
+                <span class="memeber-name">Shiran Abir</span>
+            </div>
+        </div>
+        <div class="person-btn-container">
+            <button class="invite-new-members-btn">
+                <span>Invite new members</span>
+                <div class="new-member-icon">hey</div>
+            </button>
+        </div>
     </div>
 
 </template>

@@ -145,6 +145,17 @@ export const boardStore = {
         getMembers({ board }) {
             return board.members
         },
+        getTasksByStatus({ board }){
+            let tasksByStatus = {}
+            board.status.map(status=>tasksByStatus[status.id]=[])
+            board.groups.forEach(group=>{
+                group.tasks.forEach(task=>{
+                    const statusId = task.cols.find(col=>col.type === 'status').value
+                    tasksByStatus[statusId].push(task)
+                })      
+            })
+            return tasksByStatus
+        },
     },
     actions: {
         async loadBoard({ commit }) {
