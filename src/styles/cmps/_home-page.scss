@@ -87,7 +87,6 @@
     height: 8.55173px;
     animation-duration:3s;
     border-radius: 50%;
-    animation: twinkle infinite alternate;
     animation-delay:6s;
     will-change: transform;
     animation-timing-function: ease;
@@ -99,6 +98,7 @@
 }
 
 @keyframes twinkle {
+    
     from {
         transform: scale(0);
     }
@@ -199,5 +199,69 @@
     height: 4.55173px;
     left: 460px;
     top: 190px;
+    position: absolute;
+}
+
+.star13{
+    width: 2.55173px;
+    height: 2.55173px;
+    left: 450px;
+    top: 180px;
+    position: absolute;
+}
+
+.star14{
+    width: 5.55173px;
+    height: 5.55173px;
+    left: 100px;
+    top: 100px;
+    position: absolute;
+}
+
+.star15{
+    width: 4.55173px;
+    height: 4.55173px;
+    left: 260px;
+    top: 190px;
+    position: absolute;
+}
+
+.star16{
+    width: 1.55173px;
+    height: 1.55173px;
+    left: 480px;
+    top: 250px;
+    position: absolute;
+}
+
+.star17{
+    width: 4.55173px;
+    height: 4.55173px;
+    left: 560px;
+    top: 290px;
+    position: absolute;
+}
+
+.star18{
+    width: 9.55173px;
+    height: 9.55173px;
+    left: 320px;
+    top: 320px;
+    position: absolute;
+}
+
+.star19{
+    width: 6.55173px;
+    height: 6.55173px;
+    left: 260px;
+    top: 390px;
+    position: absolute;
+}
+
+.star20{
+    width: 4.55173px;
+    height: 4.55173px;
+    left: 260px;
+    top: 300px;
     position: absolute;
 }

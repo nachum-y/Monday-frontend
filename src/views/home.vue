@@ -15,6 +15,18 @@
             <div class="star6 star"></div>
             <div class="star7 star"></div>
             <div class="star8 star"></div>
+            <div class="star9 star"></div>
+            <div class="star10 star"></div>
+            <div class="star11 star"></div>
+            <div class="star12 star"></div>
+            <div class="star13 star"></div>
+            <div class="star14 star"></div>
+            <div class="star15 star"></div>
+            <div class="star16 star"></div>
+            <div class="star17 star"></div>
+            <div class="star18 star"></div>
+            <div class="star19 star"></div>
+            <div class="star20 star"></div>
         </div>
         <div class="home-img"></div>
         

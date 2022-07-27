@@ -6,9 +6,8 @@
             </form>
         </div>
         <div class="open-icon-holder">
-            <div class="open-icon">
-                hey
-            </div>
+            <span>Open</span>
+            <div class="open-icon"></div>
         </div>
     </div>
 </template>

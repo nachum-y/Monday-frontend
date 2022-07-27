@@ -202,11 +202,8 @@ export const boardStore = {
             try {
                 const idxs = await boardService.updateTask(data, state.board._id)
                 commit({ type: 'updateTask', newCol: data.newCol, idxs })
-
             } catch (error) {
-
                 commit({ type: 'showUsrMsg', msgType: 'error', msg: 'Sorry cannot update task' })
-
             }
         },
         async removeTasks({ commit, state }, { tasksToRemove }) {
