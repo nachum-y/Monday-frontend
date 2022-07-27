@@ -16,8 +16,8 @@
                 <div class="filter-menu-filters-title">Status</div>
                 <div class="filter-menu-filters-holder">
                     <div class="filter-menu-filters-filter-item" v-for="(status, index) in filterMenuOption.status"
-                        :key="index">
-                        <div @click="sortBy('label', label.id)" :style="{ backgroundColor: status.color, borderColor: status.color }"
+                        :key="index" @click="sortBy('status', status.id)">
+                        <div :style="{ backgroundColor: status.color, borderColor: status.color }"
                             class="filter-menu-filters-filter-item-color"></div>
                         <span>{{ status.title }}</span>
                     </div>
@@ -28,8 +28,9 @@
                 <div class="filter-menu-filters-title">Labels</div>
                 <div class="filter-menu-filters-holder">
                     <div class="filter-menu-filters-filter-item" v-for="(label, index) in filterMenuOption.labels"
-                        :key="index">
-                        <div :style="{ backgroundColor: label.color, borderColor: label.color }"
+                        :key="index" @click="sortBy('label', label.id)">
+                        <div
+                            :style="{ backgroundColor: label.color, borderColor: label.color }"
                             class="filter-menu-filters-filter-item-color"></div>
                         <span>{{ label.title }}</span>
                     </div>
@@ -40,8 +41,9 @@
                 <div class="filter-menu-filters-title">Priority</div>
                 <div class="filter-menu-filters-holder">
                     <div class="filter-menu-filters-filter-item" v-for="(priority, index) in filterMenuOption.priority"
-                        :key="index">
-                        <div :style="{ backgroundColor: priority.color, borderColor: priority.color }"
+                        :key="index" @click="sortBy('priority', priority.id)">
+                        <div 
+                            :style="{ backgroundColor: priority.color, borderColor: priority.color }"
                             class="filter-menu-filters-filter-item-color"></div>
                         <span>{{ priority.title }}</span>
                     </div>
@@ -66,7 +68,15 @@ export default {
             const top = this.pos.height
             return `top:${top}px;`
         }
-    }
+    },
+    methods: {
+        sortBy(filter, param) {
+            console.log(filter)
+            this.$emit('sortBy', filter, param)
+            // this.$emits({ type: 'sortBy', })
+
+        }
+    },
 
 
 }

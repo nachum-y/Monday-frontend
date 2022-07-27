@@ -60,7 +60,8 @@
             </div>
 
             <filter-menu v-click-outside="closeActionsModal" v-if="filterMenuOption"
-              :filterMenuOption="filterMenuOption" :pos="filterMenuOptionPos" @closeActionsModal="closeActionsModal">
+              :filterMenuOption="filterMenuOption" :pos="filterMenuOptionPos" @closeActionsModal="closeActionsModal"
+              @sortBy="sortBy">
             </filter-menu>
 
 
@@ -148,6 +149,10 @@ export default {
     closeActionsModal() {
       this.filterMenuOption = null
     },
+    sortBy(filter, param) {
+      this.$store.dispatch({ type: 'sortBy', filter, param })
+      this.closeActionsModal()
+    }
   },
 
 
