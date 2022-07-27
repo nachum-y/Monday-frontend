@@ -14,7 +14,7 @@
         </div>
         <person-selection-menu v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
                 :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal" @changePerson="togglePerson"
-                :boardMembers="boardMembers">
+                :boardMembers="boardMembers" :taskMembers="task.value">
         </person-selection-menu>
     </div>
 </template>

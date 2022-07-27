@@ -1,33 +1,45 @@
 <template>
-
-    <div class="status-picker-view" >
-        <div class="search-person-input-holder">
-            <input class="searchPerson-input" type="text" placeholder="Search names">
-            <div class="search-icon-holder"></div>
-        </div>
-        <div class="suggested-members">
-            <h3>Suggested people</h3>
-            <div class="member-holder">    
-                <div class="person-bullet">
-                    <img src="https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512" alt="">
+        <div class="person-picker-view" >
+            <div v-if="!showInvite" class="select-peson-view">
+                <div class="search-person-input-holder">
+                    <input class="searchPerson-input" type="text" placeholder="Search names">
+                    <div class="search-icon-holder"></div>
                 </div>
-                <span class="memeber-name">Shiran Abir</span>
+                <div class="suggested-members">
+                    <h3>Suggested people</h3>
+                    <div class="member-holder" v-for="(member, id) in boardMembers" :key="member.id">    
+                        <div class="person-bullet-menu">
+                            <img :src="setUserImg(member)" alt="">
+                        </div>
+                        <span class="memeber-name">{{member.name}}</span>
+                    </div>
+                </div>
+                <div class="person-btn-container">
+                    <button class="invite-new-members-btn" @click="showInvitation">
+                        <span>Invite new members</span>
+                        <div class="new-member-icon">hey</div>
+                    </button>
+                </div>
+            </div>
+            <div v-if="showInvite" class="invite-peron-view">
+            <div class="title-invite-holder">
+                <span>Type in email address to invite</span>
+            </div>
+            <div class="input-invite-holder">
+                <input autofocus type="text" placeholder="Enter email">
+            </div>
+            <div class="invite-btns-holder">
+                <button class="cancel-invite-btn">Cancel</button>
+                <button class="invite-this-person-btn">Invite</button>
+            </div>
             </div>
         </div>
-        <div class="person-btn-container">
-            <button class="invite-new-members-btn">
-                <span>Invite new members</span>
-                <div class="new-member-icon">hey</div>
-            </button>
-        </div>
-    </div>
-
 </template>
 <script>
 export default {
     emits: ['changeMembers'],
     props: {
-        // boardMembers: Array,
+        boardMembers: Array,
         // taskMembers: Array,
         pos: Object
     },
@@ -35,6 +47,7 @@ export default {
         return {
             cordsX: null,
             cordsY: null,
+            showInvite: true,
         }
     },
     components: {
@@ -46,6 +59,13 @@ export default {
         },
         selectPerson(memberId) {
             this.$emit('changeMember', memberId)
+        },
+        setUserImg(member){
+            console.log(member.imgUrl)
+            return member.imgUrl
+        },
+        showInvitation(){
+            this.showInvite = !this.showInvite
         },
     },
     computed: {
@@ -66,7 +86,8 @@ export default {
                 return `top:${top}px; left:${(-elWidth / 2) + 16}px;`
             }
             return `top:${top}px; left:${(-elWidth / 8)}px;`
-        }
+        },
+        
     },
     created() {
     },
