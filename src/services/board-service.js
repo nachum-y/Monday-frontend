@@ -86,9 +86,7 @@ async function addTask(title, groupId, boardId) {
 }
 
 async function updateTask(data, boardId) {
-
   try {
-
     const { groupId, taskId, newCol } = data
     let board = await _getBoardById(boardId)
     const groupIdx = board.groups.findIndex((group) => group.id === groupId)
@@ -97,12 +95,10 @@ async function updateTask(data, boardId) {
     board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
     await httpService.put(`boards/${boardId}`, board)
     return { groupIdx, taskIdx, colIdx }
-
   }
   catch (error) {
-    throw new Error('Cannot update')
+    throw new Error('Cannot update task')
   }
-
 }
 
 async function _getBoardById(boardId) {
