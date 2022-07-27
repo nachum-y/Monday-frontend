@@ -57,7 +57,9 @@ created(){
 </script>
 <style>
 .home-page-title {
+
     text-align: center;
     margin: auto;
 }
+
 </style>

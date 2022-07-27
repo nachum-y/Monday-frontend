@@ -175,6 +175,7 @@ export const boardStore = {
 
         },
         async updateGroup({ commit, state }, { groupId, data }) {
+            console.log('here');
             commit({ type: 'updateGroup', groupId, data })
             const savedGroup = await boardService.updateGroup(groupId, data, state.board._id)
         },
@@ -190,6 +191,7 @@ export const boardStore = {
             }
         },
         async addTask({ commit, state }, { title, groupId }) {
+
             try {
                 const newTask = await boardService.addTask(title, groupId, state.board._id)
                 commit({ type: 'addTask', groupId, newTask })
