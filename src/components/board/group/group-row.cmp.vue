@@ -122,12 +122,12 @@ export default {
                 let idx = groups.findIndex((g) => g.id === this.group.id)
                 return this.$store.getters.rowOrder[idx].tasks
             },
-            async set(value) {
+            set(value) {
                 let groups = this.$store.getters.rowOrder
                 let idx = groups.findIndex((g) => g.id === this.group.id)
                 // console.log(idx)
 
-                await this.$store.dispatch('updateRowsOrder', { value, idx })
+                this.$store.dispatch('updateRowsOrder', { value, idx })
             }
 
         },

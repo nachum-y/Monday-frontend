@@ -10,7 +10,7 @@
         </label-selection-menu>
 
 
-        <div class="status-cell-component status-print-color status-cell-component-double-fix"
+        <!-- <div class="status-cell-component status-print-color status-cell-component-double-fix"
             data-walkthrough-id="status-cell" style="background-color: rgb(0, 200, 117);">
             <div class="animated-status crazy-balls-sprite-animation"></div>
             <div class="status-note-wrapper  ">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="ds-text-component" dir="auto"><span>Done</span></div>
-        </div>
+        </div> -->
     </div>
 
 </template>

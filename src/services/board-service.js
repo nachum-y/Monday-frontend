@@ -185,17 +185,22 @@ async function getTaskById(boardId, taskId) {
 }
 
 
-async function saveGroupsRows(groupId, boardId, value) {
-  let newVal = JSON.parse(JSON.stringify(value))
-  newVal.map((task) => {
-    task.groupId = groupId
-    return task
-  })
-  const board = await _getBoardById(boardId)
-  const idx = board.groups.findIndex(group => group.id === groupId)
-  board.groups[idx].tasks = newVal
-  await httpService.put(`boards/${boardId}`, board)
-  return newVal
+async function saveGroupsRows(board) {
+  // let newTasksList = JSON.parse(JSON.stringify(value))
+  // newTasksList = newTasksList.map((task) => {
+  //   task.groupId = groupId
+  //   return task
+  // })
+
+  // let board = await _getBoardById(boardId)
+  // const idx = board.groups.findIndex(group => group.id === groupId)
+  // board.groups[idx].tasks = newTasksList
+  // board = board
+  try {
+    await httpService.put(`boards/${board._id}`, board)
+  } catch (error) {
+    console.log('error:', error)
+  }
 
 }
 
