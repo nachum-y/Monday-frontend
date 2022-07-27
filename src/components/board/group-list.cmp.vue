@@ -110,13 +110,8 @@
     </div>
 
 
-<<<<<<< HEAD
     <router-view></router-view>
-=======
-    <router-view>
-
-    </router-view>
->>>>>>> e2e2d0b596ad0ffdd2bbbb7cc6873c3d08d5f5d3
+  
 
 
 
