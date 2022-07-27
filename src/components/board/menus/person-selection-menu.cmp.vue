@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="person-btn-container">
-                    <button class="invite-new-members-btn" @click="showInvitation">
+                    <button class="invite-new-members-btn" @click.stop.prevent="showInvitation">
                         <span>Invite new members</span>
                         <div class="new-member-icon">hey</div>
                     </button>
@@ -65,6 +65,7 @@ export default {
             return member.imgUrl
         },
         showInvitation(){
+            console.log('heyyy');
             this.showInvite = !this.showInvite
         },
         selectPerson(member){

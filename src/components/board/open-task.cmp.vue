@@ -1,50 +1,54 @@
 <template>
-    <el-drawer v-model="drawer" title="I am the title" :lock-scroll="false" :size="'700px'"
-        :custom-class="'task-container'" :show-close="true" :with-header="false">
-        <div>
-            <div class="task-open-title">
-                <h2 contenteditable="true" class="task-open-task-name">
-                    task name
-                </h2>
-                <button type="button"
-                    class="menu-button--wrapper board-filters-overflow-menu-item menu-button--wrapper--size-32"><svg
-                        viewBox="0 0 20 20" fill="currentColor" width="28" height="28" role="img" aria-hidden="true">
-                        <path
-                            d="M6 10.5C6 11.3284 5.32843 12 4.5 12 3.67157 12 3 11.3284 3 10.5 3 9.67157 3.67157 9 4.5 9 5.32843 9 6 9.67157 6 10.5zM11.8333 10.5C11.8333 11.3284 11.1618 12 10.3333 12 9.50492 12 8.83334 11.3284 8.83334 10.5 8.83334 9.67157 9.50492 9 10.3333 9 11.1618 9 11.8333 9.67157 11.8333 10.5zM17.6667 10.5C17.6667 11.3284 16.9951 12 16.1667 12 15.3383 12 14.6667 11.3284 14.6667 10.5 14.6667 9.67157 15.3383 9 16.1667 9 16.9951 9 17.6667 9.67157 17.6667 10.5z"
-                            fill="currentColor"></path>
-                    </svg></button>
+    <div>
+        <el-drawer v-model="drawer" title="I am the title" :lock-scroll="false" :size="'700px'"
+            :custom-class="'task-container'" :show-close="true" :with-header="false">
+            <div>
+                <div class="task-open-title">
+                    <h2 contenteditable="true" class="task-open-task-name">
+                        task name
+                    </h2>
+                    <button type="button"
+                        class="menu-button--wrapper board-filters-overflow-menu-item menu-button--wrapper--size-32"><svg
+                            viewBox="0 0 20 20" fill="currentColor" width="28" height="28" role="img"
+                            aria-hidden="true">
+                            <path
+                                d="M6 10.5C6 11.3284 5.32843 12 4.5 12 3.67157 12 3 11.3284 3 10.5 3 9.67157 3.67157 9 4.5 9 5.32843 9 6 9.67157 6 10.5zM11.8333 10.5C11.8333 11.3284 11.1618 12 10.3333 12 9.50492 12 8.83334 11.3284 8.83334 10.5 8.83334 9.67157 9.50492 9 10.3333 9 11.1618 9 11.8333 9.67157 11.8333 10.5zM17.6667 10.5C17.6667 11.3284 16.9951 12 16.1667 12 15.3383 12 14.6667 11.3284 14.6667 10.5 14.6667 9.67157 15.3383 9 16.1667 9 16.9951 9 17.6667 9.67157 17.6667 10.5z"
+                                fill="currentColor"></path>
+                        </svg></button>
+                </div>
+
+
+                <nav class="monday-board-subsets-tabs monday-board-subsets-tabs">
+                    <span>Update</span>
+                    <span>Update</span>
+                    <span>Update</span>
+                </nav>
+
+                <div class="open-update-form" contenteditable="true">
+                    <span class="write-update-msg">write an update...</span>
+                    <QuillEditor class="update-form" theme="snow" />
+                </div>
+
+
+                <div class="post_empty_state_image_wrapper"><img
+                        src="https://cdn.monday.com/images/pulse-page-empty-state.svg"></div>
+
+
+                <div class="post_not_found_text">
+                    <h2 class="post_not_found">No updates yet for this item</h2>
+                    <p class="post_not_found_subtitle">Be the first one to update about progress, mention someone <br>
+                        or
+                        upload files to share with your team members</p>
+                </div>
+
             </div>
-
-
-            <nav class="monday-board-subsets-tabs monday-board-subsets-tabs">
-                <span>Update</span>
-                <span>Update</span>
-                <span>Update</span>
-            </nav>
-
-            <div class="open-update-form" contenteditable="true">
-                <span class="write-update-msg">write an update...</span>
-                <QuillEditor class="update-form" theme="snow" />
-            </div>
-
-
-            <div class="post_empty_state_image_wrapper"><img
-                    src="https://cdn.monday.com/images/pulse-page-empty-state.svg"></div>
-
-
-            <div class="post_not_found_text">
-                <h2 class="post_not_found">No updates yet for this item</h2>
-                <p class="post_not_found_subtitle">Be the first one to update about progress, mention someone <br> or
-                    upload files to share with your team members</p>
-            </div>
-
-        </div>
-    </el-drawer>
+        </el-drawer>
+    </div>
 </template>
 <script>
 // import { boardService } from '../../services/board-service'
 import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
+// import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 export default {
     props: {
@@ -60,8 +64,8 @@ export default {
         QuillEditor
     },
     created() {
-        const boardId = this.$route.params.boardId
-        const taskId = this.$route.params.taskId
+        // const boardId = this.$route.params.boardId
+        // const taskId = this.$route.params.taskId
         // console.log(boardId)
         // console.log(taskId)
         // boardService.getTaskById(boardId, taskId)
