@@ -130,11 +130,6 @@ function _createDefaultBoard(entityType) {
                 type: "person",
                 value: [
                   {
-                    id: "m101",
-                    fullname: "Shiran Abir",
-                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U038455HGEP-5bb9017045d1-512"
-                  },
-                  {
                     id: "m102",
                     fullname: "Meital Twito",
                     imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
@@ -433,6 +428,11 @@ function _createDefaultBoard(entityType) {
                     id: "m103",
                     fullname: "Nachum Yosef",
                     imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
+                  },
+                  {
+                    id: "m104",
+                    fullname: "Tal Amit",
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03D7GH63TL-f539888b0745-512"
                   }
                 ]
               },
@@ -482,6 +482,11 @@ function _createDefaultBoard(entityType) {
                     id: "m102",
                     fullname: "Meital Twito",
                     imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
+                  },
+                  {
+                    id: "m104",
+                    fullname: "Tal Amit",
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03D7GH63TL-f539888b0745-512"
                   }
                 ]
               },
@@ -544,6 +549,11 @@ function _createDefaultBoard(entityType) {
                     id: "m103",
                     fullname: "Nachum Yosef",
                     imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
+                  },
+                  {
+                    id: "m104",
+                    fullname: "Tal Amit",
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03D7GH63TL-f539888b0745-512"
                   }
                 ]
               },
@@ -593,6 +603,11 @@ function _createDefaultBoard(entityType) {
                     id: "m102",
                     fullname: "Meital Twito",
                     imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U035UPCBQG5-18ec439dc732-512"
+                  },
+                  {
+                    id: "m104",
+                    fullname: "Tal Amit",
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03D7GH63TL-f539888b0745-512"
                   }
                 ]
               },
@@ -697,6 +712,11 @@ function _createDefaultBoard(entityType) {
                     id: "m103",
                     fullname: "Nachum Yosef",
                     imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03CGDCUXPA-307cccdf69f0-512"
+                  },
+                  {
+                    id: "m104",
+                    fullname: "Tal Amit",
+                    imgUrl: "https://ca.slack-edge.com/T035GULFZRD-U03D7GH63TL-f539888b0745-512"
                   }
                 ]
               },

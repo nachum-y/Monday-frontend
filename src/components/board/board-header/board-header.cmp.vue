@@ -2,27 +2,31 @@
   <section class="main-header">
     <div class="main-header-nav">
       <div class="board-title-component">
-        <el-tooltip content="Click to edit" effect="dark">
-          <input :style="{ 'width': ((board.title.length) * 1) + 'ch' }"
-            onkeypress="this.style.width = ((this.value.length + 2) * 1) + 'ch';" @click="handleInput"
-            @change="updateBoardTitle" type="text" :value="board.title">
-        </el-tooltip>
-        <el-tooltip content="Show board description" effect="dark">
-          <button class="i-btn header-btn"></button>
-        </el-tooltip>
-        <el-tooltip content="Add to favorites" placement="bottom" effect="dark">
-          <button class="star-btn header-btn"></button>
-        </el-tooltip>
-        <button class="last-seen-btn header-btn">
-          <span>Last seen</span>
-          <el-tooltip :style="`font-size:50px;`" content="shirkiabir@gmail.com" effect="dark">
-            <img class="user-avatar" src="../../../assets/images/dapulse_default_photo.png" alt="user-avatar">
+        <div class="header-input-container">
+          <el-tooltip  content="Click to edit" effect="dark">
+            <input :style="{ 'width': ((board.title.length) * 1) + 'ch' }"
+              onkeypress="this.style.width = ((this.value.length + 2) * 1) + 'ch';" @click="handleInput"
+              @change="updateBoardTitle" type="text" :value="board.title">
           </el-tooltip>
-        </button>
-        <button class="invite-btn header-btn">
-          <span class="invite-icon"></span>
-          <span class="invite-txt"> &nbsp; &nbsp; Invite / 1</span>
-        </button>
+          <el-tooltip content="Show board description" effect="dark">
+            <button class="i-btn header-btn"></button>
+          </el-tooltip>
+          <el-tooltip content="Add to favorites" placement="bottom" effect="dark">
+            <button class="star-btn header-btn"></button>
+          </el-tooltip>
+        </div>
+        <div class="header-btn-container">
+          <button class="last-seen-btn header-btn">
+            <p>Last seen</p>
+            <el-tooltip :style="`font-size:50px;`" content="shirkiabir@gmail.com" effect="dark">
+              <img class="user-avatar" src="../../../assets/images/dapulse_default_photo.png" alt="user-avatar">
+            </el-tooltip>
+          </button>
+          <button class="invite-btn header-btn">
+            <span class="invite-icon"></span>
+            <span class="invite-txt"> &nbsp; &nbsp; Invite / 1</span>
+          </button>
+        </div>
       </div>
     </div>
     <section class="sub-header-nav">
@@ -36,7 +40,7 @@
         <span class="icon-v2-ellipsis"></span>
       </button>
       <div class="monday-board-subset-item-v2__active-strip"></div>
-      <el-tooltip content="Add view" effect="dark">
+      <el-tooltip placement="right" content="Add view" effect="dark">
         <button class="add-tab header-btn"></button>
       </el-tooltip>
     </section>

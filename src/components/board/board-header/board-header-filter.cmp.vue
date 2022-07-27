@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <el-tooltip content="Filter by person" effect="dark">
+        <el-tooltip  placement="top" content="Filter by person" effect="dark">
           <div class="board-filter-item-component person-filter-component">
             <div class="board-filter-item-content-wrapper">
               <span class="">
@@ -40,7 +40,7 @@
             </div>
           </div>
         </el-tooltip>
-        <el-tooltip content="Filter by anything" effect="dark">
+        <el-tooltip  placement="top" content="Filter by anything" effect="dark">
           <div class="board-filter-item-component rule-based-filer-component">
             <div class="board-filter-item-content-wrapper">
               <span class="">
@@ -57,7 +57,7 @@
             </div>
           </div>
         </el-tooltip>
-        <el-tooltip content="Sort by any column" effect="dark">
+        <el-tooltip  placement="top" content="Sort by any column" effect="dark">
           <div class="board-filter-item-component sort-settings-component">
             <div class="board-filter-item-content-wrapper">
               <span class="">
@@ -70,7 +70,7 @@
             </div>
           </div>
         </el-tooltip>
-        <el-tooltip content="Hidden colunms" effect="dark">
+        <el-tooltip  placement="top" content="Hidden colunms" effect="dark">
           <div class="board-filter-item-component columns-filter-component">
             <div class="board-filter-item-content-wrapper item-state-exit-done">
               <span class="">

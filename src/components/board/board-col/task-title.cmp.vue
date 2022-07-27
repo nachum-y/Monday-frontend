@@ -1,8 +1,15 @@
 <template>
     <div v-if="task" class="item-title">
-        <form @submit.prevent="updateTask">
-        <input v-model="title" class="location-input" type="text" :placeholder="titleToDiaplay">    
-        </form>
+        <div class="input-holder">
+            <form @submit.prevent="updateTask">
+            <input v-model="title" class="title-input" type="text" :placeholder="titleToDiaplay">    
+            </form>
+        </div>
+        <div class="open-icon-holder">
+            <div class="open-icon">
+                hey
+            </div>
+        </div>
     </div>
 </template>
 <script>

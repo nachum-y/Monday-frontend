@@ -5,7 +5,7 @@
             <h3 class="sub-line">What would you like to manage with monday.com Work OS?</h3>
             <div class="comet-underline"></div>
             <div class="btn-container">
-                <button class="start">Get Started</button>
+                <a role="button" href="/boards/b101" class="start">Get Started</a>
             </div>
             <div class="star"></div>
             <div class="star2 star"></div>
@@ -21,13 +21,10 @@
     </div>
 </template>
 <script>
-export default {
+import { method } from 'lodash'
 
+export default {
 }
 </script>
 <style>
-.home-page-title {
-    text-align: center;
-    margin: auto;
-}
 </style>

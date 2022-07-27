@@ -25,7 +25,8 @@ $light-color:#fff;
 }
 
 
-// ***********buttons*************:
+// ***********buttons*************
+
 .header-btn{
     background-color: transparent;
     background-repeat: no-repeat;
@@ -36,7 +37,7 @@ $light-color:#fff;
     width: 34px;
     height: 34px;
     padding: 4px 8px;
-    
+
 
     &:hover{
         border-radius: 4px;
@@ -46,7 +47,9 @@ $light-color:#fff;
 
 
 .i-btn{
-    
+
+    margin-left: 10px;
+
     &::before{
         content: "\f344";
         color: $icon-color;
@@ -56,6 +59,7 @@ $light-color:#fff;
 }
 
 .star-btn{
+    margin-left: 10px;
 
     &::before{
         content: "\f3dc";
@@ -65,45 +69,42 @@ $light-color:#fff;
     }
 }
 
-.board-activity-btn::before{
-    content: "\f468";
-    font-size: 16px;
-    color: $icon-color;
-    font-family: "dapulse";
-}
 
 .last-seen-btn{
     width: 106.188px;
     height: 32px;
-    position: absolute;
-    right: 30px;
+    position: relative;
+    margin-left: 10px;
+
+
 
     img{
+        position: absolute;
         width: 32px;
         height: 32px;
         z-index: 1;
-        position: absolute;
-        right: 10px;
-        bottom: -2px;
         padding: 5px;
+        display: inline;
+        right: 0;
+        top: 0;
     }
 
-    span{
-        position: absolute;
-        left: 7px;
-        bottom: 7px;
+    p{
+        display: inline;
         color: $font-color;
         font-family: Roboto,Rubik,Noto Kufi Arabic,Noto Sans JP,sans-serif;
+        position: absolute;
+        left: 7px;
+        top: 8px;
     }
 }
 
 .invite-btn{
     width: 106.188px;
     height: 32px;
-    position: absolute;
-    right: 150px;
     padding: 5px;
     text-align: left;
+    margin-left: 10px;
 
 
     & .invite-icon::before{
@@ -163,7 +164,7 @@ $light-color:#fff;
 }
 
 .add-tab{
-    
+
     position: absolute;
     bottom: 4px;
     left: 134px;
@@ -199,21 +200,19 @@ $light-color:#fff;
 // ***********main & nav*****************:
 
 .main-header{
-    width: 95vw;
+    margin-right: 30px;
     padding-top: 16px;
     padding-left: 38px;
-    padding-right: 30px;
 }
 
 .board-title-component{
     display:flex;
-    flex: 1 0;
-    width: 90vw;
+    justify-content: space-between;
     height: 42px;
     font-family: $font-family;
     margin: 0;
-    margin-inline-end: 24px;
     align-items: center;
+
 }
 
 .board-actions{
@@ -226,7 +225,6 @@ $light-color:#fff;
 
 .sub-header-nav{
     position: relative;
-    width: 90vw;
     height: 36px;
     margin-top: 8px;
     border-bottom: $hover-border-color 1px solid;
@@ -236,9 +234,9 @@ $light-color:#fff;
 
 .board-title-component input{
     text-align: left;
-    max-width: 75%;
+    max-width: 100%;
     color: $font-color;
-    font-family:$font-family-input; 
+    font-family:$font-family-input;
     letter-spacing: -1px;
     font-size: 32px;
     white-space: nowrap;
@@ -250,7 +248,7 @@ $light-color:#fff;
     text-overflow: ellipsis;
     cursor: text;
     line-height: 0.5;
-    
+
 
     &:hover{
         outline: $hover-border-color 1px solid;
@@ -266,4 +264,12 @@ $light-color:#fff;
     }
 }
 
+.header-btn-container{
+    display: flex;
 
+}
+
+.header-input-container{
+    display: flex;
+    flex-grow: 1;
+}
