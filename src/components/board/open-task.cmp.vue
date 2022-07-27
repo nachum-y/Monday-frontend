@@ -206,7 +206,7 @@ export default {
     font-size: 1rem;
     outline: 1px solid #0073ea;
     /* outline-color: #0073ea; */
-    padding: 0.625rem 1.25`rem;
+    padding: 0.625rem 1.25rem;
     border-radius: 0.5rem;
 }
 

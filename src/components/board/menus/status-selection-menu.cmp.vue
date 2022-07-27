@@ -35,21 +35,18 @@ export default {
     computed: {
         postionModal() {
             let elWidth = this.pos.rect.width
-            let maxWidth = this.pos.rect.right
+            // console.log('elWidth:', elWidth)
+            let maxWidth = this.pos.left
+            // console.log('maxWidth:', maxWidth)
             let elRight = this.pos.rect.x
-            // console.log(elRight)
-            // console.log(elWidth)
+            // console.log(this.pos.rect.x)
             const top = this.pos.rect.height
-            // console.log(top)
-            const left = this.pos.rect.width / 4
-            // console.log(this.pos)
-            // console.log(this.pos.rect)
-            // return `top:${top}px; left:0px;`
-            if (elRight + 100 > maxWidth) {
+            if ((elRight + elWidth) * 2 > maxWidth) {
                 // console.log('heyyy')
-                return `top:${top}px; left:${(-elWidth / 2) + 16}px;`
+                return `top:${top}px; left:${(-elWidth / 2)}px;`
+
             }
-            return `top:${top}px; left:${(-elWidth / 8)}px;`
+            return `top:${top}px; left:${(-elWidth / 4)}px;`
         }
     },
     created() {

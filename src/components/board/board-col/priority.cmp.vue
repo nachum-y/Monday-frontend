@@ -5,7 +5,7 @@
         }}</div>
         <priority-selection-menu v-click-outside="closeActionsModal" v-if="showPriorityMenuOption"
             :priority="showPriorityMenuOption.priority" :pos="showPriorityMenuOption.posModal"
-            @changePriority="changePriority" >
+            @changePriority="changePriority">
         </priority-selection-menu>
     </div>
 </template>
@@ -64,6 +64,9 @@ export default {
     },
     components: {
         prioritySelectionMenu,
+    },
+    mounted() {
+        this.showPriorityMenuOptionLeft = window.outerWidth
     },
 } 
 </script>

@@ -65,7 +65,7 @@ export default {
     },
     mounted() {
         var rect = this.$refs.statusCmpRef.getBoundingClientRect()
-        this.showStatusMenuOptionLeft = rect.left
+        this.showStatusMenuOptionLeft = window.outerWidth
     },
 } 
 </script>

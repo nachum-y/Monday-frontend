@@ -83,7 +83,7 @@ export default {
         // this.showLabelMenuOption.width = this.$refs.labelCmpRef.clientWidth
         var rect = this.$refs.labelCmpRef.getBoundingClientRect()
         // console.log(rect.top, rect.right, rect.bottom, rect.left)
-        this.showLabelMenuOptionLeft = rect.left
+        this.showLabelMenuOptionLeft = window.outerWidth
         // console.log(this.showLabelMenuOptionLeft)
 
         // let elWidth = this.$refs.groupRowFooter.clientWidth

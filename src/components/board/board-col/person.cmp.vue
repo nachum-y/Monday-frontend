@@ -4,17 +4,17 @@
             <div class="icon-dapulse-addbtn"></div>
             <div class="bullets-container">
                 <div v-for="(person, idx) in task.value" :key="person.id" class="person-bullet">
-                    <img :src="userAvatar(idx)"/>
+                    <img :src="userAvatar(idx)" />
                 </div>
             </div>
-            <div v-if="!task.value" class="person-bullet-container">   
+            <div v-if="!task.value" class="person-bullet-container">
                 <img src="https://cdn.monday.com/icons/dapulse-person-column.svg" class="person-bullet-default">
             </div>
-            
+
         </div>
         <person-selection-menu v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
-                :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal" @changePerson="togglePerson"
-                :boardMembers="boardMembers" :taskMembers="task.value">
+            :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal" @changePerson="togglePerson"
+            :boardMembers="boardMembers" :taskMembers="task.value">
         </person-selection-menu>
     </div>
 </template>
@@ -41,14 +41,14 @@ export default {
             let personShort = names[0].slice(0, 1) + names[1].slice(0, 1)
             return personShort
         },
-        userAvatar(idx){
+        userAvatar(idx) {
             return this.task.value[idx].imgUrl
         },
         showPersonMenu(el, person) {
             this.showPersonMenuOption = {}
             // this.showPersonMenuOption.person = person
             var rect = this.$refs.personCmpRef.getBoundingClientRect()
-            this.showPersonMenuOption.person = { eltop: el.layerY, left: this.showPersonMenuOptionLeft, rect }
+            this.showPersonMenuOption.posModal = { eltop: el.layerY, left: this.showPersonMenuOptionLeft, rect }
         },
         closeActionsModal() {
             this.showPersonMenuOption = null
@@ -64,13 +64,12 @@ export default {
         personSelectionMenu,
     },
     mounted() {
-        var rect = this.$refs.personCmpRef.getBoundingClientRect()
-        this.showPersonMenuOptionLeft = rect.left
+        this.showPersonMenuOptionLeft = window.outerWidth
     },
 }
 </script>
 <style>
-    .person-cell{
-        position: relative;
-    }
+.person-cell {
+    position: relative;
+}
 </style>
