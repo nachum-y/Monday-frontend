@@ -17,15 +17,17 @@
                                     :class="selectedTasks.includes(element.id) ? 'checkbox-selected' : 'checkbox'">
                                 </div>
                             </div>
-                            <task-title @updateTask="this.$emit('updateTask',$event)" :task="element.cols[0]" :row="element" />
+                            <task-title @updateTask="this.$emit('updateTask', $event)" :task="element.cols[0]"
+                                :row="element" />
                             <div class="item-conversation">
                                 <div class="conversation-icon"></div>
                                 <span class="item-conversation-count">0
                                 </span>
                             </div>
                         </div>
-                        <component @updateTask="this.$emit('updateTask',$event)" v-else :is="col.type" :task="taskForDisplay(element.cols, col.type)"
-                            :row="element" :labels="labels" :status="status" :priority="priority" :boardMembers="boardMembers">
+                        <component @updateTask="this.$emit('updateTask', $event)" v-else :is="col.type"
+                            :task="taskForDisplay(element.cols, col.type)" :row="element" :labels="labels"
+                            :status="status" :priority="priority" :boardMembers="boardMembers">
                         </component>
                     </div>
                 </div>
@@ -54,8 +56,8 @@ export default {
         group: Object,
         colsOrder: Array,
         selectedTasks: Array,
-        labels:Array,
-        status:Array,
+        labels: Array,
+        status: Array,
         priority: Array,
         boardMembers: Array,
 
@@ -78,7 +80,7 @@ export default {
         textCmp,
         timeline,
         taskTitle,
-        
+
     },
     methods: {
         changeIdx() {
@@ -104,7 +106,7 @@ export default {
         },
         end(evt) {
             // console.log(' evt.to:', evt.to)
-             let groupId = this.group.id
+            let groupId = this.group.id
             // console.log(groupId)
         },
         remove(ev) {
@@ -120,12 +122,12 @@ export default {
                 let idx = groups.findIndex((g) => g.id === this.group.id)
                 return this.$store.getters.rowOrder[idx].tasks
             },
-            set(value) {
+            async set(value) {
                 let groups = this.$store.getters.rowOrder
                 let idx = groups.findIndex((g) => g.id === this.group.id)
                 // console.log(idx)
 
-                this.$store.dispatch('updateRowsOrder', { value, idx })
+                await this.$store.dispatch('updateRowsOrder', { value, idx })
             }
 
         },

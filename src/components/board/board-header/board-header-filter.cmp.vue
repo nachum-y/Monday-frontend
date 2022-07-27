@@ -28,6 +28,7 @@
         <el-tooltip  placement="top" content="Filter by person" effect="dark">
           <div class="board-filter-item-component person-filter-component">
             <div class="board-filter-item-content-wrapper">
+              
               <span class="">
                 <div
                   class="monday-style-clickable board-filter-item-content person-filter-component show-title-when-closed show-title-when-open monday-style-clickable--disable-text-selection"
@@ -40,20 +41,74 @@
             </div>
           </div>
         </el-tooltip>
+<<<<<<< HEAD
         <el-tooltip  placement="top" content="Filter by anything" effect="dark">
           <div class="board-filter-item-component rule-based-filer-component">
+=======
+        <el-tooltip content="Filter by anything" effect="dark">
+          <div class="board-filter-item-component rule-based-filer-component" @click="MenuOpen = !MenuOpen">
+>>>>>>> 971e58c02414f05a04e8d8ea53def7c70a9e0956
             <div class="board-filter-item-content-wrapper">
-              <span class="">
+              <span>
                 <div
                   class="monday-style-clickable board-filter-item-content rule-based-filer-component with-caret show-title-when-closed show-title-when-open monday-style-clickable--disable-text-selection"
                   role="button">
+                  
                   <i class="item-icon icon icon-v2-funnel"></i>
                   <span class="item-title"> Filter </span>
                   <div class="caret-icon-container">
                     <i class="icon caret-icon icon-arrow-down"></i>
                   </div>
+                  
                 </div>
+                
               </span>
+            </div>
+            <div class="filter-menu" v-if="MenuOpen">
+              <div class="filter-menu-header">
+                  <div class="filter-menu-header-title">
+                    Quick filters
+                  </div>
+                  <div class="filter-menu-header-clear-btn">
+                    Clear all
+                  </div>
+                  <div class="filter-menu-header-save-btn">
+                    Save as new view
+                  </div>
+              </div>
+              <div class="filter-menu-main-container">
+                  <div class="filter-menu-filters">
+                      <div class="filter-menu-filters-title">Status</div>
+                      <div class="filter-menu-filters-holder">
+                        <div class="filter-menu-filters-filter-item" v-for="(status, index) in board.status" :key="index">
+                              <div :style="{backgroundColor: status.color, borderColor: status.color}" class="filter-menu-filters-filter-item-color"></div>
+                              <span>{{status.title}}</span>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="filter-menu-filters">
+                      <div class="filter-menu-filters-title">Labels</div>
+                      <div class="filter-menu-filters-holder">
+                        <div class="filter-menu-filters-filter-item" v-for="(label, index) in board.labels" :key="index">
+                              <div :style="{backgroundColor: label.color, borderColor: label.color}" class="filter-menu-filters-filter-item-color"></div>
+                              <span>{{label.title}}</span>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="filter-menu-filters">
+                      <div class="filter-menu-filters-title">Priority</div>
+                      <div class="filter-menu-filters-holder">
+                        <div class="filter-menu-filters-filter-item" v-for="(priority, index) in board.priority" :key="index">
+                              <div :style="{backgroundColor: priority.color, borderColor: priority.color}" class="filter-menu-filters-filter-item-color"></div>
+                              <span>{{priority.title}}</span>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              
+            
             </div>
           </div>
         </el-tooltip>
@@ -108,10 +163,13 @@ const handleSelect = (key, keyPath) => {
 </script>
 <script>
 export default {
-
+  props: {
+    board: Object,
+  },
   data() {
     return {
-      inputTxt: ''
+      inputTxt: '',
+      MenuOpen: false,
     }
   },
   methods: {
@@ -123,4 +181,8 @@ export default {
 </script>
 
 <style>
+.board-filter-item-component.rule-based-filer-component{
+  position: relative;
+}
+
 </style>

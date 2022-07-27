@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home.vue'
 import boardApp from '../views/board-app.vue'
 import openTask from '../components/board/open-task.cmp.vue'
-
+import kanbanView from '../views/kanban-view.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -21,7 +21,12 @@ const router = createRouter({
           name: 'openTask',
           path: 'task/:taskId',
           component: openTask,
-        }
+        },
+        {
+          name: 'kanban',
+          path: 'kanban',
+          component: kanbanView,
+        },
       ]
     },
     {
