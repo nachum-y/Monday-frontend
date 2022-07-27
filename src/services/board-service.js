@@ -7,24 +7,24 @@ import { socketService, SOCKET_EVENT_GROP_CHANGE, SOCKET_EVENT_BOARD_CHANGE } fr
 import axios from 'axios'
 
 const BOARD_KEY = 'BOARD_DB'
-  // const boardChannel = new BroadcastChannel('boardChannel')
+// const boardChannel = new BroadcastChannel('boardChannel')
 
 
 
-  // ; (() => {
-  //   // reviewChannel.addEventListener('message', (ev) => {
-  //   //   console.log('msg event', ev)
-  //   //   store.commit(ev.data)
-  //   // })
-  //   setTimeout(() => {
-  //     socketService.on(SOCKET_EVENT_BOARD_CHANGE, (msg) => {
-  //       console.log('GOT from socket', msg)
-  //       store.dispatch({ type: 'loadBoard' })
-  //     })
+// ; (() => {
+//   // reviewChannel.addEventListener('message', (ev) => {
+//   //   console.log('msg event', ev)
+//   //   store.commit(ev.data)
+//   // })
+//   setTimeout(() => {
+//     socketService.on(SOCKET_EVENT_BOARD_CHANGE, (msg) => {
+//       console.log('GOT from socket', msg)
+//       store.dispatch({ type: 'loadBoard' })
+//     })
 
-  //   }, 0)
+//   }, 0)
 
-  // })()
+// })()
 
 
 export const boardService = {
@@ -138,6 +138,7 @@ async function updateTask(data, boardId) {
 }
 
 async function _getBoardById(boardId) {
+  console.log(boardId)
   const board = await httpService.get(`boards/${boardId}`)
   return board
 }
@@ -211,17 +212,13 @@ async function saveTask(task, boardId) {
 }
 
 async function getTaskById(boardId, taskId) {
+  if (!boardId) return
   let board = await _getBoardById(boardId)
-  // console.log(board.groups)
-  // let task
-  // let res
-  // res = board.groups.forEach((g) => {
-  //   task = (g.tasks.find((t) => t.id === taskId))
-
-  //   if (task) return task
-
-  // })
-  // console.log(res)
+  let group = board.groups.find((g) => {
+    return g.tasks.find((t) =>
+      t.id === taskId)
+  })
+  return group.tasks.find(t => t.id === taskId)
 
 }
 

@@ -1,8 +1,9 @@
 <template>
-    <div v-if="task" class="item-title">
+    <div v-if="task" class="item-title" @click="openTask(row.id, task)">
         <div class="input-holder">
             <form @submit.prevent="updateTask">
-            <input v-model="title" class="title-input" type="text" :placeholder="titleToDiaplay">    
+                <input @click.stop.prevent="" v-model="title" class="title-input" type="text"
+                    :placeholder="titleToDiaplay">
             </form>
         </div>
         <div class="open-icon-holder">
@@ -13,7 +14,7 @@
 </template>
 <script>
 export default {
-    emits:['updateTask'],
+    emits: ['updateTask'],
     name: ['textCmp'],
     props: {
         task: Object,
@@ -26,17 +27,21 @@ export default {
         }
     },
     computed: {
-        titleToDiaplay(){
+        titleToDiaplay() {
             if (!this.task.value) return ''
             return this.task.value
         }
     },
-    methods:{
+    methods: {
         updateTask() {
-            let newCol = {type:this.task.type,value:this.title}
-            let newData = {newCol,taskId:this.row.id,groupId:this.row.groupId}
-            this.$emit('updateTask',newData)
+            let newCol = { type: this.task.type, value: this.title }
+            let newData = { newCol, taskId: this.row.id, groupId: this.row.groupId }
+            this.$emit('updateTask', newData)
             this.title = ''
+        },
+        openTask(taskId) {
+            console.log(taskId);
+            this.$router.push({ name: 'openTask', params: { taskId } })
         }
     }
 }

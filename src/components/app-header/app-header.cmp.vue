@@ -8,7 +8,7 @@
                <div class="scrollable-navigation-items-area">
 
                   <div class="top-navigation-items-area">
-                     <router-link to="/boards/62dfda488f676e0cf3f29259">
+                     <router-link :to="'/boards/' + currBoardId">
                         <work-management />
                      </router-link>
 
@@ -35,6 +35,9 @@ import workManagement from './work-management.cmp.vue'
 import actionIconWrapper from './action-icon-wrapper-cmp.vue'
 import footerNavigation from './footer-navigation.cmp.vue'
 export default {
+   props: {
+      currBoardId: String
+   },
    data() {
       return {
          activeTab: 'notifications',

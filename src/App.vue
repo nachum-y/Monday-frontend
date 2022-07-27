@@ -1,8 +1,8 @@
 <template>
   <div v-if="data" class="application-layers">
-    <app-header />
+    <app-header :currBoardId="data[0]._id"/>
     <div class="first-level">
-     
+
       <action-side-nav @sideExpanded="isSideExpanded" />
       <div class="first-level-content-wrapper" :class="isSideExpandedVal ? '-pinned' : '-unpinned'">
         <router-view />
@@ -25,7 +25,7 @@ export default {
   components: {
     appHeader,
     actionSideNav,
-    
+
   },
   methods: {
     isSideExpanded(val) {
