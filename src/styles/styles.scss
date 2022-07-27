@@ -11,7 +11,7 @@
 @import 'cmps/btns';
 @import 'cmps/group-header';
 @import 'cmps/usr-msg';
-@import 'menues/group-header-menu';
+
 @import './cmps/home-page';
 
 // DYNAMIC COMPONENTS
@@ -22,3 +22,7 @@
 @import 'cmps/dynamic-cmps/person-cmp';
 @import 'cmps/dynamic-cmps/creationLog-cmp';
 @import 'cmps/dynamic-cmps/location-cmp';
+
+// MENU
+@import 'menues/group-header-menu';
+@import 'menues/filter-menu';

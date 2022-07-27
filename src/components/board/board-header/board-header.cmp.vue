@@ -1,5 +1,5 @@
 <template>
-  <section class="main-header">
+  <section v-if="board" class="main-header">
     <div class="main-header-nav">
       <div class="board-title-component">
         <el-tooltip content="Click to edit" effect="dark">
@@ -40,7 +40,7 @@
         <button class="add-tab header-btn"></button>
       </el-tooltip>
     </section>
-    <mainFilter @searchInput="searchInput" />
+    <mainFilter @searchInput="searchInput" :board="board" />
   </section>
 </template>
 
@@ -52,9 +52,13 @@ export default {
     return {
       board: {
         title: 'New Board',
+        board: null,
       },
-
     }
+  },
+  created() {
+    this.board = this.$store.getters.board
+
   },
   methods: {
     updateBoardTitle(ev) {
