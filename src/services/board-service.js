@@ -7,26 +7,25 @@ import { socketService, SOCKET_EVENT_GROP_CHANGE, SOCKET_EVENT_BOARD_CHANGE } fr
 import axios from 'axios'
 
 const BOARD_KEY = 'BOARD_DB'
-const boardChannel = new BroadcastChannel('boardChannel')
+  // const boardChannel = new BroadcastChannel('boardChannel')
 
 
-  ; (() => {
-    // boardChannel.addEventListener('message', (ev) => {
-    //   console.log('msg event', ev)
-    //   store.commit(ev.data)
-    // })
-    setTimeout(() => {
-      socketService.on(SOCKET_EVENT_GROP_CHANGE, (board) => {
-        console.log('GOT from socket', board)
-        // store.commit({ type: 'updateGroup', board })
-      })
-      socketService.on(SOCKET_EVENT_BOARD_CHANGE, (board) => {
-        console.log('GOT from socket', board)
 
-      })
-    }, 0)
+  // ; (() => {
+  //   // reviewChannel.addEventListener('message', (ev) => {
+  //   //   console.log('msg event', ev)
+  //   //   store.commit(ev.data)
+  //   // })
+  //   setTimeout(() => {
+  //     socketService.on(SOCKET_EVENT_BOARD_CHANGE, (msg) => {
+  //       console.log('GOT from socket', msg)
+  //       store.dispatch({ type: 'loadBoard' })
+  //     })
 
-  })()
+  //   }, 0)
+
+  // })()
+
 
 export const boardService = {
   query,
@@ -83,7 +82,10 @@ async function removeGroup(groupId, boardId) {
   const idx = board.groups.findIndex((g) => g.id === groupId)
   const groupName = board.groups[idx].title
   board.groups.splice(idx, 1)
-  await httpService.put(`boards/${boardId}`, board)
+  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
+  // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, savedBoard)
+
   return groupId
 }
 
@@ -92,8 +94,9 @@ async function updateGroup(groupId, data, boardId) {
   let board = await _getBoardById(boardId)
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   groupToEdit[Object.keys(data)[0]] = data[Object.keys(data)[0]]
-  await httpService.put(`boards/${boardId}`, board)
-  // boardChannel.postMessage({ type: 'updateGroup', groupId: groupToEdit.id, data })
+  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
+  // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, savedBoard)
 
 
   ///
@@ -108,7 +111,10 @@ async function addTask(title, groupId, boardId) {
   let task = _getEmptyTask(colOrder, title)
   task.groupId = groupId
   groupToEdit.tasks.push(task)
-  await httpService.put(`boards/${boardId}`, board)
+  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
+  // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, savedBoard)
+
   return task
 }
 
@@ -120,7 +126,10 @@ async function updateTask(data, boardId) {
     const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
     const colIdx = board.groups[groupIdx].tasks[taskIdx].cols.findIndex(col => col.type === newCol.type)
     board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
-    await httpService.put(`boards/${boardId}`, board)
+    const savedBoard = await httpService.put(`boards/${boardId}`, board)
+    // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
+    // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, savedBoard)
+
     return { groupIdx, taskIdx, colIdx }
   }
   catch (error) {
@@ -153,7 +162,8 @@ async function removeTasks(idsToRemove, boardId) {
     // let groupToUpdate = board.groups.find(g => g.id === group.id)
     group.tasks = group.tasks.filter(task => !idsToRemove.includes(task.id))
   })
-  await httpService.put(`boards/${boardId}`, board)
+  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
   return board.groups
 }
 async function duplicateTasks(idsToDup, boardId) {
@@ -163,7 +173,6 @@ async function duplicateTasks(idsToDup, boardId) {
       if (idsToDup.includes(task.id)) {
         let newTask = JSON.parse(JSON.stringify(task))
         newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
-
         newTask.id = utilService.makeId()
         const idx = board.groups.findIndex(group => group.id === task.groupId)
         board.groups[idx].tasks.push(newTask)
@@ -173,7 +182,8 @@ async function duplicateTasks(idsToDup, boardId) {
     })
 
   })
-  await httpService.put(`boards/${boardId}`, board)
+  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
   return board.groups
 
 
@@ -181,9 +191,9 @@ async function duplicateTasks(idsToDup, boardId) {
 async function saveGroups(groups, boardId) {
   let board = await _getBoardById(boardId)
   board.groups = groups
-  await httpService.put(`boards/${boardId}`, board)
-  // socketService.on(SOCKET_EVENT_GROP_CHANGE)
-  boardChannel.postMessage({ type: 'board-change', groups })
+  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  socketService.on(SOCKET_EVENT_GROP_CHANGE)
+  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
 
   return
 }
@@ -195,7 +205,8 @@ async function saveTask(task, boardId) {
   newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
   const idx = board.groups.findIndex(group => group.id === task.groupId)
   board.groups[idx].tasks.push(newTask)
-  await httpService.put(`boards/${boardId}`, board)
+  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
   return newTask
 }
 
@@ -227,7 +238,8 @@ async function saveGroupsRows(board) {
   // board.groups[idx].tasks = newTasksList
   // board = board
   try {
-    await httpService.put(`boards/${board._id}`, board)
+    const savedBoard = await httpService.put(`boards/${board._id}`, board)
+    // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
   } catch (error) {
     console.log('error:', error)
   }
