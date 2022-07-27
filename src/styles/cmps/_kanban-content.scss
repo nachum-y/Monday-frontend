@@ -1,3 +1,9 @@
+.kanban-view-content{
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
 .kanban-list-component {
     height: 100%;
     padding: 0px 4px;
