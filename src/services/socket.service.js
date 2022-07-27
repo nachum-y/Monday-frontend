@@ -1,13 +1,14 @@
 import io from 'socket.io-client'
 import { boardService } from './board-service.js'
+import store from '../store/index'
 
 export const SOCKET_EVENT_ADD_MSG = 'chat-add-msg'
 export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
-export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
+export const SOCKET_EMIT_SET_BOARD = 'setBoard'
 export const SOCKET_EMIT_USER_WATCH = 'user-watch'
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
 export const SOCKET_EVENT_GROP_CHANGE = 'updateGroup'
-export const SOCKET_EVENT_BOARD_CHANGE = 'board-change'
+export const SOCKET_EVENT_BOARD_CHANGE = 'loadBoard'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
@@ -30,12 +31,14 @@ function createSocketService() {
             socket = io(baseUrl)
             setTimeout(() => {
                 console.log('setup')
-                    // const user = boardService.getLoggedinUser()
-                    // if (user)
-                    this.login(123)
+                // const user = boardService.getLoggedinUser()
+                // if (user)
+                // this.login(123)
             }, 500)
         },
         on(eventName, cb) {
+            console.log(eventName)
+            console.log(cb)
             socket.on(eventName, cb)
         },
         off(eventName, cb = null) {
@@ -45,7 +48,11 @@ function createSocketService() {
         },
         emit(eventName, data) {
             data = JSON.parse(JSON.stringify(data))
+            console.log(data)
+            console.log(eventName)
             socket.emit(eventName, data)
+
+
         },
         login(userId) {
             socket.emit(SOCKET_EMIT_LOGIN, userId)
@@ -62,45 +69,45 @@ function createSocketService() {
 }
 
 // eslint-disable-next-line
-function createDummySocketService() {
-    var listenersMap = {}
-    const socketService = {
-        listenersMap,
-        setup() {
-            listenersMap = {}
-        },
-        terminate() {
-            this.setup()
-        },
-        login() {
-        },
-        logout() {
-        },
-        on(eventName, cb) {
-            listenersMap[eventName] = [...(listenersMap[eventName]) || [], cb]
-        },
-        off(eventName, cb) {
-            if (!listenersMap[eventName]) return
-            if (!cb) delete listenersMap[eventName]
-            else listenersMap[eventName] = listenersMap[eventName].filter(l => l !== cb)
-        },
-        emit(eventName, data) {
-            if (!listenersMap[eventName]) return
-            listenersMap[eventName].forEach(listener => {
-                listener(data)
-            })
-        },
-        debugMsg() {
-            this.emit(SOCKET_EVENT_ADD_MSG, { from: 'Someone', txt: 'Aha it worked!' })
-        },
-    }
-    window.listenersMap = listenersMap
-    return socketService
-}
+// function createDummySocketService() {
+//     var listenersMap = {}
+//     const socketService = {
+//         listenersMap,
+//         setup() {
+//             listenersMap = {}
+//         },
+//         terminate() {
+//             this.setup()
+//         },
+//         login() {
+//         },
+//         logout() {
+//         },
+//         on(eventName, cb) {
+//             listenersMap[eventName] = [...(listenersMap[eventName]) || [], cb]
+//         },
+//         off(eventName, cb) {
+//             if (!listenersMap[eventName]) return
+//             if (!cb) delete listenersMap[eventName]
+//             else listenersMap[eventName] = listenersMap[eventName].filter(l => l !== cb)
+//         },
+//         emit(eventName, data) {
+//             if (!listenersMap[eventName]) return
+//             listenersMap[eventName].forEach(listener => {
+//                 listener(data)
+//             })
+//         },
+//         debugMsg() {
+//             this.emit(SOCKET_EVENT_ADD_MSG, { from: 'Someone', txt: 'Aha it worked!' })
+//         },
+//     }
+//     window.listenersMap = listenersMap
+//     return socketService
+// }
 
 
 // Basic Tests
-function cb(x) { console.log('Socket Test - Expected Puk, Actual:', x) }
+// function cb(x) { console.log('Socket Test - Expected Puk, Actual:', x) }
 // socketService.on('baba', cb)
 // socketService.on('baba', cb)
 // socketService.on('baba', cb)
