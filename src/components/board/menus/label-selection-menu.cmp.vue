@@ -75,6 +75,7 @@ export default {
     color: #000;
     opacity: 1;
     padding: 1rem 1.5rem 0.5rem;
+    border-radius: 8px;
 }
 
 .status-picker-view-title {
