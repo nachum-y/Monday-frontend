@@ -2,8 +2,8 @@
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
-    padding-left: 2.25rem;
     height: calc(100vh - 166px);
+    padding: 16px 0 0 0px;
 
     .task-person{
         .icon-dapulse-addbtn{
@@ -15,6 +15,24 @@
         &-title{
             width: auto;
         }
+    }
+
+    .el-input.el-input--prefix.el-input--suffix.el-date-editor.el-date-editor--date.col-hover.el-tooltip__trigger.el-tooltip__trigger{
+        width: 100%;
+    }
+    .task-location{
+        display: flex;
+        align-items: center;
+        .input-container{
+            display: flex;
+            align-items: center;
+            .icon-v2-line-location:before{
+                position: relative;
+                top: 2px;
+                left: 2px;
+            }
+        }
+
     }
 
 }
@@ -202,4 +220,28 @@
         }
     }
 
+}
+
+.kanbn-view{
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns: 1rem 1fr 268px;
+    border-top: 1px solid $--ui-border-color;
+
+    &-menu{
+        border-inline-start: 2px solid $--ui-border-color;
+
+        &-settings{
+            padding: 1rem;
+            font-weight: 400;
+
+            &-title{
+                margin-bottom: 16px;
+                font-weight: 300;
+                font-size: 14px;
+                color: $--secondary-text-color;
+
+            }
+        }
+    }
 }
