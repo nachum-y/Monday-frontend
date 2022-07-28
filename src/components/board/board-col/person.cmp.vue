@@ -55,12 +55,17 @@ export default {
             this.showPersonMenuOption = null
         },
         selectPerson(memberToAdd) {
-            let updatedTaskMembers = JSON.parse(JSON.stringify(this.task.value))
+            let updatedTaskMembers
+            if (!this.task.value){
+                updatedTaskMembers =[]
+            }else{
+                updatedTaskMembers = JSON.parse(JSON.stringify(this.task.value))
+            }
             updatedTaskMembers.push(memberToAdd)
             let newCol = { type: this.task.type, value: updatedTaskMembers }
             let newData = { newCol, taskId: this.row.id, groupId: this.row.groupId }
             this.taskMembers = updatedTaskMembers.map(person=>person.id)
-            // this.$emit('updateTask', newData)
+            this.$emit('updateTask', newData)
 
         },
     },

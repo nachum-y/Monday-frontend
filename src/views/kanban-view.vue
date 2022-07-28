@@ -27,20 +27,16 @@
               </div>
             </div>
           </div>
-          <div class="kanban-list-component-add-item">
-            <input class="kanban-list-component-add-item-input" placeholder="+Add Item">
+          <div class="kanbn-view-menu">
+            <div class="kanbn-view-menu-settings">
+              <div class="kanbn-view-menu-settings-title">Customize View</div>
+              <div v-for="(col, index) in allCols" :key="index" @click="toggleView(col)">{{ col }}</div>
+            </div>
+
           </div>
+
         </div>
       </div>
-    </div>
-    <div class="kanbn-view-menu">
-      <div class="kanbn-view-menu-settings">
-        <div class="kanbn-view-menu-settings-title">Customize View</div>
-
-      </div>
-
-    </div>
-  </div>
 </template>
 <script>
 import person from '../components/board/board-col/person.cmp.vue'
@@ -50,19 +46,21 @@ import labelCmp from '../components/board/board-col/label.cmp.vue'
 import creationLog from '../components/board/board-col/creationLog.cmp.vue'
 import textCmp from '../components/board/board-col/text.cmp.vue'
 import location from '../components/board/board-col/location.cmp.vue'
+import status from '../components/board/board-col/status.cmp.vue'
 import { ref } from 'vue'
 export default {
 
-  data() {
-    return {
-      tasksByStatus: null,
-      colsToDisplay: ['person', 'priority', 'labelCmp', 'creationLog', 'date', 'textCmp', 'location'],
-      labels: null,
-      status: null,
-      priority: null,
-      boardMembers: null,
-      isShown: '',
-      board: null,
+    data() {
+        return {
+            tasksByStatus: null,
+            colsToDisplay: ['person','priority','labelCmp','creationLog','date', 'textCmp', 'location', 'status'],
+            labels: null,
+            status: null,
+            priority: null,
+            boardMembers: null,
+            isShown: '',
+            board: null,
+            allCols: ['person','priority','labelCmp','creationLog','date', 'textCmp', 'location','status'],
 
     }
   },
@@ -80,6 +78,14 @@ export default {
       if (!title) return 'Default'
       return title
     },
+    toggleView(col) {
+      if (this.colsToDisplay.includes(col)) {
+        const idx = this.colsToDisplay.findIndex(c => c === col)
+        this.colsToDisplay.splice(idx, 1)
+      } else {
+        this.colsToDisplay.push(col)
+      }
+    }
 
   },
   components: {
@@ -90,7 +96,12 @@ export default {
     creationLog,
     textCmp,
     location,
+<<<<<<< HEAD
   },
+=======
+    status
+},
+>>>>>>> 0c76c2501de29916a5edbdf971c2d5e542c4cc36
 }
 </script>
 <style>
