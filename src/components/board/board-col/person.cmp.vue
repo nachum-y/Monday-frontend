@@ -12,7 +12,7 @@
                 <img src="https://cdn.monday.com/icons/dapulse-person-column.svg" class="person-bullet-default">
             </div>
         </div>
-        <person-selection-menu @selectPerson="selectPerson" :taskMembers="taskMembers" v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
+        <person-selection-menu @removePerson="removePerson" @selectPerson="selectPerson" :taskMembers="taskMembers" v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
             :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal"
             :boardMembers="boardMembers"></person-selection-menu>
     </div>
@@ -21,7 +21,7 @@
 <script>
 import personSelectionMenu from '../menus/person-selection-menu.cmp.vue'
 export default {
-    emits: ['updateTask'],
+    emits: ['updateTask','removePerson'],
     name: ['person'],
     props: {
         task: Object,
@@ -67,6 +67,9 @@ export default {
             this.taskMembers = updatedTaskMembers.map(person=>person.id)
             this.$emit('updateTask', newData)
 
+        },
+        removePerson(memberToRemove){
+            console.log(memberToRemove)
         },
     },
     computed: {
