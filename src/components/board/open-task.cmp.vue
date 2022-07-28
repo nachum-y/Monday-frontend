@@ -1,11 +1,11 @@
 <template>
-    <div v-if="task">
+    <div v-if="currTask">
         <el-drawer v-model="drawer" title="I am the title" :lock-scroll="false" :size="'700px'"
             :custom-class="'task-container'" @closed="close" :show-close="true" :with-header="false">
             <div>
                 <div class="task-open-title">
                     <h2 contenteditable="true" class="task-open-task-name">
-                        {{ task.cols[0].value }}
+                        {{ currTask.cols[0].value }}
                     </h2>
                     <button type="button"
                         class="menu-button--wrapper board-filters-overflow-menu-item menu-button--wrapper--size-32"><svg
@@ -45,20 +45,38 @@
 
                     </button>
                 </div>
+          
+                <div v-if="!currTask.conversion">
+                    <div class="post_empty_state_image_wrapper"><img
+                            src="https://cdn.monday.com/images/pulse-page-empty-state.svg">
+                    </div>
 
 
-                <div class="post_empty_state_image_wrapper"><img
-                        src="https://cdn.monday.com/images/pulse-page-empty-state.svg"></div>
-
-
-                <div class="post_not_found_text">
-                    <h2 class="post_not_found">No updates yet for this item</h2>
-                    <p class="post_not_found_subtitle">Be the first one to update about progress, mention someone <br>
-                        or
-                        upload files to share with your team members</p>
+                    <div class="post_not_found_text">
+                        <h2 class="post_not_found">No updates yet for this item</h2>
+                        <p class="post_not_found_subtitle">Be the first one to update about progress, mention someone
+                            <br>
+                            or
+                            upload files to share with your team members
+                        </p>
+                    </div>
                 </div>
+                <div v-else>
+                    <div v-for="update in currTask.conversion" :key="update.id">
+                        <article>
+                            <span>{{ update.by.name }}</span>
+                        </article>
+                        <p v-html="update.content">
 
+                        </p>
+                    </div>
+                    <!-- <p v-html="currTask.conversion.content">
+                            {{ currTask.conversion }}
+                        </p> -->
+                </div>
             </div>
+
+
         </el-drawer>
     </div>
 </template>
@@ -75,9 +93,24 @@ export default {
         return {
             drawer: true,
             boarId: null,
-            task: null,
-            msgHtml: ''
+            task: this.$store.getters.getCurrTask,
+            msgHtml: '',
+            activeUser: this.$store.getters.getActiveUser
         }
+    },
+    created() {
+        this.boarId = this.$route.params.boardId
+        // this.task =  boardService.getTaskById(this.boarId, this.taskId)
+        console.log(this.$route.params.taskId)
+        this.$store.commit({ type: 'setCurrTask', taskId: this.$route.params.taskId })
+        // this.taskId = taskId
+        // boardService.getTaskById()
+        // const boardId = this.$route.params.boardId
+        // const taskId = this.$route.params.taskId
+        // console.log(boardId)
+        // console.log(taskId)
+        // boardService.getTaskById(boardId, taskId)
+
     },
     components: {
         QuillEditor
@@ -90,18 +123,21 @@ export default {
         },
         sendMsg() {
             console.log(this.msgHtml)
+            let msg = {}
+            msg.content = this.msgHtml
+            msg.by = this.activeUser
+            msg.createdAt = Date.now()
+            let currTaskId = this.$route.params.taskId
+            this.$store.dispatch({ type: 'conversionAdd', msg })
             this.msgHtml = ''
-        }
+        },
+
     },
-    async created() {
-        this.boarId = this.$route.params.boardId
-        this.task = await boardService.getTaskById(this.boarId, this.taskId)
-        // boardService.getTaskById()
-        // const boardId = this.$route.params.boardId
-        // const taskId = this.$route.params.taskId
-        // console.log(boardId)
-        // console.log(taskId)
-        // boardService.getTaskById(boardId, taskId)
+
+    computed: {
+        currTask() {
+            return this.$store.getters.getCurrTask
+        }
 
     }
 }
@@ -261,4 +297,7 @@ export default {
     flex-direction: column;
     text-align: center;
 }
+
+
+
 </style>

@@ -41,7 +41,7 @@ export const boardService = {
   updateTask,
   saveGroupsRows,
   duplicateTasks,
-  conversationAdd
+  conversionAdd
 }
 
 
@@ -249,22 +249,32 @@ async function _getGroupById(boardId, groupId) {
   return board.groups.find((g) => g.id === groupId)
 }
 
-async function conversationAdd(ids,mgsContent){
+
+
+
+
+async function conversionAdd(ids, mgsContent) {
+  // console.log(ids)
+  // console.log(mgsContent)/
   const { groupId, taskId, boardId } = ids
+  console.log(groupId)
+  console.log('taskId:', taskId)
+  console.log('boardId:', boardId)
   let board = await _getBoardById(boardId)
   const groupIdx = board.groups.findIndex((group) => group.id === groupId)
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
-  let updatedConversation = []
-  if (!board.groups[groupIdx].tasks[taskIdx].conversation || board.groups[groupIdx].tasks[taskIdx].conversation.legth === 0){
-    board.groups[groupIdx].tasks[taskIdx].conversation = [{id:utilService.makeId(),startingMsg:mgsContent,replies:[]}]
-  }else{
-    mgsContent.id = utilService.makeId()
-    board.groups[groupIdx].tasks[taskIdx].conversation.replies.push(mgsContent)
+
+  if (!board.groups[groupIdx].tasks[taskIdx].conversion) {
+    board.groups[groupIdx].tasks[taskIdx].conversion = []
   }
+  mgsContent.id = utilService.makeId()
+  mgsContent.replies = []
+  board.groups[groupIdx].tasks[taskIdx].conversion.push(mgsContent)
   await httpService.put(`boards/${boardId}`, board)
-  updatedConversation = board.groups[groupIdx].tasks[taskIdx].conversation
-  return {groupIdx,taskIdx,updatedConversation}
+  let updatedConversion = board.groups[groupIdx].tasks[taskIdx].conversion
+  return updatedConversion
 }
+
 
 function _getColor() {
   const colors = [

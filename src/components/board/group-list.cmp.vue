@@ -61,7 +61,8 @@
 
                     <groupAddTask :group="element" :colsOrder="board.colsOrder" @addTask="addTask" />
 
-                    <groupFooter :colsOrder="board.colsOrder" @groupRowFooter="groupRowFooter" />
+                    <groupFooter :groupId="element.id" :getTasksByStatus="getTasksByStatus" :colsOrder="board.colsOrder"
+                        @groupRowFooter="groupRowFooter" :gropTaskLength="element.tasks.length" />
 
                 </div>
             </template>
@@ -331,6 +332,9 @@ export default {
         getMembers() {
             return this.$store.getters.getMembers
         },
+        getTasksByStatus() {
+            return this.$store.getters.getGroupsByLabels
+        }
     },
     destroyed() {
         socketService.off(SOCKET_EVENT_BOARD_CHANGE, this.board)

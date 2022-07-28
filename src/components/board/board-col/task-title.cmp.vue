@@ -40,8 +40,10 @@ export default {
             this.title = ''
         },
         openTask(taskId) {
-            console.log(taskId);
-            this.$router.push({ name: 'openTask', params: { taskId } })
+            console.log(taskId)
+            let boardId = this.$route.params.boardId
+            this.$router.push({ path: `${boardId}/task/${taskId}` })
+
         }
     }
 }
