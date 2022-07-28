@@ -1,6 +1,13 @@
 <template>
     <div v-if="taskMembers" class="person-picker-view" :style="postionModal">
         <div v-if="!showInvite" class="select-peson-view">
+            <div class="memebers-to-remove-holder">
+                <div class="person-remove-img"></div>
+                <span></span>
+                <div class="remove-btn-holder">
+                    <div class="remove-person-btn"></div>
+                </div>
+            </div>
             <div class="search-person-input-holder">
                 <input class="searchPerson-input" type="text" placeholder="Search names">
                 <div class="search-icon-holder"></div>
