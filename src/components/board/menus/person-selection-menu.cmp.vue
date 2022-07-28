@@ -1,11 +1,15 @@
 <template>
     <div v-if="taskMembers" class="person-picker-view" :style="postionModal">
         <div v-if="!showInvite" class="select-peson-view">
-            <div class="memebers-to-remove-holder">
-                <div class="person-remove-img"></div>
-                <span></span>
-                <div class="remove-btn-holder">
-                    <div class="remove-person-btn"></div>
+            <div class="members-to-remove-container">
+                <div v-for="(member,idx) in userToDisplay()" :key="member.id" class="memebers-to-remove-holder">
+                    <div class="person-remove-img">
+                        <img class="person-bullet-mini" :src="member.imgUrl" alt="">
+                    </div>
+                    <span>{{member.name}}</span>
+                    <div class="remove-btn-holder" @click="removePerson(member)">
+                        <div class="remove-person-btn"></div>
+                    </div>
                 </div>
             </div>
             <div class="search-person-input-holder">
@@ -45,7 +49,7 @@
 </template>
 <script>
 export default {
-    emits: ['changeMembers','selectPerson'],
+    emits: ['changeMembers','selectPerson','removePerson'],
     props: {
         boardMembers: Array,
         taskMembers: Array,
@@ -64,11 +68,11 @@ export default {
             this.cordsY = evt.pageY
         },
         setUserImg(member) {
-            console.log(member.imgUrl)
+            console.log(this.boardMembers)
+            console.log(this.taskMembers)
             return member.imgUrl
         },
         showInvitation() {
-            console.log(this.taskMembers)
             this.showInvite = !this.showInvite
         },
         selectPerson(member) {
@@ -79,6 +83,15 @@ export default {
                     imgUrl
                   }
             this.$emit('selectPerson', personToAdd)
+        },
+        userToDisplay(){
+            let membersToRemove = this.boardMembers.filter(member=>{
+                return this.taskMembers.includes(member.id)
+            })
+            return membersToRemove
+        },
+        removePerson(memberToRemove){
+            this.$emit('removePerson', memberToRemove)
         },
     },
     computed: {
