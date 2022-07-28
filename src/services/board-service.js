@@ -110,6 +110,7 @@ async function addTask(title, groupId, boardId) {
   let groupToEdit = board.groups.find((g) => g.id === groupId)
   const colOrder = board.colsOrder
   let task = _getEmptyTask(colOrder, title)
+  task.isDone = false
   task.groupId = groupId
   groupToEdit.tasks.push(task)
   const savedBoard = await httpService.put(`boards/${boardId}`, board)
@@ -201,15 +202,16 @@ async function saveGroups(groups, boardId) {
 }
 
 async function saveTask(task, boardId) {
-  let newTask = JSON.parse(JSON.stringify(task))
-  let board = await _getBoardById(boardId)
-  newTask.id = utilService.makeId()
-  newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
-  const idx = board.groups.findIndex(group => group.id === task.groupId)
-  board.groups[idx].tasks.push(newTask)
-  const savedBoard = await httpService.put(`boards/${boardId}`, board)
-  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
-  return newTask
+  console.log(task)
+  // let newTask = JSON.parse(JSON.stringify(task))
+  // let board = await _getBoardById(boardId)
+  // newTask.id = utilService.makeId()
+  // newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
+  // const idx = board.groups.findIndex(group => group.id === task.groupId)
+  // board.groups[idx].tasks.push(newTask)
+  // const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
+  // return newTask
 }
 
 async function getTaskById(boardId, taskId) {

@@ -70,9 +70,7 @@
 
                         </p>
                     </div>
-                    <!-- <p v-html="currTask.conversion.content">
-                            {{ currTask.conversion }}
-                        </p> -->
+
                 </div>
             </div>
 
