@@ -27,10 +27,10 @@
                 <span>Type in email address to invite</span>
             </div>
             <div class="input-invite-holder">
-                <input autofocus type="text" placeholder="Enter email">
+                <input autofocus pattern=".+@globex\.com" required type="email" placeholder="Enter email">
             </div>
             <div class="invite-btns-holder">
-                <button class="cancel-invite-btn">Cancel</button>
+                <button @click.stop.prevent="showInvitation" class="cancel-invite-btn">Cancel</button>
                 <button class="invite-this-person-btn">Invite</button>
             </div>
         </div>
