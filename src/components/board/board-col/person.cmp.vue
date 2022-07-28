@@ -1,4 +1,5 @@
 <template>
+
     <div ref="personCmpRef" :class="'task-' + task.type" class="person-cell">
         <div @click="showPersonMenu($event)" style="width: 100%;" class="task-person">
             <div class="icon-dapulse-addbtn"></div>
@@ -10,12 +11,12 @@
             <div v-if="!task.value" class="person-bullet-container">
                 <img src="https://cdn.monday.com/icons/dapulse-person-column.svg" class="person-bullet-default">
             </div>
-
         </div>
         <person-selection-menu @selectPerson="selectPerson" :taskMembers="taskMembers" v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
             :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal"
-            :boardMembers="boardMembers"/>
+            :boardMembers="boardMembers"></person-selection-menu>
     </div>
+
 </template>
 <script>
 import personSelectionMenu from '../menus/person-selection-menu.cmp.vue'
@@ -59,7 +60,7 @@ export default {
             let newCol = { type: this.task.type, value: updatedTaskMembers }
             let newData = { newCol, taskId: this.row.id, groupId: this.row.groupId }
             this.taskMembers = updatedTaskMembers.map(person=>person.id)
-            this.$emit('updateTask', newData)
+            // this.$emit('updateTask', newData)
 
         },
     },
@@ -69,7 +70,11 @@ export default {
         personSelectionMenu,
     },
     created(){
-       this.taskMembers = this.task.value.map(person => person.id)
+        if(!this.task.value){
+        this.taskMembers = []
+        }else{
+            this.taskMembers = this.task.value.map(person => person.id)
+        }
     },
     mounted() {
         this.showPersonMenuOptionLeft = window.outerWidth

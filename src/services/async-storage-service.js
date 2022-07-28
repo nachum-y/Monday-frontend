@@ -288,7 +288,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l102',
+                value: "l102",
               },
             ]
           },
@@ -342,7 +342,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l103',
+                value: "l103",
               },
             ]
           },
@@ -401,7 +401,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l102',
+                value: "l102",
               },
             ]
           },
@@ -472,7 +472,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l103',
+                value: "l103",
               },
             ]
           },
@@ -526,7 +526,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l101',
+                value: "l101",
               },
             ]
           },
@@ -647,7 +647,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l103',
+                value: "l103",
               },
             ]
           },
@@ -701,7 +701,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l102',
+                value: "l102",
               },
               
             ]
@@ -756,7 +756,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l101',
+                value: "l101",
               },
               
             ]
@@ -806,7 +806,7 @@ function _createDefaultBoard(entityType) {
               },
               {
                 type: "labelCmp",
-                value: 'l103',
+                value: "l103",
               },
               
             ]
