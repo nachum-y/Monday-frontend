@@ -63,7 +63,7 @@ export default {
             return member.imgUrl
         },
         showInvitation() {
-            console.log('heyyy')
+            console.log(this.taskMembers)
             this.showInvite = !this.showInvite
         },
         selectPerson(member) {
