@@ -271,7 +271,7 @@ async function conversionAdd(ids, mgsContent) {
   }
   mgsContent.id = utilService.makeId()
   mgsContent.replies = []
-  board.groups[groupIdx].tasks[taskIdx].conversion.push(mgsContent)
+  board.groups[groupIdx].tasks[taskIdx].conversion.unshift(mgsContent)
   await httpService.put(`boards/${boardId}`, board)
   let updatedConversion = board.groups[groupIdx].tasks[taskIdx].conversion
   return updatedConversion

@@ -61,15 +61,32 @@
                         </p>
                     </div>
                 </div>
-                <div v-else>
-                    <div v-for="update in currTask.conversion" :key="update.id">
-                        <article>
-                            <span>{{ update.by.name }}</span>
-                        </article>
-                        <p v-html="update.content">
-
-                        </p>
+                <div v-else class="conversation-container">
+                     <div class="conversation-card" v-for="update in currTask.conversion" :key="update.id">
+                        <div class="conversation-card-header">
+                            <div class="avatar"><img
+                                    :src="getUrl(update.by.imgUrl)" alt=""
+                                    srcset=""></div>
+                            <div class="full-name">{{ update.by.name }}</div>
+                            <div class="activity-indicator">
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                        <div class="conversation-card-inside">
+                            <p v-html="update.content"></p>
+                        </div>
+                        <div class="conversation-card-footer">
+                            <div class="conversation-card-footer-btn like">
+                                <div class="icon"></div> <span>Like</span>
+                            </div>
+                            <div class="conversation-card-footer-btn reply">
+                                <div class="icon"></div> <span>reply</span>
+                            </div>
+                        </div>
                     </div>
+
+
+
 
                 </div>
             </div>
@@ -140,6 +157,10 @@ export default {
             this.$store.dispatch({ type: 'conversionAdd', msg })
             this.msgHtml = ''
         },
+        getUrl(url){
+            console.log(url);
+            return url
+        }
 
     },
 
