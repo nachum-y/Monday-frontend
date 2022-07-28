@@ -1,6 +1,6 @@
 <template>
     <div ref="statusCmpRef" v-if="status.length > 0" class="task-label">
-        <div class="task-label-display" :style="setStatusStyle" @click="showStatusMenu($event, status)">{{
+        <div class="task-label-display task-lighten" :style="setStatusStyle" @click="showStatusMenu($event, status)">{{
                 statusToDisplay
         }}</div>
         <status-selection-menu v-click-outside="closeActionsModal" v-if="showStatusMenuOption"
