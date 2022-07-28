@@ -61,15 +61,22 @@ export default {
             }else{
                 updatedTaskMembers = JSON.parse(JSON.stringify(this.task.value))
             }
+            console.log(updatedTaskMembers)
             updatedTaskMembers.push(memberToAdd)
             let newCol = { type: this.task.type, value: updatedTaskMembers }
             let newData = { newCol, taskId: this.row.id, groupId: this.row.groupId }
+            console.log(newData)
             this.taskMembers = updatedTaskMembers.map(person=>person.id)
             this.$emit('updateTask', newData)
 
         },
         removePerson(memberToRemove){
-            console.log(memberToRemove)
+
+            let updatedTaskMembers = this.task.value.filter(member=>member.id!==memberToRemove.id)
+            let newCol = { type: this.task.type, value: updatedTaskMembers }
+            let newData = { newCol, taskId: this.row.id, groupId: this.row.groupId }
+            this.taskMembers = updatedTaskMembers.map(member=>member.id)
+            this.$emit('updateTask', newData)
         },
     },
     computed: {

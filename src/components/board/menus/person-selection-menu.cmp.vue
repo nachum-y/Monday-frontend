@@ -16,7 +16,7 @@
                 <input class="searchPerson-input" type="text" placeholder="Search names">
                 <div class="search-icon-holder"></div>
             </div>
-            <div class="suggested-members">
+            <div v-if="taskMembers.length < boardMembers.length" class="suggested-members">
                 <h3>Suggested people</h3>
                 <div @click="selectPerson(member)" v-show="!taskMembers.includes(member.id)" class="member-holder" v-for="(member, id) in boardMembers"
                     :key="member.id">
@@ -68,8 +68,6 @@ export default {
             this.cordsY = evt.pageY
         },
         setUserImg(member) {
-            console.log(this.boardMembers)
-            console.log(this.taskMembers)
             return member.imgUrl
         },
         showInvitation() {
@@ -90,7 +88,9 @@ export default {
             })
             return membersToRemove
         },
-        removePerson(memberToRemove){
+        removePerson(member){
+            const {id,name,imgUrl} = member
+            let memberToRemove = {id,fullname:name,imgUrl}
             this.$emit('removePerson', memberToRemove)
         },
     },
