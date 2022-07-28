@@ -49,13 +49,6 @@ export default {
             return `top:${top}px; left:${(-elWidth / 4)}px;`
         }
     },
-    created() {
-    },
-    unmounted() {
-
-    },
-    destroyed() {
-    }
 }
 
 </script>

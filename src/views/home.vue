@@ -29,11 +29,10 @@
             <div class="star20 star"></div>
         </div>
         <div class="home-img"></div>
-        
+
     </div>
 </template>
 <script>
-import { method } from 'lodash'
 
 export default {
 }

@@ -45,7 +45,7 @@
 
                     </button>
                 </div>
-          
+
                 <div v-if="!currTask.conversion">
                     <div class="post_empty_state_image_wrapper"><img
                             src="https://cdn.monday.com/images/pulse-page-empty-state.svg">
@@ -82,6 +82,8 @@
 import { boardService } from '../../services/board-service'
 import { QuillEditor } from '@vueup/vue-quill'
 // import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { socketService, SOCKET_EVENT_CONVERSION, SOCKET_EVENT_BOARD_CHANGE, SOCKET_EMIT_SET_BOARD } from '../../services/socket.service'
+
 
 export default {
     props: {
@@ -101,6 +103,12 @@ export default {
         // this.task =  boardService.getTaskById(this.boarId, this.taskId)
         console.log(this.$route.params.taskId)
         this.$store.commit({ type: 'setCurrTask', taskId: this.$route.params.taskId })
+        socketService.on(SOCKET_EVENT_CONVERSION, (msgs) => {
+            this.loadMsg(msgs)
+        })
+        let currTaskId = this.$route.params.taskId
+        console.log(currTaskId)
+        socketService.emit('setTopic', currTaskId)
         // this.taskId = taskId
         // boardService.getTaskById()
         // const boardId = this.$route.params.boardId
@@ -114,13 +122,16 @@ export default {
         QuillEditor
     },
     methods: {
+        loadMsg(msgs) {
+            console.log(msgs)
+            this.$store.commit({ type: 'updateConversion', updatedConversion: msgs })
+        },
         close() {
             let boarId = this.$route.params.boardId
             // this.$router.go(-1)
             this.$router.replace({ path: `/boards/${boarId}` })
         },
         sendMsg() {
-            console.log(this.msgHtml)
             let msg = {}
             msg.content = this.msgHtml
             msg.by = this.activeUser
@@ -137,6 +148,17 @@ export default {
             return this.$store.getters.getCurrTask
         }
 
+    },
+    watch: {
+        currTask: {
+            handler(newValue, oldValue) {
+                console.log(newValue)
+                // Note: `newValue` will be equal to `oldValue` here
+                // on nested mutations as long as the object itself
+                // hasn't been replaced.
+            },
+            deep: true
+        }
     }
 }
 </script>
@@ -295,7 +317,4 @@ export default {
     flex-direction: column;
     text-align: center;
 }
-
-
-
 </style>

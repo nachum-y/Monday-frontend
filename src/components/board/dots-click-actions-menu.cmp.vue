@@ -2,7 +2,7 @@
     <section class="group-header-actions-menu" :style="postionModal" v-if="group">
         <div class="group-header-actions-menu--group-actions">
             <div class="collapse-group" @click="collapseGroup">
-                <div class="collapse-group-icon" ></div>
+                <div class="collapse-group-icon"></div>
                 <div class="collapse-group-title">Collapse this group</div>
             </div>
             <div class="collapse-groups" @click="deleteGroup">
@@ -13,12 +13,12 @@
                 <div class="select-all-items-icon"></div>
                 <div class="select-all-items-title">Select all items</div>
             </div>
-           
+
 
 
         </div>
 
-        
+
         <div @click="deleteGroup">Delete
             <i class="icon-v2-delete-line">
 
@@ -35,7 +35,7 @@
 </template>
 <script>
 export default {
-    emits: ['deleteGroup','duplicateGroup','collapseGroup'],
+    emits: ['deleteGroup', 'duplicateGroup', 'collapseGroup'],
     props: {
         group: Object,
         pos: Object
@@ -60,17 +60,15 @@ export default {
         duplicateGroup() {
             this.$emit('duplicateGroup')
         },
-        collapseGroup(){
-            console.log('hello');
+        collapseGroup() {
+            console.log('hello')
             this.$emit('collapseGroup')
         }
     },
     computed: {
         postionModal() {
-            let y = window.innerHeight
             let x = window.clientWidth
             const top = this.pos.eltop
-            const left = this.pos.left
             if (this.pos.left + 300 > x) return `top:${top}px; left:${this.pos.left - 300}px;`
             return `top:${top + 10}px; left:${this.pos.left - 10}px;`
         }
@@ -78,18 +76,11 @@ export default {
     created() {
         // console.log('create')
     },
-    unmounted() {
 
-    },
-    destroyed() {
-    }
 }
 
 </script>
 <style>
-
-
-
 .right-click-actions-menu {
     width: 18rem;
     font-size: 0.875rem;
