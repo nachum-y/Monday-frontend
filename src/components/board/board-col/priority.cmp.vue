@@ -1,6 +1,6 @@
 <template>
     <div ref="priorityCmpRef" v-if="priority.length > 0" class="task-label">
-        <div class="task-label-display" :style="setPriorityStyle" @click="showPriorityMenu($event, priority)">{{
+        <div class="task-label-display task-lighten" :style="setPriorityStyle" @click="showPriorityMenu($event, priority)">{{
                 priorityToDisplay
         }}</div>
         <priority-selection-menu v-click-outside="closeActionsModal" v-if="showPriorityMenuOption"
