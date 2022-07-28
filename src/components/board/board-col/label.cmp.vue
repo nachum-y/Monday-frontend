@@ -1,6 +1,7 @@
 <template>
     <div ref="labelCmpRef" v-if="labels.length > 0" class="task-label">
-        <div class="task-label-display task-lighten" :style="setLabelStyle" @click="showLabelsMenu($event, labels)">{{ labelToDisplay
+        <div class="task-label-display task-lighten" :style="setLabelStyle" @click="showLabelsMenu($event, labels)">{{
+                labelToDisplay
         }}</div>
 
 
@@ -92,7 +93,7 @@ export default {
     components: {
         labelSelectionMenu
     },
- 
+
 }
 </script>
 <style>
