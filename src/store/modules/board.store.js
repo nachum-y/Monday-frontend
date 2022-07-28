@@ -62,9 +62,13 @@ export const boardStore = {
 
         },
         addTask(state, { groupId, newTask }) {
+            console.log(groupId)
+            console.log('newTask:', newTask)
             let groupToUpdate = state.board.groups.find(group => group.id === groupId)
+            console.log('groupToUpdate:', groupToUpdate)
             groupToUpdate.tasks.push(newTask)
-
+            console.log(groupToUpdate)
+            console.log(state.board)
         },
         updateColsOrder(state, { value2 }) {
             state.board.colsOrder = value2
@@ -254,11 +258,10 @@ export const boardStore = {
             }
         },
         async addTask({ commit, state }, { title, groupId }) {
-
             try {
                 const newTask = await boardService.addTask(title, groupId, state.board._id)
                 commit({ type: 'addTask', groupId, newTask })
-                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+                // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
 
 
             }
