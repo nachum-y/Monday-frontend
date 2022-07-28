@@ -12,10 +12,9 @@
             </div>
 
         </div>
-        <person-selection-menu v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
-            :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal" @changePerson="togglePerson"
-            :boardMembers="boardMembers" :taskMembers="task.value">
-        </person-selection-menu>
+        <person-selection-menu @selectPerson="selectPerson" :taskMembers="taskMembers" v-click-outside="closeActionsModal" v-if="showPersonMenuOption"
+            :person="showPersonMenuOption.person" :pos="showPersonMenuOption.posModal"
+            :boardMembers="boardMembers"/>
     </div>
 </template>
 <script>
@@ -32,6 +31,7 @@ export default {
         return {
             showPersonMenuOption: null,
             showPersonMenuOptionLeft: 0,
+            taskMembers: []
         }
     },
     methods: {
@@ -53,15 +53,23 @@ export default {
         closeActionsModal() {
             this.showPersonMenuOption = null
         },
-        togglePerson(personId) {
+        selectPerson(memberToAdd) {
+            let updatedTaskMembers = JSON.parse(JSON.stringify(this.task.value))
+            updatedTaskMembers.push(memberToAdd)
+            let newCol = { type: this.task.type, value: updatedTaskMembers }
+            let newData = { newCol, taskId: this.row.id, groupId: this.row.groupId }
+            this.taskMembers = updatedTaskMembers.map(person=>person.id)
+            this.$emit('updateTask', newData)
 
         },
     },
     computed: {
-
     },
     components: {
         personSelectionMenu,
+    },
+    created(){
+       this.taskMembers = this.task.value.map(person => person.id)
     },
     mounted() {
         this.showPersonMenuOptionLeft = window.outerWidth
