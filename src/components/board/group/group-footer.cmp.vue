@@ -94,7 +94,6 @@ export default {
 
                         return acc
                     }, {})
-                    console.log(uniqs)
                     return uniqs
                 default:
 
