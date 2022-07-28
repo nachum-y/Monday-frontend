@@ -112,7 +112,7 @@ async function addTask(title, groupId, boardId) {
   let task = _getEmptyTask(colOrder, title)
   task.groupId = groupId
   groupToEdit.tasks.push(task)
-  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // const savedBoard = await httpService.put(`boards/${boardId}`, board)
   // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
   // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, savedBoard)
 

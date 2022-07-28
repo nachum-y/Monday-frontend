@@ -32,9 +32,11 @@ export default {
     },
     methods: {
         addTask(groupId, titleEl) {
+            console.log('ddd');
             let title = titleEl.target.elements.title.value
             this.$emit('addTask', { groupId, title })
             titleEl.target.elements.title.value = ''
+            console.log('jjj');
         }
     },
     computed: {
