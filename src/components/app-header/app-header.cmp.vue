@@ -14,9 +14,9 @@
 
                      <div v-for="(tab, idx) in tabs" :class="tab + 'actionTab'">
                         <action-icon-wrapper :iconName="tab" :isActive=isActive(tab) @click="setSelectedTab(tab)">
-                           <template #svgIcon>
+                           <!-- <template #svgIcon>
                               <use :xlink:href="setSvgLink(tab)"></use>
-                           </template>
+                           </template> -->
                         </action-icon-wrapper>
 
                      </div>

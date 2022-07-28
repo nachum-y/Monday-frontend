@@ -35,6 +35,7 @@ export const boardStore = {
             date: 'createdAt',
             name: 'name',
         },
+        currTask: null,
 
     },
     mutations: {
@@ -112,7 +113,22 @@ export const boardStore = {
                 type: msgType,
                 grouping: true,
             })
-        }
+        },
+        setCurrTask(state, { taskId }) {
+            console.log(taskId)
+            let group = state.board.groups.find((g) => {
+                return g.tasks.find((t) =>
+                    t.id === taskId)
+            })
+            state.currTask = group.tasks.find(t => t.id === taskId)
+            console.log(state.currTask)
+        },
+        updateConversion(state, { updatedConversion }) {
+            console.log(updatedConversion)
+            state.currTask.conversion = updatedConversion
+        },
+
+
 
     },
     getters: {
@@ -155,18 +171,49 @@ export const boardStore = {
         getMembers({ board }) {
             return board.members
         },
-        getTasksByStatus({ board }){
+        getTasksByStatus({ board }) {
             let tasksByStatus = {}
-            board.status.map(status=>tasksByStatus[status.id] = {tasks:[],color: status.color,title:status.title,id:status.id})
-            board.groups.forEach(group=>{
-                group.tasks.forEach(task=>{
-                    const statusId = task.cols.find(col=>col.type === 'status').value
+            board.status.map(status => tasksByStatus[status.id] = { tasks: [], color: status.color, title: status.title, id: status.id })
+            board.groups.forEach(group => {
+                group.tasks.forEach(task => {
+                    const statusId = task.cols.find(col => col.type === 'status').value
                     tasksByStatus[statusId].tasks.push(task)
-                })      
+                })
             })
             console.log(tasksByStatus)
             return tasksByStatus
         },
+        getGroupsByLabels({ board }) {
+            let groupByLabels = {}
+            board.groups.map(group => groupByLabels[group.id] = {})
+            board.groups.forEach(group => {
+                groupByLabels[group.id].label = group.tasks.map((task) => {
+                    const labelId = task.cols.find(col => col.type === 'labelCmp').value
+                    const labelObj = board.labels.find(l => l.id === labelId)
+                    return labelObj
+                })
+                groupByLabels[group.id].status = group.tasks.map((task) => {
+                    const statusId = task.cols.find(col => col.type === 'status').value
+                    const statusObj = board.status.find(s => s.id === statusId)
+                    return statusObj
+
+                })
+                groupByLabels[group.id].priority = group.tasks.map((task) => {
+                    const priorityId = task.cols.find(col => col.type === 'priority').value
+                    const priorityObj = board.priority.find(p => p.id === priorityId)
+                    return priorityObj
+                })
+
+            })
+            return groupByLabels
+        },
+        getCurrTask({ currTask }) {
+            return currTask
+        },
+        getActiveUser({ board }) {
+            return board.members.find(m => m.isAdmin)
+        },
+
     },
     actions: {
         async loadBoard({ commit }) {
@@ -295,6 +342,27 @@ export const boardStore = {
         },
         sortBy({ commit }, { filter, param }) {
             commit({ type: 'setActiveFilter', filter, param })
+
+        },
+        async conversionAdd({ commit, state }, { msg }) {
+
+
+            const ids = {
+                groupId: state.currTask.groupId,
+                taskId: state.currTask.id,
+                boardId: state.board._id,
+            }
+            console.log(ids)
+            try {
+                const updatedConversion = await boardService.conversionAdd(ids, msg)
+                commit({ type: 'updateConversion', updatedConversion })
+
+
+            } catch (error) {
+                console.log(error)
+
+            }
+
 
         }
 

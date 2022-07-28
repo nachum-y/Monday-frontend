@@ -39,14 +39,7 @@ export default {
 }
 </script>
 <style>
-/* .el-progress--circle .el-progress__text i,
-.el-progress--dashboard .el-progress__text i {
-    vertical-align: middle;
-    /* display: inline-block; */
-/* display: flex !important; */
-/* justify-content: flex-start; */
 
-/* } */
 
 .el-progress.is-success .el-progress__text {
     color: var(--el-color-success);

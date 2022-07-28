@@ -27,7 +27,6 @@ const router = createRouter({
               name: 'openTask',
               path: 'task/:taskId',
               component: openTask,
-              props: true,
             },
           ]
         },
