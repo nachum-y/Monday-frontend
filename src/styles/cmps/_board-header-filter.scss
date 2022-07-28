@@ -316,8 +316,13 @@
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
-    width:190px;
-    padding-right:0
+    padding-right:0;
+
+    &:focus{
+        width:190px;
+        background-color:#fff;
+        border: 1px solid #0073ea;
+    }
 }
 .board-filter-input-container--expandable .board-filter-input-wrapper_v2 .icon-and-input-wrapper input::-webkit-input-placeholder{
     color:var(--primary-text-color);
