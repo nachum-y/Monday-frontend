@@ -259,6 +259,7 @@
         display: flex;
         width: 100%;
         margin-bottom: -7px;
+        
 
         span{
             color: #323338;
@@ -278,6 +279,7 @@
             flex: 0 0 auto;
             display: flex;
             padding: 0 4px;
+            
             
 
             &::placeholder{
@@ -326,6 +328,8 @@
 
 .members-to-remove-container{
     display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
 
     .memebers-to-remove-holder{
 
