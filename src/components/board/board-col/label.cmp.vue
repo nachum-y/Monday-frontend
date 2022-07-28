@@ -89,23 +89,10 @@ export default {
         // let elWidth = this.$refs.groupRowFooter.clientWidth
         // this.$emit('groupRowFooter', elWidth)
     },
-    // methodes: {
-
-    //     closeActionsModal() {
-    //         this.showLabelMenuOption = null
-    //     },
-    // },
     components: {
         labelSelectionMenu
     },
-    // methodes:{
-    //      openActionsModal(el, group) {
-    //         this.showGroupAction = {}
-    //         this.showGroupAction.group = group
-    //         this.showGroupAction.posModal = { eltop: el.layerY, left: el.layerX }
-
-    //     },
-    // },
+ 
 }
 </script>
 <style>

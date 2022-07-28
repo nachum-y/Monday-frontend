@@ -51,8 +51,6 @@ export default {
             showInvite: false,
         }
     },
-    components: {
-    },
     methods: {
         escapekeylistener(evt) {
             this.cordsX = evt.pageX
@@ -94,13 +92,7 @@ export default {
         },
 
     },
-    created() {
-    },
-    unmounted() {
-
-    },
-    destroyed() {
-    }
+  
 }
 
 </script>

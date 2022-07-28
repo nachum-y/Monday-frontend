@@ -38,7 +38,7 @@ export default {
     },
     created() {
         this.$watch('getTasksByStatus', (newVal) => {
-            console.log(this.groupId)
+            // console.log(this.groupId)
             this.groupListLabels = newVal[this.groupId]
         })
         this.groupListLabels = this.getTasksByStatus[this.groupId]
@@ -48,9 +48,10 @@ export default {
     methods: {
         getPrcLabel(colType) {
             if (colType !== 'status' && colType !== 'labelCmp' && colType !== 'priority') return
+            var uniqs
             switch (colType) {
                 case 'status':
-                    var uniqs = this.groupListLabels.status.reduce((acc, val) => {
+                    uniqs = this.groupListLabels.status.reduce((acc, val) => {
                         if (!acc[val.title]) {
                             acc[val.title] = {}
                             acc[val.title].count = 1
@@ -62,10 +63,10 @@ export default {
 
                         return acc
                     }, {})
-                    console.log(uniqs)
+                    // console.log(uniqs)
                     return uniqs
                 case 'priority':
-                    var uniqs = this.groupListLabels.priority.reduce((acc, val) => {
+                    uniqs = this.groupListLabels.priority.reduce((acc, val) => {
                         if (!acc[val.title]) {
                             acc[val.title] = {}
                             acc[val.title].count = 1
@@ -81,7 +82,7 @@ export default {
 
 
                 case 'labelCmp':
-                    var uniqs = this.groupListLabels.label.reduce((acc, val) => {
+                    uniqs = this.groupListLabels.label.reduce((acc, val) => {
                         if (!acc[val.title]) {
                             acc[val.title] = {}
                             acc[val.title].count = 1

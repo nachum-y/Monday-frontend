@@ -109,12 +109,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+// import { ref } from 'vue'
 import filterMenu from '../menus/filter-menu.cmp.vue'
-const activeIndex = ref('1')
-const handleSelect = (key, keyPath) => {
-  // console.log(key, keyPath)
-}
+// const activeIndex = ref('1')
+// const handleSelect = (key, keyPath) => {
+//   // console.log(key, keyPath)
+// }
 </script>
 <script>
 export default {
@@ -138,7 +138,7 @@ export default {
   },
   methods: {
 
-    showFilterMenuOption(el) {
+    showFilterMenuOption() {
       this.filterMenuOption = {}
       this.filterMenuOption = this.board
       // console.log(filterMenuOptionLeft)
