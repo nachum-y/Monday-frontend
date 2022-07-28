@@ -1,5 +1,5 @@
 <template>
-    <div class="person-picker-view" :style="postionModal">
+    <div v-if="taskMembers" class="person-picker-view" :style="postionModal">
         <div v-if="!showInvite" class="select-peson-view">
             <div class="search-person-input-holder">
                 <input class="searchPerson-input" type="text" placeholder="Search names">
@@ -7,7 +7,7 @@
             </div>
             <div class="suggested-members">
                 <h3>Suggested people</h3>
-                <div @click="selectPerson(member)" class="member-holder" v-for="(member, id) in boardMembers"
+                <div @click="selectPerson(member)" v-show="!taskMembers.includes(member.id)" class="member-holder" v-for="(member, id) in boardMembers"
                     :key="member.id">
                     <div class="person-bullet-menu">
                         <img :src="setUserImg(member)" alt="">
@@ -38,10 +38,10 @@
 </template>
 <script>
 export default {
-    emits: ['changeMembers'],
+    emits: ['changeMembers','selectPerson'],
     props: {
         boardMembers: Array,
-        // taskMembers: Array,
+        taskMembers: Array,
         pos: Object
     },
     data() {
@@ -58,9 +58,6 @@ export default {
             this.cordsX = evt.pageX
             this.cordsY = evt.pageY
         },
-        selectPerson(memberId) {
-            this.$emit('changeMember', memberId)
-        },
         setUserImg(member) {
             console.log(member.imgUrl)
             return member.imgUrl
@@ -70,7 +67,13 @@ export default {
             this.showInvite = !this.showInvite
         },
         selectPerson(member) {
-            this.$emit('selectPerson', member)
+            const {id, name, imgUrl} = member
+            let personToAdd = {
+                    id,
+                    fullname: name,
+                    imgUrl
+                  }
+            this.$emit('selectPerson', personToAdd)
         },
     },
     computed: {
