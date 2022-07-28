@@ -165,7 +165,7 @@
 
                 .footer-col {
                     @extend %col-style;
-
+                    
                     &:not(:first-child) {
                         border-bottom: $--border-style;
                         box-shadow: $--board-elevation;
@@ -189,6 +189,15 @@
 
                     &:last-child {
                         border-bottom-right-radius: 4px;
+                    }
+
+                    .task-item{
+                        .row-menu{
+                        
+                            background-color: white;
+                            left: -2.25rem;
+                            width: 35px;
+                        }
                     }
                 }
 
