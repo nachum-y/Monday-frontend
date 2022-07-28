@@ -19,9 +19,9 @@
                             </div>
                             <task-title @updateTask="this.$emit('updateTask', $event)" :task="element.cols[0]"
                                 :row="element" />
-                            <div class="item-conversation">
+                            <div class="item-conversation" :class="isActive(element)">
                                 <div class="conversation-icon"></div>
-                                <span class="item-conversation-count">0
+                                <span class="item-conversation-count">{{getCount(element)}}
                                 </span>
                             </div>
                         </div>
@@ -112,6 +112,13 @@ export default {
         remove(ev) {
             // console.log(ev)
 
+        },
+        getCount(row){
+            if(row.conversion) return row.conversion.length
+            return 0
+        },isActive(row){
+            if(!row.conversion || row.conversion.length === 0) return ''
+            return 'active'
         }
 
     },
@@ -133,7 +140,8 @@ export default {
         },
         groupColor() {
             return { backgroundColor: this.group.color }
-        }
+        },
+        
     }
 
 }

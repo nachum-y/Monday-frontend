@@ -9,6 +9,7 @@ export const SOCKET_EMIT_USER_WATCH = 'user-watch'
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
 export const SOCKET_EVENT_GROP_CHANGE = 'updateGroup'
 export const SOCKET_EVENT_BOARD_CHANGE = 'loadBoard'
+export const SOCKET_EVENT_CONVERSION = 'conversion'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'

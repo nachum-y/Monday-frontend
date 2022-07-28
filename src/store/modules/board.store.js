@@ -1,6 +1,6 @@
 import { boardService } from "../../services/board-service.js"
 import { ElMessage } from 'element-plus'
-import { socketService, SOCKET_EVENT_BOARD_CHANGE, SOCKET_EMIT_SET_BOARD } from '../../services/socket.service'
+import { socketService, SOCKET_EVENT_BOARD_CHANGE, SOCKET_EVENT_CONVERSION, SOCKET_EMIT_SET_BOARD } from '../../services/socket.service'
 export const boardStore = {
     state: {
         board: null,
@@ -348,8 +348,6 @@ export const boardStore = {
 
         },
         async conversionAdd({ commit, state }, { msg }) {
-
-
             const ids = {
                 groupId: state.currTask.groupId,
                 taskId: state.currTask.id,
@@ -359,8 +357,7 @@ export const boardStore = {
             try {
                 const updatedConversion = await boardService.conversionAdd(ids, msg)
                 commit({ type: 'updateConversion', updatedConversion })
-
-
+                socketService.emit(SOCKET_EVENT_CONVERSION, updatedConversion)
             } catch (error) {
                 console.log(error)
 

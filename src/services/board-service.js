@@ -2,7 +2,7 @@
 import store from '../store/index'
 import { utilService } from './util.service.js'
 import { httpService } from './http.service'
-import { socketService, SOCKET_EVENT_GROP_CHANGE, SOCKET_EVENT_BOARD_CHANGE } from './socket.service'
+import { socketService, SOCKET_EVENT_GROP_CHANGE, SOCKET_EVENT_CONVERSION, SOCKET_EVENT_BOARD_CHANGE } from './socket.service'
 
 import axios from 'axios'
 
