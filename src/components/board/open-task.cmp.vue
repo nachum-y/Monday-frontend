@@ -26,7 +26,8 @@
                 </nav>
                 <div class="open-update-form" contenteditable="true">
                     <span class="write-update-msg">write an update...</span>
-                    <QuillEditor class="update-form" theme="snow" />
+                    <QuillEditor v-model:content="msgHtml" contentType="html" class="update-form" theme="snow" />
+
                 </div>
                 <div class="action_wrapper">
                     <div class="actions">
@@ -40,7 +41,7 @@
                         Add files
                         <span>Mention</span>
                     </div>
-                    <button class="update-action">Update
+                    <button @click.stop.prevent="sendMsg" class="update-action">Update
 
                     </button>
                 </div>
@@ -74,7 +75,8 @@ export default {
         return {
             drawer: true,
             boarId: null,
-            task: null
+            task: null,
+            msgHtml: ''
         }
     },
     components: {
@@ -85,6 +87,10 @@ export default {
             let boarId = this.$route.params.boardId
             // this.$router.go(-1)
             this.$router.replace({ path: `/boards/${boarId}` })
+        },
+        sendMsg() {
+            console.log(this.msgHtml)
+            this.msgHtml = ''
         }
     },
     async created() {
