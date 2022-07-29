@@ -1,25 +1,32 @@
 <template>
-    <div v-if="tasksByStatus">
-        <div class="card" v-for="(task, idx) in tasksByStatus.tasks" :key="idx">
-            <div class="card-title">{{ task.cols[0].value }}</div>
-            <div class="card-data">
-                <div v-show="colsToDisplay.includes(col.type)" class="card-data-item" v-for="(col, idx) in task.cols"
-                    :key="idx">
-                    <div class="card-data-item-col-icon" :class="col.type"> </div>
-                    <div class="card-data-item-col-title">
-                        {{ col.type }}
-                    </div>
-                    <div class="card-data-item-col-content">
-                        <component :is="col.type" :task="col" :row="task" :labels="labels" :status="status"
-                            :priority="priority" :boardMembers="boardMembers">
-                        </component>
+    <div v-if="taskListByLabel">
+        <draggable v-model="taskListByLabel" dataIdAttrtag="div" :group="'task-kanban'" :move="checkMove"
+            :dragClass="'drag-task-kanban'" :ghostClass="'ghost-kanban-list'" :animation="200" :item-key="key => key"
+            @change="change">
+            <template #item="{ element }">
+                <div class="card">
+                    <div class="card-title">{{ element.cols[0].value }}</div>
+                    <div class="card-data">
+                        <div v-show="colsToDisplay.includes(col.type)" class="card-data-item"
+                            v-for="(col, idx) in element.cols" :key="idx">
+                            <div class="card-data-item-col-icon" :class="col.type"> </div>
+                            <div class="card-data-item-col-title">
+                                {{ col.type }}
+                            </div>
+                            <div class="card-data-item-col-content">
+                                <component @updateTask="updateTask" :is="col.type" :task="col" :row="element"
+                                    :labels="labels" :status="status" :priority="priority" :boardMembers="boardMembers">
+                                </component>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </template>
+        </draggable>
     </div>
 </template>
 <script>
+import draggable from 'vuedraggable'
 import taskTitle from '../board-col/task-title.cmp.vue'
 import date from './../board-col/date.cmp.vue'
 import creationLog from './../board-col/creationLog.cmp.vue'
@@ -31,32 +38,35 @@ import priority from './../board-col/priority.cmp.vue'
 import status from './../board-col/status.cmp.vue'
 import textCmp from './../board-col/text.cmp.vue'
 import timeline from './../board-col/timeline.cmp.vue'
+
+
 export default {
     props: {
-        tasksByStatus: Object
+        colsOrder: Array,
+        selectedTasks: Array,
+        labels: Array,
+        status: Array,
+        priority: Array,
+        boardMembers: Array,
+        taskList: Array,
+        colsToDisplay: Array
 
     },
     data() {
         return {
-            colsToDisplay: ['person', 'priority', 'labelCmp', 'creationLog', 'date', 'textCmp', 'location', 'status'],
-            labels: null,
-            status: null,
-            priority: null,
-            boardMembers: null,
-            isShown: '',
-            board: null,
-            allCols: ['person', 'priority', 'labelCmp', 'creationLog', 'date', 'textCmp', 'location', 'status'],
 
+            taskListByLabel: null
         }
     },
     created() {
-        this.boardMembers = this.$store.getters.getMembers
-        this.labels = this.$store.getters.getLabels
-        this.status = this.$store.getters.getStatus
-        this.priority = this.$store.getters.getPriority
-        this.board = this.$store.getters.board
+        this.$watch('taskList', (newVal) => {
+            // console.log(this.groupId)
+            this.taskListByLabel = newVal
+        })
+        this.taskListByLabel = this.taskList
     },
-    comments: {
+    components: {
+        draggable,
         creationLog,
         date,
         labelCmp,
@@ -68,6 +78,41 @@ export default {
         textCmp,
         timeline,
         taskTitle,
+
+    },
+    methods: {
+        statusTitle(title) {
+            if (!title) return 'Defualt'
+            return title
+        },
+        toggleView(col) {
+            if (this.colsToDisplay.includes(col)) {
+                const idx = this.colsToDisplay.findIndex(c => c === col)
+                this.colsToDisplay.splice(idx, 1)
+            } else {
+                this.colsToDisplay.push(col)
+            }
+        },
+        async updateTask(data) {
+            // this.$emit({ 'updateTask', data })
+            this.$emit('updateTask', data)
+        
+        },
+        changeKnabanView(view) {
+            console.log(view)
+            this.$store.commit({ type: 'setKanbanStatus', view })
+            this.tasksByStatus = this.$store.getters.getTasksByStatus
+        },
+        change(evt) {
+            console.log('change')
+            console.log(evt)
+
+        },
+        checkMove(evt) {
+            console.log(evt)
+
+        }
+
     }
 
 }
