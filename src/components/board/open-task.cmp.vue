@@ -98,7 +98,7 @@
 <script>
 import { boardService } from '../../services/board-service'
 import { QuillEditor } from '@vueup/vue-quill'
-// import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { socketService, SOCKET_EVENT_CONVERSION, SOCKET_EVENT_BOARD_CHANGE, SOCKET_EMIT_SET_BOARD } from '../../services/socket.service'
 
 
@@ -112,7 +112,7 @@ export default {
             boarId: null,
             task: this.$store.getters.getCurrTask,
             msgHtml: '',
-            activeUser: this.$store.getters.getActiveUser
+            activeUser: this.$store.getters.getActiveUsers
         }
     },
     created() {

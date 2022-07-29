@@ -49,7 +49,6 @@ import creationLog from '../components/board/board-col/creationLog.cmp.vue'
 import textCmp from '../components/board/board-col/text.cmp.vue'
 import location from '../components/board/board-col/location.cmp.vue'
 import status from '../components/board/board-col/status.cmp.vue'
-import { ref } from 'vue'
 export default {
 
     data() {
