@@ -1,6 +1,5 @@
 <template>
-
-<div class="kanbn-view">
+<div class="kanbn-view" v-if="tasksByStatus">
 <div class="kanbn-view-border"></div>
 <div class="kanban-view-content">
             <div class="kanban-list-component"  v-for="(s, idx) in tasksByStatus" :key="idx">
@@ -17,7 +16,7 @@
                               {{col.type}}
                             </div>
                             <div class="card-data-item-col-content">
-                                <component :is="col.type" :task="col"
+                                <component @updateTask="updateTask" :is="col.type" :task="col"
                                 :row="task" :labels="labels"
                                 :status="status" :priority="priority" :boardMembers="boardMembers">
                                 </component>
@@ -36,8 +35,8 @@
   <div class="kanbn-view-menu-settings">
     <div class="kanbn-view-menu-settings-title">Customize View</div>
     <div v-for="(col, index) in allCols" :key="index" @click="toggleView(col)">{{col}}</div>
+    <div @click="changeKnabanView(view)" v-for="view in kanbanViews" :key="view">{{view}}</div>
   </div>
-
 </div>
 </div>
 </template>
@@ -55,9 +54,10 @@ export default {
 
     data() {
         return {
-            tasksByStatus: null,
+            tasksByStatus: this.$store.getters.getTasksByStatus,
             colsToDisplay: ['person','priority','labelCmp','creationLog','date', 'textCmp', 'location', 'status'],
             labels: null,
+            kanbanViews: ['priority','labels','status'],
             status: null, 
             priority: null, 
             boardMembers: null,
@@ -69,7 +69,7 @@ export default {
     },
 
 created(){
-    this.tasksByStatus = this.$store.getters.getTasksByStatus
+    // this.tasksByStatus = this.$store.getters.getTasksByStatus
     this.boardMembers = this.$store.getters.getMembers
     this.labels = this.$store.getters.getLabels
     this.status = this.$store.getters.getStatus
@@ -88,8 +88,21 @@ methods:{
       }else{
         this.colsToDisplay.push(col)
       }
-    }
-
+    },
+    async updateTask(data){
+      try{
+        await this.$store.dispatch({ type: 'updateTask', data })
+        this.tasksByStatus = this.$store.getters.getTasksByStatus
+        // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+      }
+      catch(error){
+        console.log(error);
+      }
+    },
+     changeKnabanView(view){
+      this.$store.commit({ type: 'setKanbanStatus', view })
+      this.tasksByStatus = this.$store.getters.getTasksByStatus
+    },
 },
 components:{
     person,
