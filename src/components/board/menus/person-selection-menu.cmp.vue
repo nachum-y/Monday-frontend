@@ -33,12 +33,12 @@
                 </button>
             </div>
         </div>
-        <div v-if="showInvite" class="invite-peron-view">
+        <div v-if="showInvite" class="invite-person-view">
             <div class="title-invite-holder">
                 <span>Type in email address to invite</span>
             </div>
             <div class="input-invite-holder">
-                <input autofocus pattern=".+@globex\.com" required type="email" placeholder="Enter email">
+                <input autofocus autocomplete="email" required type="email" placeholder="Enter email">
             </div>
             <div class="invite-btns-holder">
                 <button @click.stop.prevent="showInvitation" class="cancel-invite-btn">Cancel</button>

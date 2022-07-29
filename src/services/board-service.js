@@ -41,7 +41,8 @@ export const boardService = {
   updateTask,
   saveGroupsRows,
   duplicateTasks,
-  conversionAdd
+  conversionAdd,
+  conversionRemove
 }
 
 
@@ -256,12 +257,7 @@ async function _getGroupById(boardId, groupId) {
 
 
 async function conversionAdd(ids, mgsContent) {
-  // console.log(ids)
-  // console.log(mgsContent)/
   const { groupId, taskId, boardId } = ids
-  console.log(groupId)
-  console.log('taskId:', taskId)
-  console.log('boardId:', boardId)
   let board = await _getBoardById(boardId)
   const groupIdx = board.groups.findIndex((group) => group.id === groupId)
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
@@ -272,6 +268,18 @@ async function conversionAdd(ids, mgsContent) {
   mgsContent.id = utilService.makeId()
   mgsContent.replies = []
   board.groups[groupIdx].tasks[taskIdx].conversion.unshift(mgsContent)
+  await httpService.put(`boards/${boardId}`, board)
+  let updatedConversion = board.groups[groupIdx].tasks[taskIdx].conversion
+  return updatedConversion
+}
+
+async function conversionRemove(ids,updateId){
+  const { groupId, taskId, boardId } = ids
+  let board = await _getBoardById(boardId)
+  const groupIdx = board.groups.findIndex((group) => group.id === groupId)
+  const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+  const updateIdx = board.groups[groupIdx].tasks[taskIdx].conversion.findIndex(update=>update.id===updateId)
+  board.groups[groupIdx].tasks[taskIdx].conversion.splice(updateIdx,1)
   await httpService.put(`boards/${boardId}`, board)
   let updatedConversion = board.groups[groupIdx].tasks[taskIdx].conversion
   return updatedConversion

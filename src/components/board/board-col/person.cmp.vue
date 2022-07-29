@@ -8,7 +8,7 @@
                     <img :src="userAvatar(idx)" />
                 </div>
             </div>
-            <div v-if="!task.value" class="person-bullet-container">
+            <div v-if="!task.value||task.value.length === 0" class="person-bullet-container">
                 <img src="https://cdn.monday.com/icons/dapulse-person-column.svg" class="person-bullet-default">
             </div>
         </div>
@@ -78,6 +78,7 @@ export default {
             this.taskMembers = updatedTaskMembers.map(member=>member.id)
             this.$emit('updateTask', newData)
         },
+
     },
     computed: {
     },

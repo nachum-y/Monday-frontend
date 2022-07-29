@@ -69,7 +69,7 @@
                                     srcset=""></div>
                             <div class="full-name">{{ update.by.name }}</div>
                             <div class="activity-indicator">
-                                <div class="dot"></div>
+                                <div @click="removeUpdate(update.id)" class="dot"></div>
                             </div>
                         </div>
                         <div class="conversation-card-inside">
@@ -160,7 +160,10 @@ export default {
         getUrl(url){
             console.log(url);
             return url
-        }
+        },
+        removeUpdate(updateId){
+            this.$store.dispatch({ type: 'conversionRemove', updateId })
+        },
 
     },
 

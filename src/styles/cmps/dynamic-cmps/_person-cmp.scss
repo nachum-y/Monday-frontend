@@ -233,7 +233,7 @@
 
 }
 
-.invite-peron-view{
+.invite-person-view{
     width: 328px;
     height: 102px;
     display: flex;
@@ -263,8 +263,9 @@
 
         span{
             color: #323338;
+            font-weight: 500;
+            font-size: 14px;
             font-family: Roboto,Rubik,Noto Kufi Arabic,Noto Sans JP,sans-serif;
-    
         }
 
         input{
@@ -304,6 +305,7 @@
         width: 100%;
         justify-content: end;
         margin-top: 16px;
+        padding-right: 10px;
 
         button{
             width: 58.6094px;

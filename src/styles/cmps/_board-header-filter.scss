@@ -241,9 +241,7 @@
     order:1;
     margin-left:16px
 }
-.board-filter.new-board-filter.monday-v2-header .filter-buttons-wrapper{
-    margin-left:initial
-}
+
 .board-filter.new-board-filter .filter-buttons-wrapper{
     display:flex;
     align-items:center;
@@ -307,6 +305,11 @@
     transition:background-color .1s cubic-bezier(0, 0, 0.35, 1);
     border-radius:4px
 }
+
+.filter-buttons-wrapper{
+    display: flex;
+}
+
 .board-filter-input-container--expandable .board-filter-input-wrapper_v2 .icon-and-input-wrapper input{
     background-color:unset;
     padding-left:5px;
