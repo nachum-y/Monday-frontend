@@ -18,7 +18,7 @@
             border: 1px solid #c3c6d4;
         }
 
-        .location-input{
+        input.location-input{
             border: none;
             outline: none;
             width: 83%;
@@ -28,6 +28,7 @@
             background-color: inherit;
             height: 80%;
             top: 3px;
+            text-overflow: ellipsis;
 
     
             &:hover {

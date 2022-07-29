@@ -18,7 +18,7 @@
       </div>
       <div class="filter-buttons-wrapper">
         <div class="board-filter-input-container board-filter-input-container--expandable">
-          <span class="icon icon-v2-search"></span>
+          <span class="icon icon-v2-search search-icon"></span>
           <div class="board-filter-input-wrapper_v2">
             <div class="icon-and-input-wrapper">
               <input @input="$emit('searchInput', inputTxt)" v-model="inputTxt" type="text" placeholder="Search">
