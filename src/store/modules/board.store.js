@@ -365,7 +365,21 @@ export const boardStore = {
             }
 
 
-        }
+        },
+        async conversionRemove({ commit, state }, { updateId }){  
+            const ids = {
+                groupId: state.currTask.groupId,
+                taskId: state.currTask.id,
+                boardId: state.board._id,
+            }    
+            try{ 
+                const updatedConversion = await boardService.conversionRemove(ids, updateId)
+                commit({ type: 'updateConversion', updatedConversion })
+                // socketService.emit(SOCKET_EVENT_CONVERSION, updatedConversion)
+            } catch (error){
+                console.log(error)
+            }
+        },
 
     }
 }
