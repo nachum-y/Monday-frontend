@@ -188,6 +188,18 @@ export const boardStore = {
             })
             return tasksByStatus
         },
+        getTasksByStatusD({ board }) {
+            let tasksByStatus = {}
+            let Dragablle = board.status.map(status => tasksByStatus[status.id] = { tasks: [], color: status.color, title: status.title, id: status.id })
+            board.groups.forEach(group => {
+                group.tasks.forEach(task => {
+                    const statusId = task.cols.find(col => col.type === 'status').value
+                    tasksByStatus[statusId].tasks.push(task)
+                })
+            })
+            console.log(Dragablle)
+            return Dragablle
+        },
         getGroupsByLabels({ board }) {
             let groupByLabels = {}
             board.groups.map(group => groupByLabels[group.id] = {})
