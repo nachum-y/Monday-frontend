@@ -108,8 +108,7 @@ export default {
     cursor: text;
     height: 26px;
     padding: 0px 4px;
-
-
+    font-weight: 500;
 }
 
 .group-header-title:hover:not(:focus) {
