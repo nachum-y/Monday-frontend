@@ -276,7 +276,7 @@ export default {
 
         },
         sortBy(filter, param = null) {
-
+            console.log('here');
             this.$store.dispatch({ type: 'sortBy', filter, param })
         },
 

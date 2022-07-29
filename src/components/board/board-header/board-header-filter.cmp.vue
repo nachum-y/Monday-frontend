@@ -61,7 +61,7 @@
 
             <filter-menu v-click-outside="closeActionsModal" v-if="filterMenuOption"
               :filterMenuOption="filterMenuOption" :pos="filterMenuOptionPos" @closeActionsModal="closeActionsModal"
-              @sortBy="sortBy">
+              @filterBy="filterBy">
             </filter-menu>
 
             <sort-menu>
@@ -71,7 +71,7 @@
           </div>
         </el-tooltip>
         <el-tooltip placement="top" content="Sort by any column" effect="dark">
-          <div class="board-filter-item-component sort-settings-component">
+          <div @click="sortBy('createdAt')" class="board-filter-item-component sort-settings-component">
             <div class="board-filter-item-content-wrapper">
               <span class="">
                 <div
@@ -153,9 +153,12 @@ export default {
     closeActionsModal() {
       this.filterMenuOption = null
     },
-    sortBy(filter, param) {
-      this.$store.dispatch({ type: 'sortBy', filter, param })
+    filterBy(filter, param) {
+      this.$store.dispatch({ type: 'filterBy', filter, param })
       this.closeActionsModal()
+    },
+    sortBy(sortByParam) {
+      this.$store.dispatch({ type: 'sortBy', sortByParam })
     }
   },
 

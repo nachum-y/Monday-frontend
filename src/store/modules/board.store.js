@@ -31,7 +31,7 @@ export const boardStore = {
             priority: []
         },
         sortBy: {
-            activeSort: 'date',
+            activeSort: 'createdAt',
             sortDir: 1,
         },
         currTask: null,
@@ -105,6 +105,14 @@ export const boardStore = {
                 state.activeFilterParam[filter].pop(param)
             }
         },
+        setActiveSortBy(state, { sortByParam }) {
+            if (state.sortBy.activeSort === sortByParam) {
+                state.sortBy.sortDir *= -1
+            } else {
+                state.sortBy.activeSort = sortByParam
+                state.sortBy.sortDir = 1
+            }
+        },
         updateTask(state, { newCol, idxs }) {
             const { groupIdx, taskIdx, colIdx } = idxs
             state.board.groups[groupIdx].tasks[taskIdx].cols[colIdx] = newCol
@@ -155,17 +163,13 @@ export const boardStore = {
                         && (activeFilterParam.label.length === 0 || activeFilterParam.label.includes(t.cols[t.cols.findIndex((typ) => typ.type === 'labelCmp')].value))
                         && (activeFilterParam.priority.length === 0 || activeFilterParam.priority.includes(t.cols[t.cols.findIndex((typ) => typ.type === 'priority')].value))
                 })
+                tasks = tasks.sort((a, b) => {
+                    return a[sortBy.activeSort].toString().localeCompare(b[sortBy.activeSort].toString()) * sortBy.sortDir
+                })
                 return ({ tasks, color, title, id })
             })
 
             if (!board.groups) return
-            let sorted = groups
-            sorted.sort((a, b) => {
-                console.log(a)
-                console.log(b)
-                // return a[sortBy[sortBy.activeSort]].toString().localeCompare(b[sortBy[sortBy.activeSort]].toString()) * sortBy.sortDir
-            })
-            // console.log(sorted)
             return groups
         },
         getLabels({ board }) {
@@ -361,7 +365,7 @@ export const boardStore = {
         searchInput({ commit, state }, { inputTxt }) {
             commit({ type: 'searchInput', inputTxt })
         },
-        sortBy({ commit }, { filter, param }) {
+        filterBy({ commit }, { filter, param }) {
             commit({ type: 'setActiveFilter', filter, param })
 
         },
@@ -371,7 +375,6 @@ export const boardStore = {
                 taskId: state.currTask.id,
                 boardId: state.board._id,
             }
-            console.log(ids)
             try {
                 const updatedConversion = await boardService.conversionAdd(ids, msg)
                 commit({ type: 'updateConversion', updatedConversion })
@@ -397,6 +400,10 @@ export const boardStore = {
                 console.log(error)
             }
         },
+        sortBy({ commit }, { sortByParam }) {
+            commit({ type: 'setActiveSortBy', sortByParam })
+        },
+
 
     }
 }

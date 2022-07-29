@@ -16,7 +16,7 @@
                 <div class="filter-menu-filters-title">Status</div>
                 <div class="filter-menu-filters-holder">
                     <div class="filter-menu-filters-filter-item" v-for="(status, index) in filterMenuOption.status"
-                        :key="index" @click="sortBy('status', status.id)">
+                        :key="index" @click="filterBy('status', status.id)">
                         <div :style="{ backgroundColor: status.color, borderColor: status.color }"
                             class="filter-menu-filters-filter-item-color"></div>
                         <span>{{ status.title }}</span>
@@ -28,7 +28,7 @@
                 <div class="filter-menu-filters-title">Labels</div>
                 <div class="filter-menu-filters-holder">
                     <div class="filter-menu-filters-filter-item" v-for="(label, index) in filterMenuOption.labels"
-                        :key="index" @click="sortBy('label', label.id)">
+                        :key="index" @click="filterBy('label', label.id)">
                         <div
                             :style="{ backgroundColor: label.color, borderColor: label.color }"
                             class="filter-menu-filters-filter-item-color"></div>
@@ -41,7 +41,7 @@
                 <div class="filter-menu-filters-title">Priority</div>
                 <div class="filter-menu-filters-holder">
                     <div class="filter-menu-filters-filter-item" v-for="(priority, index) in filterMenuOption.priority"
-                        :key="index" @click="sortBy('priority', priority.id)">
+                        :key="index" @click="filterBy('priority', priority.id)">
                         <div 
                             :style="{ backgroundColor: priority.color, borderColor: priority.color }"
                             class="filter-menu-filters-filter-item-color"></div>
@@ -70,12 +70,11 @@ export default {
         }
     },
     methods: {
-        sortBy(filter, param) {
+        filterBy(filter, param) {
             console.log(filter)
-            this.$emit('sortBy', filter, param)
-            // this.$emits({ type: 'sortBy', })
+            this.$emit('filterBy', filter, param)
 
-        }
+        },
     },
 
 
