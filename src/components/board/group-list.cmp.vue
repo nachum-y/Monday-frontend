@@ -55,7 +55,7 @@
                     <group-row :boardMembers="board.members" :group="element" :priority="board.priority"
                         :status="board.status" :labels="board.labels" :colsOrder="board.colsOrder"
                         :selectedTasks="selectedTasks" @toggleSelection="toggleSelection" @duplicateTask="duplicateTask"
-                        @updateTask="updateTask" />
+                        @updateTask="updateTask"/>
 
 
 
