@@ -1,10 +1,12 @@
 import { boardService } from "../../services/board-service.js"
 import { ElMessage } from 'element-plus'
+import { userService } from "../../services/user-service.js"
 import { socketService, SOCKET_EVENT_BOARD_CHANGE, SOCKET_EVENT_CONVERSION, SOCKET_EMIT_SET_BOARD } from '../../services/socket.service'
 export const boardStore = {
     state: {
         board: null,
         prevGroup: null,
+        activeMember: null,
         filterdTask: [],
         kanbanStatus: 'status',
         filtersTasks: {
@@ -48,10 +50,7 @@ export const boardStore = {
             state.board = board[0]
         },
         updateBoard(state, { board }) {
-            console.log(board)
-            console.log('GOT from socket', board)
             state.board = board
-            console.log(state.board)
             // state.board = board
         },
         updateGroup(state, { groupId, data }) {
@@ -61,13 +60,8 @@ export const boardStore = {
 
         },
         addTask(state, { groupId, newTask }) {
-            console.log(groupId)
-            console.log('newTask:', newTask)
             let groupToUpdate = state.board.groups.find(group => group.id === groupId)
-            console.log('groupToUpdate:', groupToUpdate)
             groupToUpdate.tasks.push(newTask)
-            console.log(groupToUpdate)
-            console.log(state.board)
         },
         updateColsOrder(state, { value2 }) {
             state.board.colsOrder = value2
@@ -133,6 +127,9 @@ export const boardStore = {
         setKanbanStatus(state, { view }) {
             state.kanbanStatus = view
         },
+        setActive(state, { member }){
+            state.activeMember = member
+        },
     },
     getters: {
         board({ board }) {
@@ -161,8 +158,8 @@ export const boardStore = {
             if (!board.groups) return
             let sorted = groups
             sorted.sort((a, b) => {
-                console.log(a)
-                console.log(b)
+                // console.log(a)
+                // console.log(b)
                 // return a[sortBy[sortBy.activeSort]].toString().localeCompare(b[sortBy[sortBy.activeSort]].toString()) * sortBy.sortDir
             })
             // console.log(sorted)
@@ -232,8 +229,8 @@ export const boardStore = {
         getCurrTask({ currTask }) {
             return currTask
         },
-        getActiveUser({ board }) {
-            return board.members.find(m => m.isAdmin)
+        getActiveUser({ activeMember }) {
+            return activeMember
         },
 
     },
@@ -397,6 +394,24 @@ export const boardStore = {
                 console.log(error)
             }
         },
-
+        async setActive({ commit, state }, { member }){
+            try{
+                await userService.setActiveMember(member)
+                commit({ type: 'setActive', member })
+            }
+            catch(error){
+                console.log(error)
+            }
+        },
+        async getActive({ commit, state }){
+            try{
+                const member = await userService.getActiveMember()
+                commit({ type: 'setActive', member })
+                return member
+            }
+            catch(error){
+                console.log(error)
+            }
+        },
     }
 }

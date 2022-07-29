@@ -2,6 +2,7 @@
 import store from '../store/index'
 import { utilService } from './util.service.js'
 import { httpService } from './http.service'
+import { userService } from './user-service'
 import { socketService, SOCKET_EVENT_GROP_CHANGE, SOCKET_EVENT_CONVERSION, SOCKET_EVENT_BOARD_CHANGE } from './socket.service'
 
 import axios from 'axios'
@@ -113,6 +114,7 @@ async function addTask(title, groupId, boardId) {
   let task = _getEmptyTask(colOrder, title)
   task.isDone = false
   task.createdAt = Date.now()
+  task.createdBy = await userService.getActiveMember()
   task.groupId = groupId
   groupToEdit.tasks.push(task)
   const savedBoard = await httpService.put(`boards/${boardId}`, board)
@@ -173,19 +175,19 @@ async function removeTasks(idsToRemove, boardId) {
 }
 async function duplicateTasks(idsToDup, boardId) {
   let board = await _getBoardById(boardId)
+  const activeUser = await userService.getActiveMember()
   board.groups.forEach(group => {
     group.tasks.forEach((task) => {
       if (idsToDup.includes(task.id)) {
         let newTask = JSON.parse(JSON.stringify(task))
-        newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
+        newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date.now()
         newTask.id = utilService.makeId()
+        newTask.createdAt = Date.now()
+        newTask.createdBy = activeUser
         const idx = board.groups.findIndex(group => group.id === task.groupId)
         board.groups[idx].tasks.push(newTask)
-
       }
-
-    })
-
+    })   
   })
   const savedBoard = await httpService.put(`boards/${boardId}`, board)
   // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
@@ -204,16 +206,18 @@ async function saveGroups(groups, boardId) {
 }
 
 async function saveTask(task, boardId) {
-  console.log(task)
-  // let newTask = JSON.parse(JSON.stringify(task))
-  // let board = await _getBoardById(boardId)
-  // newTask.id = utilService.makeId()
-  // newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
-  // const idx = board.groups.findIndex(group => group.id === task.groupId)
-  // board.groups[idx].tasks.push(newTask)
-  // const savedBoard = await httpService.put(`boards/${boardId}`, board)
-  // // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
-  // return newTask
+  let newTask = JSON.parse(JSON.stringify(task))
+  const activeUser = await userService.getActiveMember()
+  let board = await _getBoardById(boardId)
+  newTask.id = utilService.makeId()
+  newTask.createdAt = Date.now()
+  newTask.createdBy = activeUser
+  newTask.cols[board.colsOrder.findIndex(col => col.type === 'creationLog')].value = Date()
+  const idx = board.groups.findIndex(group => group.id === task.groupId)
+  board.groups[idx].tasks.push(newTask)
+  const savedBoard = await httpService.put(`boards/${boardId}`, board)
+  // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
+  return newTask
 }
 
 async function getTaskById(boardId, taskId) {
