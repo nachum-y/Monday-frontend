@@ -64,6 +64,9 @@
               @sortBy="sortBy">
             </filter-menu>
 
+            <sort-menu>
+
+            </sort-menu>
 
           </div>
         </el-tooltip>
@@ -111,6 +114,7 @@
 <script setup>
 // import { ref } from 'vue'
 import filterMenu from '../menus/filter-menu.cmp.vue'
+import sortMenu from '../menus/sort-menu.cmp.vue'
 // const activeIndex = ref('1')
 // const handleSelect = (key, keyPath) => {
 //   // console.log(key, keyPath)

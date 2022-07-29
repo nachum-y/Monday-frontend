@@ -132,9 +132,9 @@ export const boardStore = {
             console.log(updatedConversion)
             state.currTask.conversion = updatedConversion
         },
-        setKanbanStatus(state, { view }){
+        setKanbanStatus(state, { view }) {
             state.kanbanStatus = view
-        },  
+        },
     },
     getters: {
         board({ board }) {
@@ -179,14 +179,14 @@ export const boardStore = {
         getTasksByStatus({ board, kanbanStatus }) {
             let colType = kanbanStatus === 'labels' ? 'labelCmp' : kanbanStatus
             let tasksByStatus = {}
-            board[kanbanStatus].map(status => tasksByStatus[status.id] = { tasks: [], color: status.color, title: status.title, id: status.id })
+            let Dragablle = board[kanbanStatus].map(status => tasksByStatus[status.id] = { tasks: [], color: status.color, title: status.title, id: status.id })
             board.groups.forEach(group => {
                 group.tasks.forEach(task => {
                     const statusId = task.cols.find(col => col.type === colType).value
                     tasksByStatus[statusId].tasks.push(task)
                 })
             })
-            return tasksByStatus
+            return Dragablle
         },
         getTasksByStatusD({ board }) {
             let tasksByStatus = {}
@@ -378,17 +378,17 @@ export const boardStore = {
 
 
         },
-        async conversionRemove({ commit, state }, { updateId }){  
+        async conversionRemove({ commit, state }, { updateId }) {
             const ids = {
                 groupId: state.currTask.groupId,
                 taskId: state.currTask.id,
                 boardId: state.board._id,
-            }    
-            try{ 
+            }
+            try {
                 const updatedConversion = await boardService.conversionRemove(ids, updateId)
                 commit({ type: 'updateConversion', updatedConversion })
                 // socketService.emit(SOCKET_EVENT_CONVERSION, updatedConversion)
-            } catch (error){
+            } catch (error) {
                 console.log(error)
             }
         },

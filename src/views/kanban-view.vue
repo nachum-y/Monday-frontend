@@ -1,52 +1,43 @@
 <template>
-<div class="kanbn-view" v-if="tasksByStatus">
-<div class="kanbn-view-border"></div>
-<div class="kanban-view-content">
-            <div class="kanban-list-component"  v-for="(s, idx) in tasksByStatus" :key="idx">
-                <div :style="{backgroundColor: s.color}" class="kanban-list-component-header"> <span class="kanban-list-component-header-title">{{statusTitle(s.title)}}</span></div>
-                <div class="kanban-list-component-inn"> 
-                  <div class="color-indicator" :style="{backgroundColor: s.color}"></div>
-                  <div class="card-holder">
-                    <div class="card" v-for="(task, idx) in s.tasks" :key="idx">
-                      <div class="card-title">{{task.cols[0].value}}</div>
-                      <div class="card-data">
-                        <div v-show="colsToDisplay.includes(col.type)" class="card-data-item" v-for="(col, idx) in task.cols" :key="idx" >
-                          <div class="card-data-item-col-icon" :class="col.type"> </div> 
-                            <div class="card-data-item-col-title">
-                              {{col.type}}
-                            </div>
-                            <div class="card-data-item-col-content">
-                                <component @updateTask="updateTask" :is="col.type" :task="col"
-                                :row="task" :labels="labels"
-                                :status="status" :priority="priority" :boardMembers="boardMembers">
-                                </component>
-                            </div>                 
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="kanban-list-component-add-item"> 
-                    <input class="kanban-list-component-add-item-input" placeholder="+Add Item">
-                  </div>
-                </div>
+  <div class="kanbn-view" v-if="tasksByStatus">
+    <div class="kanbn-view-border"></div>
+    <draggable class=" kanban-view-content " v-model="tasksByStatus" :handle="'.handle'" tag="div"
+      :item-key="key => key" :dragClass="'drag-kanban'" :ghostClass="'ghost-kanban'">
+      <template #item="{ element }">
+        <div class="kanban-list-component">
+          <div :style="{ backgroundColor: element.color }" class="kanban-list-component-header handle"> <span
+              class="kanban-list-component-header-title">{{ statusTitle(element.title) }}</span></div>
+          <div class="kanban-list-component-inn">
+            <div class="color-indicator" :style="{ backgroundColor: element.color }"></div>
+            <div class="card-holder">
+              <kanban-card :taskList="element.tasks" :labels="labels" :status="status" :priority="priority"
+                :boardMembers="boardMembers" :colsToDisplay="colsToDisplay" @updateTask="updateTask" />
             </div>
-</div>
-<div class="kanbn-view-menu">
-  <div class="kanbn-view-menu-settings">
-    <div class="kanbn-view-menu-settings-title">Customize View</div>
-    <div>Kanban Column</div>
-    
-    <select @change="changeKnabanView(selectedView)" v-model="selectedView" name="kanvanViews" id="">
-      <option v-for="view in kanbanViews" :key="view" :value="view">{{view}}</option>
-    </select>
-    
-    <div v-for="(col, index) in allCols" :key="index" @click="toggleView(col)">{{col}}</div>
-    
+            <div class="kanban-list-component-add-item">
+              <input class="kanban-list-component-add-item-input" placeholder="+Add Item">
+            </div>
+          </div>
+        </div>
+      </template>
+    </draggable>
+    <div class="kanbn-view-menu">
+      <div class="kanbn-view-menu-settings">
+        <div class="kanbn-view-menu-settings-title">Customize View</div>
+        <div>Kanban Column</div>
+
+        <select @change="changeKnabanView(selectedView)" v-model="selectedView" name="kanvanViews" id="">
+          <option v-for="view in kanbanViews" :key="view" :value="view">{{ view }}</option>
+        </select>
+
+        <div v-for="(col, index) in allCols" :key="index" @click="toggleView(col)">{{ col }}</div>
+
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </template>
 <script>
+import draggable from 'vuedraggable'
+import kanbanCard from '../components/board/kanban/kanban-card.cmp.vue'
 import person from '../components/board/board-col/person.cmp.vue'
 import date from '../components/board/board-col/date.cmp.vue'
 import priority from '../components/board/board-col/priority.cmp.vue'
@@ -57,61 +48,62 @@ import location from '../components/board/board-col/location.cmp.vue'
 import status from '../components/board/board-col/status.cmp.vue'
 export default {
 
-    data() {
-        return {
-            tasksByStatus: this.$store.getters.getTasksByStatus,
-            colsToDisplay: ['person','priority','labelCmp','creationLog','date', 'textCmp', 'location', 'status'],
-            labels: null,
-            kanbanViews: ['priority','labels','status'],
-            selectedView: '',
-            status: null, 
-            priority: null, 
-            boardMembers: null,
-            isShown: '',
-            board: null,
-            allCols: ['person','priority','labelCmp','creationLog','date', 'textCmp', 'location','status'],
+  data() {
+    return {
+      tasksByStatus: this.$store.getters.getTasksByStatus,
+      colsToDisplay: ['person', 'priority', 'labelCmp', 'creationLog', 'date', 'textCmp', 'location', 'status'],
+      labels: null,
+      kanbanViews: ['priority', 'labels', 'status'],
+      selectedView: '',
+      status: null,
+      priority: null,
+      boardMembers: null,
+      isShown: '',
+      board: null,
+      allCols: ['person', 'priority', 'labelCmp', 'creationLog', 'date', 'textCmp', 'location', 'status'],
 
-        }
-    },
+    }
+  },
 
-created(){
+  created() {
     // this.tasksByStatus = this.$store.getters.getTasksByStatus
     this.boardMembers = this.$store.getters.getMembers
     this.labels = this.$store.getters.getLabels
     this.status = this.$store.getters.getStatus
     this.priority = this.$store.getters.getPriority
     this.board = this.$store.getters.board
-},
-methods:{
-    statusTitle(title){
-        if(!title) return 'Defualt'
-        return title
+  },
+  methods: {
+    statusTitle(title) {
+      if (!title) return 'Defualt'
+      return title
     },
-    toggleView(col){
-      if(this.colsToDisplay.includes(col)){
+    toggleView(col) {
+      if (this.colsToDisplay.includes(col)) {
         const idx = this.colsToDisplay.findIndex(c => c === col)
-        this.colsToDisplay.splice(idx,1)
-      }else{
+        this.colsToDisplay.splice(idx, 1)
+      } else {
         this.colsToDisplay.push(col)
       }
     },
-    async updateTask(data){
-      try{
+    async updateTask(data) {
+      try {
         await this.$store.dispatch({ type: 'updateTask', data })
         this.tasksByStatus = this.$store.getters.getTasksByStatus
         // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
       }
-      catch(error){
-        console.log(error);
+      catch (error) {
+        console.log(error)
       }
     },
-     changeKnabanView(view){
-     console.log(view);
+    changeKnabanView(view) {
+      console.log(view)
       this.$store.commit({ type: 'setKanbanStatus', view })
       this.tasksByStatus = this.$store.getters.getTasksByStatus
     },
-},
-components:{
+  },
+  components: {
+    draggable,
     person,
     date,
     priority,
@@ -119,9 +111,13 @@ components:{
     creationLog,
     textCmp,
     location,
-    status
-},
+    status,
+    kanbanCard
+  },
 }
 </script>
 <style>
+.kanban-list-component {
+  /* display: flex; */
+}
 </style>

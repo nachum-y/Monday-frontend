@@ -26,7 +26,7 @@
                 </nav>
                 <div class="open-update-form" contenteditable="true">
                     <span class="write-update-msg">write an update...</span>
-                    <QuillEditor v-model:content="msgHtml" contentType="html" class="update-form" theme="snow" />
+                    <QuillEditor v-model:content="msgHtml" contentType="html" class="update-form" theme="snow" :toolbar="toolbarOptions"/>
 
                 </div>
                 <div class="action_wrapper">
@@ -62,11 +62,9 @@
                     </div>
                 </div>
                 <div v-else class="conversation-container">
-                     <div class="conversation-card" v-for="update in currTask.conversion" :key="update.id">
+                    <div class="conversation-card" v-for="update in currTask.conversion" :key="update.id">
                         <div class="conversation-card-header">
-                            <div class="avatar"><img
-                                    :src="getUrl(update.by.imgUrl)" alt=""
-                                    srcset=""></div>
+                            <div class="avatar"><img :src="getUrl(update.by.imgUrl)" alt="" srcset=""></div>
                             <div class="full-name">{{ update.by.name }}</div>
                             <div class="activity-indicator">
                                 <div @click="removeUpdate(update.id)" class="dot"></div>
@@ -112,7 +110,26 @@ export default {
             boarId: null,
             task: this.$store.getters.getCurrTask,
             msgHtml: '',
-            activeUser: this.$store.getters.getActiveUser
+            activeUser: this.$store.getters.getActiveUser,
+            toolbarOptions: [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                ['blockquote', 'code-block'],
+
+                [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+                [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+                [{ 'direction': 'rtl' }],                         // text direction
+
+                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+
+                ['clean']                                         // remove formatting button
+            ]
         }
     },
     created() {
@@ -157,11 +174,11 @@ export default {
             this.$store.dispatch({ type: 'conversionAdd', msg })
             this.msgHtml = ''
         },
-        getUrl(url){
-            console.log(url);
+        getUrl(url) {
+            console.log(url)
             return url
         },
-        removeUpdate(updateId){
+        removeUpdate(updateId) {
             this.$store.dispatch({ type: 'conversionRemove', updateId })
         },
 
