@@ -33,8 +33,6 @@ export const boardStore = {
         sortBy: {
             activeSort: 'date',
             sortDir: 1,
-            date: 'createdAt',
-            name: 'name',
         },
         currTask: null,
 
@@ -146,7 +144,7 @@ export const boardStore = {
             return board.colsOrder
 
         },
-        rowOrder({ board, activeFilterParam }) {
+        rowOrder({ board, activeFilterParam, sortBy }) {
             if (!board) return
             let { groups } = board
             groups = groups.map((g) => {
@@ -161,6 +159,13 @@ export const boardStore = {
             })
 
             if (!board.groups) return
+            let sorted = groups
+            sorted.sort((a, b) => {
+                console.log(a)
+                console.log(b)
+                // return a[sortBy[sortBy.activeSort]].toString().localeCompare(b[sortBy[sortBy.activeSort]].toString()) * sortBy.sortDir
+            })
+            // console.log(sorted)
             return groups
         },
         getLabels({ board }) {

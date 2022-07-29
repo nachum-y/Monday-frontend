@@ -112,6 +112,7 @@ async function addTask(title, groupId, boardId) {
   const colOrder = board.colsOrder
   let task = _getEmptyTask(colOrder, title)
   task.isDone = false
+  task.createdAt = Date.now()
   task.groupId = groupId
   groupToEdit.tasks.push(task)
   const savedBoard = await httpService.put(`boards/${boardId}`, board)
@@ -154,7 +155,7 @@ function _getEmptyTask(colOrder, title) {
     if (col.type === 'priority') emptyCol.value = 'pDefault'
     if (col.type === 'status') emptyCol.value = 'sDefault'
     if (col.type === 'labelCmp') emptyCol.value = 'lDefault'
-    if (col.type === 'creationLog') emptyCol.value = Date()
+    if (col.type === 'creationLog') emptyCol.value = Date.now()
     cols.push(emptyCol)
   })
   return { id: utilService.makeId(), cols }
