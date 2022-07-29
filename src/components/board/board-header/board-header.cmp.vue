@@ -20,10 +20,12 @@
             <button class="last-seen-btn header-btn" @click="toggleMenu">
               <p>Last seen</p>
               <el-tooltip :style="`font-size:50px;`" content="shirkiabir@gmail.com" effect="dark">
-                <img class="user-avatar" src="../../../assets/images/dapulse_default_photo.png" alt="user-avatar">
+                <img v-if="activeUser" class="user-avatar" :src="activeUser.imgUrl" alt="user-avatar">
               </el-tooltip>
             </button>
-            <div v-if="openMenu" class="user-select-menu"></div>
+            <div v-if="openMenu" class="user-select-menu">
+            <div @click="changeMember(member)" v-for="member in board.members" :key="member.id">{{member.name}}</div>
+            </div>
             
           </div>
           <button class="invite-btn header-btn">
@@ -66,14 +68,15 @@ export default {
     return {
       board: {
         title: 'New Board',
-        board: null,
-        
+        board: null,  
       },
       openMenu: false,
+      activeUser: null,
     }
   },
   created() {
     this.board = this.$store.getters.board
+    this.activeUser = this.$store.getters.getActiveUser
 
   },
   methods: {
@@ -100,7 +103,11 @@ export default {
     toggleMenu(){
       
       this.openMenu = !this.openMenu
-    }
+    },
+    async changeMember(member){
+      await this.$store.dispatch({ type: 'setActive', member })
+      this.activeUser = this.$store.getters.getActiveUser
+    },
   },
   computed: {
 

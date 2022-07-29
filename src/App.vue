@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data" class="application-layers">
+  <div v-if="data && activeUser " class="application-layers">
     <app-header :currBoardId="data[0]._id"/>
     <div class="first-level">
 
@@ -20,6 +20,7 @@ export default {
     return {
       isSideExpandedVal: false,
       data: null,
+      activeUser : null,
     }
   },
   components: {
@@ -38,7 +39,8 @@ export default {
   async created() {
     const data = await this.$store.dispatch({ type: 'loadBoard' })
     this.data = data
-
+    const activeUser = await this.$store.dispatch({ type: 'getActive' })
+    this.activeUser = activeUser
   },
 }
 </script>

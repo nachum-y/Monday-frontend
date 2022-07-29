@@ -1,9 +1,7 @@
 <template>
     <div v-if="task" :class="'task-' + task.type">
         <div class="person-bullet">
-            <span>
-                SA
-            </span>
+            <img :src="row.createdBy.imgUrl">
         </div>
         <p>
             {{dateToDisplay}}
@@ -15,7 +13,8 @@ export default {
     emits:['updateTask'],
     name: ['creationLog'],
     props: {
-        task: Object
+        task: Object,
+        row: Object,
     },
     data() {
         return {
