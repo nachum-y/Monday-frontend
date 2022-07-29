@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="filter-buttons-wrapper">
-        <div class="board-filter-input-container board-filter-search board-filter-input-container--expandable">
+        <div class="board-filter-input-container board-filter-input-container--expandable">
           <span class="icon icon-v2-search"></span>
           <div class="board-filter-input-wrapper_v2">
             <div class="icon-and-input-wrapper">

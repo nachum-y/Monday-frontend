@@ -241,7 +241,9 @@
     order:1;
     margin-left:16px
 }
-
+ .filter-buttons-wrapper{
+    display: flex;
+}
 .board-filter.new-board-filter .filter-buttons-wrapper{
     display:flex;
     align-items:center;
@@ -305,11 +307,6 @@
     transition:background-color .1s cubic-bezier(0, 0, 0.35, 1);
     border-radius:4px
 }
-
-.filter-buttons-wrapper{
-    display: flex;
-}
-
 .board-filter-input-container--expandable .board-filter-input-wrapper_v2 .icon-and-input-wrapper input{
     background-color:unset;
     padding-left:5px;
@@ -367,6 +364,9 @@
     --ui-border-color:#c3c6d4;
 }
 
+.board-filter-input-container:hover{
+    background-color: #dcdfec;
+}
 
 
     .icon-arrow-down:before,.icon-dapulse-person-column:before,.icon-hidden-eye-outline:before,.icon-v2-funnel:before,.icon-v2-search:before,.icon-v2-sort-up-down-arrows:before{
