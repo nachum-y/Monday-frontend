@@ -1,6 +1,6 @@
 <template>
 
-<div class="kanbn-view">
+<div class="kanbn-view" v-if="tasksByStatus">
 <div class="kanbn-view-border"></div>
 <div class="kanban-view-content">
             <div class="kanban-list-component"  v-for="(s, idx) in tasksByStatus" :key="idx">
@@ -55,7 +55,7 @@ export default {
 
     data() {
         return {
-            tasksByStatus: null,
+            tasksByStatus: this.$store.getters.getTasksByStatus,
             colsToDisplay: ['person','priority','labelCmp','creationLog','date', 'textCmp', 'location', 'status'],
             labels: null,
             status: null, 
@@ -69,7 +69,7 @@ export default {
     },
 
 created(){
-    this.tasksByStatus = this.$store.getters.getTasksByStatus
+    // this.tasksByStatus = this.$store.getters.getTasksByStatus
     this.boardMembers = this.$store.getters.getMembers
     this.labels = this.$store.getters.getLabels
     this.status = this.$store.getters.getStatus
