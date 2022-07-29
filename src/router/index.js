@@ -4,6 +4,7 @@ import boardApp from '../views/board-app.vue'
 import openTask from '../components/board/open-task.cmp.vue'
 import kanbanView from '../views/kanban-view.vue'
 import groupList from '../components/board/group-list.cmp.vue'
+import map from '../views/map.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -46,6 +47,11 @@ const router = createRouter({
       path: '/activity_log',
       name: ' activityLog',
       // component: activityLog
+    },
+    {
+      path: '/map',
+      name: 'map',
+      component: map
     },
 
   ]
