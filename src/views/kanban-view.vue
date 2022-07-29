@@ -34,8 +34,14 @@
 <div class="kanbn-view-menu">
   <div class="kanbn-view-menu-settings">
     <div class="kanbn-view-menu-settings-title">Customize View</div>
+    <div>Kanban Column</div>
+    
+    <select @change="changeKnabanView(selectedView)" v-model="selectedView" name="kanvanViews" id="">
+      <option v-for="view in kanbanViews" :key="view" :value="view">{{view}}</option>
+    </select>
+    
     <div v-for="(col, index) in allCols" :key="index" @click="toggleView(col)">{{col}}</div>
-    <div @click="changeKnabanView(view)" v-for="view in kanbanViews" :key="view">{{view}}</div>
+    
   </div>
 </div>
 </div>
@@ -57,6 +63,7 @@ export default {
             colsToDisplay: ['person','priority','labelCmp','creationLog','date', 'textCmp', 'location', 'status'],
             labels: null,
             kanbanViews: ['priority','labels','status'],
+            selectedView: '',
             status: null, 
             priority: null, 
             boardMembers: null,
@@ -99,6 +106,7 @@ methods:{
       }
     },
      changeKnabanView(view){
+     console.log(view);
       this.$store.commit({ type: 'setKanbanStatus', view })
       this.tasksByStatus = this.$store.getters.getTasksByStatus
     },
