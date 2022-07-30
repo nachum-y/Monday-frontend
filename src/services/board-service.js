@@ -94,15 +94,14 @@ async function removeGroup(groupId, boardId) {
 
 
 async function updateGroup(groupId, data, boardId) {
+  const pramToChange =Object.keys(data)[0]
+  const parmValue = data[Object.keys(data)[0]]
   let board = await _getBoardById(boardId)
   let groupToEdit = board.groups.find((g) => g.id === groupId)
-  groupToEdit[Object.keys(data)[0]] = data[Object.keys(data)[0]]
+  groupToEdit[pramToChange] = parmValue
   const savedBoard = await httpService.put(`boards/${boardId}`, board)
   // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
   // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, savedBoard)
-
-
-  ///
   return groupToEdit
 }
 
