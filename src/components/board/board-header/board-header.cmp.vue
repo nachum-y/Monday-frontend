@@ -54,6 +54,10 @@
           <a href="/boards/62dfda488f676e0cf3f29259/dashboard">Dashboard</a>
           <span class="icon-v2-ellipsis"></span>
         </button>
+        <button class="main-tab header-btn dashboard-btn">
+          <a href="/boards/62dfda488f676e0cf3f29259/card">Cards</a>
+          <span class="icon-v2-ellipsis"></span>
+        </button>
       </div>
     </section>
     <mainFilter @searchInput="searchInput" :board="board" />
