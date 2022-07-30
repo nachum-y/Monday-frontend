@@ -23,7 +23,7 @@
                   </div>
 
                </div>
-               <footer-navigation :activeUser="activeUser" />
+               <footer-navigation :activeUser="activeUser" :boardMembers="boardMembers" />
             </div>
          </div>
       </nav>
@@ -37,7 +37,8 @@ import footerNavigation from './footer-navigation.cmp.vue'
 export default {
    props: {
       currBoardId: String,
-      activeUser: Object
+      activeUser: Object,
+      boardMembers: Array
    },
    data() {
       return {

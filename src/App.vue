@@ -1,25 +1,26 @@
 <template>
   <div v-if="data && activeUser" class="application-layers">
-    <app-header :currBoardId="data[0]._id" :activeUser="activeUser" />
+    <app-header :currBoardId="data[0]._id" :activeUser="activeUser" :boardMembers="data[0].members" />
     <div class="first-level">
-
-      <action-side-nav @sideExpanded="isSideExpanded" />
-      <div class="first-level-content-wrapper" :class="isSideExpandedVal ? '-pinned' : '-unpinned'">
+      <action-side-nav @sideNavisPinned="isSideNavPinned" />
+      <div class="first-level-content-wrapper" :class="sideNavisPinned ? '-pinned' : '-unpinned'">
         <router-view />
       </div>
     </div>
+    <modal-cmp />
   </div>
 </template>
 <script>
 
 import appHeader from './components/app-header/app-header.cmp.vue'
 import actionSideNav from './components/app-header/action-side-nav.cmp.vue'
+import modalCmp from './components/modal.cmp.vue'
 
 
 export default {
   data() {
     return {
-      isSideExpandedVal: false,
+      sideNavisPinned: false,
       data: null,
       activeUser: null,
     }
@@ -27,11 +28,12 @@ export default {
   components: {
     appHeader,
     actionSideNav,
+    modalCmp,
 
   },
   methods: {
-    isSideExpanded(val) {
-      this.isSideExpandedVal = val
+    isSideNavPinned(val) {
+      this.sideNavisPinned = val
     }
   },
   computed: {
@@ -46,4 +48,5 @@ export default {
 }
 </script>
 <style>
+
 </style>

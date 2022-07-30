@@ -6,6 +6,7 @@ export const userService = {
 async function setActiveMember(member){
     let activeMember = JSON.stringify(member)
     sessionStorage.setItem('activeUser', activeMember)
+    return member
 }
 
 async function getActiveMember(){

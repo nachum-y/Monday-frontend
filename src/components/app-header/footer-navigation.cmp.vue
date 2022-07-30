@@ -15,34 +15,71 @@
             </div>
         </div>
         <div class="surface-avatar-menu-connector-wrapper">
-            <div class="user-select">
+            <div class="user-select" @click="toggleShowModal">
                 <img v-if="activeUser" class="user-avatar-app-header" :src="activeUserAvatar.imgUrl" alt="user-avatar">
             </div>
+            <div ref="userSelectActiveUser" class="user-select-active">
+
+                <Teleport to="body">
+                    <modal-cmp :show="showModal" @close="showModal = false" :posModal="posModal"
+                        v-click-outside="closeModal">
+                        <template #setActiveUser>
+                            <div class="member-list" @click="changeMember(member)" v-for="member in boardMembers"
+                                :key="member.id">
+                                <span> {{ member.name }}</span>
+                            </div>
+                        </template>
+                    </modal-cmp>
+                </Teleport>
+
+
+            </div>
         </div>
+
     </div>
 </template>
 <script>
+import modalCmp from '../modal.cmp.vue'
 export default {
     props: {
-        activeUser: Object
+        activeUser: Object,
+        boardMembers: Array
     },
     data() {
         return {
-            activeUserAvatar: null
+            activeUserAvatar: null,
+            openMenu: false,
+            showModal: false,
+            posModal: null
         }
     },
+    components: {
+        modalCmp
+    },
     created() {
-        this.$watch('activeUser', (newVal) => {
-            // console.log(this.groupId)
-            this.activeUserAvatar = newVal[this.groupId]
-        })
+        // this.$watch('activeUser', (newVal) => {
+        //     console.log(newVal)
+        //     this.activeUserAvatar = newVal[this.groupId]
+        // })
         this.activeUserAvatar = this.activeUser
     },
     methods: {
         async changeMember(member) {
-            await this.$store.dispatch({ type: 'setActive', member })
-            this.activeUser = this.$store.getters.getActiveUser
+            const newActiveUser = await this.$store.dispatch({ type: 'setActive', member })
+            this.activeUserAvatar = newActiveUser
+            this.closeModal()
         },
+        toggleShowModal() {
+            // this.posModal = this.$refs.userSelectActiveUser
+            this.showModal = !this.showModal
+        },
+        closeModal() {
+            this.showModal = false
+        }
+    },
+    mounted() {
+        var rect = this.$refs.userSelectActiveUser.getBoundingClientRect()
+        this.posModal = rect
     },
 
 
@@ -51,7 +88,20 @@ export default {
 <style>
 .user-avatar-app-header {
     width: 44px;
+    outline: 2px solid #fff;
     border-radius: 50%;
     aspect-ratio: 1/1;
+}
+
+.surface-avatar-menu-connector-wrapper {
+    position: relative;
+}
+
+.member-list {
+    margin: 0.5rem 0;
+}
+
+.user-select-active {
+    position: relative;
 }
 </style>

@@ -238,13 +238,13 @@ export const boardStore = {
         getActiveUser({ activeMember }) {
             return activeMember
         },
-        getStatusCount({board}){
+        getStatusCount({ board }) {
             let statusCount = {}
-            board.status.forEach(status=>statusCount[status.id] = 0)
-            board.groups.forEach(group=>{
-                group.tasks.forEach(task=>{
-                    task.cols.forEach(col=>{
-                        if (col.type === 'status'){
+            board.status.forEach(status => statusCount[status.id] = 0)
+            board.groups.forEach(group => {
+                group.tasks.forEach(task => {
+                    task.cols.forEach(col => {
+                        if (col.type === 'status') {
                             statusCount[col.value] += 1
                         }
                     })
@@ -252,49 +252,49 @@ export const boardStore = {
             })
             return statusCount
         },
-        getLabelCount({board}){
+        getLabelCount({ board }) {
             let labelTitles = []
             let labelColors = []
             let labelsCount = {}
-            board.labels.forEach(label=>{
+            board.labels.forEach(label => {
                 labelsCount[label.id] = 0
                 if (!label.title) labelTitles.push('default')
                 else labelTitles.push(label.title)
                 labelColors.push(label.color)
             })
-            board.groups.forEach(group=>{
-                group.tasks.forEach(task=>{
-                    task.cols.forEach(col=>{
-                        if (col.type === 'labelCmp'){
+            board.groups.forEach(group => {
+                group.tasks.forEach(task => {
+                    task.cols.forEach(col => {
+                        if (col.type === 'labelCmp') {
                             labelsCount[col.value] += 1
                         }
                     })
                 })
             })
             let labelCountValues = Object.keys(labelsCount).map(key => labelsCount[key])
-            return ({titles:labelTitles, colors:labelColors, count:labelCountValues})
+            return ({ titles: labelTitles, colors: labelColors, count: labelCountValues })
         },
-        getPriorityCount({board}){
+        getPriorityCount({ board }) {
             let priorityTitles = []
             let priorityColors = []
             let priorityCount = {}
-            board.priority.forEach(priority=>{
+            board.priority.forEach(priority => {
                 priorityCount[priority.id] = 0
                 if (!priority.title) priorityTitles.push('default')
                 else priorityTitles.push(priority.title)
                 priorityColors.push(priority.color)
             })
-            board.groups.forEach(group=>{
-                group.tasks.forEach(task=>{
-                    task.cols.forEach(col=>{
-                        if (col.type === 'priority'){
+            board.groups.forEach(group => {
+                group.tasks.forEach(task => {
+                    task.cols.forEach(col => {
+                        if (col.type === 'priority') {
                             priorityCount[col.value] += 1
                         }
                     })
                 })
             })
             let priorityCountValues = Object.keys(priorityCount).map(key => priorityCount[key])
-            return ({titles:priorityTitles, colors:priorityColors, count:priorityCountValues})
+            return ({ titles: priorityTitles, colors: priorityColors, count: priorityCountValues })
         },
         getAllTasksLocation({ board }) {
             // let gropsTaskLocationMap = board.groups.map((g) => {
@@ -496,8 +496,11 @@ export const boardStore = {
 
         async setActive({ commit, state }, { member }) {
             try {
-                await userService.setActiveMember(member)
+                const newActiveUser = await userService.setActiveMember(member)
                 commit({ type: 'setActive', member })
+                console.log(newActiveUser)
+                return newActiveUser
+
             }
             catch (error) {
                 console.log(error)
