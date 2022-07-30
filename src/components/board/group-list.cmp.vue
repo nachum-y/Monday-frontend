@@ -243,6 +243,7 @@ export default {
             // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         updateTask(data) {
+            console.log(data);
             this.$store.dispatch({ type: 'updateTask', data })
             // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },

@@ -21,7 +21,7 @@
                                 :row="element" />
                             <div class="item-conversation" :class="isActive(element)">
                                 <div class="conversation-icon"></div>
-                                <span class="item-conversation-count">{{getCount(element)}}
+                                <span class="item-conversation-count">{{ getCount(element) }}
                                 </span>
                             </div>
                         </div>
@@ -113,11 +113,11 @@ export default {
             // console.log(ev)
 
         },
-        getCount(row){
-            if(row.conversion) return row.conversion.length
+        getCount(row) {
+            if (row.conversion) return row.conversion.length
             return 0
-        },isActive(row){
-            if(!row.conversion || row.conversion.length === 0) return ''
+        }, isActive(row) {
+            if (!row.conversion || row.conversion.length === 0) return ''
             return 'active'
         }
 
@@ -141,7 +141,7 @@ export default {
         groupColor() {
             return { backgroundColor: this.group.color }
         },
-        
+
     }
 
 }

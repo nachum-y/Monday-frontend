@@ -135,7 +135,7 @@ export const boardStore = {
         setKanbanStatus(state, { view }) {
             state.kanbanStatus = view
         },
-        setActive(state, { member }){
+        setActive(state, { member }) {
             state.activeMember = member
         },
     },
@@ -167,12 +167,7 @@ export const boardStore = {
             })
 
             if (!board.groups) return
-            let sorted = groups
-            sorted.sort((a, b) => {
-                // console.log(a)
-                // console.log(b)
-                // return a[sortBy[sortBy.activeSort]].toString().localeCompare(b[sortBy[sortBy.activeSort]].toString()) * sortBy.sortDir
-            })
+
             // console.log(sorted)
             return groups
         },
@@ -243,6 +238,38 @@ export const boardStore = {
         getActiveUser({ activeMember }) {
             return activeMember
         },
+        getAllTasksLocation({ board }) {
+            // let gropsTaskLocationMap = board.groups.map((g) => {
+            //     return g.tasks.map((t) => {
+            //         let location = t.cols.find((tc) => {
+            //             return tc.type === 'location' && tc.type
+            //         })
+
+            //         if (location) return taskLocationObj
+            //     })
+            // })
+            let gropsTaskLocationMap = board.groups.map((g) => {
+                let groupTask = g.tasks.map((t) => {
+                    let location = t.cols.find((tCols) => {
+                        return tCols.type === 'location'
+                    })
+                    let taskLocationObj = {
+                        task: t,
+                        location,
+                    }
+                    if (location) return taskLocationObj
+                })
+                let taskListLocation = groupTask.filter((taskVal) => (taskVal.location.value))
+
+                console.log(taskListLocation)
+                return taskListLocation
+
+            })
+            return gropsTaskLocationMap.filter((tasks) => tasks.length > 0)
+            // console.log('groupMap:', groupMap)
+            console.log('gropsTaskLocationMap:', gropsTaskLocationMap)
+            return gropsTaskLocationMap
+        }
 
     },
     actions: {
@@ -409,22 +436,22 @@ export const boardStore = {
         },
 
 
-        async setActive({ commit, state }, { member }){
-            try{
+        async setActive({ commit, state }, { member }) {
+            try {
                 await userService.setActiveMember(member)
                 commit({ type: 'setActive', member })
             }
-            catch(error){
+            catch (error) {
                 console.log(error)
             }
         },
-        async getActive({ commit, state }){
-            try{
+        async getActive({ commit, state }) {
+            try {
                 const member = await userService.getActiveMember()
                 commit({ type: 'setActive', member })
                 return member
             }
-            catch(error){
+            catch (error) {
                 console.log(error)
             }
         },
