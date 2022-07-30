@@ -15,9 +15,8 @@
                 :icon="myIcon" />
         </el-tooltip>
         <div @click="toggleColorMenu" :style="{backgroundColor:group.color}" class="color-indicator">
-        <span>♥</span>
         <div v-show="isColorMenuOpen" class="group-header-color-menu">
-            <div @click="editGroup(color, group.id, 'color')" v-for="color in colors" :key="color" class="color-option">{{color}}</div>
+            <div @click="editGroup(color, group.id, 'color')" v-for="color in colors"  :style="{backgroundColor:color}" :key="color" class="color-option"></div>
         </div>
         </div>
         <div ref="groupTitle" :style="groupColor" class="group-header-title" contenteditable="true"
@@ -137,6 +136,7 @@ export default {
     height: 26px;
     padding: 0px 4px;
     font-weight: 500;
+    padding-inline-start: 1.5rem;
 }
 
 .group-header-title:hover:not(:focus) {
