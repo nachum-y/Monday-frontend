@@ -1,42 +1,44 @@
 <template>
   <div class="card-container" v-if="board">
-        <div class="task-card" v-for="task in getTasks" :key="task.id">     
-            <div class="person-img-holder">
-                <img class="card-img" :src="task.createdBy.imgUrl" alt="">
-            </div>
-            <div class="card-view-header">
-                <div class="card-view-title">
-                    <span class="card-span">
-                        {{task.cols[0].value}}
-                    </span>
+        <div class="cards-holder">
+            <div class="task-card" v-for="task in getTasks" :key="task.id">     
+                <div class="person-img-holder">
+                    <img class="card-img" :src="task.createdBy.imgUrl" alt="">
                 </div>
-                <div class="conversation-icon-holder">
-                    <div class="conversation-icon"></div>
+                <div class="card-view-header">
+                    <div class="card-view-title">
+                        <span class="card-span">
+                            {{task.cols[0].value}}
+                        </span>
+                    </div>
+                    <div class="conversation-icon-holder">
+                        <div class="conversation-icon"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="card-view-data">
-                <div class="cell-wrapper">
-                    <div class="person-title data-title">
-                        <div class="card-icon-holder">
-                            <div class="person-icon-card"></div>
+                <div class="card-view-data">
+                    <div class="cell-wrapper">
+                        <div class="person-title data-title">
+                            <div class="card-icon-holder">
+                                <div class="person-icon-card"></div>
+                            </div>
+                        <span class="item-title-text">Person</span> 
                         </div>
-                       <span class="item-title-text">Person</span> 
-                    </div>
-                    <div class="card-members-container">
-                        <div class="person-holder data-item">
-                            <img v-for="member in taskMembers(task)" :key="member.id" class="person-card-bullet" :src="member.imgUrl">
-                        </div>  
-                    </div>
-                </div>
-                <div class="cell-wrapper">
-                    <div class="status-title data-title">
-                        <div class="card-icon-holder">
-                            <div class="status-icon-card"></div>
+                        <div class="card-members-container">
+                            <div class="person-holder data-item">
+                                <img v-for="member in taskMembers(task)" :key="member.id" class="person-card-bullet" :src="member.imgUrl">
+                            </div>  
                         </div>
-                        <span class="item-title-text">Status</span>
                     </div>
-                    <div :style="{ backgroundColor: taskStatus(task).color}" class="status-holder data-item">{{taskStatus(task).title}}</div>     
-                </div> 
+                    <div class="cell-wrapper">
+                        <div class="status-title data-title">
+                            <div class="card-icon-holder">
+                                <div class="status-icon-card"></div>
+                            </div>
+                            <span class="item-title-text">Status</span>
+                        </div>
+                        <div :style="{ backgroundColor: taskStatus(task).color}" class="status-holder data-item">{{taskStatus(task).title}}</div>     
+                    </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -91,15 +93,20 @@ export default {
 
 <style>
 .card-container{
-    display: flex;
     box-sizing: border-box;
-    flex-wrap: wrap;
-    flex-direction: row;
     overflow: scroll;
     background-color: #f6f7fb;
-    height: 100%;
-
+    position: relative;
+    padding-left: 2.25rem;
+    height: calc(100vh - 166px);
 }
+
+.cards-holder{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
 .task-card{
     display: flex;
     flex-direction: column;
