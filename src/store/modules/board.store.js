@@ -243,7 +243,20 @@ export const boardStore = {
         getActiveUser({ activeMember }) {
             return activeMember
         },
-
+        getStatusCount({board}){
+            let statusCount = {}
+            board.status.forEach(status=>statusCount[status.id] = 0)
+            board.groups.forEach(group=>{
+                group.tasks.forEach(task=>{
+                    task.cols.forEach(col=>{
+                        if (col.type === 'status'){
+                            statusCount[col.value] += 1
+                        }
+                    })
+                })
+            })
+            return statusCount
+        },
     },
     actions: {
         async loadBoard({ commit }) {

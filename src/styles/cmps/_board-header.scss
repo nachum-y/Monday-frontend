@@ -171,24 +171,6 @@ $light-color:#fff;
     background-color: #ffffff;
 }
 
-
-.add-view{
-    display: flex;
-    height: 32px;
-    width: 32px;
-    border-left: 1px solid $hover-border-color;
-
-    &::before{
-        content: "\f47b";
-        font-size: 14px;
-        color: $icon-color;
-        font-family: "dapulse";
-        margin-left: 7px;
-        margin: auto;
-    }
-
-}
-
 .icon-v2-ellipsis-container:hover{
     background-color: $light-color;
     border-radius: 4px;
@@ -210,6 +192,18 @@ $light-color:#fff;
 
 .dashboard-btn{
     width: 117px;
+}
+
+.card-btn{
+    width: 87px;
+}
+
+.views-seprator{
+    content: "";
+    height: 16px;
+    border-right: 1px solid #d0d4e4;
+    display: flex;
+    align-self: center;
 }
 
 // ***********main & nav*****************:

@@ -48,9 +48,7 @@ export default {
     {
         return{
             board: null,
-
         }
-     
     },
 
     created(){
@@ -81,6 +79,11 @@ export default {
             if (!person.value || person.value.length === 0) return [{imgUrl:defaultImg}]
             return person.value
         },
+        // openTask(taskId) {
+        //     let boardId = this.$route.params.boardId
+        //     this.$router.push({ path: `${boardId}/task/${taskId}` })
+
+        // }
     },
 
 }

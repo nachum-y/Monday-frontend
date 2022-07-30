@@ -5,6 +5,7 @@ import openTask from '../components/board/open-task.cmp.vue'
 import kanbanView from '../views/kanban-view.vue'
 import groupList from '../components/board/group-list.cmp.vue'
 import cardView from '../views/card-view.vue'
+import dashboardView from '../views/dashboard-view.vue'
 import map from '../views/map.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,11 @@ const router = createRouter({
           name: 'card',
           path: 'card',
           component: cardView,
+        },
+        {
+          name: 'dashboard',
+          path: 'dashboard',
+          component: dashboardView,
         },
       ]
     },

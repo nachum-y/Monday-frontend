@@ -46,15 +46,18 @@
           <a href="/boards/62dfda488f676e0cf3f29259">Main Table</a>
           <span class="icon-v2-ellipsis"></span>
         </button>
+        <div class="views-seprator"></div>
         <button class="main-tab header-btn kanban-btn">
           <a href="/boards/62dfda488f676e0cf3f29259/kanban">kanban</a>
           <span class="icon-v2-ellipsis"></span>
         </button>
+        <div class="views-seprator"></div>
         <button class="main-tab header-btn dashboard-btn">
           <a href="/boards/62dfda488f676e0cf3f29259/dashboard">Dashboard</a>
           <span class="icon-v2-ellipsis"></span>
         </button>
-        <button class="main-tab header-btn dashboard-btn">
+        <div class="views-seprator"></div>
+        <button class="main-tab header-btn card-btn">
           <a href="/boards/62dfda488f676e0cf3f29259/card">Cards</a>
           <span class="icon-v2-ellipsis"></span>
         </button>
