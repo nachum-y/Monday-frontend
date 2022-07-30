@@ -238,7 +238,6 @@ export const boardStore = {
         getActiveUser({ activeMember }) {
             return activeMember
         },
-<<<<<<< HEAD
         getStatusCount({board}){
             let statusCount = {}
             board.status.forEach(status=>statusCount[status.id] = 0)
@@ -253,7 +252,6 @@ export const boardStore = {
             })
             return statusCount
         },
-=======
         getAllTasksLocation({ board }) {
             // let gropsTaskLocationMap = board.groups.map((g) => {
             //     return g.tasks.map((t) => {
@@ -287,7 +285,6 @@ export const boardStore = {
             return gropsTaskLocationMap
         }
 
->>>>>>> 8e3a4d7a0c742eaa6f0d0a5dbcd69f5994e93452
     },
     actions: {
         async loadBoard({ commit }) {

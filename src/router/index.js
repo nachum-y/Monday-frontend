@@ -48,15 +48,12 @@ const router = createRouter({
           path: 'card',
           component: cardView,
         },
-<<<<<<< HEAD
         {
           name: 'dashboard',
           path: 'dashboard',
           component: dashboardView,
         },
-=======
 
->>>>>>> 8e3a4d7a0c742eaa6f0d0a5dbcd69f5994e93452
       ]
     },
     {
