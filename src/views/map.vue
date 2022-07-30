@@ -1,12 +1,9 @@
 <template>
     <div v-if="taskLocationLits" class="map-page">
         <div v-for="(task, idx) in taskLocationLits" :key="idx">
-
+  
             <map-cmp :taskLocation="task" />
         </div>
-    </div>
-    <div v-else>
-        <span>There are no maps to display at this time</span>
     </div>
 </template>
 <script>
@@ -19,7 +16,7 @@ export default {
     },
     created() {
         let taskList = this.$store.getters.getAllTasksLocation
-        console.log('taskList:',)
+        console.log('taskList:', )
         this.taskLocationLits = taskList[0]
     },
     components: {

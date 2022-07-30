@@ -16,7 +16,7 @@
 import { computed, ref } from 'vue'
 import { Loader } from '@googlemaps/js-api-loader'
 import { useGeolocation } from '../../../services/useGeolocation'
-const GOOGLE_MAPS_API_KEY = 'AIzaSyBnekuAC6yqMxLABI5HI0JB5rN-PtL966g'
+import {GOOGLE_MAPS_API_KEY} from '../../../services/apiKey'
 export default {
     emits: ['updateTask'],
     name: ['location'],
