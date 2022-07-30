@@ -57,8 +57,12 @@
           <span class="icon-v2-ellipsis"></span>
         </button>
         <div class="views-seprator"></div>
-        <button class="main-tab header-btn dashboard-btn">
-           <router-link :to="{ name: 'map'}">map</router-link>
+        <button class="main-tab header-btn map-btn">
+          <router-link :to="{ name: 'map'}">map</router-link>
+          <span class="icon-v2-ellipsis"></span>
+        </button>
+        <div class="views-seprator"></div>
+        <button class="main-tab header-btn card-btn">
           <a href="/boards/62dfda488f676e0cf3f29259/card">Cards</a>
           <span class="icon-v2-ellipsis"></span>
         </button>

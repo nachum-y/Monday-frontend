@@ -43,6 +43,7 @@ $light-color:#fff;
     width: 34px;
     height: 34px;
     padding: 4px 8px;
+    
 
 
     &:hover{
@@ -126,6 +127,7 @@ $light-color:#fff;
 
 .active-view{
     box-shadow: 0px 2px 0px 0px #0073ea;
+    font-weight: 500 !important;
 }
 
 .main-tab{
@@ -138,7 +140,7 @@ $light-color:#fff;
     width: 134px;
     text-align: center;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     color: $font-color;
     font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
 
@@ -167,25 +169,6 @@ $light-color:#fff;
     }
 }
 
-.icon-v2-ellipsis:hover{
-    background-color: #ffffff;
-}
-
-.icon-v2-ellipsis-container:hover{
-    background-color: $light-color;
-    border-radius: 4px;
-    height: 16px;
-    width: 16px;
-}
-
-.monday-board-subset-item-v2__active-strip {
-    height: 2px;
-    width: 134px;
-    position: absolute;
-    bottom: 0;
-    background-color: $active-buttom-border-color;
-}
-
 .kanban-btn{
     width: 97px;
 }
@@ -196,6 +179,10 @@ $light-color:#fff;
 
 .card-btn{
     width: 87px;
+}
+
+.map-btn{
+    width: 78px;
 }
 
 .views-seprator{
