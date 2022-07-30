@@ -39,3 +39,45 @@
         border-radius: 4px 0 0 4px;
     }
 }
+
+.color-indicator{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 4px;
+    position: absolute;
+    left: 2.4rem;
+}
+
+
+.isColapse{
+    .group-header-title {
+        padding-inline-start: 0px;
+    }
+    .color-indicator{
+        display: none;
+    }
+
+}
+.group-header-color-menu{
+    background-color: white;
+    width: 180px;
+    padding: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    border: 1px $--ui-border-color solid ;
+    border-radius: 4px;
+    position: absolute;
+    top: 1.95rem;
+    left: -0.3rem;
+
+    .color-option{
+        height: 24px;
+        width: 24px;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover{
+            outline: 3px #c3c6d4 solid;
+        }
+    }
+}
