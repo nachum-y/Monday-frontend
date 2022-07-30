@@ -4,22 +4,22 @@
 // ****************roots******************:
 
 $font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$font-family-input: Roboto,Rubik,Noto Kufi Arabic,Noto Sans JP,sans-serif;
+$font-family-input: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
 $icon-color: #676879;
 $font-color: #323338;
 $primary-background-hover-color: #dcdfec;
 $active-buttom-border-color: #0073ea;
-$hover-border-color:#d0d4e4;
-$light-color:#fff;
+$hover-border-color: #d0d4e4;
+$light-color: #fff;
 
 // **********font-face************:
 @font-face {
     font-family: "dapulse";
     src: url("https://cdn.monday.com/fonts/dapulse_4a4d5ddd47bdfd8e46cdadf9860f69ff.eot");
     src: url("https://cdn.monday.com/fonts/dapulse_4a4d5ddd47bdfd8e46cdadf9860f69ff.eot?#iefix") format("embedded-opentype"),
-         url("https://cdn.monday.com/fonts/dapulse_4a4d5ddd47bdfd8e46cdadf9860f69ff.woff") format("woff"),
-         url("https://cdn.monday.com/fonts/dapulse_4a4d5ddd47bdfd8e46cdadf9860f69ff.ttf") format("truetype"),
-         url("https://cdn.monday.com/fonts/dapulse_4a4d5ddd47bdfd8e46cdadf9860f69ff.svg#dapulse") format("svg");
+        url("https://cdn.monday.com/fonts/dapulse_4a4d5ddd47bdfd8e46cdadf9860f69ff.woff") format("woff"),
+        url("https://cdn.monday.com/fonts/dapulse_4a4d5ddd47bdfd8e46cdadf9860f69ff.ttf") format("truetype"),
+        url("https://cdn.monday.com/fonts/dapulse_4a4d5ddd47bdfd8e46cdadf9860f69ff.svg#dapulse") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -27,13 +27,13 @@ $light-color:#fff;
 
 // ***********buttons*************
 
-.view-btn-holder{
+.view-btn-holder {
     display: flex;
     position: absolute;
     bottom: 2px;
 }
 
-.header-btn{
+.header-btn {
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
@@ -43,27 +43,27 @@ $light-color:#fff;
     width: 34px;
     height: 34px;
     padding: 4px 8px;
+    border-radius: 4px 4px 0 0 ;
     
     &:hover{
-        border-radius: 4px;
         background-color: $primary-background-hover-color;
     }
 }
 
-.el-button.is-text{
+.el-button.is-text {
     background-color: rgba(255, 255, 255, 0) !important;
 
-    &:hover{
+    &:hover {
         border-radius: 4px;
-        background-color: $primary-background-hover-color !important;
+        background-color: $primary-background-hover-color  !important;
     }
 }
 
-.i-btn{
+.i-btn {
 
     margin-left: 10px;
 
-    &::before{
+    &::before {
         content: "\f344";
         color: $icon-color;
         font-size: 16px;
@@ -71,10 +71,10 @@ $light-color:#fff;
     }
 }
 
-.star-btn{
+.star-btn {
     margin-left: 10px;
 
-    &::before{
+    &::before {
         content: "\f3dc";
         font-size: 16px;
         color: $icon-color;
@@ -83,13 +83,16 @@ $light-color:#fff;
 }
 
 
-.last-seen-btn{
+.last-seen-btn {
     width: 106.188px;
     height: 32px;
     position: relative;
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    img{
+    img {
         position: absolute;
         width: 32px;
         height: 32px;
@@ -100,42 +103,44 @@ $light-color:#fff;
         top: 0;
     }
 
-    p{
+    p {
         display: inline;
         color: $font-color;
-        font-family: Roboto,Rubik,Noto Kufi Arabic,Noto Sans JP,sans-serif;
+        font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
         position: absolute;
         left: 7px;
         top: 8px;
     }
 }
 
-.invite-btn{
+.invite-btn {
     width: 106.188px;
     height: 32px;
     padding: 5px;
     text-align: left;
     margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.invite-txt{
+.invite-txt {
     color: $font-color;
-    font-family: Roboto,Rubik,Noto Kufi Arabic,Noto Sans JP,sans-serif;
+    font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
 }
 
-.active-view{
+.active-view {
     box-shadow: 0px 2px 0px 0px #0073ea;
-    font-weight: 500 !important;
 }
 
-span.invite-icon::before{
+span.invite-icon::before {
     content: "\f3fb";
     font-size: 14px;
     color: $icon-color;
     font-family: "dapulse";
 }
 
-.main-tab{
+.main-tab {
     display: flex;
     position: relative;
     justify-content: center;
@@ -149,20 +154,20 @@ span.invite-icon::before{
     color: $font-color;
     font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
 
-    a{
+    a {
         text-decoration: none;
         display: flex;
         margin-right: 20px;
         color: #323338;
     }
 
-    svg{
+    svg {
         display: flex;
         width: 16px;
         margin-right: 5px;
     }
 
-    &:hover .icon-v2-ellipsis::before{
+    &:hover .icon-v2-ellipsis::before {
         display: flex;
         position: absolute;
         right: 10px;
@@ -174,23 +179,23 @@ span.invite-icon::before{
     }
 }
 
-.kanban-btn{
+.kanban-btn {
     width: 97px;
 }
 
-.dashboard-btn{
+.dashboard-btn {
     width: 117px;
 }
 
-.card-btn{
+.card-btn {
     width: 87px;
 }
 
-.map-btn{
+.map-btn {
     width: 78px;
 }
 
-.views-seprator{
+.views-seprator {
     content: "";
     height: 16px;
     border-right: 1px solid #d0d4e4;
@@ -200,14 +205,14 @@ span.invite-icon::before{
 
 // ***********main & nav*****************:
 
-.main-header{
+.main-header {
     margin-right: 30px;
     padding-top: 16px;
     padding-left: 38px;
 }
 
-.board-title-component{
-    display:flex;
+.board-title-component {
+    display: flex;
     justify-content: space-between;
     height: 42px;
     font-family: $font-family;
@@ -216,7 +221,7 @@ span.invite-icon::before{
 
 }
 
-.board-actions{
+.board-actions {
     height: 40px;
     position: absolute;
     width: 30%;
@@ -224,7 +229,7 @@ span.invite-icon::before{
     top: 20px;
 }
 
-.sub-header-nav{
+.sub-header-nav {
     position: relative;
     display: flex;
     height: 36px;
@@ -234,29 +239,24 @@ span.invite-icon::before{
 
 // *****************input*********************:
 
-.board-title-component .board-title-input{
+.board-title-component .board-title-input {
     text-align: left;
     max-width: 100%;
-    color: $font-color;
-    font-family:$font-family-input;
+    color: #323338;
+    /* font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif; */
     letter-spacing: -1px;
     font-size: 32px;
     white-space: nowrap;
     font-weight: 500;
     border-radius: 4px;
     border: none;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    cursor: text;
-    line-height: 0.5;
 
 
-    &:hover{
+    &:hover {
         outline: $hover-border-color 1px solid;
     }
 
-    &:focus{
+    &:focus {
         text-align: left;
         box-shadow: none;
         border: none;
@@ -266,41 +266,43 @@ span.invite-icon::before{
     }
 }
 
-.header-btn-container{
+.header-btn-container {
     display: flex;
 
 }
 
-.header-input-container{
+.header-input-container {
     display: flex;
     flex-grow: 1;
+    align-items: flex-end;
 }
 
-.form-title{
+.form-title {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 20px;
 }
 
-.form-sub-title{
+.form-sub-title {
     font-size: 1rem;
     text-align: center;
     margin-bottom: 80px;
     font-weight: 400;
 }
 
-.el-dialog__body{
-    padding: 20px !important;  
+.el-dialog__body {
+    padding: 20px !important;
 }
-.el-dialog{
-    max-width:770px;
+
+.el-dialog {
+    max-width: 770px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     overflow: scroll;
 }
 
-input.form-invite-input{
+input.form-invite-input {
     width: 400px;
     min-width: 400px;
     height: 30px;
@@ -312,10 +314,10 @@ input.form-invite-input{
     border-radius: 4px;
     text-align: left;
     display: flex;
-    
-    
 
-    &:focus{
+
+
+    &:focus {
         text-align: left;
         box-shadow: none;
         border: none;
@@ -324,8 +326,8 @@ input.form-invite-input{
     }
 }
 
-.invite-input-container{
-    text-align: center;    
+.invite-input-container {
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -333,8 +335,8 @@ input.form-invite-input{
     width: 100%;
 }
 
-.el-form-item__label{
+.el-form-item__label {
     display: flex;
     justify-content: left;
-    
+
 }

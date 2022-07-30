@@ -7,7 +7,7 @@
           <div>
             <button type="button"
               class="add-with-dropdown monday-style-button monday-style-button--size-small monday-style-button--kind-primary monday-style-button--color-primary has-style-size"
-              aria-disabled="false" style="--element-width:76.6094px; --element-height:31.9844px;"> New Task </button>
+              aria-disabled="false" style="--element-width:76.6094px; --element-height:31.9844px;"> New Item </button>
           </div>
           <div class="ds-menu-button-container">
             <div class="dropdown-button small-button">
