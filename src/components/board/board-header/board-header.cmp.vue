@@ -56,6 +56,7 @@
         </button>
         <button class="main-tab header-btn dashboard-btn">
            <router-link :to="{ name: 'map'}">map</router-link>
+          <a href="/boards/62dfda488f676e0cf3f29259/card">Cards</a>
           <span class="icon-v2-ellipsis"></span>
         </button>
       </div>

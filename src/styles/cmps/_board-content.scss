@@ -112,6 +112,7 @@
                     .row-menu-icon {
                         opacity: 1;
                     }
+
                 }
 
                 .header-col {
@@ -131,6 +132,13 @@
 
                     .header-title {
                         @include col-span-style;
+                    }
+                    &:hover{
+                        
+                        &:not(:first-of-type){
+                            cursor: grab;
+                            background-color: #f5f6f8;
+                        }
                     }
                 }
             }
@@ -196,7 +204,7 @@
                         
                             background-color: white;
                             left: -2.25rem;
-                            width: 35px;
+                            width: 38px;
                         }
                     }
                 }
