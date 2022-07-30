@@ -43,14 +43,21 @@ $light-color:#fff;
     width: 34px;
     height: 34px;
     padding: 4px 8px;
-
-
+    
     &:hover{
-        border-radius: 4px 4px 0 0;
+        border-radius: 4px;
         background-color: $primary-background-hover-color;
     }
 }
 
+.el-button.is-text{
+    background-color: rgba(255, 255, 255, 0) !important;
+
+    &:hover{
+        border-radius: 4px;
+        background-color: $primary-background-hover-color !important;
+    }
+}
 
 .i-btn{
 
@@ -80,6 +87,7 @@ $light-color:#fff;
     width: 106.188px;
     height: 32px;
     position: relative;
+    margin-right: 10px;
 
     img{
         position: absolute;
@@ -108,15 +116,6 @@ $light-color:#fff;
     padding: 5px;
     text-align: left;
     margin-left: 10px;
-
-
-    & .invite-icon::before{
-        content: "\f3fb";
-        font-size: 16px;
-        color: $icon-color;
-        font-family: "dapulse";
-        margin-left: 8px;
-    }
 }
 
 .invite-txt{
@@ -126,6 +125,14 @@ $light-color:#fff;
 
 .active-view{
     box-shadow: 0px 2px 0px 0px #0073ea;
+    font-weight: 500 !important;
+}
+
+span.invite-icon::before{
+    content: "\f3fb";
+    font-size: 14px;
+    color: $icon-color;
+    font-family: "dapulse";
 }
 
 .main-tab{
@@ -138,7 +145,7 @@ $light-color:#fff;
     width: 134px;
     text-align: center;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     color: $font-color;
     font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
 
@@ -167,25 +174,6 @@ $light-color:#fff;
     }
 }
 
-.icon-v2-ellipsis:hover{
-    background-color: #ffffff;
-}
-
-.icon-v2-ellipsis-container:hover{
-    background-color: $light-color;
-    border-radius: 4px;
-    height: 16px;
-    width: 16px;
-}
-
-.monday-board-subset-item-v2__active-strip {
-    height: 2px;
-    width: 134px;
-    position: absolute;
-    bottom: 0;
-    background-color: $active-buttom-border-color;
-}
-
 .kanban-btn{
     width: 97px;
 }
@@ -196,6 +184,10 @@ $light-color:#fff;
 
 .card-btn{
     width: 87px;
+}
+
+.map-btn{
+    width: 78px;
 }
 
 .views-seprator{
@@ -242,7 +234,7 @@ $light-color:#fff;
 
 // *****************input*********************:
 
-.board-title-component input{
+.board-title-component .board-title-input{
     text-align: left;
     max-width: 100%;
     color: $font-color;
@@ -282,4 +274,67 @@ $light-color:#fff;
 .header-input-container{
     display: flex;
     flex-grow: 1;
+}
+
+.form-title{
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-sub-title{
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 80px;
+    font-weight: 400;
+}
+
+.el-dialog__body{
+    padding: 20px !important;  
+}
+.el-dialog{
+    max-width:770px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+input.form-invite-input{
+    width: 400px;
+    min-width: 400px;
+    height: 30px;
+    border: 1px solid #c4c4c4;
+    white-space: nowrap;
+    color: #323338;
+    font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
+    cursor: text;
+    border-radius: 4px;
+    text-align: left;
+    display: flex;
+    
+    
+
+    &:focus{
+        text-align: left;
+        box-shadow: none;
+        border: none;
+        outline: none;
+        outline: $active-buttom-border-color 1px solid;
+    }
+}
+
+.invite-input-container{
+    text-align: center;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.el-form-item__label{
+    display: flex;
+    justify-content: left;
+    
 }
