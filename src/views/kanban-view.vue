@@ -11,7 +11,8 @@
             <div class="color-indicator" :style="{ backgroundColor: element.color }"></div>
             <div class="card-holder">
               <kanban-card :taskList="element.tasks" :labels="labels" :status="status" :priority="priority"
-                :boardMembers="boardMembers" :colsToDisplay="colsToDisplay" @updateTask="updateTask" />
+                :boardMembers="boardMembers" :typeView="typeView" :labelId="element.id" :colsToDisplay="colsToDisplay"
+                @updateTask="updateTask" />
             </div>
             <div class="kanban-list-component-add-item">
               <input class="kanban-list-component-add-item-input" placeholder="+Add Item">
@@ -61,6 +62,7 @@ export default {
       isShown: '',
       board: null,
       allCols: ['person', 'priority', 'labelCmp', 'creationLog', 'date', 'textCmp', 'location', 'status'],
+      typeView: 'status'
 
     }
   },
@@ -86,6 +88,9 @@ export default {
         this.colsToDisplay.push(col)
       }
     },
+    move(ev) {
+      console.log(ev)
+    },
     async updateTask(data) {
       try {
         await this.$store.dispatch({ type: 'updateTask', data })
@@ -98,6 +103,8 @@ export default {
     },
     changeKnabanView(view) {
       console.log(view)
+      this.typeView = view
+      if (view === 'labels') this.typeView = 'labelCmp'
       this.$store.commit({ type: 'setKanbanStatus', view })
       this.tasksByStatus = this.$store.getters.getTasksByStatus
     },

@@ -1,10 +1,10 @@
 <template>
     <div v-if="taskListByLabel">
-        <draggable v-model="taskListByLabel" dataIdAttrtag="div" :group="'task-kanban'" :move="checkMove"
-            :dragClass="'drag-task-kanban'" :ghostClass="'ghost-kanban-list'" :animation="200" :item-key="key => key"
-            @change="change">
+        <draggable v-model="taskListByLabel" dataIdAttrtag="div" :group="'task-kanban'" :move="updateTaskByLabel"
+            :dragClass="'drag-task-kanban'" :class="labelId" :ghostClass="'ghost-kanban-list'" :animation="200"
+            :item-key="key => key" @change="change">
             <template #item="{ element }">
-                <div class="card">
+                <div :class="labelId" class="card">
                     <div class="card-title">{{ element.cols[0].value }}</div>
                     <div class="card-data">
                         <div v-show="colsToDisplay.includes(col.type)" class="card-data-item"
@@ -49,7 +49,9 @@ export default {
         priority: Array,
         boardMembers: Array,
         taskList: Array,
-        colsToDisplay: Array
+        colsToDisplay: Array,
+        labelId: String,
+        typeView: String
 
     },
     data() {
@@ -78,6 +80,7 @@ export default {
         textCmp,
         timeline,
         taskTitle,
+        newData: null
 
     },
     methods: {
@@ -96,16 +99,25 @@ export default {
         async updateTask(data) {
             // this.$emit({ 'updateTask', data })
             this.$emit('updateTask', data)
-        
+
+        },
+        async updateTaskByLabel(data) {
+            let newStatus = data.related.className.split(' ')[0]
+            let newCol = { type: this.typeView, value: newStatus }
+            let newData = { newCol, taskId: data.draggedContext.element.id, groupId: data.draggedContext.element.groupId }
+            this.newData = newData
+
+
         },
         changeKnabanView(view) {
             console.log(view)
             this.$store.commit({ type: 'setKanbanStatus', view })
             this.tasksByStatus = this.$store.getters.getTasksByStatus
         },
-        change(evt) {
-            console.log('change')
-            console.log(evt)
+        async change(evt) {
+            if (!this.newData) return
+            console.log(this.newData)
+            await this.$emit('updateTask', this.newData)
 
         },
         checkMove(evt) {
