@@ -39,15 +39,24 @@ const router = createRouter({
           component: kanbanView,
         },
         {
+          path: 'map',
+          name: 'map',
+          component: map
+        },
+        {
           name: 'card',
           path: 'card',
           component: cardView,
         },
+<<<<<<< HEAD
         {
           name: 'dashboard',
           path: 'dashboard',
           component: dashboardView,
         },
+=======
+
+>>>>>>> 8e3a4d7a0c742eaa6f0d0a5dbcd69f5994e93452
       ]
     },
     {
@@ -59,11 +68,6 @@ const router = createRouter({
       path: '/activity_log',
       name: ' activityLog',
       // component: activityLog
-    },
-    {
-      path: '/map',
-      name: 'map',
-      component: map
     },
 
   ]

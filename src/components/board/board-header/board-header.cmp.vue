@@ -24,9 +24,9 @@
               </el-tooltip>
             </button>
             <div v-if="openMenu" class="user-select-menu">
-            <div @click="changeMember(member)" v-for="member in board.members" :key="member.id">{{member.name}}</div>
+              <div @click="changeMember(member)" v-for="member in board.members" :key="member.id">{{ member.name }}</div>
             </div>
-            
+
           </div>
           <button class="invite-btn header-btn">
             <span class="invite-icon"></span>
@@ -57,7 +57,8 @@
           <span class="icon-v2-ellipsis"></span>
         </button>
         <div class="views-seprator"></div>
-        <button class="main-tab header-btn card-btn">
+        <button class="main-tab header-btn dashboard-btn">
+           <router-link :to="{ name: 'map'}">map</router-link>
           <a href="/boards/62dfda488f676e0cf3f29259/card">Cards</a>
           <span class="icon-v2-ellipsis"></span>
         </button>
@@ -75,7 +76,7 @@ export default {
     return {
       board: {
         title: 'New Board',
-        board: null,  
+        board: null,
       },
       openMenu: false,
       activeUser: null,
@@ -107,11 +108,11 @@ export default {
       this.$store.dispatch({ type: 'searchInput', inputTxt })
 
     },
-    toggleMenu(){
-      
+    toggleMenu() {
+
       this.openMenu = !this.openMenu
     },
-    async changeMember(member){
+    async changeMember(member) {
       await this.$store.dispatch({ type: 'setActive', member })
       this.activeUser = this.$store.getters.getActiveUser
     },
