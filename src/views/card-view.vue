@@ -96,6 +96,9 @@ export default {
     flex-wrap: wrap;
     flex-direction: row;
     overflow: scroll;
+    background-color: #f6f7fb;
+    height: 100%;
+
 }
 .task-card{
     display: flex;

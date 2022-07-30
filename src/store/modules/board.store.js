@@ -252,6 +252,50 @@ export const boardStore = {
             })
             return statusCount
         },
+        getLabelCount({board}){
+            let labelTitles = []
+            let labelColors = []
+            let labelsCount = {}
+            board.labels.forEach(label=>{
+                labelsCount[label.id] = 0
+                if (!label.title) labelTitles.push('default')
+                else labelTitles.push(label.title)
+                labelColors.push(label.color)
+            })
+            board.groups.forEach(group=>{
+                group.tasks.forEach(task=>{
+                    task.cols.forEach(col=>{
+                        if (col.type === 'labelCmp'){
+                            labelsCount[col.value] += 1
+                        }
+                    })
+                })
+            })
+            let labelCountValues = Object.keys(labelsCount).map(key => labelsCount[key])
+            return ({titles:labelTitles, colors:labelColors, count:labelCountValues})
+        },
+        getPriorityCount({board}){
+            let priorityTitles = []
+            let priorityColors = []
+            let priorityCount = {}
+            board.priority.forEach(priority=>{
+                priorityCount[priority.id] = 0
+                if (!priority.title) priorityTitles.push('default')
+                else priorityTitles.push(priority.title)
+                priorityColors.push(priority.color)
+            })
+            board.groups.forEach(group=>{
+                group.tasks.forEach(task=>{
+                    task.cols.forEach(col=>{
+                        if (col.type === 'priority'){
+                            priorityCount[col.value] += 1
+                        }
+                    })
+                })
+            })
+            let priorityCountValues = Object.keys(priorityCount).map(key => priorityCount[key])
+            return ({titles:priorityTitles, colors:priorityColors, count:priorityCountValues})
+        },
         getAllTasksLocation({ board }) {
             // let gropsTaskLocationMap = board.groups.map((g) => {
             //     return g.tasks.map((t) => {
