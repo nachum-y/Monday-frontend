@@ -15,22 +15,43 @@
             </div>
         </div>
         <div class="surface-avatar-menu-connector-wrapper">
-            <div id="surface-avatar-menu-component" class="surface-avatar-menu-component">
-                <div class="ds-menu-button-container">
-                    <div id="avatar-menu-button" class="avatar-photo-button-wrapper" role="button"
-                        aria-label="User Menu" tabindex="-1"><img
-                            src="https://files.monday.com/use1/photos/32188790/thumb/32188790-user_photo_initials_2022_07_19_06_37_29.png?1658212649"
-                            class="person-bullet-image person-bullet-component" title="Nachum Yosef" alt="Nachum Yosef"
-                            aria-hidden="true"></div>
-                </div>
+            <div class="user-select">
+                <img v-if="activeUser" class="user-avatar-app-header" :src="activeUserAvatar.imgUrl" alt="user-avatar">
             </div>
         </div>
     </div>
 </template>
 <script>
 export default {
+    props: {
+        activeUser: Object
+    },
+    data() {
+        return {
+            activeUserAvatar: null
+        }
+    },
+    created() {
+        this.$watch('activeUser', (newVal) => {
+            // console.log(this.groupId)
+            this.activeUserAvatar = newVal[this.groupId]
+        })
+        this.activeUserAvatar = this.activeUser
+    },
+    methods: {
+        async changeMember(member) {
+            await this.$store.dispatch({ type: 'setActive', member })
+            this.activeUser = this.$store.getters.getActiveUser
+        },
+    },
+
 
 }
 </script>
 <style>
+.user-avatar-app-header {
+    width: 44px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
 </style>

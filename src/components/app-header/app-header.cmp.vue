@@ -23,7 +23,7 @@
                   </div>
 
                </div>
-               <footer-navigation />
+               <footer-navigation :activeUser="activeUser" />
             </div>
          </div>
       </nav>
@@ -36,7 +36,8 @@ import actionIconWrapper from './action-icon-wrapper-cmp.vue'
 import footerNavigation from './footer-navigation.cmp.vue'
 export default {
    props: {
-      currBoardId: String
+      currBoardId: String,
+      activeUser: Object
    },
    data() {
       return {

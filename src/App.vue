@@ -1,6 +1,6 @@
 <template>
-  <div v-if="data && activeUser " class="application-layers">
-    <app-header :currBoardId="data[0]._id"/>
+  <div v-if="data && activeUser" class="application-layers">
+    <app-header :currBoardId="data[0]._id" :activeUser="activeUser" />
     <div class="first-level">
 
       <action-side-nav @sideExpanded="isSideExpanded" />
@@ -21,7 +21,7 @@ export default {
     return {
       isSideExpandedVal: false,
       data: null,
-      activeUser : null,
+      activeUser: null,
     }
   },
   components: {
