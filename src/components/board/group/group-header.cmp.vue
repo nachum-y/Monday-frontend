@@ -14,11 +14,16 @@
             <font-awesome-icon @click="collapseGroup" :style="groupColor" class="collapsable-icon-button"
                 :icon="myIcon" />
         </el-tooltip>
-        <h4 ref="groupTitle" :style="groupColor" class="group-header-title" contenteditable="true"
+        <div @click="toggleColorMenu" :style="{backgroundColor:group.color}" class="color-indicator">
+        <span>♥</span>
+        <div v-show="isColorMenuOpen" class="group-header-color-menu">
+            <div @click="editGroup(color, group.id, 'color')" v-for="color in colors" :key="color" class="color-option">{{color}}</div>
+        </div>
+        </div>
+        <div ref="groupTitle" :style="groupColor" class="group-header-title" contenteditable="true"
             @blur="editGroup($event.target.innerText, group.id, 'title')">
-            {{ group.title }}
-        </h4>
-
+            <span>{{ group.title }}</span>
+        </div>
         <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
             :pos="showGroupAction.posModal" @deleteGroup="removeGroup(group.id)" @collapseGroup="collapseGroup(group.id)"
             @duplicateGroup="duplicateGroup(group)">
@@ -43,7 +48,27 @@ export default {
         return {
             myIcon: faChevronUp,
             isColapse: false,
-            showGroupAction: null
+            isColorMenuOpen: false,
+            showGroupAction: null,
+            colors : [
+                        '#227f4c',
+                        '#3ac874',
+                        '#9cd325',
+                        '#c9b641',
+                        '#ffcb00',
+                        '#784bd1',
+                        '#a25ddc',
+                        '#0486c0',
+                        '#65cbff',
+                        '#bb3354',
+                        '#f8168a',
+                        '#f85ac4',
+                        '#fb642e',
+                        '#fdab3d',
+                        '#7e5347',
+                        '#c4c4c4',
+                        '#808080'
+                    ]
         }
     },
     components: {
@@ -74,6 +99,9 @@ export default {
             this.isColapse = !this.isColapse
             this.$emit('collapseGroup', this.group.id)
             this.showGroupAction = null
+        },
+        toggleColorMenu(){
+            this.isColorMenuOpen = !this.isColorMenuOpen
         }
 
     },
