@@ -54,7 +54,7 @@
         </button>
         <div class="views-seprator"></div>
         <button class="main-tab header-btn map-btn">
-          <router-link :to="{ name: 'map'}">map</router-link>
+          <router-link :to="{ name: 'map'}">Map</router-link>
           <span class="icon-v2-ellipsis"></span>
         </button>
         <div class="views-seprator"></div>
