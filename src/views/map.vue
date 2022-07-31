@@ -1,9 +1,12 @@
 <template>
-    <div v-if="taskLocationLits" class="map-page">
-        <div v-for="(task, idx) in taskLocationLits" :key="idx">
-  
-            <map-cmp :taskLocation="task" />
+    <div class="map-content">
+        <div v-if="taskLocationLits" class="map-page">
+            <div v-for="(task, idx) in taskLocationLits" :key="idx">
+
+                <map-cmp :taskLocation="task" />
+            </div>
         </div>
+
     </div>
 </template>
 <script>
@@ -16,7 +19,7 @@ export default {
     },
     created() {
         let taskList = this.$store.getters.getAllTasksLocation
-        console.log('taskList:', )
+        console.log('taskList:',)
         this.taskLocationLits = taskList[0]
     },
     components: {
@@ -25,8 +28,4 @@ export default {
 }
 </script>
 <style >
-.map-page {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
 </style>

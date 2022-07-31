@@ -12,6 +12,7 @@
 @import 'cmps/group-header';
 @import 'cmps/usr-msg';
 @import 'cmps/kanban-content';
+@import 'cmps/map-content';
 @import './cmps/home-page';
 @import 'cmps/conversation';
 
@@ -24,6 +25,7 @@
 @import 'cmps/dynamic-cmps/creationLog-cmp';
 @import 'cmps/dynamic-cmps/location-cmp';
 @import 'cmps/dynamic-cmps/title-cmp';
+@import 'cmps/dynamic-cmps/dashboard-cmp';
 
 // MENU
 @import 'menues/group-header-menu';

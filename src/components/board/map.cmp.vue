@@ -240,10 +240,11 @@ export default {
 
 <template>
     <div class="map-location">
-        <div class="m-6" ref="mapDiv" style="width: 95%; height: 400px" />
-        <a v-if="resul_lng != null" class="text-blue-600 no-underline hover:underline"
+        <div class="map-location-title"> <span>Map</span> <a v-if="resul_lng != null" class="view-in"
             :href="`https://www.google.com/maps/search/${resul_lat},${resul_lng}`">
-            View in Google Maps</a>
+            View in Google Maps</a></div>
+        <div class="m-6" ref="mapDiv" style="width: 100%; height: 400px" />
+        
     </div>
 </template>
 <style>
