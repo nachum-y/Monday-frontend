@@ -48,6 +48,10 @@ $light-color: #fff;
     &:hover{
         background-color: $primary-background-hover-color;
     }
+
+    &.active-view{
+        font-weight: 500;
+    }
 }
 
 .el-button.is-text {
