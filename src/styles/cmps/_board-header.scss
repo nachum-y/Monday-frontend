@@ -146,7 +146,7 @@ span.invite-icon::before {
     justify-content: center;
     align-items: center;
     align-content: center;
-    height: 36px;
+    height: 32px;
     width: 134px;
     text-align: center;
     font-size: 14px;
@@ -171,6 +171,7 @@ span.invite-icon::before {
         display: flex;
         position: absolute;
         right: 10px;
+        bottom: 2px;
         content: '\f311';
         color: $icon-color;
         font-family: "dapulse";
@@ -198,7 +199,7 @@ span.invite-icon::before {
 .views-seprator {
     content: "";
     height: 16px;
-    border-right: 1px solid #d0d4e4;
+    border-right: 1px solid #dcdfec;
     display: flex;
     align-self: center;
 }

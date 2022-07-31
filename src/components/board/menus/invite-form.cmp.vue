@@ -19,22 +19,25 @@
       <el-form :model="form">
         <div class="invite-input-container">
           <el-form-item label="Send invitation to:" :label-width="formLabelWidth">
-            <input class="form-invite-input" type="email" v-model="form.email" autocomplete="on">
+            <input class="form-invite-input" type="email" v-model="emailTo" autocomplete="on">
           </el-form-item>
         </div>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogFormVisible = false">Cancel</el-button>
-          <el-button type="primary" @click="dialogFormVisible = false">Send</el-button>
+          <a :href="'mailto:'+ emailTo + '?subject=Check this amazing poject I found! Site&body=Hey there, I came across this amazing project named TaskNDrop! This project made by Shiran Abir, Meital Twito and Nachum Yosef. They\'ve made an application inspired by Monday. Check it out: https://taskndrop.herokuapp.com'">
+            <el-button type="primary" @click="dialogFormVisible = false">Send</el-button>
+          </a>  
         </span>
       </template>
     </el-dialog>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { reactive, ref } from 'vue'
+
 
 const dialogTableVisible = ref(false)
 const dialogFormVisible = ref(false)
@@ -44,7 +47,24 @@ const form = reactive({
   email: '',
 })
 
+
 </script>
+<script>
+export default {
+    data() {
+        return {
+          emailTo:null,
+        }
+    },
+    computed: {
+    },
+    methods: {
+    },
+
+
+}
+</script>
+
 <style>
 .dialog-footer button:first-child {
   margin-right: 10px;
