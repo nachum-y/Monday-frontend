@@ -78,7 +78,7 @@
             <div class="spacer"></div>
           </div>
           <div class="boards">
-            <div class="board-select">
+            <div class="selected-board">
               <span class="board-icon"></span>
               <span class="action-label">Departmental projects</span>
             </div>
@@ -224,6 +224,18 @@ export default {
   color: #676879;
   padding: 0.5rem 0;
   cursor: pointer;
+  height: 32px;
+}
+
+.selected-board{
+  background-color: #cce5ff;
+  display: flex;
+  align-items: center;
+  color: #676879;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 32px;
 }
 
 .fa-angle-right:before {
