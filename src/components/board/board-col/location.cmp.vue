@@ -4,12 +4,9 @@
             <input class="input-location" :id="row.id" type="text"
                 :placeholder="[task.value ? task.value.title : 'Type address...']" />
             <div class="icon-v2-line-location"></div>
-            <!-- {{ placeHolder }} -->
         </div>
-        <div class="m-6" ref="mapDiv" style="width: 95%; height: 400px" />
-
+        <div class="m-6" ref="mapDiv" style="width: 95%; height: 400px" ></div>
     </div>
-
 </template>
 <script>
 /* eslint-disable no-undef */
@@ -252,6 +249,8 @@ export default {
 .input-location {
     display: flex;
     max-width: 100%;
+    padding-left: 20px;
+
 }
 </style>
 
