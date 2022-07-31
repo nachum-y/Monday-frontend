@@ -73,6 +73,7 @@ $light-color: #fff;
 
 .star-btn {
     margin-left: 10px;
+    border-radius: 4px;
 
     &::before {
         content: "\f3dc";
@@ -80,6 +81,7 @@ $light-color: #fff;
         color: $icon-color;
         font-family: "dapulse";
     }
+    
 }
 
 
@@ -128,7 +130,7 @@ $light-color: #fff;
     align-items: center;
     box-sizing: border-box;
     cursor: pointer;
-    
+
     &:hover{
         border-radius: 4px;
         background-color: $primary-background-hover-color;
