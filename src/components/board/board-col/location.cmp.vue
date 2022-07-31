@@ -252,5 +252,14 @@ export default {
     padding-left: 20px;
 
 }
+.task-location{
+    width: 100%;
+}
+
+.input-container input{
+    border: none;
+    height: 100%;
+}
+
 </style>
 
