@@ -24,13 +24,16 @@
     <div class="kanbn-view-menu">
       <div class="kanbn-view-menu-settings">
         <div class="kanbn-view-menu-settings-title">Customize View</div>
-        <div>Kanban Column</div>
+        <div class="kanbn-view-menu-settings-title-secondary">Kanban Column</div>
 
-        <select @change="changeKnabanView(selectedView)" v-model="selectedView" name="kanvanViews" id="">
-          <option v-for="view in kanbanViews" :key="view" :value="view">{{ view }}</option>
-        </select>
-
-        <div v-for="(col, index) in allCols" :key="index" @click="toggleView(col)">{{ col }}</div>
+         <el-select v-model="selectedView" @change="changeKnabanView(selectedView)" class="m-2" placeholder="Select" size="large">
+            <el-option v-for="view in kanbanViews" :key="view" :value="view">{{ view }}</el-option>
+         </el-select>
+        <div class="kanbn-view-menu-settings-title-secondary">Card Columns</div>
+        <div class="kanbn-view-menu-settings-item" v-for="(col, index) in allCols" :key="index" @click="toggleView(col)">
+          <div :class="colsToDisplay.includes(col) ? 'checkbox-selected' : 'checkbox'"></div>
+          <span>{{colTitle(col)}}</span>
+        </div>
 
       </div>
     </div>
@@ -76,6 +79,23 @@ export default {
     this.board = this.$store.getters.board
   },
   methods: {
+    colTitle(ColType){
+        let titleToDisplay = ColType
+        switch (ColType) {
+          case 'creationLog':
+            titleToDisplay = 'creation Log'
+            break;
+          case 'labelCmp':
+            titleToDisplay = 'labels'
+            break;
+          case 'textCmp':
+            titleToDisplay = 'text'
+          break;
+          default:
+            break;
+        }
+        return titleToDisplay
+    },
     statusTitle(title) {
       if (!title) return 'Defualt'
       return title
@@ -124,7 +144,5 @@ export default {
 }
 </script>
 <style>
-.kanban-list-component {
-  /* display: flex; */
-}
+
 </style>
