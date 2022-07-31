@@ -44,7 +44,7 @@ $light-color: #fff;
     height: 34px;
     padding: 4px 8px;
     border-radius: 4px 4px 0 0 ;
-    
+
     &:hover{
         background-color: $primary-background-hover-color;
     }
@@ -84,44 +84,56 @@ $light-color: #fff;
 
 
 .last-seen-btn {
-    width: 106.188px;
+    width: 106.9px;
     height: 32px;
-    position: relative;
-    margin-right: 10px;
+    margin-right: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+    outline: none;
 
     img {
-        position: absolute;
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
         z-index: 1;
-        padding: 5px;
-        display: inline;
-        right: 0;
-        top: 0;
+        display: flex;
+        border-radius: 50px;
+        border: #f5f6f8 2px solid;
+        box-sizing: border-box;
     }
 
     p {
-        display: inline;
         color: $font-color;
         font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
-        position: absolute;
-        left: 7px;
-        top: 8px;
+        display: flex;
+    }
+
+    &:hover{
+        border-radius: 4px;
+        background-color: $primary-background-hover-color;
+
     }
 }
 
 .invite-btn {
     width: 106.188px;
     height: 32px;
-    padding: 5px;
     text-align: left;
     margin-left: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    &:hover{
+        border-radius: 4px;
+        background-color: $primary-background-hover-color;
+
+    }
 }
 
 .invite-txt {
