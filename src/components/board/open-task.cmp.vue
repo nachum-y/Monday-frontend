@@ -257,7 +257,7 @@ export default {
     align-items: center;
     cursor: pointer;
     flex-grow: 1;
-    padding: 0.5rem;
+    margin: 16px;
 }
 
 .action_wrapper .actions>* {
@@ -269,7 +269,25 @@ export default {
 }
 
 .update-action {
-    margin: 0.125rem 0.25rem;
+    background-color:#0073ea;
+    width: 60.4375px;
+    height: 32px;
+    color: #fff;
+    padding: 4px 8px;
+    line-height: 24px;
+    border-radius: 4px;
+    transition: 50ms transform,.1s cubic-bezier(0, 0, 0.35, 1) min-width;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border:none;
+    box-sizing: border-box;
+}
+
+.update-action:hover{
+    background-color:#0060b9;
 }
 
 .task-open-task-name:focus {
