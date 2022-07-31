@@ -83,12 +83,12 @@ export default {
     border-radius: 0 !important;
 }
 
-.el-input__wrapper:hover {
+.task-date .el-input__wrapper:hover {
     box-shadow: 0 0 0 1px var(--el-input-hover-border-color) inset !important;
 
 }
 
-.el-input__wrapper {
+.task-date .el-input__wrapper {
     flex-grow: 1;
     margin: 1px 1px;
     padding: 1px 10px;

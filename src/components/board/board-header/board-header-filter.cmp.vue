@@ -64,10 +64,6 @@
               @filterBy="filterBy">
             </filter-menu>
 
-            <sort-menu>
-
-            </sort-menu>
-
           </div>
         </el-tooltip>
         <el-tooltip placement="top" content="Sort by any column" effect="dark">

@@ -2,7 +2,7 @@
     <div class="group-title-action handle" :class="{ 'isColapse': isColapse }">
 
         <div class="group-header-menu">
-            <div class="group-header-menu-icon"  @click="openActionsModal($event, group)"></div>
+            <div class="group-header-menu-icon" @click="openActionsModal($event, group)"></div>
 
         </div>
         <div class="background-hider">
@@ -14,18 +14,21 @@
             <font-awesome-icon @click="collapseGroup" :style="groupColor" class="collapsable-icon-button"
                 :icon="myIcon" />
         </el-tooltip>
-        <div @click="toggleColorMenu" :style="{backgroundColor:group.color}" class="color-indicator">
-        <div v-show="isColorMenuOpen" class="group-header-color-menu">
-            <div @click="editGroup(color, group.id, 'color')" v-for="color in colors"  :style="{backgroundColor:color}" :key="color" class="color-option"></div>
-        </div>
-        </div>
+
         <div ref="groupTitle" :style="groupColor" class="group-header-title" contenteditable="true"
             @blur="editGroup($event.target.innerText, group.id, 'title')">
+            <div @click="toggleColorMenu" :style="{ backgroundColor: group.color }" class="color-indicator">
+                <div v-show="isColorMenuOpen" class="group-header-color-menu">
+                    <div @click="editGroup(color, group.id, 'color')" v-for="color in colors"
+                        :style="{ backgroundColor: color }" :key="color" class="color-option">
+                    </div>
+                </div>
+            </div>
             <span>{{ group.title }}</span>
         </div>
         <dotsClickActionsMenu v-click-outside="closeActionsModal" v-if="showGroupAction" :group="showGroupAction.group"
-            :pos="showGroupAction.posModal" @deleteGroup="removeGroup(group.id)" @collapseGroup="collapseGroup(group.id)"
-            @duplicateGroup="duplicateGroup(group)">
+            :pos="showGroupAction.posModal" @deleteGroup="removeGroup(group.id)"
+            @collapseGroup="collapseGroup(group.id)" @duplicateGroup="duplicateGroup(group)">
         </dotsClickActionsMenu>
 
     </div>
@@ -49,25 +52,25 @@ export default {
             isColapse: false,
             isColorMenuOpen: false,
             showGroupAction: null,
-            colors : [
-                        '#227f4c',
-                        '#3ac874',
-                        '#9cd325',
-                        '#c9b641',
-                        '#ffcb00',
-                        '#784bd1',
-                        '#a25ddc',
-                        '#0486c0',
-                        '#65cbff',
-                        '#bb3354',
-                        '#f8168a',
-                        '#f85ac4',
-                        '#fb642e',
-                        '#fdab3d',
-                        '#7e5347',
-                        '#c4c4c4',
-                        '#808080'
-                    ]
+            colors: [
+                '#227f4c',
+                '#3ac874',
+                '#9cd325',
+                '#c9b641',
+                '#ffcb00',
+                '#784bd1',
+                '#a25ddc',
+                '#0486c0',
+                '#65cbff',
+                '#bb3354',
+                '#f8168a',
+                '#f85ac4',
+                '#fb642e',
+                '#fdab3d',
+                '#7e5347',
+                '#c4c4c4',
+                '#808080'
+            ]
         }
     },
     components: {
@@ -93,15 +96,16 @@ export default {
         },
         editGroup(val, groupId, type) {
             this.$emit('editGroup', { val, groupId, type })
+            this.isColorMenuOpen = false
         },
         collapseGroup() {
             this.isColapse = !this.isColapse
             this.$emit('collapseGroup', this.group.id)
             this.showGroupAction = null
         },
-        toggleColorMenu(){
+        toggleColorMenu() {
             this.isColorMenuOpen = !this.isColorMenuOpen
-        }
+        },
 
     },
     computed: {
@@ -121,8 +125,8 @@ export default {
     width: 400px;
     background-color: white;
     position: sticky;
-    left:0rem;
-     
+    left: 0rem;
+
 }
 
 .group-header-title {
@@ -136,17 +140,18 @@ export default {
     height: 26px;
     padding: 0px 4px;
     font-weight: 500;
-    padding-inline-start: 1.5rem;
+    align-items: center;
+
 }
 
 .group-header-title:hover:not(:focus) {
     outline-offset: 2px;
     outline: 1px solid #d0d4e4;
     border-radius: 4px;
-   
+
 }
 
-.background-hider{
+.background-hider {
     width: 2.25rem;
     height: 4.2rem;
     box-shadow: none;
@@ -183,5 +188,19 @@ export default {
 
 .isColapse .collapsable-icon-button {
     transform: rotate(90deg);
+}
+
+.color-indicator {
+    display: none;
+}
+
+.group-header-title:focus .color-indicator {
+    display: inline-block;
+
+}
+
+.group-header-title:focus {
+    padding-inline-start: 1.5rem;
+
 }
 </style>

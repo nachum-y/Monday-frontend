@@ -35,6 +35,7 @@ export const boardStore = {
         sortBy: {
             activeSort: 'createdAt',
             sortDir: 1,
+            isAvtice: false
         },
         currTask: null,
 
@@ -160,9 +161,11 @@ export const boardStore = {
                         && (activeFilterParam.label.length === 0 || activeFilterParam.label.includes(t.cols[t.cols.findIndex((typ) => typ.type === 'labelCmp')].value))
                         && (activeFilterParam.priority.length === 0 || activeFilterParam.priority.includes(t.cols[t.cols.findIndex((typ) => typ.type === 'priority')].value))
                 })
-                tasks = tasks.sort((a, b) => {
-                    return a[sortBy.activeSort].toString().localeCompare(b[sortBy.activeSort].toString()) * sortBy.sortDir
-                })
+                if (sortBy.isAvtice) {
+                    tasks = tasks.sort((a, b) => {
+                        return a[sortBy.activeSort].toString().localeCompare(b[sortBy.activeSort].toString()) * sortBy.sortDir
+                    })
+                }
                 return ({ tasks, color, title, id })
             })
 
