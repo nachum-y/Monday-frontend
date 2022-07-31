@@ -372,7 +372,7 @@ export const boardStore = {
             try {
                 const newTask = await boardService.addTask(title, groupId, state.board._id)
                 commit({ type: 'addTask', groupId, newTask })
-                // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
 
 
             }
@@ -484,7 +484,7 @@ export const boardStore = {
             try {
                 const updatedConversion = await boardService.conversionRemove(ids, updateId)
                 commit({ type: 'updateConversion', updatedConversion })
-                // socketService.emit(SOCKET_EVENT_CONVERSION, updatedConversion)
+                socketService.emit(SOCKET_EVENT_CONVERSION, updatedConversion)
             } catch (error) {
                 console.log(error)
             }
