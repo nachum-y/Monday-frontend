@@ -80,7 +80,15 @@
           <div class="boards">
             <div class="board-select">
               <span class="board-icon"></span>
-              <span class="action-label">Board</span>
+              <span class="action-label">Departmental projects</span>
+            </div>
+            <div class="board-select">
+              <span class="board-icon"></span>
+              <span class="action-label">My projects</span>
+            </div>
+            <div class="board-select">
+              <span class="board-icon"></span>
+              <span class="action-label">Management projects</span>
             </div>
 
 
@@ -215,6 +223,7 @@ export default {
   align-items: center;
   color: #676879;
   padding: 0.5rem 0;
+  cursor: pointer;
 }
 
 .fa-angle-right:before {
