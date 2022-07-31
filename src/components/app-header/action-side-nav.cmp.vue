@@ -22,11 +22,14 @@
                   </div>
                   <div class="menu-button-container">
                     <div class="workspace-dropdown-button">
+                      <div class="work-space-icon-container">
                       <div class="workspace-icon">
                         <span class="letter">M</span>
-                        <font-awesome-icon :icon="workSpaceIcon" class="work-space-icon" />
+                        <div class="work-space-icon-holder" ></div>
                       </div>
-                      <span>CA SPRINT 4</span>
+                      <div class="mini-icon" ></div>
+                    </div>
+                      <span class="work-space-title">CA SPRINT 4</span>
                     </div>
                   </div>
                 </div>
@@ -152,28 +155,61 @@ export default {
 }
 </script>
 <style>
+
+.work-space-title{
+      font-weight: 600;
+      color: #323338;
+      font-family: Roboto, Rubik, Noto Kufi Arabic, Noto Sans JP, sans-serif;
+      font-size: 16px;
+}
+
+.work-space-icon-container{
+  position: relative;
+}
+
+
 .workspace-icon {
   background-color: #f279f2;
-  padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
   color: #fff;
   border-radius: 0.25rem;
   position: relative;
   margin-inline-end: 0.5rem;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
 }
 
 .workspace-icon .letter {
   padding: 0.125rem;
+  font-size: 16px;
 }
 
-.work-space-icon {
-  color: #000;
-  left: 0.875rem;
-  font-size: 0.625rem;
+.work-space-icon-holder {
+  left: 1rem;
+  height: 11.5px;
+  width: 11.5px;
   position: absolute;
-  top: 0.875rem;
+  top: 0.92rem;
   border-radius: 50%;
   padding: 0.125rem;
   background-color: #f6f7fb;
+
+}
+
+.mini-icon::before{
+  content: "\f340";
+  font-family: "dapulse";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  color: #323338;
+  font-size: 11.5px;
+  position: absolute;
+  left: 17px;
+  bottom: -3.8px;
 
 }
 
