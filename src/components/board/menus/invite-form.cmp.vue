@@ -15,7 +15,7 @@
     </el-button>
     <el-dialog v-model="dialogFormVisible">
     <h1 class="form-title">Liked our project? Share it we others!</h1>
-    <h2 class="form-sub-title">If you enjoyed our project, we invite you to share it with other people who may like it</h2>
+    <h2 class="form-sub-title">If you enjoyed our project, we invite you to share it with other people who may like it too</h2>
       <el-form :model="form">
         <div class="invite-input-container">
           <el-form-item label="Send invitation to:" :label-width="formLabelWidth">

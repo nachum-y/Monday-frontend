@@ -4,106 +4,69 @@
     line-height: 36px;
     position: relative;
 
-    .el-input__wrapper{
-        background-color: rgba(255, 255, 255, 0);
-        outline: none;
-        border: none;
-        box-shadow: none;
+    // .el-input__wrapper{
+    //     background-color: rgba(255, 255, 255, 0);
+    //     outline: none;
+    //     border: none;
+    //     box-shadow: none;
 
-        &:hover{
-            outline: none !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-    }
+    //     &:hover{
+    //         outline: none !important;
+    //         border: none !important;
+    //         box-shadow: none !important;
+    //     }
+    // }
 }
 
-.el-select__caret {
-    height: 1em;
-    width: 1em;
-    display: none;
-}
+// .el-select__caret {
+//     height: 1em;
+//     width: 1em;
+//     display: none;
+// }
 
-.el-select-dropdown__item {
-    font-size: var(--el-font-size-base);
-    padding: 0 32px 0 20px;
-    position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #fff;
-    text-align: center;
-    height: 34px;
-    line-height: 34px;
-    box-sizing: border-box;
-    cursor: pointer;
-    margin-bottom: 7px;
+// .el-select-dropdown__item {
+//     font-size: var(--el-font-size-base);
+//     padding: 0 32px 0 20px;
+//     position: relative;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     color: #fff;
+//     text-align: center;
+//     height: 34px;
+//     line-height: 34px;
+//     box-sizing: border-box;
+//     cursor: pointer;
+//     margin-bottom: 7px;
 
-}
+// }
 
-.el-select {
-    --el-select-input-focus-border-color: none !important;
-}
+// .el-select {
+//     --el-select-input-focus-border-color: none !important;
+// }
 
-.el-input__inner{
-    text-align: center;
-    border: none;
-    outline: none;
+// .el-input__inner{
+//     text-align: center;
+//     border: none;
+//     outline: none;
 
-    &::placeholder {
-        color: rgb(255, 255, 255);
-      }
+//     &::placeholder {
+//         color: rgb(255, 255, 255);
+//       }
     
-    &:active{
-        border: none !important;
-        outline: none !important;
-    }
-}
+//     &:active{
+//         border: none !important;
+//         outline: none !important;
+//     }
+// }
 
-.el-select-dropdown__wrap{
-    padding: 16px 24px;
-    margin-top: 10px;
-}
+// .el-select-dropdown__wrap{
+//     padding: 16px 24px;
+//     margin-top: 10px;
+// }
 
-.stuck{
-    background-color: rgb(226, 68, 92) !important;
 
-    &:hover{
-        
-        background-color:lighten(rgb(226, 68, 92), 5%)!important;
 
-    }
-}
-
-.working-on-it{
-
-    background-color: rgb(253, 171, 61) !important;
-
-    &:hover{
-
-    background-color:lighten(rgb(253, 171, 61), 5%)!important;
-    }
-}
-
-.done{
-
-    background-color: rgb(0, 200, 117) !important;
-
-    &:hover{
-
-    background-color:lighten(rgb(0, 200, 117), 5%)!important;
-    }
-}
-
-.defult{
-
-    background-color:rgb(196, 196, 196) !important;
-
-    &:hover{
-
-    background-color:lighten(rgb(196, 196, 196), 5%)!important;
-    }
-}
 
 
 
