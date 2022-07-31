@@ -38,4 +38,14 @@ export default {
 }
 </script>
 <style>
+.home-page {}
+
+.application-layers .first-level {
+    left: 0;
+
+}
+
+.first-level-content-wrapper.-unpinned {
+    margin: 0;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div v-if="data && activeUser" class="application-layers">
-    <app-header :currBoardId="data[0]._id" :activeUser="activeUser" :boardMembers="data[0].members" />
+    <app-header v-if="this.$router.currentRoute._value.fullPath !== '/'" :currBoardId="data[0]._id" :activeUser="activeUser" :boardMembers="data[0].members" />
     <div class="first-level">
-      <action-side-nav @sideNavisPinned="isSideNavPinned" />
+      <action-side-nav v-if="this.$router.currentRoute._value.fullPath !== '/'" @sideNavisPinned="isSideNavPinned" />
       <div class="first-level-content-wrapper" :class="sideNavisPinned ? '-pinned' : '-unpinned'">
         <router-view />
       </div>
@@ -44,6 +44,7 @@ export default {
     this.data = data
     const activeUser = await this.$store.dispatch({ type: 'getActive' })
     this.activeUser = activeUser
+    console.log(this.$router.currentRoute._value.fullPath);
   },
 }
 </script>
