@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       tasksByStatus: this.$store.getters.getTasksByStatus,
-      colsToDisplay: ['person', 'priority', 'labelCmp', 'creationLog', 'date', 'textCmp', 'location', 'status'],
+      colsToDisplay: ['person', 'date', 'status'],
       labels: null,
       kanbanViews: ['priority', 'labels', 'status'],
       selectedView: '',
