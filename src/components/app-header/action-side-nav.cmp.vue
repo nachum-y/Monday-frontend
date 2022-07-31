@@ -206,10 +206,10 @@ export default {
   font-weight: normal;
   font-variant: normal;
   color: #323338;
-  font-size: 11px;
+  font-size: 11.5px;
   position: absolute;
   left: 17px;
-  bottom: -3px;
+  bottom: -3.8px;
 
 }
 
