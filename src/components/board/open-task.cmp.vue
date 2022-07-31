@@ -24,9 +24,12 @@
                     <span>Activity log</span>
 
                 </nav>
-                <div class="open-update-form" contenteditable="true">
+
+
+                <div ref="writeUpdateMsg" class="open-update-form" contenteditable="true">
                     <span class="write-update-msg">write an update...</span>
-                    <QuillEditor v-model:content="msgHtml" contentType="html" class="update-form" theme="snow" :toolbar="toolbarOptions"/>
+                    <QuillEditor v-model:content="msgHtml" contentType="html" class="update-form" theme="snow"
+                        :toolbar="toolbarOptions" />
 
                 </div>
                 <div class="action_wrapper">
@@ -41,11 +44,10 @@
                         Add files
                         <span>Mention</span>
                     </div>
-                    <button @click.stop.prevent="sendMsg" class="update-action">Update
+                    <span @click.stop.prevent="sendMsg" class="update-action">Update
 
-                    </button>
+                    </span>
                 </div>
-
                 <div v-if="!currTask.conversion">
                     <div class="post_empty_state_image_wrapper"><img
                             src="https://cdn.monday.com/images/pulse-page-empty-state.svg">
@@ -143,13 +145,6 @@ export default {
         let currTaskId = this.$route.params.taskId
         console.log(currTaskId)
         socketService.emit('setTopic', currTaskId)
-        // this.taskId = taskId
-        // boardService.getTaskById()
-        // const boardId = this.$route.params.boardId
-        // const taskId = this.$route.params.taskId
-        // console.log(boardId)
-        // console.log(taskId)
-        // boardService.getTaskById(boardId, taskId)
 
     },
     components: {
@@ -166,6 +161,7 @@ export default {
             this.$router.replace({ path: `/boards/${boarId}` })
         },
         sendMsg() {
+            console.log(this.$refs.writeUpdateMsg)
             let msg = {}
             msg.content = this.msgHtml
             msg.by = this.activeUser
@@ -269,25 +265,25 @@ export default {
 }
 
 .update-action {
-    background-color:#0073ea;
+    background-color: #0073ea;
     width: 60.4375px;
     height: 32px;
     color: #fff;
     padding: 4px 8px;
     line-height: 24px;
     border-radius: 4px;
-    transition: 50ms transform,.1s cubic-bezier(0, 0, 0.35, 1) min-width;
+    transition: 50ms transform, .1s cubic-bezier(0, 0, 0.35, 1) min-width;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     outline: none;
-    border:none;
+    border: none;
     box-sizing: border-box;
 }
 
-.update-action:hover{
-    background-color:#0060b9;
+.update-action:hover {
+    background-color: #0060b9;
 }
 
 .task-open-task-name:focus {
@@ -319,13 +315,15 @@ export default {
 .update-form.ql-container.ql-snow {
     border: 1px solid #d1d5db;
     height: 9rem;
+    cursor: text;
+    pointer-events: all;
 }
 
 .open-update-form:not(:focus) {
     display: flex;
     justify-content: flex-start;
     font-size: 1rem;
-    outline: 1px solid #0073ea;
+    /* outline: 1px solid #0073ea; */
     /* outline-color: #0073ea; */
     padding: 0.625rem 1.25rem;
     border-radius: 0.5rem;
@@ -334,6 +332,7 @@ export default {
 .open-update-form {
     margin: 1rem;
     color: #323338;
+    outline: 1px solid #0073ea;
 
 
 }
@@ -375,5 +374,10 @@ export default {
     justify-content: center;
     flex-direction: column;
     text-align: center;
+}
+
+.ql-toolbar.ql-snow {
+
+    cursor: default;
 }
 </style>
