@@ -31,6 +31,7 @@ export default {
     padding: 1rem;
     background-color: #f6f7fb;
     overflow-y: scroll;
+    height: calc(100vh - 166px);
 }
 
 .dashboard-item-holder{
