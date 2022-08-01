@@ -37,9 +37,7 @@ export default {
             return new Date(this.task.value)
         },
         formatDate() {
-            console.log(new Date(this.task.value).getFullYear())
             if (new Date().getFullYear() === new Date(this.task.value).getFullYear()) return 'MMM DD'
-            console.log('hello')
             return 'MMM D, YYYY'
         }
     },

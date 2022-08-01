@@ -97,7 +97,6 @@ export default {
             }
         },
         async updateTask(data) {
-            // this.$emit({ 'updateTask', data })
             this.$emit('updateTask', data)
 
         },
@@ -110,18 +109,15 @@ export default {
 
         },
         changeKnabanView(view) {
-            console.log(view)
             this.$store.commit({ type: 'setKanbanStatus', view })
             this.tasksByStatus = this.$store.getters.getTasksByStatus
         },
         async change(evt) {
             if (!this.newData) return
-            console.log(this.newData)
             await this.$emit('updateTask', this.newData)
 
         },
         checkMove(evt) {
-            console.log(evt)
 
         }
 
