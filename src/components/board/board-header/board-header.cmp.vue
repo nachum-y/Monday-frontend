@@ -5,7 +5,7 @@
         <div class="header-input-container">
           <el-tooltip content="Click to edit" effect="dark">
             <h1 contenteditable="true" class="board-title-input">
-              Board Title
+              {{board.title}}
             </h1>
           </el-tooltip>
           <el-tooltip content="Show board description" effect="dark">
@@ -24,8 +24,7 @@
               </el-tooltip>
             </button>
             <div v-if="openMenu" class="user-select-menu">
-              <div class="user-select-menu-member" v-for="member in board.members"
-                :key="member.id">
+              <div class="user-select-menu-member" v-for="member in board.members" :key="member.id">
                 <div class="user-select-menu-member-display">
                   <div class="img-holder">
                     <img :src="member.imgUrl" alt="" srcset="">
@@ -110,12 +109,12 @@ export default {
       switch (personId) {
         case 'm101':
           url = 'https://www.linkedin.com/in/shiran-abir/'
-          break;
+          break
         case 'm102':
           url = 'https://www.linkedin.com/in/meital-twito-65575660/'
-          break;
+          break
         default:
-          break;
+          break
       }
       return url
     },
@@ -166,7 +165,7 @@ export default {
   watch: {
     '$route': {
       handler: function (routerChange) {
-          this.activeTab = routerChange.name
+        this.activeTab = routerChange.name
       },
       deep: true,
       immediate: true
