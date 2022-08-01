@@ -17,7 +17,7 @@
 
         <div ref="groupTitle" :style="groupColor" class="group-header-title" contenteditable="true"
             @blur="editGroup($event.target.innerText, group.id, 'title')">
-            <div @click="toggleColorMenu" :style="{ backgroundColor: group.color }" class="color-indicator">
+            <div @click="toggleColorMenu" :style="{ backgroundColor: group.color }" class="color-indicator-gh">
                 <div v-show="isColorMenuOpen" class="group-header-color-menu">
                     <div @click="editGroup(color, group.id, 'color')" v-for="color in colors"
                         :style="{ backgroundColor: color }" :key="color" class="color-option">
@@ -188,11 +188,11 @@ export default {
     transform: rotate(90deg);
 }
 
-.color-indicator {
+.color-indicator-gh {
     display: none;
 }
 
-.group-header-title:focus .color-indicator {
+.group-header-title:focus .color-indicator-gh {
     display: inline-block;
 
 }
