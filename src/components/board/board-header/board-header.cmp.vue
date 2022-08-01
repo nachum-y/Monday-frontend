@@ -135,6 +135,7 @@ export default {
       this.style.width = 22
     },
     searchInput(inputTxt) {
+      
       this.$store.dispatch({ type: 'searchInput', inputTxt })
 
     },
