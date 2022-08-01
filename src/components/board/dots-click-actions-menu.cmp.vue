@@ -5,30 +5,18 @@
                 <div class="collapse-group-icon"></div>
                 <div class="collapse-group-title">Collapse this group</div>
             </div>
-            <div class="collapse-groups" @click="deleteGroup">
-                <div class="collapse-groups-icon"></div>
-                <div class="collapse-groups-title">Collapse all group</div>
+            <div class="delete-group" @click="deleteGroup">
+                <div class="delete-group-icon"></div>
+                <div class="delete-group-title">Delete this group</div>
             </div>
-            <div class="select-all-items">
-                <div class="select-all-items-icon"></div>
-                <div class="select-all-items-title">Select all items</div>
+            <div class="duplicate-group" @click="duplicateGroup">
+                <div class="duplicate-group-icon"></div>
+                <div class="duplicate-group-title">Duplicate this group</div>
             </div>
 
 
 
         </div>
-
-
-        <div @click="deleteGroup">Delete
-            <i class="icon-v2-delete-line">
-
-            </i>
-        </div>
-        <div class="action-menu" @click="duplicateGroup">
-            Duplicate
-
-        </div>
-
 
 
     </section>
@@ -60,7 +48,6 @@ export default {
             this.$emit('duplicateGroup')
         },
         collapseGroup() {
-            console.log('hello')
             this.$emit('collapseGroup')
         }
     },

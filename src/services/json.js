@@ -55,13 +55,13 @@ const board = {
   colsOrder: [
     { title: "Item", type: "item" },
     { title: "Text", type: "textCmp" },
-    { title: "person", type: "person" },
-    { title: "priority", type: "priority" },
-    { title: "status", type: "status" },
     { title: "date", type: "date" },
-    { title: "creation log", type: "creationLog" },
+    { title: "status", type: "status" },  
+    { title: "person", type: "person" },
+    { title: "label", type: "labelCmp" },
+    { title: "priority", type: "priority" },
     { title: "location", type: "location" },
-    { title: "label", type: "labelCmp" }
+    { title: "creation log", type: "creationLog" },
   ],
   groups: [
     {
