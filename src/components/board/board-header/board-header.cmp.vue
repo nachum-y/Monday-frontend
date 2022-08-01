@@ -4,9 +4,6 @@
       <div class="board-title-component">
         <div class="header-input-container">
           <el-tooltip content="Click to edit" effect="dark">
-            <!-- <input class="board-title-input" :style="{ 'width': ((board.title.length) * 1) + 'ch' }"
-              onkeypress="this.style.width = ((this.value.length + 2) * 1) + 'ch';" @click="handleInput"
-              @change="updateBoardTitle" type="text" :value="board.title"> -->
             <h1 contenteditable="true" class="board-title-input">
               Board Title
             </h1>

@@ -178,7 +178,6 @@ export default {
             // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         editGroup(EditVal) {
-            // console.log(EditVal)
             this.newData[EditVal.type] = EditVal.val
             this.$store.dispatch({ type: 'updateGroup', groupId: EditVal.groupId, data: this.newData })
             this.newData = {}
@@ -243,7 +242,6 @@ export default {
             // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
         updateTask(data) {
-            console.log(data);
             this.$store.dispatch({ type: 'updateTask', data })
             // socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
         },
@@ -257,18 +255,15 @@ export default {
             this.controlOnStart = originalEvent.ctrlKey
         },
         changeIdx(ev, id) {
-            // console.log(ev)
-
             let idx = this.board.groups.findIndex((g) => g.id === ev.id)
             if (idx !== -1) return idx
 
         },
         collapseGroup(groupId) {
-            // console.log(groupId)
             const idx = this.collapseGroups.findIndex(id => id === groupId)
             if (idx === -1) this.collapseGroups.push(groupId)
             else this.collapseGroups.splice(idx, 1)
-            // console.log(this.collapseGroups)
+
         },
         groupRowFooter(elWidth) {
             // this.groupRowFooterWidth = elWidth
@@ -277,7 +272,6 @@ export default {
 
         },
         sortBy(filter, param = null) {
-            console.log('here');
             this.$store.dispatch({ type: 'sortBy', filter, param })
         },
 
@@ -288,7 +282,6 @@ export default {
             return 'width"123px'
         },
         getHeaderOrder() {
-            // console.log('board.colsOrder:', board.colsOrder)
             // const headersList = board.colsOrder.map()
         },
         boardOrderList: {
@@ -316,7 +309,6 @@ export default {
                 // [this.idx].tasks
             },
             set(value) {
-                // console.log(value)
                 this.$store.dispatch('updateRowsOrder', { value })
             }
 

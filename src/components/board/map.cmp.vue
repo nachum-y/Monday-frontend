@@ -1,5 +1,4 @@
 <script>
-/* eslint-disable no-undef */
 import { computed, ref } from 'vue'
 import { Loader } from '@googlemaps/js-api-loader'
 import { useGeolocation } from '../../services/useGeolocation'
@@ -9,10 +8,7 @@ export default {
         taskLocation: Object
     },
     name: 'mapPage',
-    //setup se inicia mucho antes
     created() {
-        //saber la accion del navegador, reload, navigate, back_forward
-        //console.log(performance.getEntriesByType('navigation')[0].type)
         if (performance.getEntriesByType('navigation')[0].type === 'reload') {
             sessionStorage.clear()
         }
@@ -24,8 +20,6 @@ export default {
             lng: props.taskLocation.location.value.lnglat.lng,
 
         }
-        // console.log(props.taskLocation)
-        // console.log()
         const contentString =`
             <div id="content"> 
             <div id="siteNotice"> 
@@ -44,10 +38,8 @@ export default {
         /*
         //forma directa y sencilla
         const success =(position) => {
-            console.log(position)
         }
         const error = (error) => {
-            console.log(error)
         }
         navigator.geolocation.getCurrentPosition(success, error);
         */
@@ -80,7 +72,6 @@ export default {
             let center
 
             if (sessionStorage.getItem('center')) {
-                console.log('session')
                 center = JSON.parse(sessionStorage.getItem('center'))
                 placeDet.value = JSON.parse(sessionStorage.getItem('placeDet'))
                 // document.getElementById('place-input').value = sessionStorage.getItem('placeInput')
@@ -111,7 +102,6 @@ export default {
 
             google.maps.event.addListener(marker, 'click', function () {
                 //alert(marker.getPosition())
-                console.log(marker)
                 infowindow.open({
                     anchor: marker,
                     map,

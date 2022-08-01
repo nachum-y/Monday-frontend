@@ -24,7 +24,6 @@ export default {
     },
     methods: {
         searchInput(val) {
-            // console.log(val)
         }
     },
 }

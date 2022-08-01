@@ -38,7 +38,6 @@ export default {
 }
 </script>
 <style>
-.home-page {}
 
 .application-layers .first-level {
     left: 0;

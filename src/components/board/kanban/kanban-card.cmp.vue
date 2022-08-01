@@ -62,7 +62,6 @@ export default {
     },
     created() {
         this.$watch('taskList', (newVal) => {
-            // console.log(this.groupId)
             this.taskListByLabel = newVal
         })
         this.taskListByLabel = this.taskList
@@ -97,7 +96,6 @@ export default {
             }
         },
         async updateTask(data) {
-            // this.$emit({ 'updateTask', data })
             this.$emit('updateTask', data)
 
         },

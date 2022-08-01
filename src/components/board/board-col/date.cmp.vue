@@ -55,7 +55,6 @@ export default {
         task: {
             handler: function (val) {
                 this.taskTime = val.value
-                // console.log(this.taskTime)
             },
             deep: true,
             immediate: true
@@ -84,10 +83,6 @@ export default {
     padding: 0;
     border-radius: 0 !important;
 }
-
-/* .task-date.el-input__inner {
-    text-align: center;
-} */
 
 .clear-icon {
     display: none;
