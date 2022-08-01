@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard-content">
 
-        <div class="dashboard-item-holder">
+        <div class="dashboard-item-holder dashboard-item-number">
             <div class="dashboard-item-holder-title"> 
             <span>
                Numbers
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="dashboard-item-holder">
+        <div class="dashboard-item-holder dashboard-item-team">
             <div class="dashboard-item-holder-title"> 
             <span>
                Team
@@ -38,7 +38,7 @@
             </div>
         </div>
         
-        <div class="dashboard-item-holder">
+        <div class="dashboard-item-holder dashboard-item-task-by-status">
             <div class="dashboard-item-holder-title"> 
             <span>
                 Tasks by status
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div class="dashboard-item-holder">
+        <div class="dashboard-item-holder dashboard-item-task-by-lables">
             <div class="dashboard-item-holder-title"> 
             <span>
                 Tasks by lables
@@ -59,7 +59,7 @@
                 <pie-chart></pie-chart>
             </div>
         </div>
-        <div class="dashboard-item-holder">
+        <div class="dashboard-item-holder dashboard-item-task-by-priority">
             <div class="dashboard-item-holder-title"> 
             <span>
                 Tasks by priority

@@ -5,7 +5,9 @@
             <h3 class="sub-line">What would you like to manage with taskndrop.com Work OS?</h3>
             <div class="comet-underline"></div>
             <div class="btn-container">
-                <a role="button" href="/boards/b101" class="start">Get Started</a>
+                <router-link class="start" :to="'/boards/' + currBoardId">
+                    Get Started
+                </router-link>
             </div>
             <div class="star"></div>
             <div class="star2 star"></div>
@@ -35,10 +37,18 @@
 <script>
 
 export default {
+    name: 'homePage',
+    data() {
+        return {
+            currBoardId: ''
+        }
+    },
+    created() {
+        this.currBoardId = this.$store.getters.getBoardId
+    },
 }
 </script>
 <style>
-
 .application-layers .first-level {
     left: 0;
 

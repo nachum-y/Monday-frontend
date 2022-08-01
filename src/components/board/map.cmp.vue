@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { Loader } from '@googlemaps/js-api-loader'
 import { useGeolocation } from '../../services/useGeolocation'
-import {GOOGLE_MAPS_API_KEY} from '../../services/apiKey'
+import { GOOGLE_MAPS_API_KEY } from '../../services/apiKey'
 export default {
     props: {
         taskLocation: Object
@@ -12,6 +12,7 @@ export default {
         if (performance.getEntriesByType('navigation')[0].type === 'reload') {
             sessionStorage.clear()
         }
+        console.log(this.taskLocation)
     },
     setup(props) {
         const { coords } = useGeolocation()
@@ -20,15 +21,18 @@ export default {
             lng: props.taskLocation.location.value.lnglat.lng,
 
         }
-        const contentString =`
+        const contentString = `
             <div id="content"> 
             <div id="siteNotice"> 
             </div> 
-            <h1 id="firstHeading" class="firstHeading">${props.taskLocation.task.cols[0].value}</h1> 
+            <h2 id="firstHeading" class="firstHeading">${props.taskLocation.location.value.title}</h2> 
             <div id="bodyContent"> 
-           
-            "</div>" 
-            "</div>"`
+            <h3>
+            ${props.taskLocation.task.cols[0].value}
+            </3>
+           <p></p>
+            </div>
+            </div>`
 
 
 
@@ -93,7 +97,7 @@ export default {
                     map,
                     shouldFocus: false,
                 })
-              
+
             })
 
         })
@@ -112,11 +116,14 @@ export default {
 <template>
     <div class="map-location">
         <div class="map-location-title"> <span>Map</span> <a v-if="resul_lng != null" class="view-in"
-            :href="`https://www.google.com/maps/search/${resul_lat},${resul_lng}`">
-            View in Google Maps</a></div>
+                :href="`https://www.google.com/maps/search/${resul_lat},${resul_lng}`">
+                View in Google Maps</a></div>
         <div class="m-6" ref="mapDiv" style="width: 100%; height: 400px" />
-        
+
     </div>
 </template>
 <style>
+h2#firstHeading {
+    margin-bottom: 1rem;
+}
 </style>

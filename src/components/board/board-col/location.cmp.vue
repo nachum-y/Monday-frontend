@@ -47,7 +47,7 @@ export default {
         function doEmit(newData) {
             emit('updateTask', newData)
         }
-     
+
 
 
         const loader = new Loader({
@@ -88,7 +88,7 @@ export default {
                 resul_lat.value = center.lat
             }
 
-          
+
 
             marker = new google.maps.Marker({
                 map: map.value,
@@ -118,7 +118,8 @@ export default {
 
                 sessionStorage.setItem('placeInput', placeInput.value)
                 let location = {}
-                location.title = place.address_components[0].short_name
+                console.log(place)
+                location.title = place.formatted_address
                 location.lnglat = place.geometry.location
                 let newCol = { type: props.task.type, value: location }
                 let newData = { newCol, taskId: props.row.id, groupId: props.row.groupId }
