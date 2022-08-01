@@ -24,7 +24,15 @@
               </el-tooltip>
             </button>
             <div v-if="openMenu" class="user-select-menu">
-              <div @click="changeMember(member)" v-for="member in board.members" :key="member.id">{{ member.name }}
+              <div class="user-select-menu-member" @click="changeMember(member)" v-for="member in board.members"
+                :key="member.id">
+                <div class="user-select-menu-member-display">
+                  <div class="img-holder">
+                    <img :src="member.imgUrl" alt="" srcset="">
+                  </div>
+                  <div class="member-name">{{ member.name }}</div>
+                </div>
+                <div class="linkedin-icon"><a :href="getLink(member.id)" target="_blank"></a></div>
               </div>
             </div>
           </div>
@@ -55,7 +63,7 @@
         </button>
         <div class="views-seprator"></div>
         <button class="main-tab header-btn map-btn" :class="isActive">
-          <router-link :to="{ name: 'map'}">Map</router-link>
+          <router-link :to="{ name: 'map' }">Map</router-link>
           <span class="icon-v2-ellipsis"></span>
         </button>
         <div class="views-seprator"></div>
@@ -91,6 +99,20 @@ export default {
 
   },
   methods: {
+    getLink(personId) {
+      let url = '#'
+      switch (personId) {
+        case 'm101':
+          url = 'https://www.linkedin.com/in/shiran-abir/'
+          break;
+        case 'm102':
+          url = 'https://www.linkedin.com/in/meital-twito-65575660/'
+          break;
+        default:
+          break;
+      }
+      return url
+    },
     updateBoardTitle(ev) {
       this.board.title = ev.target.value
       if (!ev.target.value) this.board.title = 'New Board'
@@ -119,10 +141,10 @@ export default {
       await this.$store.dispatch({ type: 'setActive', member })
       this.activeUser = this.$store.getters.getActiveUser
     },
-    isActive(){
+    isActive() {
       return 'active-view'
     }
-    
+
   },
   computed: {
 

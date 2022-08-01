@@ -254,7 +254,7 @@
 
                              
             .el-input{
-                margin-bottom: 0.5rem;
+                margin-bottom: 2rem;
                 .el-input__wrapper{
                    background-color: #fff;
                    border: 1px $--ui-border-color solid;
@@ -267,7 +267,7 @@
             &-item{
                 display: flex;
                 @include checkbox-style;
-                margin-block-end: 0.5rem;
+                margin-block-end: 1rem;
                 color: #323338;
                 text-transform: capitalize;
                 span{
