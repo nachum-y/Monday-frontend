@@ -57,10 +57,7 @@ export default {
         modalCmp
     },
     created() {
-        // this.$watch('activeUser', (newVal) => {
-        //     console.log(newVal)
-        //     this.activeUserAvatar = newVal[this.groupId]
-        // })
+
         this.activeUserAvatar = this.activeUser
     },
     methods: {
@@ -70,7 +67,6 @@ export default {
             this.closeModal()
         },
         toggleShowModal() {
-            // this.posModal = this.$refs.userSelectActiveUser
             this.showModal = !this.showModal
         },
         closeModal() {

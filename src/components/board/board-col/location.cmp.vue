@@ -5,7 +5,7 @@
                 :placeholder="[task.value ? task.value.title : 'Type address...']" />
             <div class="icon-v2-line-location"></div>
         </div>
-        <div class="m-6" ref="mapDiv" style="width: 95%; height: 400px" ></div>
+        <div class="m-6" ref="mapDiv" style="width: 95%; height: 400px"></div>
     </div>
 </template>
 <script>
@@ -13,7 +13,7 @@
 import { computed, ref } from 'vue'
 import { Loader } from '@googlemaps/js-api-loader'
 import { useGeolocation } from '../../../services/useGeolocation'
-import {GOOGLE_MAPS_API_KEY} from '../../../services/apiKey'
+import { GOOGLE_MAPS_API_KEY } from '../../../services/apiKey'
 export default {
     emits: ['updateTask'],
     name: ['location'],
@@ -29,14 +29,9 @@ export default {
         boardMembers: Array
 
     },
-    // data() {
-    //     return {
 
-    //     }
-    // },
     created() {
         //saber la accion del navegador, reload, navigate, back_forward
-        //console.log(performance.getEntriesByType('navigation')[0].type)
         if (performance.getEntriesByType('navigation')[0].type === 'reload') {
             sessionStorage.clear()
         }
@@ -52,20 +47,8 @@ export default {
         function doEmit(newData) {
             emit('updateTask', newData)
         }
-        if (props.task.value) {
-            console.log(props.task.value)
-            //     value = props.task.value
-        }
-        /*
-        //forma directa y sencilla
-        const success =(position) => {
-            console.log(position)
-        }
-        const error = (error) => {
-            console.log(error)
-        }
-        navigator.geolocation.getCurrentPosition(success, error);
-        */
+     
+
 
         const loader = new Loader({
             apiKey: GOOGLE_MAPS_API_KEY, libraries: ['places']
@@ -94,7 +77,6 @@ export default {
             let center
 
             if (sessionStorage.getItem('center')) {
-                console.log('session')
                 center = JSON.parse(sessionStorage.getItem('center'))
                 placeDet.value = JSON.parse(sessionStorage.getItem('placeDet'))
                 document.getElementById(props.row.id).value = sessionStorage.getItem('placeInput')
@@ -106,11 +88,7 @@ export default {
                 resul_lat.value = center.lat
             }
 
-            // map.value = new google.maps.Map(mapDiv.value, {
-            //     //centrado en posicion actual
-            //     center: center,
-            //     zoom: 18
-            // })
+          
 
             marker = new google.maps.Marker({
                 map: map.value,
@@ -120,33 +98,26 @@ export default {
             })
 
             google.maps.event.addListener(marker, 'dragend', function () {
-                //alert(marker.getPosition())
                 resul_lat.value = marker.getPosition().lat()
                 resul_lng.value = marker.getPosition().lng()
                 center = {
                     lat: resul_lat.value,
                     lng: resul_lng.value
                 }
-                //guardar center por arrastre
                 sessionStorage.setItem('center', JSON.stringify(center))
             })
 
             //autocompletar
             const placeInput = document.getElementById(props.row.id)
             const options = {
-                // componentRestrictions: { country: "mx" },
                 types: ['geocode']
             }
             const autocomplete = new google.maps.places.Autocomplete(placeInput, options)
             google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                //obtener el lugar
                 let place = autocomplete.getPlace()
 
                 sessionStorage.setItem('placeInput', placeInput.value)
-                console.log(place)
                 let location = {}
-                console.log(place)
-                // let location = place.address_components[0].short_name
                 location.title = place.address_components[0].short_name
                 location.lnglat = place.geometry.location
                 let newCol = { type: props.task.type, value: location }
@@ -154,15 +125,8 @@ export default {
 
                 doEmit(newData)
                 this.value = place.address_components[0].short_name
-                console.log(this.value)
                 center = place.geometry.location
-                //guardar center por busqueda plces
                 sessionStorage.setItem('center', JSON.stringify(center))
-                console.log(center)
-                //centrar el mapa en el lugar
-                // map.value.setCenter(center)
-                //poner marcador en ese lugar
-                // marker.setPosition(center)
 
                 sessionStorage.setItem('map', map.value)
                 sessionStorage.setItem('marker', marker.value)
@@ -191,26 +155,20 @@ export default {
                     switch (d.types[0]) {
                         case "street_number":
                             placeDet.value.exterior = d.long_name
-                            //alert('numero exterior '+d.long_name)
                             break
                         case "route":
                             placeDet.value.street = d.long_name
-                            //alert('numero exterior '+d.long_name)
                             break
                         case "postal_code":
                             placeDet.value.CP = d.long_name
-                            //alert('la colonia es ' + d.long_name)
                             break
                         case "locality":
                             placeDet.value.municipio = d.long_name
-                            //alert('municipio es ' + d.long_name)
                             break
                         case "administrative_area_level_1":
                             placeDet.value.estado = d.long_name
-                            //alert('estado es ' + d.long_name)
                             break
                         case 'country':
-                            //alert('el pais es ' + d.long_name)
                             break
                     }
                 }
@@ -252,14 +210,14 @@ export default {
     padding-left: 20px;
 
 }
-.task-location{
+
+.task-location {
     width: 100%;
 }
 
-.input-container input{
+.input-container input {
     border: none;
     height: 100%;
 }
-
 </style>
 

@@ -31,15 +31,12 @@ function createSocketService() {
         setup() {
             socket = io(baseUrl)
             setTimeout(() => {
-                console.log('setup')
                 // const user = boardService.getLoggedinUser()
                 // if (user)
                 // this.login(123)
             }, 500)
         },
         on(eventName, cb) {
-            console.log(eventName)
-            console.log(cb)
             socket.on(eventName, cb)
         },
         off(eventName, cb = null) {
@@ -49,8 +46,6 @@ function createSocketService() {
         },
         emit(eventName, data) {
             data = JSON.parse(JSON.stringify(data))
-            console.log(data)
-            console.log(eventName)
             socket.emit(eventName, data)
 
 

@@ -50,7 +50,6 @@ export default {
     },
     methods: {
         escapekeylistener(evt) {
-            // console.log(evt)
             this.cordsX = evt.pageX
             this.cordsY = evt.pageY
         },
@@ -74,7 +73,6 @@ export default {
         }
     },
     created() {
-        // console.log('create')
     },
 
 }

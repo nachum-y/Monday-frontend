@@ -85,13 +85,8 @@
 </template>
 
 <script setup>
-// import { ref } from 'vue'
 import filterMenu from '../menus/filter-menu.cmp.vue'
 import sortMenu from '../menus/sort-menu.cmp.vue'
-// const activeIndex = ref('1')
-// const handleSelect = (key, keyPath) => {
-//   // console.log(key, keyPath)
-// }
 </script>
 <script>
 export default {
@@ -107,7 +102,6 @@ export default {
     }
   },
   mounted() {
-    // let rect = this.$refs.filterMenuBtn.getBoundingClientRect()
     this.filterMenuOptionPos = this.$refs.filterMenuBtn.getBoundingClientRect()
   },
   components: {
@@ -118,10 +112,6 @@ export default {
     showFilterMenuOption() {
       this.filterMenuOption = {}
       this.filterMenuOption = this.board
-      // console.log(filterMenuOptionLeft)
-      // var rect = this.$refs.labelCmpRef.getBoundingClientRect()
-
-      // this.filterMenuOption.posModal = { eltop: el.layerY, left: this.showLabelMenuOptionLeft, rect }
     },
     closeActionsModal() {
       this.filterMenuOption = null

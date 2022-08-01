@@ -30,20 +30,15 @@ export default {
         },
         selectPriority(priorityId) {
             this.$emit('changePriority', priorityId)
-            // this.$emit('closeActionsModal')
         },
     },
     computed: {
         postionModal() {
               let elWidth = this.pos.rect.width
-            // console.log('elWidth:', elWidth)
             let maxWidth = this.pos.left
-            // console.log('maxWidth:', maxWidth)
             let elRight = this.pos.rect.x
-            // console.log(this.pos.rect.x)
             const top = this.pos.rect.height
             if ((elRight + elWidth) * 2 > maxWidth) {
-                // console.log('heyyy')
                 return `top:${top}px; left:${(-elWidth / 2)}px;`
 
             }

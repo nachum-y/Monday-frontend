@@ -44,7 +44,6 @@ export default {
     this.data = data
     const activeUser = await this.$store.dispatch({ type: 'getActive' })
     this.activeUser = activeUser
-    console.log(this.$router.currentRoute._value.fullPath);
   },
 }
 </script>

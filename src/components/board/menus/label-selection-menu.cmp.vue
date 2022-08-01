@@ -1,5 +1,4 @@
 <template>
-    <!-- v-bind:style="{ 'min-width': groupRowFooterWidth }" -->
     <div class="status-picker-view" v-if="labels" :style="postionModal">
         <div class="status-picker-view-title" :style="{ 'background-color': label.color }" v-for="label in labels"
             :key="label.id" @click="selectLabel(label.id)">

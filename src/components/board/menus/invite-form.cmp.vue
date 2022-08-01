@@ -7,8 +7,6 @@
         <el-table-column property="address" label="Address" />
       </el-table>
     </el-dialog>
-
-    <!-- Form -->
     <el-button text @click="dialogFormVisible = true">
       <span class="invite-icon"></span>
       <span>&nbsp; Invite / 1</span>
