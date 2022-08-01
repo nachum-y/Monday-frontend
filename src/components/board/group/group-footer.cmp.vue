@@ -38,11 +38,9 @@ export default {
     },
     created() {
         this.$watch('getTasksByStatus', (newVal) => {
-            // console.log(this.groupId)
             this.groupListLabels = newVal[this.groupId]
         })
         this.groupListLabels = this.getTasksByStatus[this.groupId]
-        // console.log(...this.groupListLabels).length
 
     },
     methods: {
@@ -63,7 +61,6 @@ export default {
 
                         return acc
                     }, {})
-                    // console.log(uniqs)
                     return uniqs
                 case 'priority':
                     uniqs = this.groupListLabels.priority.reduce((acc, val) => {

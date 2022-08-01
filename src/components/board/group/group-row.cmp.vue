@@ -132,7 +132,6 @@ export default {
             set(value) {
                 let groups = this.$store.getters.rowOrder
                 let idx = groups.findIndex((g) => g.id === this.group.id)
-                // console.log(idx)
 
                 this.$store.dispatch('updateRowsOrder', { value, idx })
             }

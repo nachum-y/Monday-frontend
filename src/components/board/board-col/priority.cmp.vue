@@ -53,7 +53,6 @@ export default {
 
             this.showPriorityMenuOption = {}
             this.showPriorityMenuOption.priority = priority
-            // console.log(showPriorityMenuOptionLeft)
             var rect = this.$refs.priorityCmpRef.getBoundingClientRect()
 
             this.showPriorityMenuOption.posModal = { eltop: el.layerY, left: this.showPriorityMenuOptionLeft, rect }

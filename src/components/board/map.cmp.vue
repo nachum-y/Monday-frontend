@@ -1,5 +1,4 @@
 <script>
-/* eslint-disable no-undef */
 import { computed, ref } from 'vue'
 import { Loader } from '@googlemaps/js-api-loader'
 import { useGeolocation } from '../../services/useGeolocation'
@@ -9,7 +8,6 @@ export default {
         taskLocation: Object
     },
     name: 'mapPage',
-    //setup se inicia mucho antes
     created() {
         if (performance.getEntriesByType('navigation')[0].type === 'reload') {
             sessionStorage.clear()
@@ -22,7 +20,6 @@ export default {
             lng: props.taskLocation.location.value.lnglat.lng,
 
         }
-
         const contentString =`
             <div id="content"> 
             <div id="siteNotice"> 
@@ -63,7 +60,6 @@ export default {
             let center
 
             if (sessionStorage.getItem('center')) {
-                console.log('session')
                 center = JSON.parse(sessionStorage.getItem('center'))
                 placeDet.value = JSON.parse(sessionStorage.getItem('placeDet'))
                 resul_lng.value = center.lng

@@ -88,7 +88,6 @@ export default {
 
         },
         duplicateGroup(group) {
-            // console.log(group)
             this.$emit('duplicateGroup', group)
         },
         removeGroup(groupId) {
@@ -169,7 +168,6 @@ export default {
 
 .group-title-action {
     display: flex;
-    /* margin-inline-start: 0.875rem; */
     padding: 0.625rem 0;
     padding-inline-start: 0.875rem;
     align-items: center;
