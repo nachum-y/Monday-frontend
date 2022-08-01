@@ -34,7 +34,72 @@
             font-size: 16px;
         }
     }
-    .pie{
+    .number-view{
+        margin: 0.5rem;
+        padding: 0.1rem 0.5rem;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &.closed{
+            background-color: rgba(58, 200, 118, 0.5);
+            &:hover{
+                background-color: rgba(58, 200, 118, 1);
+            }
+        }
+        &.open{
+            background-color: rgba(209, 209, 209, 0.5);
+
+            &:hover{
+                background-color: rgba(209, 209, 209, 1);
+            }
+        }
+        &-title{
+            font-size: 18px;
+            margin-inline-end: 1rem;
+        }
+        &-number{
+            font-size: 40px;
+            font-weight: 300;
+
+            span{
+               &:not(:last-of-type){
+                margin-inline-end: 1rem;
+            }
+            }
+        }
+    }
+
+    .members-view{
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.5rem;
         
+        &-member{
+            padding: 1rem;
+            background-color:  rgba(209, 209, 209, 0.5);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 170px;
+            .img-holder{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: #fff solid 2px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+            .member-name{
+                font-size: 18px;
+                padding: 0.5rem;
+                font-weight: 300;
+            }
+        }
     }
 }
