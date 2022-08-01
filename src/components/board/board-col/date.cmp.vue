@@ -85,9 +85,9 @@ export default {
     border-radius: 0 !important;
 }
 
-/* .task-date.el-input__inner {
+.task-date .el-input__inner {
     text-align: center;
-} */
+}
 
 .clear-icon {
     display: none;

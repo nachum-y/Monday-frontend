@@ -11,17 +11,6 @@
         </label-selection-menu>
 
 
-        <!-- <div class="status-cell-component status-print-color status-cell-component-double-fix"
-            data-walkthrough-id="status-cell" style="background-color: rgb(0, 200, 117);">
-            <div class="animated-status crazy-balls-sprite-animation"></div>
-            <div class="status-note-wrapper  ">
-                <div class="status-print-color" style="background-color: rgb(0, 200, 117);">
-                    <div class="add-status-note"></div><i class="fa fa-plus menu-dog-ear-color"
-                        style="color: rgb(0, 200, 117);"></i>
-                </div>
-            </div>
-            <div class="ds-text-component" dir="auto"><span>Done</span></div>
-        </div> -->
     </div>
 
 </template>
@@ -65,7 +54,6 @@ export default {
         showLabelsMenu(el, labels) {
             this.showLabelMenuOption = {}
             this.showLabelMenuOption.labels = labels
-            // console.log(showLabelMenuOptionLeft)
             var rect = this.$refs.labelCmpRef.getBoundingClientRect()
 
             this.showLabelMenuOption.posModal = { eltop: el.layerY, left: this.showLabelMenuOptionLeft, rect }
@@ -81,14 +69,9 @@ export default {
         },
     },
     mounted() {
-        // this.showLabelMenuOption.width = this.$refs.labelCmpRef.clientWidth
         var rect = this.$refs.labelCmpRef.getBoundingClientRect()
-        // console.log(rect.top, rect.right, rect.bottom, rect.left)
         this.showLabelMenuOptionLeft = window.outerWidth
-        // console.log(this.showLabelMenuOptionLeft)
-
-        // let elWidth = this.$refs.groupRowFooter.clientWidth
-        // this.$emit('groupRowFooter', elWidth)
+      
     },
     components: {
         labelSelectionMenu
