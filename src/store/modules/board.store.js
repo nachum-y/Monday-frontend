@@ -330,6 +330,9 @@ export const boardStore = {
             // console.log('groupMap:', groupMap)
             console.log('gropsTaskLocationMap:', gropsTaskLocationMap)
             return gropsTaskLocationMap
+        },
+        getBoardMembers({board}){
+            return board.members
         }
 
     },

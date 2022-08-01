@@ -74,12 +74,16 @@ export default {
       },
       chartOptions: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false, 
+        plugins:{
+          legend:{
+            display: false
+          }
+        }
       }
     }
   },
   created(){
-    console.log(this.$store.getters.getPriorityCount)
     this.$store.getters.getPriorityCount
   }
 }
