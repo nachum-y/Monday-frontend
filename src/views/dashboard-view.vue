@@ -31,9 +31,6 @@
                 </div>
                 <div class="member-name">{{person.name}}</div>
                 <div class="member-linkedIn">
-                    <div class="icon-holder">
-
-                    </div>
                     <a :href="getLink(person.id)" target="_blank">Connect on LinkedIn</a>
                 </div>
              </div>
@@ -88,10 +85,6 @@ export default {
             members: this.$store.getters.getBoardMembers,
             TeamToDisplay: ['m101', 'm102', 'm103']
         }
-    },
-    created() {
-        console.log(this.$store.getters.getBoardMembers)
-
     },
     components:{
         barChart,

@@ -84,8 +84,5 @@ export default {
       }
     }
   },
-  created() {
-    console.log(this.options);
-  },
 }
 </script>

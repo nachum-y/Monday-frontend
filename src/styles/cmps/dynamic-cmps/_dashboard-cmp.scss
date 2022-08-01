@@ -100,6 +100,22 @@
                 padding: 0.5rem;
                 font-weight: 300;
             }
+            .member-linkedIn{
+                a, a:visited{
+                    text-decoration: none;
+                    color: inherit;
+                }
+                background-color: rgba(209, 209, 209, 0.5);
+                width: 100%;
+                padding: 0.5rem;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: all 0.5s;
+                &:hover{
+                    background-color: #0072b1;
+                    color: white;
+                }
+            }
         }
     }
 }
