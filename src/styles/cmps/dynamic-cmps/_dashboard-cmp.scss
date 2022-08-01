@@ -11,6 +11,9 @@
     // align-content: flex-start;
     display: grid;
     grid-template-columns: repeat(3, minmax(33%, 1fr));
+    grid-template-rows: 1fr 2fr 2fr;
+    gap: 1rem;
+
 
 }
 
