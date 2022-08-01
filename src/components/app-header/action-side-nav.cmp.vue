@@ -83,7 +83,7 @@
 import { faTableColumns, faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 export default {
-  emits: ['sideExpanded'],
+  emits: ['sideExpanded','sideNavisPinned'],
   data() {
     return {
       sideNavisExpanded: false,
