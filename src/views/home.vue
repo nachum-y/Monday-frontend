@@ -2,7 +2,7 @@
     <div class="home-page">
         <div class="first-layout">
             <h1 class="header-line">A platform built for a<br> new way of working </h1>
-            <h3 class="sub-line">What would you like to manage with monday.com Work OS?</h3>
+            <h3 class="sub-line">What would you like to manage with taskndrop.com Work OS?</h3>
             <div class="comet-underline"></div>
             <div class="btn-container">
                 <a role="button" href="/boards/b101" class="start">Get Started</a>
