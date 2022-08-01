@@ -11,15 +11,7 @@
                      <router-link :to="'/boards/' + currBoardId">
                         <work-management />
                      </router-link>
-
-                     <div v-for="(tab, idx) in tabs" :class="tab + 'actionTab'" :key="idx">
-                        <action-icon-wrapper :iconName="tab" :isActive=isActive(tab) @click="setSelectedTab(tab)">
-                           <!-- <template #svgIcon>
-                              <use :xlink:href="setSvgLink(tab)"></use>
-                           </template> -->
-                        </action-icon-wrapper>
-
-                     </div>
+                  
                   </div>
 
                </div>

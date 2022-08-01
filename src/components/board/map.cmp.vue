@@ -20,6 +20,10 @@ export default {
             lng: props.taskLocation.location.value.lnglat.lng,
 
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0215405b32b32f9212bc8d096e8e684330c42b7
         const contentString =`
             <div id="content"> 
             <div id="siteNotice"> 
@@ -32,6 +36,7 @@ export default {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -44,6 +49,8 @@ export default {
         navigator.geolocation.getCurrentPosition(success, error);
         */
 
+=======
+>>>>>>> c0215405b32b32f9212bc8d096e8e684330c42b7
         const loader = new Loader({
             apiKey: GOOGLE_MAPS_API_KEY, libraries: ['places']
         })
@@ -74,7 +81,6 @@ export default {
             if (sessionStorage.getItem('center')) {
                 center = JSON.parse(sessionStorage.getItem('center'))
                 placeDet.value = JSON.parse(sessionStorage.getItem('placeDet'))
-                // document.getElementById('place-input').value = sessionStorage.getItem('placeInput')
                 resul_lng.value = center.lng
                 resul_lat.value = center.lat
             } else {
@@ -87,7 +93,6 @@ export default {
                 content: contentString,
             })
             map.value = new google.maps.Map(mapDiv.value, {
-                //centrado en posicion actual
                 center: center,
                 zoom: 10
             })
@@ -101,113 +106,24 @@ export default {
             })
 
             google.maps.event.addListener(marker, 'click', function () {
+<<<<<<< HEAD
                 //alert(marker.getPosition())
+=======
+                console.log(marker)
+>>>>>>> c0215405b32b32f9212bc8d096e8e684330c42b7
                 infowindow.open({
                     anchor: marker,
                     map,
                     shouldFocus: false,
                 })
-                // resul_lat.value = marker.getPosition().lat()
-                // resul_lng.value = marker.getPosition().lng()
-                // center = {
-                //     lat: resul_lat.value,
-                //     lng: resul_lng.value
-                // }
-                //guardar center por arrastre
-                // sessionStorage.setItem('center', JSON.stringify(center))
+              
             })
-
-            //autocompletar
-            // const placeInput = document.getElementById("place-input")
-            // const options = {
-            // componentRestrictions: { country: "mx" },
-            // types: ['geocode']
-            // }
-            // const autocomplete = new google.maps.places.Autocomplete(placeInput, options)
-            // google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            //     //obtener el lugar
-            //     let place = autocomplete.getPlace()
-
-            //     sessionStorage.setItem('placeInput', placeInput.value)
-
-            //     center = place.geometry.location
-            //     //guardar center por busqueda plces
-            //     sessionStorage.setItem('center', JSON.stringify(center))
-            //     //centrar el mapa en el lugar
-            //     map.value.setCenter(center)
-            //     //poner marcador en ese lugar
-            //     marker.setPosition(center)
-
-            //     sessionStorage.setItem('map', map.value)
-            //     sessionStorage.setItem('marker', marker.value)
-
-
-            //     resul_lat.value = center.lat()
-            //     resul_lng.value = center.lng()
-
-            //     //limpiar todo
-            //     exterior.value = ''
-            //     calle.value = ''
-            //     colonia.value = ''
-            //     CP.value = ''
-            //     municipio.value = ''
-            //     estado.value = ''
-
-            //     placeDet.value = {
-            //         exterior: '',
-            //         interior: '',
-            //         calle: '',
-            //         colonia: '',
-            //         CP: '',
-            //         localidad: '',
-            //         municipio: '',
-            //         estado: '',
-            //     }
-
-            //     //guardar detalles
-            //     let detalles = place.address_components
-            //     for (let i = 0; i < detalles.length; i++) {
-            //         var d = detalles[i]
-            //         switch (d.types[0]) {
-            //             case "street_number":
-            //                 placeDet.value.exterior = d.long_name
-            //                 //alert('numero exterior '+d.long_name)
-            //                 break
-            //             case "route":
-            //                 placeDet.value.calle = d.long_name
-            //                 //alert('numero exterior '+d.long_name)
-            //                 break
-            //             case "sublocality_level_1":
-            //                 placeDet.value.colonia = d.long_name
-            //                 //alert('la colonia es ' + d.long_name)
-            //                 break
-            //             case "postal_code":
-            //                 placeDet.value.CP = d.long_name
-            //                 //alert('la colonia es ' + d.long_name)
-            //                 break
-            //             case "locality":
-            //                 placeDet.value.municipio = d.long_name
-            //                 //alert('municipio es ' + d.long_name)
-            //                 break
-            //             case "administrative_area_level_1":
-            //                 placeDet.value.estado = d.long_name
-            //                 //alert('estado es ' + d.long_name)
-            //                 break
-            //             case 'country':
-            //                 //alert('el pais es ' + d.long_name)
-            //                 break
-            //         }
-            //     }
-            //     sessionStorage.setItem('placeDet', JSON.stringify(placeDet.value))
-            // })
 
         })
 
         return {
             tasksLocation: null,
-            //mapa
             mapDiv,
-            //coordenadas
             resul_lat, resul_lng,
             placeDet
         }
@@ -227,7 +143,3 @@ export default {
 </template>
 <style>
 </style>
-
-<!-- created() {
-            this.tasksLocation = this.$store.getters.getAllTasksLocation
-        }, -->
