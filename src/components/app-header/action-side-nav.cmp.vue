@@ -56,15 +56,15 @@
           <div class="boards">
             <div class="selected-board">
               <span class="board-icon"></span>
-              <span class="action-label">Departmental projects</span>
+              <span class="action-label">Marketing & BizDev</span>
             </div>
             <div class="board-select">
               <span class="board-icon"></span>
-              <span class="action-label">My projects</span>
+              <span class="action-label">HR</span>
             </div>
             <div class="board-select">
               <span class="board-icon"></span>
-              <span class="action-label">Management projects</span>
+              <span class="action-label">Sales</span>
             </div>
 
 
