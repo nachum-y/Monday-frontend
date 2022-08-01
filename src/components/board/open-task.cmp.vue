@@ -2,6 +2,9 @@
     <div v-if="currTask">
         <el-drawer v-model="drawer" title="I am the title" :lock-scroll="false" :size="'700px'"
             :custom-class="'task-container'" @closed="close" :show-close="true" :with-header="false">
+            <div class="conversation-colse-btn-container">
+                    <div @click="close" class="conversation-close-btn"></div>
+                </div>
             <div>
                 <div class="task-open-title">
                     <h2 contenteditable="true" class="task-open-task-name">
@@ -137,13 +140,11 @@ export default {
     created() {
         this.boarId = this.$route.params.boardId
         // this.task =  boardService.getTaskById(this.boarId, this.taskId)
-        console.log(this.$route.params.taskId)
         this.$store.commit({ type: 'setCurrTask', taskId: this.$route.params.taskId })
         socketService.on(SOCKET_EVENT_CONVERSION, (msgs) => {
             this.loadMsg(msgs)
         })
         let currTaskId = this.$route.params.taskId
-        console.log(currTaskId)
         socketService.emit('setTopic', currTaskId)
 
     },
@@ -152,7 +153,6 @@ export default {
     },
     methods: {
         loadMsg(msgs) {
-            console.log(msgs)
             this.$store.commit({ type: 'updateConversion', updatedConversion: msgs })
         },
         close() {
@@ -161,7 +161,6 @@ export default {
             this.$router.replace({ path: `/boards/${boarId}` })
         },
         sendMsg() {
-            console.log(this.$refs.writeUpdateMsg)
             let msg = {}
             msg.content = this.msgHtml
             msg.by = this.activeUser
@@ -171,7 +170,6 @@ export default {
             this.msgHtml = ''
         },
         getUrl(url) {
-            console.log(url)
             return url
         },
         removeUpdate(updateId) {
@@ -189,7 +187,6 @@ export default {
     watch: {
         currTask: {
             handler(newValue, oldValue) {
-                console.log(newValue)
                 // Note: `newValue` will be equal to `oldValue` here
                 // on nested mutations as long as the object itself
                 // hasn't been replaced.
@@ -209,12 +206,23 @@ export default {
     right: 0;
 }
 
+.conversation-close-btn::before{
+    content: "\f22c";
+    font-size: 15px;
+    color: #777777;
+    font-family: "dapulse";
+    position: absolute;
+    left: 16px;
+    cursor: pointer;
+    top: 20px;
+}
+
 .task-open-title {
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 1rem;
     align-items: center;
-
+    margin-top: 20px;
 }
 
 .monday-board-subsets-tabs {
