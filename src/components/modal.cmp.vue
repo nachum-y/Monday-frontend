@@ -15,9 +15,10 @@ export default {
             if (!this.posModal) return
             console.log(this.posModal)
             let bottom = this.posModal.bottom
+            let top = this.posModal.top
             let left = this.posModal.left
             console.log(bottom)
-            return `top:${bottom - 150}px; left:${left+10}px;`
+            return `top:${top-150}px; left:${left+10}px;`
         }
 
     }
