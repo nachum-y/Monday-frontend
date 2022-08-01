@@ -20,10 +20,6 @@ export default {
             lng: props.taskLocation.location.value.lnglat.lng,
 
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> c0215405b32b32f9212bc8d096e8e684330c42b7
         const contentString =`
             <div id="content"> 
             <div id="siteNotice"> 
@@ -36,21 +32,6 @@ export default {
 
 
 
-<<<<<<< HEAD
-
-
-
-        /*
-        //forma directa y sencilla
-        const success =(position) => {
-        }
-        const error = (error) => {
-        }
-        navigator.geolocation.getCurrentPosition(success, error);
-        */
-
-=======
->>>>>>> c0215405b32b32f9212bc8d096e8e684330c42b7
         const loader = new Loader({
             apiKey: GOOGLE_MAPS_API_KEY, libraries: ['places']
         })
@@ -106,11 +87,7 @@ export default {
             })
 
             google.maps.event.addListener(marker, 'click', function () {
-<<<<<<< HEAD
-                //alert(marker.getPosition())
-=======
                 console.log(marker)
->>>>>>> c0215405b32b32f9212bc8d096e8e684330c42b7
                 infowindow.open({
                     anchor: marker,
                     map,
