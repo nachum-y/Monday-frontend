@@ -126,4 +126,9 @@ export default {
 h2#firstHeading {
     margin-bottom: 1rem;
 }
+
+.map-location {
+    box-shadow: 0 4px 8px #0003;
+}
+
 </style>

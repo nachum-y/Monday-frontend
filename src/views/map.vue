@@ -18,7 +18,7 @@ export default {
     },
     created() {
         let taskList = this.$store.getters.getAllTasksLocation
-        this.taskLocationLits = taskList[0]
+        this.taskLocationLits = taskList
     },
     components: {
         mapCmp
@@ -26,4 +26,7 @@ export default {
 }
 </script>
 <style >
+.map-content .map-page {
+    gap: 1.6rem;
+}
 </style>

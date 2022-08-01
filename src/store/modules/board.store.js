@@ -300,15 +300,7 @@ export const boardStore = {
             return ({ titles: priorityTitles, colors: priorityColors, count: priorityCountValues })
         },
         getAllTasksLocation({ board }) {
-            // let gropsTaskLocationMap = board.groups.map((g) => {
-            //     return g.tasks.map((t) => {
-            //         let location = t.cols.find((tc) => {
-            //             return tc.type === 'location' && tc.type
-            //         })
 
-            //         if (location) return taskLocationObj
-            //     })
-            // })
             let gropsTaskLocationMap = board.groups.map((g) => {
                 let groupTask = g.tasks.map((t) => {
                     let location = t.cols.find((tCols) => {
@@ -326,10 +318,11 @@ export const boardStore = {
                 return taskListLocation
 
             })
-            return gropsTaskLocationMap.filter((tasks) => tasks.length > 0)
-            // console.log('groupMap:', groupMap)
-            console.log('gropsTaskLocationMap:', gropsTaskLocationMap)
-            return gropsTaskLocationMap
+            console.log(gropsTaskLocationMap.flat())
+            let groupTaskLocations = gropsTaskLocationMap.filter((tasks) => tasks.length > 0)
+            console.log(groupTaskLocations.flat())
+            return groupTaskLocations.flat()
+            // return gropsTaskLocationMap.filter((tasks) => tasks.length > 0)
         },
         getBoardMembers({ board }) {
             return board.members
@@ -443,7 +436,6 @@ export const boardStore = {
             try {
                 await boardService.saveColsOrder(value, state.board._id)
                 socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
-
 
             } catch (error) {
                 console.log(error)
