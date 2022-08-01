@@ -75,7 +75,7 @@ export default {
             })
             map.value = new google.maps.Map(mapDiv.value, {
                 center: center,
-                zoom: 10
+                zoom: 18
             })
 
             marker = new google.maps.Marker({

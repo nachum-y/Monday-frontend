@@ -2,7 +2,6 @@
     <div class="map-content">
         <div v-if="taskLocationLits" class="map-page">
             <div v-for="(task, idx) in taskLocationLits" :key="idx">
-
                 <map-cmp :taskLocation="task" />
             </div>
         </div>
