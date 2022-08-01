@@ -24,7 +24,7 @@
               </el-tooltip>
             </button>
             <div v-if="openMenu" class="user-select-menu">
-              <div class="user-select-menu-member" @click="changeMember(member)" v-for="member in board.members"
+              <div class="user-select-menu-member" v-for="member in board.members"
                 :key="member.id">
                 <div class="user-select-menu-member-display">
                   <div class="img-holder">

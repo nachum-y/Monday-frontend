@@ -79,6 +79,7 @@
                     <div class="member-linkedIn">
                         <a :href="getLink(person.id)" target="_blank">Connect on LinkedIn</a>
                     </div>
+                    
                 </div>
 
             </div>
