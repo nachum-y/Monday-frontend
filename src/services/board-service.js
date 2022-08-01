@@ -43,7 +43,9 @@ export const boardService = {
   saveGroupsRows,
   duplicateTasks,
   conversionAdd,
-  conversionRemove
+  conversionRemove,
+  saveColsOrder
+
 }
 
 
@@ -94,7 +96,7 @@ async function removeGroup(groupId, boardId) {
 
 
 async function updateGroup(groupId, data, boardId) {
-  const pramToChange =Object.keys(data)[0]
+  const pramToChange = Object.keys(data)[0]
   const parmValue = data[Object.keys(data)[0]]
   let board = await _getBoardById(boardId)
   let groupToEdit = board.groups.find((g) => g.id === groupId)
@@ -186,7 +188,7 @@ async function duplicateTasks(idsToDup, boardId) {
         const idx = board.groups.findIndex(group => group.id === task.groupId)
         board.groups[idx].tasks.push(newTask)
       }
-    })   
+    })
   })
   const savedBoard = await httpService.put(`boards/${boardId}`, board)
   // boardChannel.postMessage({ type: 'updateBoard', board: savedBoard })
@@ -277,13 +279,20 @@ async function conversionAdd(ids, mgsContent) {
   return updatedConversion
 }
 
-async function conversionRemove(ids,updateId){
+async function saveColsOrder(newOrder, boardId) {
+  let board = await _getBoardById(boardId)
+  board.colsOrder = newOrder
+  await httpService.put(`boards/${boardId}`, board)
+
+}
+
+async function conversionRemove(ids, updateId) {
   const { groupId, taskId, boardId } = ids
   let board = await _getBoardById(boardId)
   const groupIdx = board.groups.findIndex((group) => group.id === groupId)
   const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
-  const updateIdx = board.groups[groupIdx].tasks[taskIdx].conversion.findIndex(update=>update.id===updateId)
-  board.groups[groupIdx].tasks[taskIdx].conversion.splice(updateIdx,1)
+  const updateIdx = board.groups[groupIdx].tasks[taskIdx].conversion.findIndex(update => update.id === updateId)
+  board.groups[groupIdx].tasks[taskIdx].conversion.splice(updateIdx, 1)
   await httpService.put(`boards/${boardId}`, board)
   let updatedConversion = board.groups[groupIdx].tasks[taskIdx].conversion
   return updatedConversion

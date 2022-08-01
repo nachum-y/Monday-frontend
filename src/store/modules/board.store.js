@@ -437,9 +437,18 @@ export const boardStore = {
                 commit({ type: 'showUsrMsg', msgType: 'error', msg })
             }
         },
-        updateColsOrder({ commit }, { value }) {
+        async updateColsOrder({ commit, state }, { value }) {
             commit({ type: 'updateColsOrder', value2: value })
-            socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+            console.log(value)
+            try {
+                await boardService.saveColsOrder(value, state.board._id)
+                socketService.emit(SOCKET_EVENT_BOARD_CHANGE, 'loadBoard')
+
+
+            } catch (error) {
+                console.log(error)
+            }
+
 
         },
         async updateRowsOrder({ commit, state }, { value, idx }) {
