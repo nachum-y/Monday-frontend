@@ -8,10 +8,10 @@
                <div class="scrollable-navigation-items-area">
 
                   <div class="top-navigation-items-area">
-                     <router-link :to="'/boards/' + currBoardId">
+                     <!-- <router-link :to="'/boards/' + currBoardId"> -->
                         <work-management />
-                     </router-link>
-                  
+                     <!-- </router-link> -->
+
                   </div>
 
                </div>
@@ -36,6 +36,7 @@ export default {
       return {
          activeTab: 'notifications',
          tabs: ['Notifications', 'Inbox', 'MyWeek', 'Favorite', 'Invite', 'Search', 'Help'],
+         activePage: ''
       }
 
    },
@@ -60,9 +61,11 @@ export default {
       },
 
    },
+  
 
 
 }
 </script>
 <style>
+
 </style>
