@@ -1,0 +1,73 @@
+@media (max-width: 720px) {
+
+    #app{
+    
+        .application-layers{
+            .surface{
+                display: none;
+            }
+            .first-level-control{
+                display: none;
+            }
+            .first-level{
+                left: 0px;
+
+                .first-level-content-wrapper{
+                    margin-left: 0px;
+
+                    .board-title-input{
+                        font-size: 27px;
+                    }
+                    .main-header{
+                        padding-left: 0.5rem;
+                    }
+
+                }
+            }
+        }
+
+        .board-content{
+            padding-left: 0.5rem;
+
+            &-group{
+                .group-title-action{
+                    width: 250px;
+                }
+                &-row{
+                    grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
+                    &-header{
+                        grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
+    
+                    }
+                    &-add-item{
+                        grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
+                    }
+
+                    &-footer{
+                        grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
+                        .board-content-group-row-footer-corner{
+                            left:247px;
+                        }
+                    }
+                }
+
+            }
+        }
+        .dashboard-content{
+            display: flex;
+            flex-direction: column;
+            .member-name{
+                font-size: 14px;
+            }
+        }
+        .map-page{
+            display: flex;
+            flex-direction: column;
+        }
+        .cards-holder{
+            justify-content: center;
+        }
+    }
+
+
+}
