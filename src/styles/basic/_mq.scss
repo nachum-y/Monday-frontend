@@ -1,24 +1,27 @@
 @media (max-width: 720px) {
 
-    #app{
-    
-        .application-layers{
-            .surface{
+    #app {
+
+        .application-layers {
+            .surface {
                 display: none;
             }
-            .first-level-control{
+
+            .first-level-control {
                 display: none;
             }
-            .first-level{
+
+            .first-level {
                 left: 0px;
 
-                .first-level-content-wrapper{
+                .first-level-content-wrapper {
                     margin-left: 0px;
 
-                    .board-title-input{
+                    .board-title-input {
                         font-size: 27px;
                     }
-                    .main-header{
+
+                    .main-header {
                         padding-left: 0.5rem;
                     }
 
@@ -26,48 +29,69 @@
             }
         }
 
-        .board-content{
+        .board-content {
             padding-left: 0.5rem;
 
-            &-group{
-                .group-title-action{
+            &-group {
+                .group-title-action {
                     width: 250px;
                 }
-                &-row{
+
+                &-row {
                     grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
-                    &-header{
+
+                    &-header {
                         grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
-    
+
                     }
-                    &-add-item{
+
+                    &-add-item {
                         grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
                     }
 
-                    &-footer{
+                    &-footer {
                         grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
-                        .board-content-group-row-footer-corner{
-                            left:247px;
+
+                        .board-content-group-row-footer-corner {
+                            left: 247px;
                         }
                     }
                 }
 
             }
         }
-        .dashboard-content{
+
+        .dashboard-content {
             display: flex;
             flex-direction: column;
-            .member-name{
+
+            .member-name {
                 font-size: 14px;
             }
         }
-        .map-page{
+
+        .map-page {
             display: flex;
             flex-direction: column;
         }
-        .cards-holder{
+
+        .cards-holder {
             justify-content: center;
         }
     }
 
 
+
+    .kanbn-view {
+        grid-template-columns: 1fr !important;
+    }
+
+    .kanbn-view-menu {
+        position: absolute;
+        height: 100%;
+        background: #fff;
+        right: 0;
+        right: -250px;
+        transition: 0.5s;
+    }
 }
