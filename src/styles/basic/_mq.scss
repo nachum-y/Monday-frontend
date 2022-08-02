@@ -17,12 +17,19 @@
                 .first-level-content-wrapper {
                     margin-left: 0px;
 
-                    .board-title-input {
-                        font-size: 27px;
+                    .board-title-input{
+                        font-size: 24px;
                     }
 
                     .main-header {
                         padding-left: 0.5rem;
+                        margin-right: 0px;
+                        .user-select-menu{
+                        left: -100px;
+                        }
+                        .i-btn, .star-btn, .invite-btn,.add-board-entity-button-wrapper, .person-filter-component{
+                        display: none;
+                        }
                     }
 
                 }
@@ -32,28 +39,32 @@
         .board-content {
             padding-left: 0.5rem;
 
-            &-group {
-                .group-title-action {
-                    width: 250px;
+            &-group{
+                .group-title-action{
+                    width: 180px;
                 }
-
-                &-row {
-                    grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
-
-                    &-header {
-                        grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
-
+                &-row{
+                    grid-template-columns: 180px repeat(auto-fill, minmax(140px, 160px));
+                    &-header{
+                        grid-template-columns: 180px repeat(auto-fill, minmax(140px, 160px));
+    
+                    }
+                    &-add-item{
+                        grid-template-columns: 180px repeat(auto-fill, minmax(140px, 160px));
                     }
 
-                    &-add-item {
-                        grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
+                    &-footer{
+                        grid-template-columns: 180px repeat(auto-fill, minmax(140px, 160px));
+                        .board-content-group-row-footer-corner{
+                            left:180px;
+                        }
                     }
-
-                    &-footer {
-                        grid-template-columns: 250px repeat(auto-fill, minmax(140px, 160px));
-
-                        .board-content-group-row-footer-corner {
-                            left: 247px;
+                    .task-item{
+                        .item-select{
+                            margin-right: 8px;
+                        }
+                        .item-conversation{
+                            display: none;
                         }
                     }
                 }

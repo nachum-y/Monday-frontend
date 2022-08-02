@@ -19,9 +19,8 @@
           <div class="user-select">
             <button class="last-seen-btn header-btn" @click="toggleMenu">
               <p>Last seen</p>
-              <el-tooltip :style="`font-size:50px;`" content="shirkiabir@gmail.com" effect="dark">
                 <img v-if="activeUser" class="user-avatar" :src="activeUser.imgUrl" alt="user-avatar">
-              </el-tooltip>
+
             </button>
             <div v-if="openMenu" class="user-select-menu">
               <div class="user-select-menu-member" v-for="member in board.members" :key="member.id">
