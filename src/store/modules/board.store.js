@@ -81,15 +81,11 @@ export const boardStore = {
             state.board.groups = updatedGroups
         },
         searchInput(state, { inputTxt }) {
-            const regex = new RegExp(inputTxt, 'i')
-            state.activeFilter = 'txt'
-            state.activeFilterParam.txt = regex
-            state.activeFilterVal.txt = regex
-            // if (!inputTxt) state.activeFilter = 'all'
+            state.activeFilterParam.txt = new RegExp(inputTxt, 'i')
         },
         setActiveFilter(state, { filter, param = null }) {
 
-            // state.activeFilter = filter
+            console.log(filter)
             if (filter === 'txt') {
                 state.activeFilterParam[filter] = new RegExp(param, 'i')
                 return
