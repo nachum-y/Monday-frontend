@@ -1,6 +1,6 @@
 <template>
     <div v-if="task" :class="'task-' + task.type">
-        <el-date-picker class="col-hover" @change="updateTask" :prefix-icon="progressBarCmp" v-model="taskTime"
+        <el-date-picker class="col-hover" @change="updateTask"  v-model="taskTime"
             type="date" :format="formatDate" value-format="x" />
     </div>
 
